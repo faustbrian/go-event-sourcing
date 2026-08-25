@@ -33,12 +33,12 @@ github.com/docker/go-units v0.5.0 h1:69rxXcBk27SvSaaxTtLh/8llcHD8vYHT7WSdRZ/jvr4
 github.com/docker/go-units v0.5.0/go.mod h1:fgPhTUdO+D/Jk86RDLlptpiXQzgHJF7gydDDbaIK4Dk=
 github.com/ebitengine/purego v0.10.0 h1:QIw4xfpWT6GWTzaW5XEKy3HXoqrJGx1ijYHzTF0/ISU=
 github.com/ebitengine/purego v0.10.0/go.mod h1:iIjxzd6CiRiOG0UyXP+V1+jWqUXVjPKLAI0mRfJZTmQ=
-github.com/faustbrian/go-event-sourcing v1.0.0 h1:jtkgVL+jje0xHDN1yus8fuJZaas1Q36+KF7UxiMANFc=
+github.com/faustbrian/go-event-sourcing v1.0.0 h1:03+Zk+S1S62NW/6iLjVO6HnJWeZnLEcmNv+7vxlGmYs=
 github.com/faustbrian/go-event-sourcing v1.0.0/go.mod h1:YnepDoU9pM7GqLFf+hjuD1ttfaOoO1BZ37lvsNlByZA=
-github.com/faustbrian/go-event-sourcing/postgres v1.0.0 h1:dabHh115GsYHHYccQhSQ2QNhC6XAVpISUIDS4IQ+jbY=
+github.com/faustbrian/go-event-sourcing/postgres v1.0.0 h1:FoT3XbV2kW/rLa7YTsmpdm5hC7INuZB6CX51p58H6Mg=
 github.com/faustbrian/go-event-sourcing/postgres v1.0.0/go.mod h1:uYYop9kQuPZV1LiTG+3o3ocl24c5U+key+5fkCy1LTE=
-github.com/faustbrian/go-transactional-outbox v1.0.0 h1:fmX1ZZp3rIh0x88MSIaYWJJUZp4zrBxwiGTqar7G4DY=
-github.com/faustbrian/go-transactional-outbox v1.0.0/go.mod h1:YIAjTAfyavHB7jvGFh/zfQjHixSeiTg75ES4Kab5W20=
+github.com/faustbrian/go-transactional-outbox v1.0.0 h1:nJrVrVBO+Vy3ie8RiYskqU/arB/5e8b+EkOQmEuPfgE=
+github.com/faustbrian/go-transactional-outbox v1.0.0/go.mod h1:xfUyb0Wxg9+fN2RttzFgoAHZdHhG64WJRfpoDrKIJ58=
 github.com/felixge/httpsnoop v1.0.4 h1:NFTV2Zj1bL4mc9sqWACXbQFVBBg2W3GPvqp8/ESS2Wg=
 github.com/felixge/httpsnoop v1.0.4/go.mod h1:m8KPJKqk1gH5J9DgRY2ASl2lWCfGKXixSwevea8zH2U=
 github.com/go-logr/logr v1.2.2/go.mod h1:jdQByPbusPIv2/zmleS9BjJVeZ6kBagPoEUsqbVz/1A=
