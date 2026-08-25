@@ -1,7 +1,7 @@
 # Event sourcing queue adapter
 
 `eventqueue` maps complete event-sourcing deliveries to the first-party
-`github.com/faustbrian/golib/pkg/queue` contract. The event-sourcing core does
+`github.com/faustbrian/go-queue` contract. The event-sourcing core does
 not import queue, and this adapter owns no worker, broker connection, retry
 clock, dead-letter store, or business-idempotency state.
 

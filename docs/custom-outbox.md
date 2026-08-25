@@ -2,7 +2,7 @@
 
 Building a general transactional outbox is not an event-sourcing core
 responsibility. The independently releasable
-`github.com/faustbrian/golib/pkg/outbox` module owns envelope construction,
+`github.com/faustbrian/go-transactional-outbox` module owns envelope construction,
 PostgreSQL persistence, leasing, retry, dead letters, replay, pruning, and the
 bounded relay. It works without this library and does not import it.
 

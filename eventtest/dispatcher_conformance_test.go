@@ -5,8 +5,8 @@ import (
 	"errors"
 	"testing"
 
-	eventsourcing "github.com/faustbrian/golib/pkg/event-sourcing"
-	"github.com/faustbrian/golib/pkg/event-sourcing/eventtest"
+	eventsourcing "github.com/faustbrian/go-event-sourcing"
+	"github.com/faustbrian/go-event-sourcing/eventtest"
 )
 
 func TestSynchronousDispatcherConformanceAcceptsCoreDispatcher(t *testing.T) {

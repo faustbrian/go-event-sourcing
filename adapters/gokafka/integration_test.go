@@ -10,9 +10,9 @@ import (
 	"testing"
 	"time"
 
-	eventsourcing "github.com/faustbrian/golib/pkg/event-sourcing"
-	gokafka "github.com/faustbrian/golib/pkg/event-sourcing/adapters/gokafka"
-	"github.com/faustbrian/golib/pkg/kafka"
+	eventsourcing "github.com/faustbrian/go-event-sourcing"
+	gokafka "github.com/faustbrian/go-event-sourcing/adapters/gokafka"
+	"github.com/faustbrian/go-kafka"
 	tckafka "github.com/testcontainers/testcontainers-go/modules/kafka"
 	"github.com/twmb/franz-go/pkg/kadm"
 	"github.com/twmb/franz-go/pkg/kgo"

@@ -28,7 +28,7 @@ environment:
 	uname -a
 	git rev-parse HEAD
 	$(GO) list -m \
-		github.com/faustbrian/golib/pkg/event-sourcing \
+		github.com/faustbrian/go-event-sourcing \
 		github.com/hallgren/eventsourcing \
 		github.com/looplab/eventhorizon \
 		github.com/thefabric-io/eventsourcing \

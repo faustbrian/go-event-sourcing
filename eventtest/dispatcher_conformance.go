@@ -8,7 +8,7 @@ import (
 	"strings"
 	"time"
 
-	eventsourcing "github.com/faustbrian/golib/pkg/event-sourcing"
+	eventsourcing "github.com/faustbrian/go-event-sourcing"
 )
 
 // DispatcherRegistration is one ordered consumer fixture for a replaceable

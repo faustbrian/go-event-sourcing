@@ -7,9 +7,9 @@ import (
 	"reflect"
 	"strconv"
 
-	eventsourcing "github.com/faustbrian/golib/pkg/event-sourcing"
-	"github.com/faustbrian/golib/pkg/queue/core"
-	"github.com/faustbrian/golib/pkg/queue/job"
+	eventsourcing "github.com/faustbrian/go-event-sourcing"
+	"github.com/faustbrian/go-queue/core"
+	"github.com/faustbrian/go-queue/job"
 )
 
 var (

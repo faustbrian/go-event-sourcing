@@ -17,7 +17,7 @@ gc 16 @0.279s 4%: 0.26+1.2+0.005 ms clock, 4.2+0.095/3.2/0.014+0.082 ms cpu, 11-
 gc 17 @0.290s 4%: 0.31+3.4+0.12 ms clock, 5.1+0.034/4.2/0+2.0 ms cpu, 12->15->9 MB, 14 MB goal, 0 MB stacks, 0 MB globals, 16 P
 gc 18 @0.303s 4%: 0.078+1.6+0.007 ms clock, 1.2+0.13/3.6/0.19+0.12 ms cpu, 15->17->8 MB, 18 MB goal, 0 MB stacks, 0 MB globals, 16 P
 gc 19 @0.446s 3%: 0.16+0.93+0.026 ms clock, 2.5+0/3.2/2.5+0.42 ms cpu, 14->14->7 MB, 16 MB goal, 0 MB stacks, 0 MB globals, 16 P
-# github.com/faustbrian/golib/pkg/event-sourcing.test
+# github.com/faustbrian/go-event-sourcing.test
 gc 1 @0.001s 2%: 0.057+0.25+0.009 ms clock, 0.91+0.038/0.40/0+0.15 ms cpu, 3->5->5 MB, 4 MB goal, 0 MB stacks, 0 MB globals, 16 P
 gc 2 @0.010s 1%: 0.017+0.32+0.011 ms clock, 0.28+0.019/0.67/0.11+0.18 ms cpu, 9->9->7 MB, 10 MB goal, 0 MB stacks, 0 MB globals, 16 P
 gc 3 @0.012s 1%: 0.045+0.33+0.035 ms clock, 0.73+0.029/0.79/0.090+0.57 ms cpu, 13->13->12 MB, 15 MB goal, 0 MB stacks, 0 MB globals, 16 P

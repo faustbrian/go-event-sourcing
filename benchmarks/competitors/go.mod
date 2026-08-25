@@ -1,9 +1,9 @@
-module github.com/faustbrian/golib/pkg/event-sourcing/benchmarks/competitors
+module github.com/faustbrian/go-event-sourcing/benchmarks/competitors
 
 go 1.26.6
 
 require (
-	github.com/faustbrian/golib/pkg/event-sourcing v0.0.0
+	github.com/faustbrian/go-event-sourcing v1.0.0
 	github.com/hallgren/eventsourcing v0.9.1
 	github.com/hallgren/eventsourcing/core v0.5.2
 	github.com/looplab/eventhorizon v0.17.0

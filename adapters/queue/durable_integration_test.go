@@ -12,12 +12,12 @@ import (
 	"testing"
 	"time"
 
-	eventsourcing "github.com/faustbrian/golib/pkg/event-sourcing"
-	queuepkg "github.com/faustbrian/golib/pkg/queue"
-	"github.com/faustbrian/golib/pkg/queue/core"
-	"github.com/faustbrian/golib/pkg/queue/job"
-	"github.com/faustbrian/golib/pkg/queue/management"
-	"github.com/faustbrian/golib/pkg/queue/valkeystream"
+	eventsourcing "github.com/faustbrian/go-event-sourcing"
+	queuepkg "github.com/faustbrian/go-queue"
+	"github.com/faustbrian/go-queue/core"
+	"github.com/faustbrian/go-queue/job"
+	"github.com/faustbrian/go-queue/management"
+	"github.com/faustbrian/go-queue/valkeystream"
 	"github.com/testcontainers/testcontainers-go"
 	"github.com/testcontainers/testcontainers-go/wait"
 )

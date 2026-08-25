@@ -5,7 +5,7 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/faustbrian/golib/pkg/event-sourcing/projection"
+	"github.com/faustbrian/go-event-sourcing/projection"
 )
 
 func TestProjectionStoreChecksCancellationAfterLockAcquisition(t *testing.T) {

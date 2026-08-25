@@ -8,7 +8,7 @@ import (
 	"testing"
 	"time"
 
-	gokafka "github.com/faustbrian/golib/pkg/event-sourcing/adapters/gokafka"
+	gokafka "github.com/faustbrian/go-event-sourcing/adapters/gokafka"
 	tckafka "github.com/testcontainers/testcontainers-go/modules/kafka"
 )
 

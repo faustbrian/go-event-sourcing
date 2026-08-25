@@ -9,7 +9,7 @@ import (
 	"testing"
 	"time"
 
-	eventsourcing "github.com/faustbrian/golib/pkg/event-sourcing"
+	eventsourcing "github.com/faustbrian/go-event-sourcing"
 	"go.opentelemetry.io/otel/attribute"
 	"go.opentelemetry.io/otel/propagation"
 	sdkmetric "go.opentelemetry.io/otel/sdk/metric"

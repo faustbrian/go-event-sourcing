@@ -5,17 +5,17 @@ module has no database, queue, outbox, Kafka, telemetry, framework, or
 generator dependency:
 
 ```sh
-go get github.com/faustbrian/golib/pkg/event-sourcing
+go get github.com/faustbrian/go-event-sourcing
 ```
 
 Optional integrations are independently versioned modules:
 
 ```sh
-go get github.com/faustbrian/golib/pkg/event-sourcing/postgres
-go get github.com/faustbrian/golib/pkg/event-sourcing/adapters/gokafka
-go get github.com/faustbrian/golib/pkg/event-sourcing/adapters/outbox
-go get github.com/faustbrian/golib/pkg/event-sourcing/adapters/queue
-go get github.com/faustbrian/golib/pkg/event-sourcing/adapters/gotelemetry
+go get github.com/faustbrian/go-event-sourcing/postgres
+go get github.com/faustbrian/go-event-sourcing/adapters/gokafka
+go get github.com/faustbrian/go-event-sourcing/adapters/outbox
+go get github.com/faustbrian/go-event-sourcing/adapters/queue
+go get github.com/faustbrian/go-event-sourcing/adapters/gotelemetry
 ```
 
 Before the first tagged release, these commands describe the stable module

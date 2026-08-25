@@ -7,8 +7,8 @@ import (
 	"testing"
 	"time"
 
-	eventsourcing "github.com/faustbrian/golib/pkg/event-sourcing"
-	"github.com/faustbrian/golib/pkg/kafka"
+	eventsourcing "github.com/faustbrian/go-event-sourcing"
+	"github.com/faustbrian/go-kafka"
 	"go.opentelemetry.io/otel/metric"
 	metricnoop "go.opentelemetry.io/otel/metric/noop"
 	"go.opentelemetry.io/otel/propagation"

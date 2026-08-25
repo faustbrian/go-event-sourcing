@@ -1,13 +1,13 @@
 # event-sourcing PostgreSQL
 
 `postgres` is the independently releasable PostgreSQL adapter for
-`github.com/faustbrian/golib/pkg/event-sourcing`. Installing the core module
+`github.com/faustbrian/go-event-sourcing`. Installing the core module
 does not add `pgx` or database dependencies.
 
 ## Install
 
 ```sh
-go get github.com/faustbrian/golib/pkg/event-sourcing/postgres
+go get github.com/faustbrian/go-event-sourcing/postgres
 ```
 
 Apply the embedded migration through the repository's engine-neutral

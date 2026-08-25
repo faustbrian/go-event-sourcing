@@ -455,7 +455,7 @@ Avoid package fragmentation when a subpackage does not isolate a dependency,
 capability, or coherent public concept.
 
 The public module path is
-`github.com/faustbrian/golib/pkg/event-sourcing`; its idiomatic Go package
+`github.com/faustbrian/go-event-sourcing`; its idiomatic Go package
 identifier SHOULD be `eventsourcing`.
 
 ## Go API Requirements

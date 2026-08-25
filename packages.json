@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "repository": "github.com/faustbrian/go-event-sourcing",
+  "packages": [
+    {
+      "module_directory": ".",
+      "directory": ".",
+      "name": "eventsourcing",
+      "import_path": "github.com/faustbrian/go-event-sourcing",
+      "kind": "public",
+      "production": true,
+      "executable": true,
+      "coverage_required": true,
+      "build_required": true,
+      "build_tags": []
+    },
+    {
+      "module_directory": "adapters/gokafka",
+      "directory": ".",
+      "name": "gokafka",
+      "import_path": "github.com/faustbrian/go-event-sourcing/adapters/gokafka",
+      "kind": "public",
+      "production": true,
+      "executable": true,
+      "coverage_required": true,
+      "build_required": true,
+      "build_tags": []
+    },
+    {
+      "module_directory": "adapters/gotelemetry",
+      "directory": ".",
+      "name": "gotelemetry",
+      "import_path": "github.com/faustbrian/go-event-sourcing/adapters/gotelemetry",
+      "kind": "public",
+      "production": true,
+      "executable": true,
+      "coverage_required": true,
+      "build_required": true,
+      "build_tags": []
+    },
+    {
+      "module_directory": "adapters/outbox",
+      "directory": ".",
+      "name": "eventoutbox",
+      "import_path": "github.com/faustbrian/go-event-sourcing/adapters/outbox",
+      "kind": "public",
+      "production": true,
+      "executable": true,
+      "coverage_required": true,
+      "build_required": true,
+      "build_tags": []
+    },
+    {
+      "module_directory": "adapters/queue",
+      "directory": ".",
+      "name": "eventqueue",
+      "import_path": "github.com/faustbrian/go-event-sourcing/adapters/queue",
+      "kind": "public",
+      "production": true,
+      "executable": true,
+      "coverage_required": true,
+      "build_required": true,
+      "build_tags": []
+    },
+    {
+      "module_directory": ".",
+      "directory": "eventtest",
+      "name": "eventtest",
+      "import_path": "github.com/faustbrian/go-event-sourcing/eventtest",
+      "kind": "test support",
+      "production": false,
+      "executable": true,
+      "coverage_required": false,
+      "build_required": true,
+      "build_tags": []
+    },
+    {
+      "module_directory": ".",
+      "directory": "memory",
+      "name": "memory",
+      "import_path": "github.com/faustbrian/go-event-sourcing/memory",
+      "kind": "public",
+      "production": true,
+      "executable": true,
+      "coverage_required": true,
+      "build_required": true,
+      "build_tags": []
+    },
+    {
+      "module_directory": "postgres",
+      "directory": ".",
+      "name": "postgres",
+      "import_path": "github.com/faustbrian/go-event-sourcing/postgres",
+      "kind": "public",
+      "production": true,
+      "executable": true,
+      "coverage_required": true,
+      "build_required": true,
+      "build_tags": []
+    },
+    {
+      "module_directory": ".",
+      "directory": "processmanager",
+      "name": "processmanager",
+      "import_path": "github.com/faustbrian/go-event-sourcing/processmanager",
+      "kind": "public",
+      "production": true,
+      "executable": true,
+      "coverage_required": true,
+      "build_required": true,
+      "build_tags": []
+    },
+    {
+      "module_directory": ".",
+      "directory": "projection",
+      "name": "projection",
+      "import_path": "github.com/faustbrian/go-event-sourcing/projection",
+      "kind": "public",
+      "production": true,
+      "executable": true,
+      "coverage_required": true,
+      "build_required": true,
+      "build_tags": []
+    },
+    {
+      "module_directory": ".",
+      "directory": "snapshot",
+      "name": "snapshot",
+      "import_path": "github.com/faustbrian/go-event-sourcing/snapshot",
+      "kind": "public",
+      "production": true,
+      "executable": true,
+      "coverage_required": true,
+      "build_required": true,
+      "build_tags": []
+    }
+  ]
+}

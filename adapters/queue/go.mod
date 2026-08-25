@@ -1,10 +1,10 @@
-module github.com/faustbrian/golib/pkg/event-sourcing/adapters/queue
+module github.com/faustbrian/go-event-sourcing/adapters/queue
 
 go 1.26.6
 
 require (
-	github.com/faustbrian/golib/pkg/event-sourcing v0.0.0
-	github.com/faustbrian/golib/pkg/queue v0.0.0
+	github.com/faustbrian/go-event-sourcing v1.0.0
+	github.com/faustbrian/go-queue v1.0.0
 	github.com/testcontainers/testcontainers-go v0.43.0
 )
 

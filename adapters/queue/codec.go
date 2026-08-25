@@ -14,8 +14,8 @@ import (
 	"strconv"
 	"time"
 
-	eventsourcing "github.com/faustbrian/golib/pkg/event-sourcing"
-	"github.com/faustbrian/golib/pkg/queue/job"
+	eventsourcing "github.com/faustbrian/go-event-sourcing"
+	"github.com/faustbrian/go-queue/job"
 )
 
 const envelopeFormat = "golib.event-sourcing.queue.v1"

@@ -1,3 +1,3 @@
-module github.com/faustbrian/golib/pkg/event-sourcing
+module github.com/faustbrian/go-event-sourcing
 
 go 1.26.6

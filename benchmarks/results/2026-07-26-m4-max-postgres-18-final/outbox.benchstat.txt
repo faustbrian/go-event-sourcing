@@ -1,6 +1,6 @@
 goos: darwin
 goarch: arm64
-pkg: github.com/faustbrian/golib/pkg/event-sourcing/adapters/gooutbox
+pkg: github.com/faustbrian/go-event-sourcing/adapters/gooutbox
 cpu: Apple M4 Max
                                                           │ /tmp/event-sourcing-results-final.CA4hYb/outbox.txt │
                                                           │                       sec/op                        │

@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	eventsourcing "github.com/faustbrian/golib/pkg/event-sourcing"
-	queuepkg "github.com/faustbrian/golib/pkg/queue"
-	"github.com/faustbrian/golib/pkg/queue/core"
-	"github.com/faustbrian/golib/pkg/queue/job"
+	eventsourcing "github.com/faustbrian/go-event-sourcing"
+	queuepkg "github.com/faustbrian/go-queue"
+	"github.com/faustbrian/go-queue/core"
+	"github.com/faustbrian/go-queue/job"
 )
 
 func TestDispatcherPreservesAmbiguityForAcceptedFailuresAndDuplicateRetry(t *testing.T) {

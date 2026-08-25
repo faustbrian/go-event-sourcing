@@ -1,6 +1,6 @@
 goos: darwin
 goarch: arm64
-pkg: github.com/faustbrian/golib/pkg/event-sourcing/benchmarks/competitors
+pkg: github.com/faustbrian/go-event-sourcing/benchmarks/competitors
 cpu: Apple M4 Max
 BenchmarkEquivalentRecordAndApply/golib-16         	 4056051	        96.90 ns/op	      96 B/op	       2 allocs/op
 BenchmarkEquivalentRecordAndApply/golib-16         	 3718767	       108.9 ns/op	      96 B/op	       2 allocs/op
@@ -83,4 +83,4 @@ BenchmarkEquivalentRecordAndApply/thefabric-16     	  326144	       915.5 ns/op	
 BenchmarkEquivalentRecordAndApply/thefabric-16     	  331573	      1220 ns/op	     721 B/op	      17 allocs/op
 BenchmarkEquivalentRecordAndApply/thefabric-16     	  307083	      1293 ns/op	     721 B/op	      17 allocs/op
 PASS
-ok  	github.com/faustbrian/golib/pkg/event-sourcing/benchmarks/competitors	25.272s
+ok  	github.com/faustbrian/go-event-sourcing/benchmarks/competitors	25.272s

@@ -8,7 +8,7 @@ import (
 	"maps"
 	"time"
 
-	eventsourcing "github.com/faustbrian/golib/pkg/event-sourcing"
+	eventsourcing "github.com/faustbrian/go-event-sourcing"
 )
 
 // EventStoreFactory constructs a store without preexisting conformance fixture

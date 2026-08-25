@@ -1,7 +1,7 @@
 # Compatible queue integration
 
 The independently versioned
-`github.com/faustbrian/golib/pkg/event-sourcing/adapters/queue` module keeps
+`github.com/faustbrian/go-event-sourcing/adapters/queue` module keeps
 the repository queue dependency outside the event-sourcing core.
 
 The adapter preserves complete persisted delivery identity in the versioned

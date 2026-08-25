@@ -8,7 +8,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/faustbrian/golib/pkg/kafka"
+	"github.com/faustbrian/go-kafka"
 )
 
 const (

@@ -4,8 +4,8 @@ import (
 	"context"
 	"testing"
 
-	eventsourcing "github.com/faustbrian/golib/pkg/event-sourcing"
-	"github.com/faustbrian/golib/pkg/kafka"
+	eventsourcing "github.com/faustbrian/go-event-sourcing"
+	"github.com/faustbrian/go-kafka"
 )
 
 func BenchmarkRecordCodecRoundTrip(b *testing.B) {

@@ -7,10 +7,10 @@ import (
 	"testing"
 	"time"
 
-	eventsourcing "github.com/faustbrian/golib/pkg/event-sourcing"
-	eventpostgres "github.com/faustbrian/golib/pkg/event-sourcing/postgres"
-	"github.com/faustbrian/golib/pkg/outbox"
-	outboxpostgres "github.com/faustbrian/golib/pkg/outbox/postgres"
+	eventsourcing "github.com/faustbrian/go-event-sourcing"
+	eventpostgres "github.com/faustbrian/go-event-sourcing/postgres"
+	"github.com/faustbrian/go-transactional-outbox"
+	outboxpostgres "github.com/faustbrian/go-transactional-outbox/postgres"
 	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgconn"
 )

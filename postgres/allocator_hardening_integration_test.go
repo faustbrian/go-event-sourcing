@@ -8,8 +8,8 @@ import (
 	"testing"
 	"time"
 
-	eventsourcing "github.com/faustbrian/golib/pkg/event-sourcing"
-	eventpostgres "github.com/faustbrian/golib/pkg/event-sourcing/postgres"
+	eventsourcing "github.com/faustbrian/go-event-sourcing"
+	eventpostgres "github.com/faustbrian/go-event-sourcing/postgres"
 	"github.com/jackc/pgx/v5/pgxpool"
 )
 

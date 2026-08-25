@@ -1,7 +1,7 @@
 # Kafka integration
 
 The independently versioned
-`github.com/faustbrian/golib/pkg/event-sourcing/adapters/gokafka` module owns
+`github.com/faustbrian/go-event-sourcing/adapters/gokafka` module owns
 event-message mapping and event-specific producer and consumer composition.
 The core module does not import Kafka or franz-go.
 

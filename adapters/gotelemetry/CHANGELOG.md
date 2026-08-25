@@ -8,12 +8,15 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [1.0.0] - 2026-08-25
+
 ### Documentation
 
 - Link the package README to the repository-wide Golib documentation portal.
 
 ### Changed
 
+- Publish the module from its standalone `github.com/faustbrian/go-event-sourcing/adapters/gotelemetry` identity while preserving its documented API and behavior.
 - Isolate OpenTelemetry runtime and propagation panics from wrapped operations,
   discard invalid propagation output without failing bounded publication, and
   preserve downstream nil-iterator return pairs exactly.
@@ -72,3 +75,6 @@ and this project adheres to
 - Add event-store append, bounded stream-read, and global-read spans and
   operation metrics that include iterator lifetime without recording stream,
   position, message, error, or database identity.
+
+[Unreleased]: https://github.com/faustbrian/go-event-sourcing/compare/adapters%2Fgotelemetry%2Fv1.0.0...HEAD
+[1.0.0]: https://github.com/faustbrian/go-event-sourcing/releases/tag/adapters%2Fgotelemetry%2Fv1.0.0

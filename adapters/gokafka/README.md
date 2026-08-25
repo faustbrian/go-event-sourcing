@@ -286,7 +286,7 @@ separately authorized replay operation opts in.
   headers. Callers must not add their own values in the reserved `es.*` or
   `esdlq.*` namespaces.
 
-Use `go doc github.com/faustbrian/golib/pkg/event-sourcing/adapters/gokafka`
+Use `go doc github.com/faustbrian/go-event-sourcing/adapters/gokafka`
 for the complete exported signatures and error categories.
 
 ## Adoption
@@ -369,7 +369,7 @@ before use. See [`example_test.go`](example_test.go).
 ## Development
 
 From the repository root, run
-`./scripts/run-modules.sh check --jobs 1 --modules pkg/event-sourcing/adapters/gokafka`
+`./scripts/run-modules.sh check --jobs 1 --modules adapters/gokafka`
 for the complete CI-equivalent contract. The module-local `make check` is a
 quick development loop and is not release evidence. With Docker available,
 `make integration` verifies synchronous Zstandard dispatch, complete envelope

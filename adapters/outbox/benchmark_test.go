@@ -3,7 +3,7 @@ package eventoutbox
 import (
 	"testing"
 
-	"github.com/faustbrian/golib/pkg/outbox"
+	"github.com/faustbrian/go-transactional-outbox"
 )
 
 func BenchmarkEnvelopeCodecRoundTrip(b *testing.B) {

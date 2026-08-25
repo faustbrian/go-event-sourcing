@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	eventsourcing "github.com/faustbrian/golib/pkg/event-sourcing"
+	eventsourcing "github.com/faustbrian/go-event-sourcing"
 )
 
 const (

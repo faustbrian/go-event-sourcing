@@ -1,6 +1,6 @@
 goos: darwin
 goarch: arm64
-pkg: github.com/faustbrian/golib/pkg/event-sourcing
+pkg: github.com/faustbrian/go-event-sourcing
 cpu: Apple M4 Max
 BenchmarkPendingMessageConstruction-16    	 1892866	       158.8 ns/op	     360 B/op	       3 allocs/op
 BenchmarkPendingMessageConstruction-16    	 1981755	       148.9 ns/op	     360 B/op	       3 allocs/op
@@ -783,12 +783,12 @@ BenchmarkSynchronousDispatch/100-16                                    	   70039
 BenchmarkSynchronousDispatch/100-16                                    	   70029	      4236 ns/op	       0 B/op	       0 allocs/op
 BenchmarkSynchronousDispatch/100-16                                    	   69544	      4223 ns/op	       0 B/op	       0 allocs/op
 PASS
-ok  	github.com/faustbrian/golib/pkg/event-sourcing	244.306s
+ok  	github.com/faustbrian/go-event-sourcing	244.306s
 PASS
-ok  	github.com/faustbrian/golib/pkg/event-sourcing/eventtest	0.240s
+ok  	github.com/faustbrian/go-event-sourcing/eventtest	0.240s
 goos: darwin
 goarch: arm64
-pkg: github.com/faustbrian/golib/pkg/event-sourcing/memory
+pkg: github.com/faustbrian/go-event-sourcing/memory
 cpu: Apple M4 Max
 BenchmarkConcurrentAppendWorkloads/independent_streams-16         	    2131	    136068 ns/op	   1469855 appends/s	       200.0 appends/workload	  322917 B/op	    1048 allocs/op
 BenchmarkConcurrentAppendWorkloads/independent_streams-16         	    2048	    138588 ns/op	   1443124 appends/s	       200.0 appends/workload	  322822 B/op	    1048 allocs/op
@@ -831,12 +831,12 @@ BenchmarkConcurrentAppendWorkloads/one_hot_stream-16              	    1819	    
 BenchmarkConcurrentAppendWorkloads/one_hot_stream-16              	    1852	    166601 ns/op	   1200470 appends/s	       200.0 appends/workload	  376835 B/op	     846 allocs/op
 BenchmarkConcurrentAppendWorkloads/one_hot_stream-16              	    1689	    165699 ns/op	   1207011 appends/s	       200.0 appends/workload	  376821 B/op	     846 allocs/op
 PASS
-ok  	github.com/faustbrian/golib/pkg/event-sourcing/memory	12.369s
+ok  	github.com/faustbrian/go-event-sourcing/memory	12.369s
 PASS
-ok  	github.com/faustbrian/golib/pkg/event-sourcing/processmanager	0.187s
+ok  	github.com/faustbrian/go-event-sourcing/processmanager	0.187s
 goos: darwin
 goarch: arm64
-pkg: github.com/faustbrian/golib/pkg/event-sourcing/projection
+pkg: github.com/faustbrian/go-event-sourcing/projection
 cpu: Apple M4 Max
 BenchmarkProjectionReplayAndCheckpoint/batch_10-16         	  590889	       525.5 ns/op	      32 B/op	       1 allocs/op
 BenchmarkProjectionReplayAndCheckpoint/batch_10-16         	  576373	       514.5 ns/op	      32 B/op	       1 allocs/op
@@ -959,6 +959,6 @@ BenchmarkProjectionLiveCatchUp/tail_1000-16                	    6343	     49428 
 BenchmarkProjectionLiveCatchUp/tail_1000-16                	    5296	     50444 ns/op	      32 B/op	       1 allocs/op
 BenchmarkProjectionLiveCatchUp/tail_1000-16                	    5950	     49375 ns/op	      32 B/op	       1 allocs/op
 PASS
-ok  	github.com/faustbrian/golib/pkg/event-sourcing/projection	36.346s
+ok  	github.com/faustbrian/go-event-sourcing/projection	36.346s
 PASS
-ok  	github.com/faustbrian/golib/pkg/event-sourcing/snapshot	0.184s
+ok  	github.com/faustbrian/go-event-sourcing/snapshot	0.184s

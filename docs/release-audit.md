@@ -60,12 +60,12 @@ mutable local or CI status into prose. Release readiness is derived from the
 repository's content-addressed evidence for these independently releasable
 modules:
 
-- `pkg/event-sourcing`;
-- `pkg/event-sourcing/postgres`;
-- `pkg/event-sourcing/adapters/gokafka`;
-- `pkg/event-sourcing/adapters/outbox`;
-- `pkg/event-sourcing/adapters/queue`; and
-- `pkg/event-sourcing/adapters/gotelemetry`.
+- `.`;
+- `postgres`;
+- `adapters/gokafka`;
+- `adapters/outbox`;
+- `adapters/queue`; and
+- `adapters/gotelemetry`.
 
 For the exact release inputs, `make inventory`, every affected module check,
 every affected release dry-run, the repository check, and the stable GitHub

@@ -1,6 +1,6 @@
 goos: darwin
 goarch: arm64
-pkg: github.com/faustbrian/golib/pkg/event-sourcing/adapters/gooutbox
+pkg: github.com/faustbrian/go-event-sourcing/adapters/gooutbox
 cpu: Apple M4 Max
 BenchmarkPostgreSQLOutboxAppendOverhead/event-store-only-16         	     261	   1099148 ns/op	    7227 B/op	     122 allocs/op
 BenchmarkPostgreSQLOutboxAppendOverhead/event-store-only-16         	     290	    948868 ns/op	    7201 B/op	     124 allocs/op
@@ -43,4 +43,4 @@ BenchmarkPostgreSQLOutboxAppendOverhead/event-store-with-outbox-16  	     223	  
 BenchmarkPostgreSQLOutboxAppendOverhead/event-store-with-outbox-16  	     163	   2659144 ns/op	   13498 B/op	     213 allocs/op
 BenchmarkPostgreSQLOutboxAppendOverhead/event-store-with-outbox-16  	     260	   1297468 ns/op	   13506 B/op	     213 allocs/op
 PASS
-ok  	github.com/faustbrian/golib/pkg/event-sourcing/adapters/gooutbox	14.174s
+ok  	github.com/faustbrian/go-event-sourcing/adapters/gooutbox	14.174s

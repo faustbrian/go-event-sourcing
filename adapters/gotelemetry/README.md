@@ -369,7 +369,7 @@ latency and allocation results.
 
 ## Compatibility and migration
 
-The module is pre-v1 and follows the repository's directory-prefixed semantic
+The stable v1 module follows the repository's directory-prefixed semantic
 versions. It depends only on the narrow public event-sourcing and Kafka
 contracts and standard OpenTelemetry provider interfaces. Provider and exporter
 lifecycle remains outside the adapter.
@@ -392,7 +392,7 @@ diagnosis.
 ## Development
 
 From the repository root, run
-`make check MODULES=pkg/event-sourcing/adapters/gotelemetry` for the canonical
+`make check MODULES=adapters/gotelemetry` for the canonical
 module contract. The goal evidence also requires the module-scoped race, fuzz,
 security, API, documentation, benchmark, exact statement-coverage, and exact
 viable-mutation gates declared in `modules.json`.

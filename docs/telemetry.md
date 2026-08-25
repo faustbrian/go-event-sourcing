@@ -1,7 +1,7 @@
 # OpenTelemetry integration
 
 The independently versioned
-`github.com/faustbrian/golib/pkg/event-sourcing/adapters/gotelemetry` module
+`github.com/faustbrian/go-event-sourcing/adapters/gotelemetry` module
 keeps OpenTelemetry dependencies outside the event-sourcing core.
 
 The current adapter wraps synchronous dispatchers and consumer functions. It

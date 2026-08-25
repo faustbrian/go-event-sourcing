@@ -8,9 +8,9 @@ import (
 	"testing"
 	"time"
 
-	eventsourcing "github.com/faustbrian/golib/pkg/event-sourcing"
-	"github.com/faustbrian/golib/pkg/event-sourcing/memory"
-	"github.com/faustbrian/golib/pkg/event-sourcing/projection"
+	eventsourcing "github.com/faustbrian/go-event-sourcing"
+	"github.com/faustbrian/go-event-sourcing/memory"
+	"github.com/faustbrian/go-event-sourcing/projection"
 )
 
 func TestProjectionStoreControlsCheckpointLifecycle(t *testing.T) {

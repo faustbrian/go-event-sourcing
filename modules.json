@@ -1,0 +1,916 @@
+{
+  "schema_version": 1,
+  "repository": "github.com/faustbrian/go-event-sourcing",
+  "go_version": "1.26.6",
+  "modules": [
+    {
+      "directory": ".",
+      "module_path": "github.com/faustbrian/go-event-sourcing",
+      "go_version": "1.26.6",
+      "packages": [
+        {
+          "module_directory": ".",
+          "directory": ".",
+          "name": "eventsourcing",
+          "import_path": "github.com/faustbrian/go-event-sourcing",
+          "kind": "public",
+          "production": true,
+          "executable": true,
+          "coverage_required": true,
+          "build_required": true,
+          "build_tags": []
+        },
+        {
+          "module_directory": ".",
+          "directory": "eventtest",
+          "name": "eventtest",
+          "import_path": "github.com/faustbrian/go-event-sourcing/eventtest",
+          "kind": "test support",
+          "production": false,
+          "executable": true,
+          "coverage_required": false,
+          "build_required": true,
+          "build_tags": []
+        },
+        {
+          "module_directory": ".",
+          "directory": "memory",
+          "name": "memory",
+          "import_path": "github.com/faustbrian/go-event-sourcing/memory",
+          "kind": "public",
+          "production": true,
+          "executable": true,
+          "coverage_required": true,
+          "build_required": true,
+          "build_tags": []
+        },
+        {
+          "module_directory": ".",
+          "directory": "processmanager",
+          "name": "processmanager",
+          "import_path": "github.com/faustbrian/go-event-sourcing/processmanager",
+          "kind": "public",
+          "production": true,
+          "executable": true,
+          "coverage_required": true,
+          "build_required": true,
+          "build_tags": []
+        },
+        {
+          "module_directory": ".",
+          "directory": "projection",
+          "name": "projection",
+          "import_path": "github.com/faustbrian/go-event-sourcing/projection",
+          "kind": "public",
+          "production": true,
+          "executable": true,
+          "coverage_required": true,
+          "build_required": true,
+          "build_tags": []
+        },
+        {
+          "module_directory": ".",
+          "directory": "snapshot",
+          "name": "snapshot",
+          "import_path": "github.com/faustbrian/go-event-sourcing/snapshot",
+          "kind": "public",
+          "production": true,
+          "executable": true,
+          "coverage_required": true,
+          "build_required": true,
+          "build_tags": []
+        }
+      ],
+      "purpose": "`event-sourcing` is a pragmatic event-sourcing library for Go under active development. It is designed around three independently replaceable responsibilities:",
+      "lifecycle": "stable",
+      "kind": "public library",
+      "releasable": true,
+      "family": "persistence-and-durability",
+      "family_label": "Persistence And Durability",
+      "family_description": "Durable state, delivery, coordination, recovery, and operational lifecycle.",
+      "family_order": 4,
+      "version": "v1.0.0",
+      "tag_prefix": "v",
+      "owned_dependencies": [],
+      "reverse_owned_dependencies": [
+        "github.com/faustbrian/go-cloudevents/adapters/golib",
+        "github.com/faustbrian/go-event-sourcing/adapters/gokafka",
+        "github.com/faustbrian/go-event-sourcing/adapters/gotelemetry",
+        "github.com/faustbrian/go-event-sourcing/adapters/outbox",
+        "github.com/faustbrian/go-event-sourcing/adapters/queue",
+        "github.com/faustbrian/go-event-sourcing/benchmarks/competitors",
+        "github.com/faustbrian/go-event-sourcing/postgres"
+      ],
+      "external_runtime_dependencies": [],
+      "required_services": [],
+      "build_tags": [],
+      "test_tags": [],
+      "interoperability_tools": [],
+      "specifications": [],
+      "conformance_corpora": [],
+      "provenance": [],
+      "goal_files": [
+        ".ai/GOAL.md",
+        ".ai/GOAL_HARDEN.md"
+      ],
+      "goal_status": "implementation-evidence-inventoried",
+      "goal_evidence": [
+        {
+          "file": ".ai/GOAL.md",
+          "requirements_sha256": "54001dbda0c34f32ae013c85f4d23d4c9a1aad0885fbf9464609acbfbc595459",
+          "implementation_evidence": [
+            "CHANGELOG.md",
+            "README.md",
+            "docs/architecture.md",
+            "docs/performance.md",
+            "docs/security.md"
+          ],
+          "verification_gates": [
+            "format-check",
+            "tidy-check",
+            "safety",
+            "vet",
+            "test",
+            "race",
+            "coverage",
+            "lint",
+            "staticcheck",
+            "vulnerability",
+            "secrets",
+            "licenses",
+            "sbom",
+            "fuzz",
+            "mutation",
+            "nilaway",
+            "docs",
+            "api",
+            "conformance",
+            "interoperability",
+            "benchmark"
+          ],
+          "implementation_status": "implemented-requires-fresh-verification"
+        },
+        {
+          "file": ".ai/GOAL_HARDEN.md",
+          "requirements_sha256": "d040580879dec7e81df765f4c6c45b04aea6e944d1af342100ad6a1dd4970ed5",
+          "implementation_evidence": [
+            "CHANGELOG.md",
+            "README.md",
+            "docs/architecture.md",
+            "docs/performance.md",
+            "docs/security.md"
+          ],
+          "verification_gates": [
+            "format-check",
+            "tidy-check",
+            "safety",
+            "vet",
+            "test",
+            "race",
+            "coverage",
+            "lint",
+            "staticcheck",
+            "vulnerability",
+            "secrets",
+            "licenses",
+            "sbom",
+            "fuzz",
+            "mutation",
+            "nilaway",
+            "docs",
+            "api",
+            "conformance",
+            "interoperability",
+            "benchmark"
+          ],
+          "implementation_status": "implemented-requires-fresh-verification"
+        }
+      ],
+      "gates": {
+        "api_compatibility": true,
+        "benchmarks": true,
+        "conformance": false,
+        "coverage": true,
+        "documentation": true,
+        "fuzz": true,
+        "lint": true,
+        "mutation": true,
+        "race": true,
+        "security": true,
+        "tests": true
+      }
+    },
+    {
+      "directory": "adapters/gokafka",
+      "module_path": "github.com/faustbrian/go-event-sourcing/adapters/gokafka",
+      "go_version": "1.26.6",
+      "packages": [
+        {
+          "module_directory": "adapters/gokafka",
+          "directory": ".",
+          "name": "gokafka",
+          "import_path": "github.com/faustbrian/go-event-sourcing/adapters/gokafka",
+          "kind": "public",
+          "production": true,
+          "executable": true,
+          "coverage_required": true,
+          "build_required": true,
+          "build_tags": []
+        }
+      ],
+      "purpose": "`gokafka` is the dedicated Kafka boundary for event-sourcing messages. It uses the repository's franz-go-backed `kafka` module so acknowledgements, producer idempotence, retries, consumer groups, cooperative rebalancing, offset settlement, TLS, SASL, and broker operations remain observable Kafka semantics.",
+      "lifecycle": "stable",
+      "kind": "adapter",
+      "releasable": true,
+      "family": "persistence-and-durability",
+      "family_label": "Persistence And Durability",
+      "family_description": "Durable state, delivery, coordination, recovery, and operational lifecycle.",
+      "family_order": 4,
+      "version": "v1.0.0",
+      "tag_prefix": "adapters/gokafka/v",
+      "owned_dependencies": [
+        "github.com/faustbrian/go-event-sourcing",
+        "github.com/faustbrian/go-kafka"
+      ],
+      "reverse_owned_dependencies": [],
+      "external_runtime_dependencies": [
+        "github.com/containerd/errdefs",
+        "github.com/moby/moby/client",
+        "github.com/testcontainers/testcontainers-go",
+        "github.com/testcontainers/testcontainers-go/modules/kafka",
+        "github.com/twmb/franz-go",
+        "github.com/twmb/franz-go/pkg/kadm"
+      ],
+      "required_services": [],
+      "build_tags": [],
+      "test_tags": [
+        "integration"
+      ],
+      "interoperability_tools": [],
+      "specifications": [],
+      "conformance_corpora": [],
+      "provenance": [],
+      "goal_files": [
+        "adapters/gokafka/.ai/GOAL.md",
+        "adapters/gokafka/.ai/GOAL_HARDEN.md"
+      ],
+      "goal_status": "implementation-evidence-inventoried",
+      "goal_evidence": [
+        {
+          "file": "adapters/gokafka/.ai/GOAL.md",
+          "requirements_sha256": "417ab5d46f5c77107bb3dc1c42181ea78f3ea5d08990176af568e05e084c103a",
+          "implementation_evidence": [
+            "adapters/gokafka/CHANGELOG.md",
+            "adapters/gokafka/README.md"
+          ],
+          "verification_gates": [
+            "format-check",
+            "tidy-check",
+            "safety",
+            "vet",
+            "test",
+            "race",
+            "coverage",
+            "lint",
+            "staticcheck",
+            "vulnerability",
+            "secrets",
+            "licenses",
+            "sbom",
+            "fuzz",
+            "mutation",
+            "nilaway",
+            "docs",
+            "api",
+            "conformance",
+            "interoperability",
+            "benchmark"
+          ],
+          "implementation_status": "implemented-requires-fresh-verification"
+        },
+        {
+          "file": "adapters/gokafka/.ai/GOAL_HARDEN.md",
+          "requirements_sha256": "048e40d6dfcabc576ed649676bc6de05cd02762e5fb09a73aa06fd573e2a7cb9",
+          "implementation_evidence": [
+            "adapters/gokafka/CHANGELOG.md",
+            "adapters/gokafka/README.md"
+          ],
+          "verification_gates": [
+            "format-check",
+            "tidy-check",
+            "safety",
+            "vet",
+            "test",
+            "race",
+            "coverage",
+            "lint",
+            "staticcheck",
+            "vulnerability",
+            "secrets",
+            "licenses",
+            "sbom",
+            "fuzz",
+            "mutation",
+            "nilaway",
+            "docs",
+            "api",
+            "conformance",
+            "interoperability",
+            "benchmark"
+          ],
+          "implementation_status": "implemented-requires-fresh-verification"
+        }
+      ],
+      "gates": {
+        "api_compatibility": true,
+        "benchmarks": true,
+        "conformance": false,
+        "coverage": true,
+        "documentation": true,
+        "fuzz": true,
+        "lint": true,
+        "mutation": true,
+        "race": true,
+        "security": true,
+        "tests": true
+      }
+    },
+    {
+      "directory": "adapters/gotelemetry",
+      "module_path": "github.com/faustbrian/go-event-sourcing/adapters/gotelemetry",
+      "go_version": "1.26.6",
+      "packages": [
+        {
+          "module_directory": "adapters/gotelemetry",
+          "directory": ".",
+          "name": "gotelemetry",
+          "import_path": "github.com/faustbrian/go-event-sourcing/adapters/gotelemetry",
+          "kind": "public",
+          "production": true,
+          "executable": true,
+          "coverage_required": true,
+          "build_required": true,
+          "build_tags": []
+        }
+      ],
+      "purpose": "`gotelemetry` is the independently versioned observability boundary for `event-sourcing`. The event-sourcing core does not import OpenTelemetry or the repository `telemetry` module.",
+      "lifecycle": "stable",
+      "kind": "adapter",
+      "releasable": true,
+      "family": "persistence-and-durability",
+      "family_label": "Persistence And Durability",
+      "family_description": "Durable state, delivery, coordination, recovery, and operational lifecycle.",
+      "family_order": 4,
+      "version": "v1.0.0",
+      "tag_prefix": "adapters/gotelemetry/v",
+      "owned_dependencies": [
+        "github.com/faustbrian/go-event-sourcing",
+        "github.com/faustbrian/go-kafka"
+      ],
+      "reverse_owned_dependencies": [],
+      "external_runtime_dependencies": [
+        "go.opentelemetry.io/otel",
+        "go.opentelemetry.io/otel/metric",
+        "go.opentelemetry.io/otel/sdk",
+        "go.opentelemetry.io/otel/sdk/metric",
+        "go.opentelemetry.io/otel/trace"
+      ],
+      "required_services": [],
+      "build_tags": [],
+      "test_tags": [],
+      "interoperability_tools": [],
+      "specifications": [],
+      "conformance_corpora": [],
+      "provenance": [],
+      "goal_files": [
+        "adapters/gotelemetry/.ai/GOAL.md",
+        "adapters/gotelemetry/.ai/GOAL_HARDEN.md"
+      ],
+      "goal_status": "implementation-evidence-inventoried",
+      "goal_evidence": [
+        {
+          "file": "adapters/gotelemetry/.ai/GOAL.md",
+          "requirements_sha256": "d54cb8b2a027c0b5ed2ffb630a29e7857abd1abcc5f753ddebfd76fe050ee9a4",
+          "implementation_evidence": [
+            "adapters/gotelemetry/CHANGELOG.md",
+            "adapters/gotelemetry/README.md"
+          ],
+          "verification_gates": [
+            "format-check",
+            "tidy-check",
+            "safety",
+            "vet",
+            "test",
+            "race",
+            "coverage",
+            "lint",
+            "staticcheck",
+            "vulnerability",
+            "secrets",
+            "licenses",
+            "sbom",
+            "fuzz",
+            "mutation",
+            "nilaway",
+            "docs",
+            "api",
+            "conformance",
+            "interoperability",
+            "benchmark"
+          ],
+          "implementation_status": "implemented-requires-fresh-verification"
+        },
+        {
+          "file": "adapters/gotelemetry/.ai/GOAL_HARDEN.md",
+          "requirements_sha256": "08a27dd16e3c98905341670ac1910eaeba3b10e25406330634bc96dc7d53aae1",
+          "implementation_evidence": [
+            "adapters/gotelemetry/CHANGELOG.md",
+            "adapters/gotelemetry/README.md"
+          ],
+          "verification_gates": [
+            "format-check",
+            "tidy-check",
+            "safety",
+            "vet",
+            "test",
+            "race",
+            "coverage",
+            "lint",
+            "staticcheck",
+            "vulnerability",
+            "secrets",
+            "licenses",
+            "sbom",
+            "fuzz",
+            "mutation",
+            "nilaway",
+            "docs",
+            "api",
+            "conformance",
+            "interoperability",
+            "benchmark"
+          ],
+          "implementation_status": "implemented-requires-fresh-verification"
+        }
+      ],
+      "gates": {
+        "api_compatibility": true,
+        "benchmarks": true,
+        "conformance": false,
+        "coverage": true,
+        "documentation": true,
+        "fuzz": true,
+        "lint": true,
+        "mutation": true,
+        "race": true,
+        "security": true,
+        "tests": true
+      }
+    },
+    {
+      "directory": "adapters/outbox",
+      "module_path": "github.com/faustbrian/go-event-sourcing/adapters/outbox",
+      "go_version": "1.26.6",
+      "packages": [
+        {
+          "module_directory": "adapters/outbox",
+          "directory": ".",
+          "name": "eventoutbox",
+          "import_path": "github.com/faustbrian/go-event-sourcing/adapters/outbox",
+          "kind": "public",
+          "production": true,
+          "executable": true,
+          "coverage_required": true,
+          "build_required": true,
+          "build_tags": []
+        }
+      ],
+      "purpose": "`eventoutbox` composes the public event-sourcing PostgreSQL writer and the public outbox PostgreSQL writer. Neither core imports the other. `Stager` writes event rows and one outbox envelope per event through a savepoint inside an existing caller-owned `pgx.Tx`. It releases that savepoint only after both batches stage and rolls it back after any error. The adapter never commits or publishes from the outer transaction and never claims exactly-once delivery.",
+      "lifecycle": "stable",
+      "kind": "adapter",
+      "releasable": true,
+      "family": "persistence-and-durability",
+      "family_label": "Persistence And Durability",
+      "family_description": "Durable state, delivery, coordination, recovery, and operational lifecycle.",
+      "family_order": 4,
+      "version": "v1.0.0",
+      "tag_prefix": "adapters/outbox/v",
+      "owned_dependencies": [
+        "github.com/faustbrian/go-event-sourcing",
+        "github.com/faustbrian/go-event-sourcing/postgres",
+        "github.com/faustbrian/go-transactional-outbox"
+      ],
+      "reverse_owned_dependencies": [],
+      "external_runtime_dependencies": [
+        "github.com/jackc/pgx/v5",
+        "github.com/moby/moby/api",
+        "github.com/testcontainers/testcontainers-go",
+        "github.com/testcontainers/testcontainers-go/modules/postgres"
+      ],
+      "required_services": [],
+      "build_tags": [],
+      "test_tags": [
+        "integration"
+      ],
+      "interoperability_tools": [],
+      "specifications": [],
+      "conformance_corpora": [],
+      "provenance": [],
+      "goal_files": [
+        "adapters/outbox/.ai/GOAL.md",
+        "adapters/outbox/.ai/GOAL_HARDEN.md"
+      ],
+      "goal_status": "implementation-evidence-inventoried",
+      "goal_evidence": [
+        {
+          "file": "adapters/outbox/.ai/GOAL.md",
+          "requirements_sha256": "3a3587a50b440836037c69f95f98ef9ea33f941e6e662efd194dfbb042cc92af",
+          "implementation_evidence": [
+            "adapters/outbox/CHANGELOG.md",
+            "adapters/outbox/README.md"
+          ],
+          "verification_gates": [
+            "format-check",
+            "tidy-check",
+            "safety",
+            "vet",
+            "test",
+            "race",
+            "coverage",
+            "lint",
+            "staticcheck",
+            "vulnerability",
+            "secrets",
+            "licenses",
+            "sbom",
+            "fuzz",
+            "mutation",
+            "nilaway",
+            "docs",
+            "api",
+            "conformance",
+            "interoperability",
+            "benchmark"
+          ],
+          "implementation_status": "implemented-requires-fresh-verification"
+        },
+        {
+          "file": "adapters/outbox/.ai/GOAL_HARDEN.md",
+          "requirements_sha256": "6ad71d4626faae1318fde87c103db7c789812798c418806bb8e22166fd2cd22e",
+          "implementation_evidence": [
+            "adapters/outbox/CHANGELOG.md",
+            "adapters/outbox/README.md"
+          ],
+          "verification_gates": [
+            "format-check",
+            "tidy-check",
+            "safety",
+            "vet",
+            "test",
+            "race",
+            "coverage",
+            "lint",
+            "staticcheck",
+            "vulnerability",
+            "secrets",
+            "licenses",
+            "sbom",
+            "fuzz",
+            "mutation",
+            "nilaway",
+            "docs",
+            "api",
+            "conformance",
+            "interoperability",
+            "benchmark"
+          ],
+          "implementation_status": "implemented-requires-fresh-verification"
+        }
+      ],
+      "gates": {
+        "api_compatibility": true,
+        "benchmarks": true,
+        "conformance": false,
+        "coverage": true,
+        "documentation": true,
+        "fuzz": true,
+        "lint": true,
+        "mutation": true,
+        "race": true,
+        "security": true,
+        "tests": true
+      }
+    },
+    {
+      "directory": "adapters/queue",
+      "module_path": "github.com/faustbrian/go-event-sourcing/adapters/queue",
+      "go_version": "1.26.6",
+      "packages": [
+        {
+          "module_directory": "adapters/queue",
+          "directory": ".",
+          "name": "eventqueue",
+          "import_path": "github.com/faustbrian/go-event-sourcing/adapters/queue",
+          "kind": "public",
+          "production": true,
+          "executable": true,
+          "coverage_required": true,
+          "build_required": true,
+          "build_tags": []
+        }
+      ],
+      "purpose": "`eventqueue` maps complete event-sourcing deliveries to the first-party `github.com/faustbrian/go-queue` contract. The event-sourcing core does not import queue, and this adapter owns no worker, broker connection, retry clock, dead-letter store, or business-idempotency state.",
+      "lifecycle": "stable",
+      "kind": "adapter",
+      "releasable": true,
+      "family": "persistence-and-durability",
+      "family_label": "Persistence And Durability",
+      "family_description": "Durable state, delivery, coordination, recovery, and operational lifecycle.",
+      "family_order": 4,
+      "version": "v1.0.0",
+      "tag_prefix": "adapters/queue/v",
+      "owned_dependencies": [
+        "github.com/faustbrian/go-event-sourcing",
+        "github.com/faustbrian/go-queue"
+      ],
+      "reverse_owned_dependencies": [],
+      "external_runtime_dependencies": [
+        "github.com/testcontainers/testcontainers-go"
+      ],
+      "required_services": [],
+      "build_tags": [],
+      "test_tags": [
+        "integration"
+      ],
+      "interoperability_tools": [],
+      "specifications": [],
+      "conformance_corpora": [],
+      "provenance": [],
+      "goal_files": [
+        "adapters/queue/.ai/GOAL.md",
+        "adapters/queue/.ai/GOAL_HARDEN.md"
+      ],
+      "goal_status": "implementation-evidence-inventoried",
+      "goal_evidence": [
+        {
+          "file": "adapters/queue/.ai/GOAL.md",
+          "requirements_sha256": "6bee7f52d4b43be2df6b23153374b298442bb4fa0bfb5e4f9f152b8d05a1a9c0",
+          "implementation_evidence": [
+            "adapters/queue/CHANGELOG.md",
+            "adapters/queue/README.md",
+            "adapters/queue/docs/hardening.md"
+          ],
+          "verification_gates": [
+            "format-check",
+            "tidy-check",
+            "safety",
+            "vet",
+            "test",
+            "race",
+            "coverage",
+            "lint",
+            "staticcheck",
+            "vulnerability",
+            "secrets",
+            "licenses",
+            "sbom",
+            "fuzz",
+            "mutation",
+            "nilaway",
+            "docs",
+            "api",
+            "conformance",
+            "interoperability",
+            "benchmark"
+          ],
+          "implementation_status": "implemented-requires-fresh-verification"
+        },
+        {
+          "file": "adapters/queue/.ai/GOAL_HARDEN.md",
+          "requirements_sha256": "4c025a6d652317785babf76f26b5faa987b6e8672d68acb49d5b0743f53f85ee",
+          "implementation_evidence": [
+            "adapters/queue/CHANGELOG.md",
+            "adapters/queue/README.md",
+            "adapters/queue/docs/hardening.md"
+          ],
+          "verification_gates": [
+            "format-check",
+            "tidy-check",
+            "safety",
+            "vet",
+            "test",
+            "race",
+            "coverage",
+            "lint",
+            "staticcheck",
+            "vulnerability",
+            "secrets",
+            "licenses",
+            "sbom",
+            "fuzz",
+            "mutation",
+            "nilaway",
+            "docs",
+            "api",
+            "conformance",
+            "interoperability",
+            "benchmark"
+          ],
+          "implementation_status": "implemented-requires-fresh-verification"
+        }
+      ],
+      "gates": {
+        "api_compatibility": true,
+        "benchmarks": true,
+        "conformance": false,
+        "coverage": true,
+        "documentation": true,
+        "fuzz": true,
+        "lint": true,
+        "mutation": true,
+        "race": true,
+        "security": true,
+        "tests": true
+      }
+    },
+    {
+      "directory": "benchmarks/competitors",
+      "module_path": "github.com/faustbrian/go-event-sourcing/benchmarks/competitors",
+      "go_version": "1.26.6",
+      "packages": [],
+      "purpose": "This non-releasable module isolates comparison dependencies from the event-sourcing core. It compares equivalent observable work and keeps correctness checks separate from timing.",
+      "lifecycle": "internal",
+      "kind": "benchmark harness",
+      "releasable": false,
+      "version": "unreleased",
+      "tag_prefix": "benchmarks/competitors/v",
+      "owned_dependencies": [
+        "github.com/faustbrian/go-event-sourcing"
+      ],
+      "reverse_owned_dependencies": [],
+      "external_runtime_dependencies": [
+        "github.com/hallgren/eventsourcing",
+        "github.com/hallgren/eventsourcing/core",
+        "github.com/looplab/eventhorizon",
+        "github.com/thefabric-io/eventsourcing"
+      ],
+      "required_services": [],
+      "build_tags": [],
+      "test_tags": [],
+      "interoperability_tools": [],
+      "specifications": [],
+      "conformance_corpora": [],
+      "provenance": [],
+      "goal_files": [],
+      "goal_status": "not-applicable",
+      "goal_evidence": [],
+      "gates": {
+        "api_compatibility": false,
+        "benchmarks": false,
+        "conformance": false,
+        "coverage": false,
+        "documentation": true,
+        "fuzz": false,
+        "lint": true,
+        "mutation": false,
+        "race": false,
+        "security": true,
+        "tests": true
+      }
+    },
+    {
+      "directory": "postgres",
+      "module_path": "github.com/faustbrian/go-event-sourcing/postgres",
+      "go_version": "1.26.6",
+      "packages": [
+        {
+          "module_directory": "postgres",
+          "directory": ".",
+          "name": "postgres",
+          "import_path": "github.com/faustbrian/go-event-sourcing/postgres",
+          "kind": "public",
+          "production": true,
+          "executable": true,
+          "coverage_required": true,
+          "build_required": true,
+          "build_tags": []
+        }
+      ],
+      "purpose": "`postgres` is the independently releasable PostgreSQL adapter for `github.com/faustbrian/go-event-sourcing`. Installing the core module does not add `pgx` or database dependencies.",
+      "lifecycle": "stable",
+      "kind": "public library",
+      "releasable": true,
+      "family": "persistence-and-durability",
+      "family_label": "Persistence And Durability",
+      "family_description": "Durable state, delivery, coordination, recovery, and operational lifecycle.",
+      "family_order": 4,
+      "version": "v1.0.0",
+      "tag_prefix": "postgres/v",
+      "owned_dependencies": [
+        "github.com/faustbrian/go-event-sourcing"
+      ],
+      "reverse_owned_dependencies": [
+        "github.com/faustbrian/go-event-sourcing/adapters/outbox"
+      ],
+      "external_runtime_dependencies": [
+        "github.com/jackc/pgx/v5",
+        "github.com/moby/moby/api",
+        "github.com/testcontainers/testcontainers-go",
+        "github.com/testcontainers/testcontainers-go/modules/postgres"
+      ],
+      "required_services": [],
+      "build_tags": [],
+      "test_tags": [
+        "integration"
+      ],
+      "interoperability_tools": [],
+      "specifications": [],
+      "conformance_corpora": [],
+      "provenance": [],
+      "goal_files": [
+        "postgres/.ai/GOAL.md",
+        "postgres/.ai/GOAL_HARDEN.md"
+      ],
+      "goal_status": "implementation-evidence-inventoried",
+      "goal_evidence": [
+        {
+          "file": "postgres/.ai/GOAL.md",
+          "requirements_sha256": "5f0f506ba1702d6fcb491d09abe4b6458f2bcdbf2147817246ce7f128ac87a3a",
+          "implementation_evidence": [
+            "postgres/CHANGELOG.md",
+            "postgres/README.md"
+          ],
+          "verification_gates": [
+            "format-check",
+            "tidy-check",
+            "safety",
+            "vet",
+            "test",
+            "race",
+            "coverage",
+            "lint",
+            "staticcheck",
+            "vulnerability",
+            "secrets",
+            "licenses",
+            "sbom",
+            "fuzz",
+            "mutation",
+            "nilaway",
+            "docs",
+            "api",
+            "conformance",
+            "interoperability",
+            "benchmark"
+          ],
+          "implementation_status": "implemented-requires-fresh-verification"
+        },
+        {
+          "file": "postgres/.ai/GOAL_HARDEN.md",
+          "requirements_sha256": "d394f3f624dc35a2c86dd146233ea5da5eeb993de8c11b42456c7e3faf1a920f",
+          "implementation_evidence": [
+            "postgres/CHANGELOG.md",
+            "postgres/README.md"
+          ],
+          "verification_gates": [
+            "format-check",
+            "tidy-check",
+            "safety",
+            "vet",
+            "test",
+            "race",
+            "coverage",
+            "lint",
+            "staticcheck",
+            "vulnerability",
+            "secrets",
+            "licenses",
+            "sbom",
+            "fuzz",
+            "mutation",
+            "nilaway",
+            "docs",
+            "api",
+            "conformance",
+            "interoperability",
+            "benchmark"
+          ],
+          "implementation_status": "implemented-requires-fresh-verification"
+        }
+      ],
+      "gates": {
+        "api_compatibility": true,
+        "benchmarks": true,
+        "conformance": false,
+        "coverage": true,
+        "documentation": true,
+        "fuzz": true,
+        "lint": true,
+        "mutation": true,
+        "race": true,
+        "security": true,
+        "tests": true
+      }
+    }
+  ]
+}

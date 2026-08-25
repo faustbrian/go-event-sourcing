@@ -7,7 +7,7 @@ import (
 	"testing"
 	"time"
 
-	eventsourcing "github.com/faustbrian/golib/pkg/event-sourcing"
+	eventsourcing "github.com/faustbrian/go-event-sourcing"
 )
 
 var errManagerTest = errors.New("manager test failure")

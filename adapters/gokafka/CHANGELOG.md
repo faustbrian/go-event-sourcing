@@ -8,8 +8,11 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [1.0.0] - 2026-08-25
+
 ### Changed
 
+- Publish the module from its standalone `github.com/faustbrian/go-event-sourcing/adapters/gokafka` identity while preserving its documented API and behavior.
 - Introduce canonical wire version 1 with an ordered `es.wire_version` header
   and a Kafka create-time timestamp bound to the event recorded time at
   millisecond precision. Unversioned, reordered, empty-reserved-header, and
@@ -63,3 +66,6 @@ and this project adheres to
   preserves complete event records, attaches stable source positions, prevents
   dead-letter loops, redacts failures, and permits settlement only after an
   acknowledged publication.
+
+[Unreleased]: https://github.com/faustbrian/go-event-sourcing/compare/adapters%2Fgokafka%2Fv1.0.0...HEAD
+[1.0.0]: https://github.com/faustbrian/go-event-sourcing/releases/tag/adapters%2Fgokafka%2Fv1.0.0

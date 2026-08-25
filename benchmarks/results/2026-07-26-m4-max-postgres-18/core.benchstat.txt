@@ -1,6 +1,6 @@
 goos: darwin
 goarch: arm64
-pkg: github.com/faustbrian/golib/pkg/event-sourcing
+pkg: github.com/faustbrian/go-event-sourcing
 cpu: Apple M4 Max
                                                       │ /tmp/event-sourcing-results.cBQ7NE/core.txt │
                                                       │                   sec/op                    │
@@ -97,7 +97,7 @@ UpcasterChain/16-16                                                             
 geomean                                                                                           ¹
 ¹ summaries must be >0 to compute geomean
 
-pkg: github.com/faustbrian/golib/pkg/event-sourcing/memory
+pkg: github.com/faustbrian/go-event-sourcing/memory
                                                  │ /tmp/event-sourcing-results.cBQ7NE/core.txt │
                                                  │                   sec/op                    │
 ConcurrentAppendWorkloads/independent_streams-16                                  153.9µ ± 70%
@@ -128,7 +128,7 @@ ConcurrentAppendWorkloads/independent_streams-16                                
 ConcurrentAppendWorkloads/one_hot_stream-16                                         200.0 ± 0%
 geomean                                                                             200.0
 
-pkg: github.com/faustbrian/golib/pkg/event-sourcing/projection
+pkg: github.com/faustbrian/go-event-sourcing/projection
                                             │ /tmp/event-sourcing-results.cBQ7NE/core.txt │
                                             │                   sec/op                    │
 ProjectionReplayAndCheckpoint/batch_10-16                                    524.4n ± 23%

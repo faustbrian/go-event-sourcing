@@ -4,8 +4,8 @@ import (
 	"context"
 	"sync"
 
-	eventsourcing "github.com/faustbrian/golib/pkg/event-sourcing"
-	"github.com/faustbrian/golib/pkg/event-sourcing/projection"
+	eventsourcing "github.com/faustbrian/go-event-sourcing"
+	"github.com/faustbrian/go-event-sourcing/projection"
 )
 
 // ProjectionStore is a concurrency-safe in-memory checkpoint and projection

@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	eventsourcing "github.com/faustbrian/golib/pkg/event-sourcing"
-	"github.com/faustbrian/golib/pkg/event-sourcing/projection"
+	eventsourcing "github.com/faustbrian/go-event-sourcing"
+	"github.com/faustbrian/go-event-sourcing/projection"
 )
 
 func TestRunnerExplicitlySkipsPoisonedDeliveriesAndContinues(t *testing.T) {

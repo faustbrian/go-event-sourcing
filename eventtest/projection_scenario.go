@@ -5,8 +5,8 @@ import (
 	"errors"
 	"fmt"
 
-	eventsourcing "github.com/faustbrian/golib/pkg/event-sourcing"
-	"github.com/faustbrian/golib/pkg/event-sourcing/projection"
+	eventsourcing "github.com/faustbrian/go-event-sourcing"
+	"github.com/faustbrian/go-event-sourcing/projection"
 )
 
 // ProjectionRunner executes one bounded projection batch.

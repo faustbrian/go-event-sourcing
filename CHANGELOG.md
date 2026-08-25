@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.0] - 2026-08-25
+
 ### Documentation
 
 - Link the package README to the repository-wide Golib documentation portal.
@@ -23,6 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Publish the module from its standalone `github.com/faustbrian/go-event-sourcing` identity while preserving its documented API and behavior.
 - Require the optional gooutbox adapter caller to own PostgreSQL transaction
   completion and aggregate acknowledgement explicitly; the pre-release
   committed adapter store has been removed.
@@ -310,3 +313,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   documentation page.
 - Document the proposed idiomatic Go API, ownership rules, lifecycle, and
   independent adapter boundaries before implementation.
+
+[Unreleased]: https://github.com/faustbrian/go-event-sourcing/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/faustbrian/go-event-sourcing/releases/tag/v1.0.0

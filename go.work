@@ -1,0 +1,11 @@
+go 1.26.6
+
+use (
+	.
+	./adapters/gokafka
+	./adapters/gotelemetry
+	./adapters/outbox
+	./adapters/queue
+	./benchmarks/competitors
+	./postgres
+)

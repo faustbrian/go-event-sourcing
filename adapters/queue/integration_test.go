@@ -8,8 +8,8 @@ import (
 	"testing"
 	"time"
 
-	eventsourcing "github.com/faustbrian/golib/pkg/event-sourcing"
-	queuepkg "github.com/faustbrian/golib/pkg/queue"
+	eventsourcing "github.com/faustbrian/go-event-sourcing"
+	queuepkg "github.com/faustbrian/go-queue"
 )
 
 func TestCompatibleRingPreservesInterleavedOrderingIdentifiers(t *testing.T) {

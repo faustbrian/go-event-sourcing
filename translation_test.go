@@ -5,7 +5,7 @@ import (
 	"errors"
 	"testing"
 
-	eventsourcing "github.com/faustbrian/golib/pkg/event-sourcing"
+	eventsourcing "github.com/faustbrian/go-event-sourcing"
 )
 
 func TestTranslatorChainPreservesOrderedSplitAndDrop(t *testing.T) {

@@ -14,9 +14,9 @@ import (
 	dockercontainer "github.com/moby/moby/api/types/container"
 	dockernetwork "github.com/moby/moby/api/types/network"
 
-	eventsourcing "github.com/faustbrian/golib/pkg/event-sourcing"
-	eventpostgres "github.com/faustbrian/golib/pkg/event-sourcing/postgres"
-	outboxpostgres "github.com/faustbrian/golib/pkg/outbox/postgres"
+	eventsourcing "github.com/faustbrian/go-event-sourcing"
+	eventpostgres "github.com/faustbrian/go-event-sourcing/postgres"
+	outboxpostgres "github.com/faustbrian/go-transactional-outbox/postgres"
 	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgxpool"
 	"github.com/testcontainers/testcontainers-go"

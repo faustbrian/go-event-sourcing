@@ -8,12 +8,15 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [1.0.0] - 2026-08-25
+
 ### Documentation
 
 - Link the package README to the repository-wide Golib documentation portal.
 
 ### Changed
 
+- Publish the module from its standalone `github.com/faustbrian/go-event-sourcing/adapters/queue` identity while preserving its documented API and behavior.
 - Rename the unpublished module from `adapters/goqueue` to `adapters/queue`
   and its Go package to `eventqueue` before v1.
 - Require owned sibling modules at local `v0.0.0`; clean external consumers
@@ -48,3 +51,6 @@ and this project adheres to
   metadata across ownership boundaries.
 - Redact wrapped input, consumer, panic, backend, and credential diagnostics
   from every common Go error format, including Go-syntax formatting.
+
+[Unreleased]: https://github.com/faustbrian/go-event-sourcing/compare/adapters%2Fqueue%2Fv1.0.0...HEAD
+[1.0.0]: https://github.com/faustbrian/go-event-sourcing/releases/tag/adapters%2Fqueue%2Fv1.0.0

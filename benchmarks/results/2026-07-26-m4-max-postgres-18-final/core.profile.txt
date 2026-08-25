@@ -3,7 +3,7 @@ gc 2 @0.011s 10%: 0.19+0.20+0.002 ms clock, 3.0+0/0.19/0.041+0.047 ms cpu, 1->1-
 gc 3 @0.012s 9%: 0.068+0.49+0.004 ms clock, 1.1+0/0.011/0.26+0.064 ms cpu, 1->1->1 MB, 4 MB goal, 0 MB stacks, 0 MB globals, 16 P (forced)
 goos: darwin
 goarch: arm64
-pkg: github.com/faustbrian/golib/pkg/event-sourcing
+pkg: github.com/faustbrian/go-event-sourcing
 cpu: Apple M4 Max
 BenchmarkLifecycleReconstitution/100-16         	  272276	      1234 ns/op	       0 B/op	       0 allocs/op
 gc 4 @0.355s 0%: 0.043+0.091+0.002 ms clock, 0.69+0/0.17/0.039+0.032 ms cpu, 1->1->1 MB, 4 MB goal, 0 MB stacks, 0 MB globals, 16 P (forced)
@@ -406,4 +406,4 @@ BenchmarkSynchronousDispatch/100-16             	   71702	      4191 ns/op	     
 PASS
 gc 397 @1.725s 0%: 0.068+0.078+0.003 ms clock, 1.0+0/0.16/0.033+0.057 ms cpu, 3->3->0 MB, 4 MB goal, 0 MB stacks, 0 MB globals, 16 P (forced)
 gc 398 @1.733s 0%: 0.037+0.12+0.009 ms clock, 0.59+0/0.20/0.034+0.15 ms cpu, 3->3->1 MB, 4 MB goal, 0 MB stacks, 0 MB globals, 16 P
-ok  	github.com/faustbrian/golib/pkg/event-sourcing	1.938s
+ok  	github.com/faustbrian/go-event-sourcing	1.938s

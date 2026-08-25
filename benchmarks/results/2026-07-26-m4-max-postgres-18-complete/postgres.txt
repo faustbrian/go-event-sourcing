@@ -1,6 +1,6 @@
 goos: darwin
 goarch: arm64
-pkg: github.com/faustbrian/golib/pkg/event-sourcing/postgres
+pkg: github.com/faustbrian/go-event-sourcing/postgres
 cpu: Apple M4 Max
 BenchmarkPostgreSQLAppendEquivalentWork/event-store-16         	     276	   1129604 ns/op	    7016 B/op	     121 allocs/op
 BenchmarkPostgreSQLAppendEquivalentWork/event-store-16         	     121	   2183784 ns/op	    6997 B/op	     123 allocs/op
@@ -63,4 +63,4 @@ BenchmarkPostgreSQLOptimisticConflict-16                       	     453	    599
 BenchmarkPostgreSQLOptimisticConflict-16                       	     298	   1516104 ns/op	    2878 B/op	      52 allocs/op
 BenchmarkPostgreSQLOptimisticConflict-16                       	     518	    787407 ns/op	    2881 B/op	      52 allocs/op
 PASS
-ok  	github.com/faustbrian/golib/pkg/event-sourcing/postgres	51.493s
+ok  	github.com/faustbrian/go-event-sourcing/postgres	51.493s

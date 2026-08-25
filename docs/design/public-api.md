@@ -1,8 +1,8 @@
 # Public API design
 
 This document validates representative workflows before implementation. Names
-may change while the module remains unreleased, but the observable contracts
-and ownership decisions require explicit review before they change.
+are stable at v1; the observable contracts and ownership decisions require
+explicit review before they change.
 
 ## Design principles
 

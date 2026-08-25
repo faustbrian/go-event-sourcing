@@ -3,8 +3,8 @@ package eventsourcing_test
 import (
 	"fmt"
 
-	eventsourcing "github.com/faustbrian/golib/pkg/event-sourcing"
-	"github.com/faustbrian/golib/pkg/event-sourcing/eventtest"
+	eventsourcing "github.com/faustbrian/go-event-sourcing"
+	"github.com/faustbrian/go-event-sourcing/eventtest"
 )
 
 func Example_scenarioTesting() {

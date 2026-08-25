@@ -33,21 +33,21 @@ boundaries.
 The capture used the checked-in harness:
 
 ```sh
-make -C pkg/event-sourcing/benchmarks test
-make -C pkg/event-sourcing/benchmarks test-integration POSTGRES_VERSION=18
-make -C pkg/event-sourcing/benchmarks fingerprint \
+make -C benchmarks test
+make -C benchmarks test-integration POSTGRES_VERSION=18
+make -C benchmarks fingerprint \
   FINGERPRINT_OUTPUT=/tmp/event-sourcing-results-final/fingerprint-before.txt
-make -C pkg/event-sourcing/benchmarks capture \
+make -C benchmarks capture \
   OUTPUT_DIR=/tmp/event-sourcing-results-final \
   COUNT=20 BENCH_TIME=250ms POSTGRES_VERSION=18
-make -C pkg/event-sourcing/benchmarks fingerprint \
+make -C benchmarks fingerprint \
   FINGERPRINT_OUTPUT=/tmp/event-sourcing-results-final/fingerprint-after.txt
-make -C pkg/event-sourcing/benchmarks verify-fingerprint \
+make -C benchmarks verify-fingerprint \
   FINGERPRINT_BEFORE=/tmp/event-sourcing-results-final/fingerprint-before.txt \
   FINGERPRINT_AFTER=/tmp/event-sourcing-results-final/fingerprint-after.txt
-make -C pkg/event-sourcing/benchmarks analyze \
+make -C benchmarks analyze \
   OUTPUT_DIR=/tmp/event-sourcing-results-final
-make -C pkg/event-sourcing/benchmarks environment \
+make -C benchmarks environment \
   OUTPUT_DIR=/tmp/event-sourcing-results-final POSTGRES_VERSION=18
 ```
 

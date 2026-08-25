@@ -29,7 +29,7 @@ The capture ran outside the repository so generated results could not alter
 the measured input fingerprint:
 
 ```sh
-cd pkg/event-sourcing
+cd .
 make -C benchmarks/competitors test
 make -C benchmarks fingerprint \
   FINGERPRINT_OUTPUT=/tmp/event-sourcing-competitor-reconstitution.pFAG2P/fingerprint-before.txt

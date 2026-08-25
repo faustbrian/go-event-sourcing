@@ -12,7 +12,7 @@ import (
 	"testing"
 	"time"
 
-	eventsourcing "github.com/faustbrian/golib/pkg/event-sourcing"
+	eventsourcing "github.com/faustbrian/go-event-sourcing"
 	"github.com/jackc/pgx/v5/pgxpool"
 )
 

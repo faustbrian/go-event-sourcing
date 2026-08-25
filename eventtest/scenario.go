@@ -5,7 +5,7 @@ package eventtest
 import (
 	"errors"
 
-	eventsourcing "github.com/faustbrian/golib/pkg/event-sourcing"
+	eventsourcing "github.com/faustbrian/go-event-sourcing"
 )
 
 // AggregateConfig supplies the explicit aggregate boundaries used by a

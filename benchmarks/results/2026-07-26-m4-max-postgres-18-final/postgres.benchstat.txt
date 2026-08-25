@@ -1,6 +1,6 @@
 goos: darwin
 goarch: arm64
-pkg: github.com/faustbrian/golib/pkg/event-sourcing/postgres
+pkg: github.com/faustbrian/go-event-sourcing/postgres
 cpu: Apple M4 Max
                                               │ /tmp/event-sourcing-results-final.CA4hYb/postgres.txt │
                                               │                        sec/op                         │

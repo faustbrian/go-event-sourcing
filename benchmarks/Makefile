@@ -133,7 +133,7 @@ environment: require-output
 			github.com/jackc/pgx/v5 \
 			github.com/testcontainers/testcontainers-go/modules/postgres; \
 		$(GO) -C ../adapters/outbox list -m \
-			github.com/faustbrian/golib/pkg/outbox \
+			github.com/faustbrian/go-transactional-outbox \
 			github.com/jackc/pgx/v5; \
 	} > '$(OUTPUT_DIR)/environment.txt'
 
@@ -141,15 +141,15 @@ fingerprint:
 	test -n '$(FINGERPRINT_OUTPUT)'
 	{ \
 		printf 'core='; \
-		'$(GATE_INPUT_DIGEST)' benchmark pkg/event-sourcing; \
+		'$(GATE_INPUT_DIGEST)' benchmark .; \
 		printf 'competitors='; \
 		'$(GATE_INPUT_DIGEST)' benchmark \
-			pkg/event-sourcing/benchmarks/competitors; \
+			benchmarks/competitors; \
 		printf 'postgres='; \
-		'$(GATE_INPUT_DIGEST)' benchmark pkg/event-sourcing/postgres; \
+		'$(GATE_INPUT_DIGEST)' benchmark postgres; \
 		printf 'outbox='; \
 		'$(GATE_INPUT_DIGEST)' benchmark \
-			pkg/event-sourcing/adapters/outbox; \
+			adapters/outbox; \
 	} > '$(FINGERPRINT_OUTPUT)'
 
 verify-fingerprint:

@@ -1,6 +1,6 @@
 goos: darwin
 goarch: arm64
-pkg: github.com/faustbrian/golib/pkg/event-sourcing/benchmarks/competitors
+pkg: github.com/faustbrian/go-event-sourcing/benchmarks/competitors
 cpu: Apple M4 Max
                                          │ /tmp/event-sourcing-results-final.CA4hYb/competitors.txt │
                                          │                          sec/op                          │

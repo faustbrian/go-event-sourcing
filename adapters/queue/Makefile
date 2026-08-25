@@ -1,5 +1,5 @@
 ROOT := ../../../..
-MODULE := pkg/event-sourcing/adapters/queue
+MODULE := adapters/queue
 GO ?= go
 MODULES ?= $(MODULE)
 BASE ?= HEAD^

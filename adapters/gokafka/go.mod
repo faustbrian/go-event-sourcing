@@ -1,11 +1,11 @@
-module github.com/faustbrian/golib/pkg/event-sourcing/adapters/gokafka
+module github.com/faustbrian/go-event-sourcing/adapters/gokafka
 
 go 1.26.6
 
 require (
 	github.com/containerd/errdefs v1.0.0
-	github.com/faustbrian/golib/pkg/event-sourcing v0.0.0
-	github.com/faustbrian/golib/pkg/kafka v0.0.0
+	github.com/faustbrian/go-event-sourcing v1.0.0
+	github.com/faustbrian/go-kafka v1.0.0
 	github.com/moby/moby/client v0.4.0
 	github.com/testcontainers/testcontainers-go v0.43.0
 	github.com/testcontainers/testcontainers-go/modules/kafka v0.43.0

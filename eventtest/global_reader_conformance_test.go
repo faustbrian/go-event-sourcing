@@ -5,9 +5,9 @@ import (
 	"errors"
 	"testing"
 
-	eventsourcing "github.com/faustbrian/golib/pkg/event-sourcing"
-	"github.com/faustbrian/golib/pkg/event-sourcing/eventtest"
-	"github.com/faustbrian/golib/pkg/event-sourcing/memory"
+	eventsourcing "github.com/faustbrian/go-event-sourcing"
+	"github.com/faustbrian/go-event-sourcing/eventtest"
+	"github.com/faustbrian/go-event-sourcing/memory"
 )
 
 func TestGlobalReaderConformanceAcceptsMemoryStore(t *testing.T) {

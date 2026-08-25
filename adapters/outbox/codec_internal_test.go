@@ -7,8 +7,8 @@ import (
 	"testing"
 	"time"
 
-	eventsourcing "github.com/faustbrian/golib/pkg/event-sourcing"
-	"github.com/faustbrian/golib/pkg/outbox"
+	eventsourcing "github.com/faustbrian/go-event-sourcing"
+	"github.com/faustbrian/go-transactional-outbox"
 )
 
 func TestEnvelopeCodecRejectsInvalidConstructionAndEncoding(t *testing.T) {
