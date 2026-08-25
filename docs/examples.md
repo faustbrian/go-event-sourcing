@@ -24,7 +24,7 @@ Docker-compatible container runtime.
 | Publish and settle a compatible durable queue | [`TestValkeyStreamRetainsAndSettlesCompleteDelivery`](../adapters/queue/durable_integration_test.go) | `(cd adapters/queue && make integration)` |
 | Commit events and outbox envelopes atomically | [`TestStagerCommitsAndRollsBackEventsWithOutboxEnvelopes`](../adapters/outbox/stager_integration_test.go) | `(cd adapters/outbox && make integration)` |
 | Relay committed outbox envelopes with durable retry | [`TestCallerCommittedRowsRelayWithDurableRetryAndReplayIsolation`](../adapters/outbox/stager_integration_test.go) | `(cd adapters/outbox && make integration)` |
-| Map an outbox envelope to a Kafka record | [`TestPublisherMapsEnvelopeToKafkaMessage`](../../outbox/adapters/gokafka/publisher_test.go) | `(cd pkg/outbox/adapters/gokafka && go test ./...)` |
+| Map an outbox envelope to a Kafka record | [`TestPublisherMapsEnvelopeToKafkaMessage`](https://github.com/faustbrian/go-transactional-outbox/blob/main/adapters/gokafka/publisher_test.go) | `(cd adapters/gokafka && go test ./...)` in `go-transactional-outbox` |
 | Instrument dispatch and consumption without exposing data | [`TestInstrumentationTracesAndMeasuresDispatchAndConsumption`](../adapters/gotelemetry/instrumentation_test.go) | `(cd adapters/gotelemetry && go test ./...)` |
 
 The real-service examples are correctness evidence, not deployment scripts.

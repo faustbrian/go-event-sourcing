@@ -2,7 +2,7 @@ github.com/aclements/go-moremath v0.0.0-20210112150236-f10218a38794 h1:xlwdaKcTN
 github.com/aclements/go-moremath v0.0.0-20210112150236-f10218a38794/go.mod h1:7e+I0LQFUI9AXWxOfsQROs9xPhoJtbsyWcjJqDd4KPY=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
-github.com/faustbrian/go-event-sourcing v1.0.0 h1:wyEVLpPfuVx8NOVHV8ByecHn7Qzwa0XcUfZKMP9UNwU=
+github.com/faustbrian/go-event-sourcing v1.0.0 h1:iR23WiCsx8XdhplSZroDGK7tAYBofsrfWdUuFQccZpw=
 github.com/faustbrian/go-event-sourcing v1.0.0/go.mod h1:YnepDoU9pM7GqLFf+hjuD1ttfaOoO1BZ37lvsNlByZA=
 github.com/google/uuid v1.6.0 h1:NIvaJDMOsjHA8n1jAhLSgzrAzy1Hgr+hNrb57e+94F0=
 github.com/google/uuid v1.6.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=

@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Harden standalone documentation validation with deterministic spelling and
+  link checks, package-specific documentation gates, and repository-local
+  contributor guidance.
+
+### Documentation
+
+- Correct stale package, standalone, and authoritative-source links in public
+  documentation.
+
 ## [1.0.0] - 2026-08-25
 
 ### Documentation
