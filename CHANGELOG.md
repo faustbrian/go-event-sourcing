@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.0] - 2026-08-25
+
 ### Fixed
 
 - Preserve exact event-history, repository-pagination, in-memory range,
@@ -40,8 +42,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Correct stale package, standalone, and authoritative-source links in public
   documentation.
-
-## [1.0.0] - 2026-08-25
 
 ### Documentation
 
