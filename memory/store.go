@@ -38,7 +38,10 @@ func (store *Store) Append(
 	expected eventsourcing.ExpectedVersion,
 	pending []eventsourcing.PendingMessage,
 ) ([]eventsourcing.Message, error) {
-	if store.streams == nil || store.messageIDs == nil {
+	if store.streams == nil {
+		return nil, notCommitted(eventsourcing.ErrInvalidArgument)
+	}
+	if store.messageIDs == nil {
 		return nil, notCommitted(eventsourcing.ErrInvalidArgument)
 	}
 	if ctx == nil {
@@ -120,7 +123,10 @@ func (store *Store) ReadStream(
 	stream eventsourcing.StreamID,
 	options eventsourcing.ReadStreamOptions,
 ) (eventsourcing.MessageIterator, error) {
-	if store.streams == nil || store.messageIDs == nil {
+	if store.streams == nil {
+		return nil, eventsourcing.ErrInvalidArgument
+	}
+	if store.messageIDs == nil {
 		return nil, eventsourcing.ErrInvalidArgument
 	}
 	if ctx == nil {
@@ -141,17 +147,12 @@ func (store *Store) ReadStream(
 		return nil, eventsourcing.ErrStreamNotFound
 	}
 
-	start := options.FromVersion() - 1
-	if start >= uint64(len(messages)) {
-		return &iterator{}, nil
-	}
 	end := uint64(len(messages))
-	if options.ToVersion() != 0 && options.ToVersion() < end {
-		end = options.ToVersion()
+	start := min(options.FromVersion()-1, end)
+	if toVersion := options.ToVersion(); toVersion != 0 {
+		end = min(end, toVersion)
 	}
-	if limitEnd := start + uint64(options.Limit()); limitEnd < end {
-		end = limitEnd
-	}
+	end = min(end, start+uint64(options.Limit()))
 
 	snapshot := append([]eventsourcing.Message(nil), messages[start:end]...)
 
@@ -164,7 +165,10 @@ func (store *Store) ReadGlobal(
 	ctx context.Context,
 	options eventsourcing.ReadGlobalOptions,
 ) (eventsourcing.MessageIterator, error) {
-	if store.streams == nil || store.messageIDs == nil {
+	if store.streams == nil {
+		return nil, eventsourcing.ErrInvalidArgument
+	}
+	if store.messageIDs == nil {
 		return nil, eventsourcing.ErrInvalidArgument
 	}
 	if ctx == nil {
@@ -180,18 +184,12 @@ func (store *Store) ReadGlobal(
 	store.mutex.RLock()
 	defer store.mutex.RUnlock()
 
-	start := uint64(options.FromPosition() - 1)
-	if start >= uint64(len(store.globalMessages)) {
-		return &iterator{}, nil
-	}
 	end := uint64(len(store.globalMessages))
-	if options.ToPosition() != 0 &&
-		uint64(options.ToPosition()) < end {
-		end = uint64(options.ToPosition())
+	start := min(uint64(options.FromPosition()-1), end)
+	if toPosition := options.ToPosition(); toPosition != 0 {
+		end = min(end, uint64(toPosition))
 	}
-	if limitEnd := start + uint64(options.Limit()); limitEnd < end {
-		end = limitEnd
-	}
+	end = min(end, start+uint64(options.Limit()))
 
 	snapshot := append(
 		[]eventsourcing.Message(nil),

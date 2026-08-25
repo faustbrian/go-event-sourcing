@@ -75,7 +75,13 @@ func (controller *Controller) Rebuild(
 	expected eventsourcing.GlobalPosition,
 	reset ReadModelReset,
 ) (Status, error) {
-	if controller == nil || ctx == nil || reset == nil {
+	if controller == nil {
+		return Status{}, eventsourcing.ErrInvalidArgument
+	}
+	if ctx == nil {
+		return Status{}, eventsourcing.ErrInvalidArgument
+	}
+	if reset == nil {
 		return Status{}, eventsourcing.ErrInvalidArgument
 	}
 	status, err := controller.Status(ctx)

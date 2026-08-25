@@ -60,7 +60,11 @@ func (poisoned PoisonedDelivery) Cause() error {
 
 // IsZero reports whether the value was not produced by a runner.
 func (poisoned PoisonedDelivery) IsZero() bool {
-	return poisoned.delivery.IsZero() || poisoned.cause == nil
+	if poisoned.delivery.IsZero() {
+		return true
+	}
+
+	return poisoned.cause == nil
 }
 
 // PoisonPolicy makes one explicit deterministic decision after a handler

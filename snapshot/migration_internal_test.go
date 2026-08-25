@@ -46,6 +46,17 @@ func TestStateMigrationConstructionRejectsInvalidDefinitions(t *testing.T) {
 		!errors.Is(err, eventsourcing.ErrInvalidArgument) {
 		t.Fatalf("NewMigrationChain(zero) = %#v, %v", chain, err)
 	}
+	invalidChainDefinitions := []StateMigration{
+		{to: 2, transform: transform},
+		{from: 1, to: 1, transform: transform},
+		{from: 1, to: 2},
+	}
+	for index, definition := range invalidChainDefinitions {
+		if chain, chainErr := NewMigrationChain(definition); chain != nil ||
+			!errors.Is(chainErr, eventsourcing.ErrInvalidArgument) {
+			t.Fatalf("NewMigrationChain(invalid %d) = %#v, %v", index, chain, chainErr)
+		}
+	}
 	if chain, err := NewMigrationChain(valid, valid); chain != nil ||
 		!errors.Is(err, eventsourcing.ErrInvalidArgument) {
 		t.Fatalf("NewMigrationChain(duplicate) = %#v, %v", chain, err)

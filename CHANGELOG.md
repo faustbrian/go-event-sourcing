@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Preserve exact event-history, repository-pagination, in-memory range,
+  process-manager, projection-filter, and snapshot lifecycle boundaries under
+  hostile and maximum-sized inputs.
+
 ### Changed
 
 - Validate cross-repository workflow examples through their canonical

@@ -99,8 +99,13 @@ func NewRunner(config RunnerConfig) (*Runner, error) {
 			eventsourcing.ErrInvalidArgument,
 		)
 	}
-	if config.BatchSize == 0 ||
-		config.BatchSize > eventsourcing.MaxReadMessages {
+	if config.BatchSize == 0 {
+		return nil, fmt.Errorf(
+			"%w: projection batch size must be bounded",
+			eventsourcing.ErrInvalidArgument,
+		)
+	}
+	if config.BatchSize > eventsourcing.MaxReadMessages {
 		return nil, fmt.Errorf(
 			"%w: projection batch size must be bounded",
 			eventsourcing.ErrInvalidArgument,

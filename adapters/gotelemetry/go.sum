@@ -28,7 +28,7 @@ github.com/docker/go-units v0.5.0 h1:69rxXcBk27SvSaaxTtLh/8llcHD8vYHT7WSdRZ/jvr4
 github.com/docker/go-units v0.5.0/go.mod h1:fgPhTUdO+D/Jk86RDLlptpiXQzgHJF7gydDDbaIK4Dk=
 github.com/ebitengine/purego v0.10.0 h1:QIw4xfpWT6GWTzaW5XEKy3HXoqrJGx1ijYHzTF0/ISU=
 github.com/ebitengine/purego v0.10.0/go.mod h1:iIjxzd6CiRiOG0UyXP+V1+jWqUXVjPKLAI0mRfJZTmQ=
-github.com/faustbrian/go-event-sourcing v1.0.0 h1:uRMs1sDxggnjr/5IN8V0b3awXcnBjnl6lSJnG5E3ueg=
+github.com/faustbrian/go-event-sourcing v1.0.0 h1:L6lco3dquyE6fXj9qJ6JPX7ZubpYcm0JS39TVyX8Zuk=
 github.com/faustbrian/go-event-sourcing v1.0.0/go.mod h1:YnepDoU9pM7GqLFf+hjuD1ttfaOoO1BZ37lvsNlByZA=
 github.com/faustbrian/go-kafka v1.0.0 h1:Xvnz0z1U6y4fnCmnNcqCn2KuOufVlJdsPPGKSzt0jG0=
 github.com/faustbrian/go-kafka v1.0.0/go.mod h1:zqdFkw7RGxdoDaH7YFkADT4tyY9lh+INctDTAKNjYeA=

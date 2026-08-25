@@ -3,6 +3,7 @@ package projection
 import (
 	"context"
 	"errors"
+	"fmt"
 	"strings"
 	"testing"
 	"time"
@@ -201,6 +202,63 @@ func TestReplayFilterValidatesAndOwnsConfiguration(t *testing.T) {
 				t.Fatalf("NewReplayFilter() = %#v, %v", filter, err)
 			}
 		})
+	}
+}
+
+func TestReplayFilterAcceptsExactCombinedAndInclusiveBounds(t *testing.T) {
+	t.Parallel()
+
+	eventNames := make([]string, MaxReplayFilterValues-2)
+	for index := range eventNames {
+		eventNames[index] = fmt.Sprintf("event.type-%d", index)
+	}
+	filter, err := NewReplayFilter(ReplayFilterInput{
+		Streams:         []eventsourcing.StreamID{filterStream(t, "account", "account-1")},
+		AggregateTypes:  []string{"account"},
+		EventNames:      eventNames,
+		FromPosition:    2,
+		ThroughPosition: 3,
+		RecordedFrom:    filterTime(1),
+		RecordedThrough: filterTime(2),
+	})
+	if err != nil || !filter.Valid() {
+		t.Fatalf("NewReplayFilter(exact bound) = %#v, %v", filter, err)
+	}
+	if !filter.Match(filterMessage(
+		t,
+		filterStream(t, "account", "account-1"),
+		eventNames[0],
+		3,
+		filterTime(2),
+	)) {
+		t.Fatal("inclusive upper-bound message was rejected")
+	}
+	equalRange, err := NewReplayFilter(ReplayFilterInput{
+		FromPosition:    3,
+		ThroughPosition: 3,
+	})
+	if err != nil || !equalRange.Valid() {
+		t.Fatalf("NewReplayFilter(equal position range) = %#v, %v", equalRange, err)
+	}
+	messageWithoutPosition := filterMessageWithoutPosition(
+		t,
+		filterStream(t, "account", "account-1"),
+		"account.changed",
+		filterTime(1),
+	)
+	fromOnly := newReplayFilter(t, ReplayFilterInput{FromPosition: 1})
+	throughOnly := newReplayFilter(t, ReplayFilterInput{ThroughPosition: 1})
+	if fromOnly.Match(messageWithoutPosition) || throughOnly.Match(messageWithoutPosition) {
+		t.Fatal("position-bounded filter accepted a message without a global position")
+	}
+
+	eventNames = append(eventNames, "event.one-too-many")
+	if excessive, excessiveErr := NewReplayFilter(ReplayFilterInput{
+		Streams:        []eventsourcing.StreamID{filterStream(t, "account", "account-1")},
+		AggregateTypes: []string{"account"},
+		EventNames:     eventNames,
+	}); excessive.Valid() || !errors.Is(excessiveErr, eventsourcing.ErrInvalidArgument) {
+		t.Fatalf("NewReplayFilter(excessive combined bound) = %#v, %v", excessive, excessiveErr)
 	}
 }
 
@@ -406,6 +464,36 @@ func filterMessage(
 		Pending:        pending,
 		StreamVersion:  uint64(position),
 		GlobalPosition: position,
+	})
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	return message
+}
+
+func filterMessageWithoutPosition(
+	t *testing.T,
+	stream eventsourcing.StreamID,
+	eventName string,
+	recordedAt time.Time,
+) eventsourcing.Message {
+	t.Helper()
+
+	event, err := eventsourcing.NewEncodedEvent(eventsourcing.EncodedEventInput{
+		Name: eventName, Version: 1, ContentType: "application/json", Payload: []byte("{}"),
+	})
+	if err != nil {
+		t.Fatal(err)
+	}
+	pending, err := eventsourcing.NewPendingMessage(eventsourcing.PendingMessageInput{
+		ID: "message-without-position", Stream: stream, Event: event, RecordedAt: recordedAt,
+	})
+	if err != nil {
+		t.Fatal(err)
+	}
+	message, err := eventsourcing.NewMessage(eventsourcing.MessageInput{
+		Pending: pending, StreamVersion: 1,
 	})
 	if err != nil {
 		t.Fatal(err)

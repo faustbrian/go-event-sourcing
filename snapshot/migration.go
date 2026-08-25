@@ -69,8 +69,13 @@ func NewMigrationChain(
 		len(migrations),
 	)
 	for _, migration := range migrations {
-		if migration.from == 0 || migration.to <= migration.from ||
-			migration.transform == nil {
+		if migration.from == 0 {
+			return nil, invalid("snapshot migration must be assigned")
+		}
+		if migration.to <= migration.from {
+			return nil, invalid("snapshot migration must be assigned")
+		}
+		if migration.transform == nil {
 			return nil, invalid("snapshot migration must be assigned")
 		}
 		if _, exists := steps[migration.from]; exists {

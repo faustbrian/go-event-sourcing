@@ -318,7 +318,12 @@ func (manager *Manager[ID, Aggregate]) Refresh(
 		return eventsourcing.Snapshot{}, err
 	}
 	aggregateStream, err := manager.stream(manager.identify(aggregate))
-	if err != nil || aggregateStream != stream {
+	if err != nil {
+		return eventsourcing.Snapshot{}, invalid(
+			"aggregate identifier does not match",
+		)
+	}
+	if aggregateStream != stream {
 		return eventsourcing.Snapshot{}, invalid(
 			"aggregate identifier does not match",
 		)
@@ -387,7 +392,12 @@ func (manager *Manager[ID, Aggregate]) RefreshIfDue(
 		return eventsourcing.Snapshot{}, false, err
 	}
 	aggregateStream, err := manager.stream(manager.identify(aggregate))
-	if err != nil || aggregateStream != stream {
+	if err != nil {
+		return eventsourcing.Snapshot{}, false, invalid(
+			"aggregate identifier does not match",
+		)
+	}
+	if aggregateStream != stream {
 		return eventsourcing.Snapshot{}, false, invalid(
 			"aggregate identifier does not match",
 		)
@@ -403,8 +413,15 @@ func (manager *Manager[ID, Aggregate]) RefreshIfDue(
 		return eventsourcing.Snapshot{}, false, err
 	}
 	committedVersion := lifecycle.CommittedVersion()
-	if !changes.Empty() || committedVersion == 0 ||
-		previousSnapshotVersion > committedVersion {
+	if !changes.Empty() {
+		return eventsourcing.Snapshot{}, false,
+			eventsourcing.ErrInvalidLifecycleState
+	}
+	if committedVersion == 0 {
+		return eventsourcing.Snapshot{}, false,
+			eventsourcing.ErrInvalidLifecycleState
+	}
+	if previousSnapshotVersion > committedVersion {
 		return eventsourcing.Snapshot{}, false,
 			eventsourcing.ErrInvalidLifecycleState
 	}

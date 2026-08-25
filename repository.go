@@ -230,7 +230,7 @@ func (repository *AggregateRepository[ID, Aggregate]) Load(
 			return aggregate, nil
 		}
 		loaded = true
-		if count < repository.readBatchSize || lifecycle.committed == ^uint64(0) {
+		if repositoryPageComplete(count, repository.readBatchSize, lifecycle.committed) {
 			return aggregate, nil
 		}
 		nextVersion += uint64(count)
@@ -288,15 +288,19 @@ func (repository *AggregateRepository[ID, Aggregate]) Restore(
 		if err != nil {
 			return zero, err
 		}
-		if count == 0 {
+		switch count {
+		case 0:
 			return aggregate, nil
 		}
-		if count < repository.readBatchSize ||
-			lifecycle.committed == ^uint64(0) {
+		if repositoryPageComplete(count, repository.readBatchSize, lifecycle.committed) {
 			return aggregate, nil
 		}
 		nextVersion += uint64(count)
 	}
+}
+
+func repositoryPageComplete(count, readBatchSize uint32, committed uint64) bool {
+	return count < readBatchSize || committed == ^uint64(0)
 }
 
 func (repository *AggregateRepository[ID, Aggregate]) verifySnapshotVersion(

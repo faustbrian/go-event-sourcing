@@ -553,6 +553,70 @@ func TestThresholdPolicyAndConditionalRefreshRejectInvalidState(t *testing.T) {
 		})
 	}
 
+	if created, refreshed, refreshErr := manager.RefreshIfDue(
+		context.Background(),
+		"id",
+		aggregate,
+		aggregate.lifecycle.CommittedVersion(),
+		policy,
+	); !created.IsZero() || refreshed || refreshErr != nil {
+		t.Fatalf("RefreshIfDue(equal version) = %#v, %t, %v", created, refreshed, refreshErr)
+	}
+
+	invalidAggregate := &internalAggregate{id: "invalid id"}
+	if _, refreshErr := manager.Refresh(
+		context.Background(),
+		"id",
+		invalidAggregate,
+	); !errors.Is(refreshErr, eventsourcing.ErrInvalidArgument) {
+		t.Fatalf("Refresh(invalid aggregate identifier) error = %v", refreshErr)
+	}
+	if _, refreshed, refreshErr := manager.RefreshIfDue(
+		context.Background(),
+		"id",
+		invalidAggregate,
+		0,
+		policy,
+	); refreshed || !errors.Is(refreshErr, eventsourcing.ErrInvalidArgument) {
+		t.Fatalf("RefreshIfDue(invalid aggregate identifier) = %t, %v", refreshed, refreshErr)
+	}
+	aggregateErrorConfig := internalConfig()
+	aggregateErrorConfig.EncodeID = func(id string) (string, error) {
+		if id == "aggregate-error" {
+			return "", errManagerTest
+		}
+
+		return id, nil
+	}
+	aggregateErrorManager := managerFromInternalConfig(t, aggregateErrorConfig)
+	aggregateError := &internalAggregate{id: "aggregate-error"}
+	if _, refreshErr := aggregateErrorManager.Refresh(
+		context.Background(),
+		"id",
+		aggregateError,
+	); !errors.Is(refreshErr, eventsourcing.ErrInvalidArgument) {
+		t.Fatalf("Refresh(aggregate encoding failure) error = %v", refreshErr)
+	}
+	if _, refreshed, refreshErr := aggregateErrorManager.RefreshIfDue(
+		context.Background(),
+		"id",
+		aggregateError,
+		0,
+		policy,
+	); refreshed || !errors.Is(refreshErr, eventsourcing.ErrInvalidArgument) {
+		t.Fatalf("RefreshIfDue(aggregate encoding failure) = %t, %v", refreshed, refreshErr)
+	}
+	zeroCommitted := &internalAggregate{id: "id"}
+	if _, refreshed, refreshErr := manager.RefreshIfDue(
+		context.Background(),
+		"id",
+		zeroCommitted,
+		0,
+		policy,
+	); refreshed || !errors.Is(refreshErr, eventsourcing.ErrInvalidLifecycleState) {
+		t.Fatalf("RefreshIfDue(zero committed version) = %t, %v", refreshed, refreshErr)
+	}
+
 	config := internalConfig()
 	config.EncodeID = func(string) (string, error) { return "", errManagerTest }
 	encodeManager := managerFromInternalConfig(t, config)

@@ -185,8 +185,7 @@ func (lifecycle *Lifecycle) Record(
 	if apply == nil {
 		return invalid("apply", "must be assigned")
 	}
-	if lifecycle.committed == ^uint64(0) ||
-		uint64(len(lifecycle.pending)) >= ^uint64(0)-lifecycle.committed {
+	if uint64(len(lifecycle.pending)) >= ^uint64(0)-lifecycle.committed {
 		return ErrVersionOverflow
 	}
 	if err := lifecycle.apply(event, apply); err != nil {
@@ -399,11 +398,19 @@ func validateHistory(baseVersion uint64, history []HistoricalEvent) error {
 		expectedVersion++
 
 		first := history[index]
-		if first.event.IsZero() ||
-			first.sourceVersion != expectedVersion ||
-			first.segmentIndex != 0 ||
-			first.segmentCount == 0 ||
-			first.segmentCount > MaxUpcastSegments {
+		if first.event.IsZero() {
+			return fmt.Errorf("%w: invalid source event", ErrCorruptHistory)
+		}
+		if first.sourceVersion != expectedVersion {
+			return fmt.Errorf("%w: invalid source version", ErrCorruptHistory)
+		}
+		if first.segmentIndex != 0 {
+			return fmt.Errorf("%w: invalid first segment index", ErrCorruptHistory)
+		}
+		if first.segmentCount == 0 {
+			return fmt.Errorf("%w: invalid source sequence", ErrCorruptHistory)
+		}
+		if first.segmentCount > MaxUpcastSegments {
 			return fmt.Errorf("%w: invalid source sequence", ErrCorruptHistory)
 		}
 		if uint64(first.segmentCount) > uint64(len(history)-index) {
@@ -412,10 +419,16 @@ func validateHistory(baseVersion uint64, history []HistoricalEvent) error {
 
 		for segment := uint32(0); segment < first.segmentCount; segment++ {
 			current := history[index+int(segment)]
-			if current.event.IsZero() ||
-				current.sourceVersion != expectedVersion ||
-				current.segmentIndex != segment ||
-				current.segmentCount != first.segmentCount {
+			if current.event.IsZero() {
+				return fmt.Errorf("%w: invalid split event", ErrCorruptHistory)
+			}
+			if current.sourceVersion != expectedVersion {
+				return fmt.Errorf("%w: invalid split source version", ErrCorruptHistory)
+			}
+			if current.segmentIndex != segment {
+				return fmt.Errorf("%w: invalid split segment index", ErrCorruptHistory)
+			}
+			if current.segmentCount != first.segmentCount {
 				return fmt.Errorf("%w: invalid split sequence", ErrCorruptHistory)
 			}
 		}
@@ -453,12 +466,16 @@ func (lifecycle *Lifecycle) Acknowledge(
 	for index, event := range changes.events {
 		pending := prepared[index]
 		message := messages[index]
-		if pending.event.name != event.name ||
-			pending.event.version != event.version ||
-			!pendingMessagesEqual(pending, message.pending) ||
-			message.StreamVersion() != changes.base+uint64(index)+1 ||
-			message.pending.event.name != event.name ||
-			message.pending.event.version != event.version {
+		if pending.event.name != event.name {
+			return lifecycle.persistenceMismatch()
+		}
+		if pending.event.version != event.version {
+			return lifecycle.persistenceMismatch()
+		}
+		if !pendingMessagesEqual(pending, message.pending) {
+			return lifecycle.persistenceMismatch()
+		}
+		if message.StreamVersion() != changes.base+uint64(index)+1 {
 			return lifecycle.persistenceMismatch()
 		}
 	}

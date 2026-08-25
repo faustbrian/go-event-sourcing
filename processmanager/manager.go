@@ -74,8 +74,10 @@ func New[Command any](config Config[Command]) (*Manager[Command], error) {
 	if config.Replay != RejectReplay && config.Replay != AllowReplay {
 		return nil, invalid("replay policy is unknown")
 	}
-	if len(config.EventNames) == 0 ||
-		len(config.EventNames) > MaxAcceptedEventNames {
+	if len(config.EventNames) == 0 {
+		return nil, invalid("accepted event names must be bounded")
+	}
+	if len(config.EventNames) > MaxAcceptedEventNames {
 		return nil, invalid("accepted event names must be bounded")
 	}
 	eventNames := make(
@@ -91,8 +93,10 @@ func New[Command any](config Config[Command]) (*Manager[Command], error) {
 		}
 		eventNames[eventName] = struct{}{}
 	}
-	if config.MaxCommands == 0 ||
-		config.MaxCommands > MaxPlannedCommands {
+	if config.MaxCommands == 0 {
+		return nil, invalid("command limit must be bounded")
+	}
+	if config.MaxCommands > MaxPlannedCommands {
 		return nil, invalid("command limit must be bounded")
 	}
 	if config.Planner == nil {
@@ -155,9 +159,7 @@ func (manager *Manager[Command]) Plan(
 		return PlanResult[Command]{}, err
 	}
 	message := delivery.Message()
-	if message.ID().IsZero() ||
-		(delivery.Mode() != eventsourcing.DeliveryLive &&
-			delivery.Mode() != eventsourcing.DeliveryReplay) {
+	if message.ID().IsZero() {
 		return PlanResult[Command]{}, eventsourcing.ErrInvalidArgument
 	}
 	if delivery.Mode() == eventsourcing.DeliveryReplay &&

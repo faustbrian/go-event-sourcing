@@ -50,20 +50,24 @@ func NewReplayFilter(input ReplayFilterInput) (ReplayFilter, error) {
 			"exact-match allowlists exceed the combined limit",
 		)
 	}
-	if input.FromPosition != 0 &&
-		input.ThroughPosition != 0 &&
-		input.ThroughPosition < input.FromPosition {
-		return ReplayFilter{}, invalidFilter(
-			"position range must be ordered",
-		)
+	if input.FromPosition != 0 {
+		if input.ThroughPosition != 0 {
+			if input.ThroughPosition < input.FromPosition {
+				return ReplayFilter{}, invalidFilter(
+					"position range must be ordered",
+				)
+			}
+		}
 	}
 
 	recordedFrom := normalizeReplayTime(input.RecordedFrom)
 	recordedThrough := normalizeReplayTime(input.RecordedThrough)
-	if !recordedFrom.IsZero() &&
-		!recordedThrough.IsZero() &&
-		recordedThrough.Before(recordedFrom) {
-		return ReplayFilter{}, invalidFilter("time range must be ordered")
+	if !recordedFrom.IsZero() {
+		if !recordedThrough.IsZero() {
+			if recordedThrough.Before(recordedFrom) {
+				return ReplayFilter{}, invalidFilter("time range must be ordered")
+			}
+		}
 	}
 
 	streams := make(
@@ -137,11 +141,10 @@ func (filter ReplayFilter) Valid() bool {
 // Match reports whether an assigned persisted message satisfies every
 // configured criterion.
 func (filter ReplayFilter) Match(message eventsourcing.Message) bool {
-	if !filter.valid ||
-		message.ID().IsZero() ||
-		message.Stream().IsZero() ||
-		message.EventName().IsZero() ||
-		message.RecordedAt().IsZero() {
+	if !filter.valid {
+		return false
+	}
+	if message.ID().IsZero() {
 		return false
 	}
 
@@ -164,13 +167,21 @@ func (filter ReplayFilter) Match(message eventsourcing.Message) bool {
 	}
 
 	position, hasPosition := message.GlobalPosition()
-	if filter.fromPosition != 0 &&
-		(!hasPosition || position < filter.fromPosition) {
-		return false
+	if filter.fromPosition != 0 {
+		if !hasPosition {
+			return false
+		}
+		if position < filter.fromPosition {
+			return false
+		}
 	}
-	if filter.throughPosition != 0 &&
-		(!hasPosition || position > filter.throughPosition) {
-		return false
+	if filter.throughPosition != 0 {
+		if !hasPosition {
+			return false
+		}
+		if position > filter.throughPosition {
+			return false
+		}
 	}
 	recordedAt := message.RecordedAt()
 	if !filter.recordedFrom.IsZero() &&
