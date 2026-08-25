@@ -15,6 +15,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Upgrade archive and cryptography dependencies across PostgreSQL and optional
+  integration adapters to current security-fixed releases.
+
 - Validate cross-repository workflow examples through their canonical
   standalone links instead of requiring a sibling checkout.
 
