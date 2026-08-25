@@ -36,7 +36,7 @@ github.com/docker/go-units v0.5.0 h1:69rxXcBk27SvSaaxTtLh/8llcHD8vYHT7WSdRZ/jvr4
 github.com/docker/go-units v0.5.0/go.mod h1:fgPhTUdO+D/Jk86RDLlptpiXQzgHJF7gydDDbaIK4Dk=
 github.com/ebitengine/purego v0.10.0 h1:QIw4xfpWT6GWTzaW5XEKy3HXoqrJGx1ijYHzTF0/ISU=
 github.com/ebitengine/purego v0.10.0/go.mod h1:iIjxzd6CiRiOG0UyXP+V1+jWqUXVjPKLAI0mRfJZTmQ=
-github.com/faustbrian/go-event-sourcing v1.0.0 h1:nJIB7vMriAxe7mcqU4LZw6usAFsiDavvJwPvBU4SycU=
+github.com/faustbrian/go-event-sourcing v1.0.0 h1:lMwsO7kyuZWFsr3Yeo+fSz0l7La17x7CCgDq0B02JUM=
 github.com/faustbrian/go-event-sourcing v1.0.0/go.mod h1:YnepDoU9pM7GqLFf+hjuD1ttfaOoO1BZ37lvsNlByZA=
 github.com/faustbrian/go-queue v1.0.0 h1:rwB9yEK6QhGAHN03/7oAf2vOmnwnqzLvtTmQTVvJjik=
 github.com/faustbrian/go-queue v1.0.0/go.mod h1:XQY6QpHS87WeYYt1Xs3lWiak1v099mZlC+TPPU7kB1M=
