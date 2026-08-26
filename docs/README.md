@@ -30,6 +30,14 @@
 - [Kafka](kafka.md)
 - [Projections](projections.md)
 
+## Optional modules
+
+- [PostgreSQL adapter](../postgres/docs/README.md)
+- [Kafka adapter](../adapters/gokafka/docs/README.md)
+- [OpenTelemetry adapter](../adapters/gotelemetry/docs/README.md)
+- [Outbox adapter](../adapters/outbox/docs/README.md)
+- [Queue adapter](../adapters/queue/docs/README.md)
+
 ## Operations and security
 
 - [Performance](performance.md)
