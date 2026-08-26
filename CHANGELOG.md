@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Documentation
+
+- Replace archived monorepo and release-audit terminology with package-owned
+  documentation, assurance guidance, and delivery guarantees.
+
 ## [1.0.0] - 2026-08-25
 
 ### Fixed

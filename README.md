@@ -52,7 +52,7 @@ durable adapters.
 - [Troubleshooting](docs/troubleshooting.md)
 - [Glossary](docs/glossary.md)
 - [Release notes and compatibility](docs/release-notes.md)
-- [Release hardening findings](docs/release-audit.md)
+- [Assurance and residual risks](docs/assurance.md)
 - [Dispatcher and consumer semantics](docs/dispatch.md)
 - [Code generation decision](docs/code-generation.md)
 - [Anti-corruption translation](docs/translation.md)
@@ -87,7 +87,7 @@ compatibility matrix distinguishes implemented, excluded, and externally owned
 capabilities; release readiness still depends on the complete repository gates
 described in the release notes.
 
-## Ecosystem
+## Documentation
 
-Use the [Golib documentation portal](https://github.com/faustbrian/golib/blob/main/docs/index.md)
-to choose companion packages, supported stacks, recipes, and operations guidance.
+Start with the [documentation index](docs/README.md) for modeling, storage,
+dispatch, projections, operations, compatibility, and security guidance.

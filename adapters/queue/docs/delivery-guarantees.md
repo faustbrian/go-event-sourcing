@@ -1,4 +1,4 @@
-# Delivery hardening evidence
+# Delivery guarantees
 
 This module owns the mapping between event-sourcing deliveries and the
 first-party queue seam. It does not own backend transactions, worker lifecycle,
