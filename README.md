@@ -10,8 +10,8 @@
 [![Go](https://img.shields.io/badge/go-1.26.6-00ADD8?logo=go)](https://go.dev/)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-`event-sourcing` is a pragmatic event-sourcing library for Go under active
-development. It is designed around three independently replaceable
+`event-sourcing` is a pragmatic event-sourcing library for Go. It is designed
+around three independently replaceable
 responsibilities:
 
 1. an aggregate repository;
@@ -23,10 +23,8 @@ small consumer-owned interfaces, and `context.Context` at I/O boundaries. It
 does not require CQRS, a command bus, a query bus, a queue, an outbox, a
 framework, reflection-based handler discovery, or code generation.
 
-The package is a pre-release candidate. Its documented core and adapter
-capabilities are implemented, but applications should pin a reviewed revision
-until the first versioned release and its complete release evidence are
-published.
+The v1 API and documented adapter contracts follow the compatibility policy in
+[the release notes](docs/release-notes.md).
 
 ## Quickstart
 

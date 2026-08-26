@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Documentation
 
+- Align maintained documentation with the stable v1 release contract and
+  remove obsolete candidate or verdict wording.
+
 - Replace archived monorepo and release-audit terminology with package-owned
   documentation, assurance guidance, and delivery guarantees.
 

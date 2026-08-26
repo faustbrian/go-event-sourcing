@@ -10,10 +10,10 @@ release-note source for that module:
 - [outbox](../adapters/outbox/CHANGELOG.md); and
 - [OpenTelemetry](../adapters/gotelemetry/CHANGELOG.md).
 
-Until a first versioned release is published, these changelogs describe
-unreleased behavior and no compatibility promise applies. A release note must
-not imply that a local check, adapter test, or benchmark is deployed or
-production-verified.
+The published v1 surfaces follow semantic versioning. Unreleased changelog
+entries describe pending changes and do not alter the latest tagged contract.
+A release note must not imply that a local check, adapter test, or benchmark is
+deployed or production-verified.
 
 ## Semantic-versioning surfaces
 
