@@ -69,13 +69,6 @@ operations:
     makefile: Makefile
     target: docs
     timeout: 20m
-- module: adapters/queue
-  gate: docs
-  steps:
-  - type: make
-    makefile: Makefile
-    target: docs
-    timeout: 20m
 - module: postgres
   gate: docs
   steps:
