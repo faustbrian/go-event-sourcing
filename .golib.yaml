@@ -1,0 +1,269 @@
+schema_version: 1
+tool_version: v1.0.7
+tool_checksums_sha256: beb57df2dff76b4a0044af843398baecab55a3d420986d9be7c9b14ca88befef
+manifest:
+  modules: modules.json
+  packages: packages.json
+evidence:
+  root: .verification
+mutation:
+  root: .verification/mutation
+  imports:
+  - module: .
+    archive: .verification/mutation/bootstrap/root.zip
+    ledger: .verification/mutation/migration-ledger.json
+  - module: adapters/gokafka
+    archive: .verification/mutation/bootstrap/adapters-gokafka.zip
+    ledger: .verification/mutation/migration-ledger.json
+  - module: adapters/gotelemetry
+    archive: .verification/mutation/bootstrap/adapters-gotelemetry.zip
+    ledger: .verification/mutation/migration-ledger.json
+  - module: adapters/outbox
+    archive: .verification/mutation/bootstrap/adapters-outbox.zip
+    ledger: .verification/mutation/migration-ledger.json
+  - module: adapters/queue
+    archive: .verification/mutation/bootstrap/adapters-queue.zip
+    ledger: .verification/mutation/migration-ledger.json
+  - module: postgres
+    archive: .verification/mutation/bootstrap/postgres.zip
+    ledger: .verification/mutation/migration-ledger.json
+api:
+  baselines:
+  - module: .
+    mode: apidiff
+    path: api/baseline.txt
+  - module: adapters/gokafka
+    mode: apidiff
+    path: adapters/gokafka/api/baseline.txt
+  - module: adapters/gotelemetry
+    mode: apidiff
+    path: adapters/gotelemetry/api/baseline.txt
+  - module: adapters/outbox
+    mode: apidiff
+    path: adapters/outbox/api/baseline.txt
+  - module: adapters/queue
+    mode: apidiff
+    path: adapters/queue/api/baseline.txt
+  - module: postgres
+    mode: apidiff
+    path: postgres/api/baseline.txt
+operations:
+- module: adapters/gokafka
+  gate: docs
+  steps:
+  - type: make
+    makefile: Makefile
+    target: docs
+    timeout: 20m
+- module: adapters/gotelemetry
+  gate: docs
+  steps:
+  - type: make
+    makefile: Makefile
+    target: docs
+    timeout: 20m
+- module: adapters/outbox
+  gate: docs
+  steps:
+  - type: make
+    makefile: Makefile
+    target: docs
+    timeout: 20m
+- module: postgres
+  gate: docs
+  steps:
+  - type: make
+    makefile: Makefile
+    target: docs
+    timeout: 20m
+- module: .
+  gate: fuzz
+  steps:
+  - type: go-test
+    packages: [.]
+    fuzz: '^FuzzJSONCodecDecode$'
+    budget: 10000x
+    timeout: 2m
+  - type: go-test
+    packages: [.]
+    fuzz: '^FuzzMessageConstruction$'
+    budget: 10000x
+    timeout: 2m
+  - type: go-test
+    packages: [.]
+    fuzz: '^FuzzAggregateRepositoryLiveAndReplayAreEquivalent$'
+    budget: 10000x
+    timeout: 2m
+  - type: go-test
+    packages: [./projection]
+    fuzz: '^FuzzReplayFilter$'
+    budget: 10000x
+    timeout: 2m
+  - type: go-test
+    packages: [./snapshot]
+    fuzz: '^FuzzSnapshotValidation$'
+    budget: 10000x
+    timeout: 2m
+  - type: go-test
+    packages: [.]
+    fuzz: '^FuzzUpcasterChain$'
+    budget: 10000x
+    timeout: 2m
+- module: adapters/gokafka
+  gate: fuzz
+  steps:
+  - type: go-test
+    packages: [.]
+    fuzz: '^FuzzRecordCodecDecode$'
+    budget: 10000x
+    timeout: 2m
+  - type: go-test
+    packages: [.]
+    fuzz: '^FuzzDeadLetterPolicy$'
+    budget: 10000x
+    timeout: 2m
+- module: adapters/gotelemetry
+  gate: fuzz
+  steps:
+  - type: go-test
+    packages: [.]
+    fuzz: '^FuzzHostileProviderIsolation$'
+    budget: 10000x
+    timeout: 2m
+  - type: go-test
+    packages: [.]
+    fuzz: '^FuzzKafkaRecordPassThrough$'
+    budget: 10000x
+    timeout: 2m
+  - type: go-test
+    packages: [.]
+    fuzz: '^FuzzProjectionNamesAndPositions$'
+    budget: 10000x
+    timeout: 2m
+  - type: go-test
+    packages: [.]
+    fuzz: '^FuzzSerializationMetadataPassThrough$'
+    budget: 10000x
+    timeout: 2m
+  - type: go-test
+    packages: [.]
+    fuzz: '^FuzzKafkaPropagationBoundaries$'
+    budget: 10000x
+    timeout: 2m
+- module: adapters/outbox
+  gate: fuzz
+  steps:
+  - type: go-test
+    packages: [.]
+    fuzz: '^FuzzEnvelopeCodecDecode$'
+    budget: 10000x
+    timeout: 2m
+  - type: go-test
+    packages: [.]
+    fuzz: '^FuzzEnvelopeCodecEncodeTopic$'
+    budget: 10000x
+    timeout: 2m
+  - type: go-test
+    packages: [.]
+    fuzz: '^FuzzEnvelopeCodecCanonicalRoundTrip$'
+    budget: 10000x
+    timeout: 2m
+  - type: go-test
+    packages: [.]
+    fuzz: '^FuzzEnvelopeCodecEnvelopeFieldInvariants$'
+    budget: 10000x
+    timeout: 2m
+- module: adapters/queue
+  gate: fuzz
+  steps:
+  - type: go-test
+    packages: [.]
+    fuzz: '^FuzzCodecDecode$'
+    budget: 10000x
+    timeout: 2m
+  - type: go-test
+    packages: [.]
+    fuzz: '^FuzzCodecPayloadLimits$'
+    budget: 10000x
+    timeout: 2m
+  - type: go-test
+    packages: [.]
+    fuzz: '^FuzzDispatcherRejectsInvalidRetryMetadata$'
+    budget: 10000x
+    timeout: 2m
+  - type: go-test
+    packages: [.]
+    fuzz: '^FuzzDispatcherRetryMetadata$'
+    budget: 10000x
+    timeout: 2m
+- module: postgres
+  gate: fuzz
+  steps:
+  - type: go-test
+    packages: [.]
+    fuzz: '^FuzzProjectionStatus$'
+    budget: 10000x
+    timeout: 2m
+  - type: go-test
+    packages: [.]
+    fuzz: '^FuzzScanSnapshot$'
+    budget: 10000x
+    timeout: 2m
+  - type: go-test
+    packages: [.]
+    fuzz: '^FuzzDatabaseFailure$'
+    budget: 10000x
+    timeout: 2m
+  - type: go-test
+    packages: [.]
+    fuzz: '^FuzzScanMessage$'
+    budget: 10000x
+    timeout: 2m
+- module: .
+  gate: benchmark
+  steps:
+  - type: go-test
+    packages: [./...]
+    benchmark: .
+    budget: 100ms
+    timeout: 20m
+- module: adapters/gokafka
+  gate: benchmark
+  steps:
+  - type: go-test
+    packages: [./...]
+    benchmark: .
+    budget: 100ms
+    timeout: 20m
+- module: adapters/gotelemetry
+  gate: benchmark
+  steps:
+  - type: go-test
+    packages: [./...]
+    benchmark: .
+    budget: 100ms
+    timeout: 20m
+- module: adapters/outbox
+  gate: benchmark
+  steps:
+  - type: go-test
+    packages: [./...]
+    benchmark: .
+    budget: 100ms
+    timeout: 20m
+- module: adapters/queue
+  gate: benchmark
+  steps:
+  - type: go-test
+    packages: [./...]
+    benchmark: .
+    budget: 100ms
+    timeout: 20m
+- module: postgres
+  gate: benchmark
+  steps:
+  - type: go-test
+    packages: [./...]
+    benchmark: .
+    budget: 100ms
+    timeout: 20m
