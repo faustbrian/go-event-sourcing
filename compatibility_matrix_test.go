@@ -231,16 +231,16 @@ func TestQueueGuideMatchesCompatibilityEvidence(t *testing.T) {
 	}
 }
 
-func TestReleaseAuditPublishesFindingsAndResidualRisks(t *testing.T) {
+func TestAssuranceDocumentPublishesFindingsAndResidualRisks(t *testing.T) {
 	t.Parallel()
 
 	readme := readContractFile(t, "README.md")
-	if !strings.Contains(readme, "[Release hardening findings](docs/release-audit.md)") {
-		t.Fatal("README does not link the release hardening findings")
+	if !strings.Contains(readme, "[Assurance and residual risks](docs/assurance.md)") {
+		t.Fatal("README does not link the assurance and residual risks document")
 	}
-	audit := readContractFile(t, "docs/release-audit.md")
+	audit := readContractFile(t, "docs/assurance.md")
 	for _, required := range []string{
-		"# Release hardening findings",
+		"# Assurance and residual risks",
 		"## Findings",
 		"Severity",
 		"Disposition",
