@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "repository": "github.com/faustbrian/go-event-sourcing",
+  "module": ".",
+  "package": "memory",
+  "gate": "mutation",
+  "input_digest": "sha256:2db0d69338614e6bba8cd30cb7648708f4e38ee85feb63b9013894bb0764e183",
+  "verifier_digest": "sha256:9a9499ff68a8dfd49a0be7995590297a8ee563a1aa226bfd8b9361dc53058108",
+  "result": "passed",
+  "report_digest": "sha256:3eb86a05d5af8d55cf4c3d27212401d38d63ef0c4941c2ea748b9e5060fd3d31",
+  "environment": {
+    "CGO_ENABLED": "1",
+    "GOARCH": "arm64",
+    "GOOS": "darwin",
+    "GOVERSION": "go1.27.0",
+    "gremlins_binary_sha256": "sha256:6a2beddc477eb410f8a670b6c9049558563d3c4327498fe31604d31c773a959e"
+  },
+  "completed_at": "2026-08-29T05:01:43.616848Z"
+}
