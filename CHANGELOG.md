@@ -9,8 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Replace copied repository tooling with the pinned `go-library-tools` v1.0.13
+- Replace copied repository tooling with the pinned `go-library-tools` v1.4.0
   contract while retaining package-owned policy and verification evidence.
+- Publish schema-v2 cohesion metadata for every releasable module and enforce
+  it through the repository-local and immutable shared CI gates.
 
 ### Documentation
 
@@ -19,6 +21,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Replace archived monorepo and release-audit terminology with package-owned
   documentation, assurance guidance, and delivery guarantees.
+- Link every releasable module to the immutable v1.4.0 ecosystem index and
+  persistence-and-durability family guidance.
 
 ## [1.0.0] - 2026-08-25
 

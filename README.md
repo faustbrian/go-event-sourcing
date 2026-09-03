@@ -26,6 +26,10 @@ framework, reflection-based handler discovery, or code generation.
 The v1 API and documented adapter contracts follow the compatibility policy in
 [the release notes](docs/release-notes.md).
 
+For ecosystem-wide package selection, construction, ownership, and lifecycle
+guidance, see the versioned [Golib ecosystem index](https://github.com/faustbrian/go-library-tools/blob/v1.4.0/docs/ecosystem/README.md)
+and its [persistence and durability family guidance](https://github.com/faustbrian/go-library-tools/blob/v1.4.0/docs/ecosystem/design-language.md#package-families-and-selection).
+
 ## Quickstart
 
 See the complete [five-minute quickstart](docs/quickstart.md) for one aggregate

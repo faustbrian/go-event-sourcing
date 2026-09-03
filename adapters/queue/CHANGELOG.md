@@ -8,10 +8,19 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Changed
+
+- Publish schema-v2 cohesion metadata and enforce it through the repository's
+  pinned `go-library-tools` v1.4.0 workflow.
+- Reconcile the public v1.0.0 event-sourcing and queue dependency checksums
+  with SumDB.
+
 ### Documentation
 
 - Move detailed module guidance behind a concise README and documentation index.
 - Use human-oriented section names and package-owned documentation links.
+- Link the module to the immutable v1.4.0 ecosystem index and
+  persistence-and-durability family guidance.
 
 ## [1.0.0] - 2026-08-25
 
