@@ -61,6 +61,16 @@ func TestJSONObjectDepthPropagatesAcrossObjectValues(t *testing.T) {
 	}
 }
 
+func TestJSONValidationRejectsUnterminatedContainer(t *testing.T) {
+	t.Parallel()
+
+	err := validateJSONValue(json.NewDecoder(strings.NewReader("[1}")), 0)
+	if !errors.Is(err, ErrMalformedEvent) ||
+		!strings.Contains(err.Error(), "unterminated JSON container") {
+		t.Fatalf("validateJSONValue(unterminated array) error = %v", err)
+	}
+}
+
 func TestDispatcherContinuesPastAFilteredConsumer(t *testing.T) {
 	t.Parallel()
 
