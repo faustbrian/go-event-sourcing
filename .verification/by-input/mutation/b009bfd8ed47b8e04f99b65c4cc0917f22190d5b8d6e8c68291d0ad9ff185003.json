@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "repository": "github.com/faustbrian/go-event-sourcing",
+  "module": "adapters/outbox",
+  "package": ".",
+  "gate": "mutation",
+  "input_digest": "sha256:b009bfd8ed47b8e04f99b65c4cc0917f22190d5b8d6e8c68291d0ad9ff185003",
+  "verifier_digest": "sha256:9a9499ff68a8dfd49a0be7995590297a8ee563a1aa226bfd8b9361dc53058108",
+  "result": "passed",
+  "report_digest": "sha256:a5191c4888ab41e01ab326407721f06f0bbf1ee9a154c25eaaad409f878bee51",
+  "environment": {
+    "CGO_ENABLED": "1",
+    "GOARCH": "arm64",
+    "GOOS": "darwin",
+    "GOVERSION": "go1.26.6",
+    "gremlins_binary_sha256": "sha256:e05bf25d661b16ab96d6f2e17aed481d393930e0f24205cc341b010f887368a0"
+  },
+  "completed_at": "2026-09-03T22:47:13.4239Z"
+}

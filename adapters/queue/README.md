@@ -63,8 +63,8 @@ additional guarantees beyond the documented module boundary.
 
 ## Documentation
 
-This module follows the versioned [Golib ecosystem design language](https://github.com/faustbrian/go-library-tools/blob/v1.3.0/docs/ecosystem/design-language.md)
-and is indexed in the [persistence and durability family](https://github.com/faustbrian/go-library-tools/blob/v1.3.0/docs/ecosystem/README.md).
+This module is listed in the versioned [Golib ecosystem index](https://github.com/faustbrian/go-library-tools/blob/v1.4.0/docs/ecosystem/README.md)
+and follows its [persistence and durability family guidance](https://github.com/faustbrian/go-library-tools/blob/v1.4.0/docs/ecosystem/design-language.md#package-families-and-selection).
 
 - [Documentation index](docs/README.md)
 - [Complete technical guide](docs/reference.md)
