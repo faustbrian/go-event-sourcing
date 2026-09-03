@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "repository": "github.com/faustbrian/go-event-sourcing",
   "go_version": "1.26.6",
   "modules": [
@@ -124,6 +124,95 @@
         "race": true,
         "security": true,
         "tests": true
+      },
+      "cohesion": {
+        "family": "persistence-and-durability",
+        "secondary_capabilities": [
+          "data-encoding",
+          "database-and-storage",
+          "eventing-and-messaging",
+          "scheduling-and-orchestration",
+          "testing-and-conformance"
+        ],
+        "responsibility": "Provide event-store and dispatcher contracts, aggregate repositories, codecs, upcasting, projections, snapshots, process managers, and deterministic test support.",
+        "non_goals": [
+          "Own a command or query bus, queue, broker, outbox, database runtime, framework container, reflection-based discovery, or code generation.",
+          "Hide persistence, dispatch, retry, cancellation, or application lifecycle ownership from callers."
+        ],
+        "public_package_identifier": "eventsourcing",
+        "primary_entry_packages": [
+          "github.com/faustbrian/go-event-sourcing"
+        ],
+        "package_selection": {
+          "github.com/faustbrian/go-event-sourcing": "Use for event messages, store and dispatcher contracts, aggregate repositories, codecs, and upcasting.",
+          "github.com/faustbrian/go-event-sourcing/eventtest": "Use in tests for deterministic event-store, dispatcher, projection, process-manager, and snapshot contract scenarios.",
+          "github.com/faustbrian/go-event-sourcing/memory": "Use for synchronized in-memory event, snapshot, and projection stores where process-local durability is sufficient.",
+          "github.com/faustbrian/go-event-sourcing/processmanager": "Use to coordinate explicit stateful reactions that consume events and emit commands.",
+          "github.com/faustbrian/go-event-sourcing/projection": "Use for bounded replay, filtering, checkpoints, poison handling, and projection lifecycle control.",
+          "github.com/faustbrian/go-event-sourcing/snapshot": "Use for snapshot policies, migration, and aggregate snapshot management."
+        },
+        "lifecycle_status": "active",
+        "maturity": "stable",
+        "construction_styles": [
+          "functional-options",
+          "new-config",
+          "plain-function",
+          "validated-value"
+        ],
+        "lifecycle_styles": [
+          "close",
+          "stateless"
+        ],
+        "ownership": {
+          "configuration": "caller",
+          "mutable_inputs": [
+            "borrow",
+            "copy"
+          ],
+          "runtime_resources": "caller",
+          "background_work": "none"
+        },
+        "optional_owned_dependencies": [],
+        "adapters": [
+          "github.com/faustbrian/go-event-sourcing/adapters/gokafka",
+          "github.com/faustbrian/go-event-sourcing/adapters/gotelemetry",
+          "github.com/faustbrian/go-event-sourcing/adapters/outbox",
+          "github.com/faustbrian/go-event-sourcing/adapters/queue",
+          "github.com/faustbrian/go-event-sourcing/postgres"
+        ],
+        "companions": [
+          "github.com/faustbrian/go-cloudevents/adapters/golib"
+        ],
+        "supported_go": {
+          "minimum": "1.26.6",
+          "tested": [
+            "1.26.6"
+          ]
+        },
+        "supported_platforms": [
+          "portable-go"
+        ],
+        "supported_backends": [],
+        "supported_protocols": [],
+        "documentation": {
+          "readme": "README.md",
+          "api": "docs/design/public-api.md",
+          "adoption": "docs/adoption.md",
+          "security": "docs/security.md",
+          "compatibility": "docs/release-notes.md",
+          "performance": "docs/performance.md",
+          "examples": "docs/examples.md",
+          "faq": "docs/faq.md",
+          "changelog": "CHANGELOG.md",
+          "pkg_go_dev": "https://pkg.go.dev/github.com/faustbrian/go-event-sourcing",
+          "ecosystem_index": "https://github.com/faustbrian/go-library-tools/blob/v1.3.0/docs/ecosystem/README.md"
+        },
+        "known_good_compatibility_sets": [],
+        "delivery": {
+          "implementation": "not-started",
+          "hardening": "not-started",
+          "release": "not-started"
+        }
       }
     },
     {
@@ -191,6 +280,83 @@
         "race": true,
         "security": true,
         "tests": true
+      },
+      "cohesion": {
+        "family": "persistence-and-durability",
+        "secondary_capabilities": [
+          "data-encoding",
+          "eventing-and-messaging",
+          "transport-and-networking"
+        ],
+        "responsibility": "Adapt event-sourcing deliveries to Kafka records, synchronous dispatch, consumer handling, explicit poison and retry disposition, and dead-letter publication.",
+        "non_goals": [
+          "Own broker lifecycle, consumer-group execution, business idempotency, application transactions, or exactly-once delivery."
+        ],
+        "public_package_identifier": "gokafka",
+        "primary_entry_packages": [
+          "github.com/faustbrian/go-event-sourcing/adapters/gokafka"
+        ],
+        "package_selection": {
+          "github.com/faustbrian/go-event-sourcing/adapters/gokafka": "Use at a Kafka boundary for bounded event record mapping, direct publication, consumer handling, and dead-letter policy."
+        },
+        "lifecycle_status": "active",
+        "maturity": "stable",
+        "construction_styles": [
+          "functional-options",
+          "new-config",
+          "plain-function"
+        ],
+        "lifecycle_styles": [
+          "stateless"
+        ],
+        "ownership": {
+          "configuration": "caller",
+          "mutable_inputs": [
+            "borrow",
+            "copy"
+          ],
+          "runtime_resources": "caller",
+          "background_work": "none"
+        },
+        "optional_owned_dependencies": [],
+        "adapters": [],
+        "companions": [
+          "github.com/faustbrian/go-event-sourcing/adapters/gotelemetry"
+        ],
+        "supported_go": {
+          "minimum": "1.26.6",
+          "tested": [
+            "1.26.6"
+          ]
+        },
+        "supported_platforms": [
+          "portable-go"
+        ],
+        "supported_backends": [
+          "kafka"
+        ],
+        "supported_protocols": [
+          "kafka"
+        ],
+        "documentation": {
+          "readme": "adapters/gokafka/README.md",
+          "api": "adapters/gokafka/docs/reference.md",
+          "adoption": "adapters/gokafka/docs/reference.md",
+          "security": "adapters/gokafka/docs/reference.md",
+          "compatibility": "adapters/gokafka/docs/reference.md",
+          "performance": "adapters/gokafka/docs/reference.md",
+          "examples": "adapters/gokafka/example_test.go",
+          "faq": "adapters/gokafka/docs/reference.md",
+          "changelog": "adapters/gokafka/CHANGELOG.md",
+          "pkg_go_dev": "https://pkg.go.dev/github.com/faustbrian/go-event-sourcing/adapters/gokafka",
+          "ecosystem_index": "https://github.com/faustbrian/go-library-tools/blob/v1.3.0/docs/ecosystem/README.md"
+        },
+        "known_good_compatibility_sets": [],
+        "delivery": {
+          "implementation": "not-started",
+          "hardening": "not-started",
+          "release": "not-started"
+        }
       }
     },
     {
@@ -255,6 +421,83 @@
         "race": true,
         "security": true,
         "tests": true
+      },
+      "cohesion": {
+        "family": "persistence-and-durability",
+        "secondary_capabilities": [
+          "eventing-and-messaging",
+          "observability",
+          "transport-and-networking"
+        ],
+        "responsibility": "Instrument event-sourcing dispatch, storage, serialization, snapshots, projections, process managers, and Kafka context propagation with caller-supplied OpenTelemetry components.",
+        "non_goals": [
+          "Own OpenTelemetry SDK, exporter, collector, Kafka client, application logging, or event-processing lifecycle."
+        ],
+        "public_package_identifier": "gotelemetry",
+        "primary_entry_packages": [
+          "github.com/faustbrian/go-event-sourcing/adapters/gotelemetry"
+        ],
+        "package_selection": {
+          "github.com/faustbrian/go-event-sourcing/adapters/gotelemetry": "Use to wrap event-sourcing boundaries with explicit OpenTelemetry tracing, metrics, and bounded Kafka propagation."
+        },
+        "lifecycle_status": "active",
+        "maturity": "stable",
+        "construction_styles": [
+          "new-config",
+          "plain-function"
+        ],
+        "lifecycle_styles": [
+          "close",
+          "stateless"
+        ],
+        "ownership": {
+          "configuration": "caller",
+          "mutable_inputs": [
+            "borrow",
+            "copy"
+          ],
+          "runtime_resources": "caller",
+          "background_work": "none"
+        },
+        "optional_owned_dependencies": [],
+        "adapters": [],
+        "companions": [
+          "github.com/faustbrian/go-event-sourcing/adapters/gokafka"
+        ],
+        "supported_go": {
+          "minimum": "1.26.6",
+          "tested": [
+            "1.26.6"
+          ]
+        },
+        "supported_platforms": [
+          "portable-go"
+        ],
+        "supported_backends": [],
+        "supported_protocols": [
+          "kafka",
+          "opentelemetry",
+          "w3c-trace-context"
+        ],
+        "documentation": {
+          "readme": "adapters/gotelemetry/README.md",
+          "api": "adapters/gotelemetry/docs/reference.md",
+          "adoption": "adapters/gotelemetry/docs/reference.md",
+          "security": "adapters/gotelemetry/docs/reference.md",
+          "compatibility": "adapters/gotelemetry/docs/reference.md",
+          "performance": "adapters/gotelemetry/docs/reference.md",
+          "examples": "adapters/gotelemetry/README.md",
+          "faq": "adapters/gotelemetry/docs/reference.md",
+          "changelog": "adapters/gotelemetry/CHANGELOG.md",
+          "pkg_go_dev": "https://pkg.go.dev/github.com/faustbrian/go-event-sourcing/adapters/gotelemetry",
+          "ecosystem_index": "https://github.com/faustbrian/go-library-tools/blob/v1.3.0/docs/ecosystem/README.md"
+        },
+        "known_good_compatibility_sets": [],
+        "delivery": {
+          "implementation": "not-started",
+          "hardening": "not-started",
+          "release": "not-started"
+        }
       }
     },
     {
@@ -321,6 +564,78 @@
         "race": true,
         "security": true,
         "tests": true
+      },
+      "cohesion": {
+        "family": "persistence-and-durability",
+        "secondary_capabilities": [
+          "data-encoding",
+          "database-and-storage",
+          "eventing-and-messaging"
+        ],
+        "responsibility": "Atomically stage event rows and transactional-outbox envelopes through a savepoint in an existing caller-owned PostgreSQL transaction.",
+        "non_goals": [
+          "Own the outer transaction, commit, publication, relay, retry worker, or exactly-once delivery."
+        ],
+        "public_package_identifier": "eventoutbox",
+        "primary_entry_packages": [
+          "github.com/faustbrian/go-event-sourcing/adapters/outbox"
+        ],
+        "package_selection": {
+          "github.com/faustbrian/go-event-sourcing/adapters/outbox": "Use when event rows and transactional-outbox envelopes must be staged atomically inside a caller-owned pgx transaction."
+        },
+        "lifecycle_status": "active",
+        "maturity": "stable",
+        "construction_styles": [
+          "new-config",
+          "plain-function"
+        ],
+        "lifecycle_styles": [
+          "stateless"
+        ],
+        "ownership": {
+          "configuration": "caller",
+          "mutable_inputs": [
+            "borrow",
+            "copy"
+          ],
+          "runtime_resources": "caller",
+          "background_work": "none"
+        },
+        "optional_owned_dependencies": [],
+        "adapters": [],
+        "companions": [],
+        "supported_go": {
+          "minimum": "1.26.6",
+          "tested": [
+            "1.26.6"
+          ]
+        },
+        "supported_platforms": [
+          "portable-go"
+        ],
+        "supported_backends": [
+          "postgresql"
+        ],
+        "supported_protocols": [],
+        "documentation": {
+          "readme": "adapters/outbox/README.md",
+          "api": "adapters/outbox/docs/reference.md",
+          "adoption": "adapters/outbox/docs/reference.md",
+          "security": "adapters/outbox/docs/reference.md",
+          "compatibility": "adapters/outbox/docs/reference.md",
+          "performance": "adapters/outbox/docs/reference.md",
+          "examples": "adapters/outbox/stager_test.go",
+          "faq": "adapters/outbox/docs/reference.md",
+          "changelog": "adapters/outbox/CHANGELOG.md",
+          "pkg_go_dev": "https://pkg.go.dev/github.com/faustbrian/go-event-sourcing/adapters/outbox",
+          "ecosystem_index": "https://github.com/faustbrian/go-library-tools/blob/v1.3.0/docs/ecosystem/README.md"
+        },
+        "known_good_compatibility_sets": [],
+        "delivery": {
+          "implementation": "not-started",
+          "hardening": "not-started",
+          "release": "not-started"
+        }
       }
     },
     {
@@ -383,6 +698,74 @@
         "race": true,
         "security": true,
         "tests": true
+      },
+      "cohesion": {
+        "family": "persistence-and-durability",
+        "secondary_capabilities": [
+          "data-encoding",
+          "eventing-and-messaging"
+        ],
+        "responsibility": "Adapt complete event-sourcing deliveries to bounded queue envelopes, synchronous enqueue dispatch, and explicit live or replay task handling.",
+        "non_goals": [
+          "Own a worker, broker connection, retry clock, dead-letter store, settlement policy, business idempotency, or exactly-once delivery."
+        ],
+        "public_package_identifier": "eventqueue",
+        "primary_entry_packages": [
+          "github.com/faustbrian/go-event-sourcing/adapters/queue"
+        ],
+        "package_selection": {
+          "github.com/faustbrian/go-event-sourcing/adapters/queue": "Use at a go-queue boundary for bounded event envelopes, explicit enqueue ambiguity, and live or replay handling."
+        },
+        "lifecycle_status": "active",
+        "maturity": "stable",
+        "construction_styles": [
+          "new-config"
+        ],
+        "lifecycle_styles": [
+          "stateless"
+        ],
+        "ownership": {
+          "configuration": "caller",
+          "mutable_inputs": [
+            "borrow",
+            "copy"
+          ],
+          "runtime_resources": "caller",
+          "background_work": "none"
+        },
+        "optional_owned_dependencies": [],
+        "adapters": [],
+        "companions": [],
+        "supported_go": {
+          "minimum": "1.26.6",
+          "tested": [
+            "1.26.6"
+          ]
+        },
+        "supported_platforms": [
+          "portable-go"
+        ],
+        "supported_backends": [],
+        "supported_protocols": [],
+        "documentation": {
+          "readme": "adapters/queue/README.md",
+          "api": "adapters/queue/docs/reference.md",
+          "adoption": "adapters/queue/docs/reference.md",
+          "security": "adapters/queue/docs/reference.md",
+          "compatibility": "adapters/queue/docs/reference.md",
+          "performance": "adapters/queue/docs/reference.md",
+          "examples": "adapters/queue/README.md",
+          "faq": "adapters/queue/docs/reference.md",
+          "changelog": "adapters/queue/CHANGELOG.md",
+          "pkg_go_dev": "https://pkg.go.dev/github.com/faustbrian/go-event-sourcing/adapters/queue",
+          "ecosystem_index": "https://github.com/faustbrian/go-library-tools/blob/v1.3.0/docs/ecosystem/README.md"
+        },
+        "known_good_compatibility_sets": [],
+        "delivery": {
+          "implementation": "not-started",
+          "hardening": "not-started",
+          "release": "not-started"
+        }
       }
     },
     {
@@ -394,6 +777,10 @@
       "lifecycle": "internal",
       "kind": "benchmark harness",
       "releasable": false,
+      "family": "persistence-and-durability",
+      "family_label": "Persistence And Durability",
+      "family_description": "Durable state, delivery, coordination, recovery, and operational lifecycle.",
+      "family_order": 4,
       "version": "unreleased",
       "tag_prefix": "benchmarks/competitors/v",
       "owned_dependencies": [
@@ -494,6 +881,78 @@
         "race": true,
         "security": true,
         "tests": true
+      },
+      "cohesion": {
+        "family": "persistence-and-durability",
+        "secondary_capabilities": [
+          "database-and-storage",
+          "eventing-and-messaging"
+        ],
+        "responsibility": "Provide PostgreSQL event, snapshot, projection, checkpoint, migration, and caller-owned transaction-writer implementations for event sourcing.",
+        "non_goals": [
+          "Own pool creation or closure, outer transaction commit, retry loops, projection workers, or migration execution."
+        ],
+        "public_package_identifier": "postgres",
+        "primary_entry_packages": [
+          "github.com/faustbrian/go-event-sourcing/postgres"
+        ],
+        "package_selection": {
+          "github.com/faustbrian/go-event-sourcing/postgres": "Use for pgx-backed event, snapshot, projection, checkpoint, transaction-writer, and embedded migration implementations."
+        },
+        "lifecycle_status": "active",
+        "maturity": "stable",
+        "construction_styles": [
+          "new-config",
+          "plain-function"
+        ],
+        "lifecycle_styles": [
+          "close",
+          "stateless"
+        ],
+        "ownership": {
+          "configuration": "caller",
+          "mutable_inputs": [
+            "borrow",
+            "copy"
+          ],
+          "runtime_resources": "caller",
+          "background_work": "none"
+        },
+        "optional_owned_dependencies": [],
+        "adapters": [],
+        "companions": [],
+        "supported_go": {
+          "minimum": "1.26.6",
+          "tested": [
+            "1.26.6"
+          ]
+        },
+        "supported_platforms": [
+          "portable-go"
+        ],
+        "supported_backends": [
+          "postgresql"
+        ],
+        "supported_protocols": [],
+        "documentation": {
+          "readme": "postgres/README.md",
+          "api": "postgres/docs/reference.md",
+          "adoption": "postgres/docs/reference.md",
+          "security": "postgres/docs/reference.md",
+          "compatibility": "postgres/docs/reference.md",
+          "performance": "postgres/docs/reference.md",
+          "examples": "postgres/store_test.go",
+          "faq": "postgres/docs/reference.md",
+          "changelog": "postgres/CHANGELOG.md",
+          "pkg_go_dev": "https://pkg.go.dev/github.com/faustbrian/go-event-sourcing/postgres",
+          "ecosystem_index": "https://github.com/faustbrian/go-library-tools/blob/v1.3.0/docs/ecosystem/README.md"
+        },
+        "known_good_compatibility_sets": [],
+        "delivery": {
+          "implementation": "not-started",
+          "hardening": "not-started",
+          "release": "not-started"
+        }
       }
     }
   ]

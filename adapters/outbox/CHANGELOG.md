@@ -4,10 +4,16 @@ All notable changes to this module are documented here.
 
 ## Unreleased
 
+### Changed
+
+- Publish schema-v2 cohesion metadata and enforce it through the repository's
+  pinned `go-library-tools` v1.3.0 workflow.
+
 ### Documentation
 
 - Move detailed module guidance behind a concise README and documentation index.
 - Use human-oriented section names and package-owned documentation links.
+- Link the module to the versioned Golib ecosystem design language and index.
 
 ## 1.0.0 - 2026-08-25
 

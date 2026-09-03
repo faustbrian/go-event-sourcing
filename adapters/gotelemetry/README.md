@@ -98,6 +98,9 @@ additional guarantees beyond the documented module boundary.
 
 ## Documentation
 
+This module follows the versioned [Golib ecosystem design language](https://github.com/faustbrian/go-library-tools/blob/v1.3.0/docs/ecosystem/design-language.md)
+and is indexed in the [persistence and durability family](https://github.com/faustbrian/go-library-tools/blob/v1.3.0/docs/ecosystem/README.md).
+
 - [Documentation index](docs/README.md)
 - [Complete technical guide](docs/reference.md)
 - [Go API reference](https://pkg.go.dev/github.com/faustbrian/go-event-sourcing/adapters/gotelemetry)
