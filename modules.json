@@ -176,11 +176,11 @@
         "adapters": [
           "github.com/faustbrian/go-event-sourcing/adapters/gokafka",
           "github.com/faustbrian/go-event-sourcing/adapters/gotelemetry",
+          "github.com/faustbrian/go-event-sourcing/adapters/kafka",
+          "github.com/faustbrian/go-event-sourcing/adapters/otel",
           "github.com/faustbrian/go-event-sourcing/adapters/outbox",
           "github.com/faustbrian/go-event-sourcing/adapters/queue",
-          "github.com/faustbrian/go-event-sourcing/postgres",
-          "github.com/faustbrian/go-event-sourcing/adapters/kafka",
-          "github.com/faustbrian/go-event-sourcing/adapters/otel"
+          "github.com/faustbrian/go-event-sourcing/postgres"
         ],
         "companions": [
           "github.com/faustbrian/go-cloudevents/adapters/golib"
@@ -313,9 +313,7 @@
         },
         "optional_owned_dependencies": [],
         "adapters": [],
-        "companions": [
-          "github.com/faustbrian/go-event-sourcing/adapters/kafka"
-        ],
+        "companions": [],
         "supported_go": {
           "minimum": "1.26.6",
           "tested": [
@@ -447,9 +445,7 @@
         },
         "optional_owned_dependencies": [],
         "adapters": [],
-        "companions": [
-          "github.com/faustbrian/go-event-sourcing/adapters/otel"
-        ],
+        "companions": [],
         "supported_go": {
           "minimum": "1.26.6",
           "tested": [
@@ -1049,8 +1045,8 @@
         "optional_owned_dependencies": [],
         "adapters": [],
         "companions": [
-          "github.com/faustbrian/go-event-sourcing/adapters/otel",
-          "github.com/faustbrian/go-event-sourcing/adapters/gokafka"
+          "github.com/faustbrian/go-event-sourcing/adapters/gokafka",
+          "github.com/faustbrian/go-event-sourcing/adapters/otel"
         ],
         "supported_go": {
           "minimum": "1.26.6",
@@ -1193,8 +1189,8 @@
         "optional_owned_dependencies": [],
         "adapters": [],
         "companions": [
-          "github.com/faustbrian/go-event-sourcing/adapters/kafka",
-          "github.com/faustbrian/go-event-sourcing/adapters/gotelemetry"
+          "github.com/faustbrian/go-event-sourcing/adapters/gotelemetry",
+          "github.com/faustbrian/go-event-sourcing/adapters/kafka"
         ],
         "supported_go": {
           "minimum": "1.26.6",
