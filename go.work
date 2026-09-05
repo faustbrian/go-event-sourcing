@@ -4,6 +4,8 @@ use (
 	.
 	./adapters/gokafka
 	./adapters/gotelemetry
+	./adapters/kafka
+	./adapters/otel
 	./adapters/outbox
 	./adapters/queue
 	./benchmarks/competitors

@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "repository": "github.com/faustbrian/go-event-sourcing",
+  "module": "adapters/kafka",
+  "package": ".",
+  "gate": "mutation",
+  "input_digest": "sha256:943b7471105f065b385f1ad006529c5b7bacf2c88458670c21c6ada5bc1fda0d",
+  "verifier_digest": "sha256:9a9499ff68a8dfd49a0be7995590297a8ee563a1aa226bfd8b9361dc53058108",
+  "result": "passed",
+  "report_digest": "sha256:8c2728027f57da8cc8ceb3b374ffbb76f9073682dd322c3423bd662fe4f6d75f",
+  "environment": {
+    "CGO_ENABLED": "1",
+    "GOARCH": "arm64",
+    "GOOS": "darwin",
+    "GOVERSION": "go1.26.6",
+    "gremlins_binary_sha256": "sha256:e05bf25d661b16ab96d6f2e17aed481d393930e0f24205cc341b010f887368a0"
+  },
+  "completed_at": "2026-09-05T12:57:49.695863Z"
+}

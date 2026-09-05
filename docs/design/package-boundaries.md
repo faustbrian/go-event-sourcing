@@ -16,9 +16,10 @@ The table includes both implemented and remaining release boundaries.
 | `processmanager` | Side-effect-safe planning contracts and explicit runners | Core only |
 | `postgres` nested module | PostgreSQL event, snapshot, and checkpoint stores plus migrations | Core, `pgx`, and public migration contracts |
 | `adapters/outbox` nested module | Same-transaction conversion between event messages and public outbox envelopes | Core and public outbox contracts |
-| `adapters/gokafka` nested module | Kafka-native producer and consumer semantics | Core and `franz-go` |
+| `adapters/kafka` nested module | Kafka-native producer and consumer semantics | Core and `franz-go` |
 | `adapters/queue` nested module | Adapters for queue backends that preserve the required event semantics | Core and public queue contracts |
-| `adapters/gotelemetry` nested module | OpenTelemetry spans, metrics, and propagation | Core and public telemetry contracts |
+| `adapters/otel` nested module | OpenTelemetry spans, metrics, and propagation | Core and public telemetry contracts |
+| `adapters/gokafka`, `adapters/gotelemetry` | Deprecated released v1 compatibility facades | Their target-oriented successors |
 
 Subpackages will not be created merely to hold one interface. The root package
 owns coherent storage-independent contracts. Nested modules are required for
@@ -42,9 +43,9 @@ eventsourcing core <--- eventtest / snapshot / projection / processmanager
         +---------------- memory --------------+
         |
         +--- postgres
-        +--- adapters/gokafka
+        +--- adapters/kafka
         +--- adapters/queue
-        +--- adapters/gotelemetry
+        +--- adapters/otel
         +--- adapters/outbox ---> outbox public API
 ```
 

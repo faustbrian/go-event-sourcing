@@ -12,10 +12,10 @@ Optional integrations are independently versioned modules:
 
 ```sh
 go get github.com/faustbrian/go-event-sourcing/postgres
-go get github.com/faustbrian/go-event-sourcing/adapters/gokafka
+go get github.com/faustbrian/go-event-sourcing/adapters/kafka
 go get github.com/faustbrian/go-event-sourcing/adapters/outbox
 go get github.com/faustbrian/go-event-sourcing/adapters/queue
-go get github.com/faustbrian/go-event-sourcing/adapters/gotelemetry
+go get github.com/faustbrian/go-event-sourcing/adapters/otel
 ```
 
 Before the first tagged release, these commands describe the stable module
@@ -38,10 +38,12 @@ permanent `replace` directives or local paths to a releasable application.
 | Module | Dependency boundary and guarantee |
 | --- | --- |
 | `postgres` | Adds `pgx`; owns PostgreSQL schemas, migrations, event storage, global reads, snapshots, and checkpoints |
-| `adapters/gokafka` | Adds the repository Kafka contract; preserves topics, partitions, keys, offsets, acknowledgements, groups, replay, and failure policy |
+| `adapters/kafka` | Preferred Kafka adapter; preserves topics, partitions, keys, offsets, acknowledgements, groups, replay, and failure policy |
+| `adapters/gokafka` | Deprecated v1 compatibility facade for `adapters/kafka` |
 | `adapters/outbox` | Depends on the public event-sourcing, outbox, and PostgreSQL contracts for caller-owned same-transaction staging |
 | `adapters/queue` | Depends on the compatible queue contract; backend-specific durability and settlement guarantees remain observable |
-| `adapters/gotelemetry` | Adds OpenTelemetry instrumentation and propagation without changing core behavior |
+| `adapters/otel` | Preferred OpenTelemetry instrumentation and propagation adapter |
+| `adapters/gotelemetry` | Deprecated v1 facade for `adapters/otel`, preserving instrumentation scope |
 
 Kafka is intentionally not routed through `eventqueue`. The event-sourcing core
 does not import any optional module. The outbox core and event-sourcing core do

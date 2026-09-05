@@ -1,7 +1,6 @@
 GO ?= go
-BENCH_TIME ?= 100ms
 
-.PHONY: benchmark check coverage docs format format-check race test vet
+.PHONY: check coverage docs format format-check race test vet
 
 format:
 	gofmt -w .
@@ -23,10 +22,6 @@ coverage:
 	test "$$($(GO) tool cover -func="$${temporary}/coverage.out" | \
 		awk '/^total:/ { print $$3 }')" = "100.0%"
 
-benchmark:
-	$(GO) test ./... -run '^$$' -bench . -benchmem \
-		-benchtime="$(BENCH_TIME)"
-
 vet:
 	$(GO) vet ./...
 
@@ -36,4 +31,4 @@ docs:
 	test -s LICENSE
 	$(GO) doc .
 
-check: format-check vet test race coverage benchmark docs
+check: format-check vet test race coverage docs

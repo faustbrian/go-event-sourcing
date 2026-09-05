@@ -1,7 +1,7 @@
 # OpenTelemetry integration
 
 The independently versioned
-`github.com/faustbrian/go-event-sourcing/adapters/gotelemetry` module
+`github.com/faustbrian/go-event-sourcing/adapters/otel` module
 keeps OpenTelemetry dependencies outside the event-sourcing core.
 
 The current adapter wraps synchronous dispatchers and consumer functions. It
@@ -62,6 +62,7 @@ repository operations supply their caller context. Neither boundary records
 event identity, schema, content type, payload, metadata, decoded values,
 transformed output, or failure diagnostics.
 
-See the [adapter guide](../adapters/gotelemetry/README.md) for the quick start,
+See the [adapter guide](../adapters/otel/README.md) for the quick start,
 API, signal names, privacy contract, ownership rules, FAQ, and development
-gate.
+gate. The released `adapters/gotelemetry` v1 path remains a deprecated facade
+and preserves the exact instrumentation scope and signal contract.

@@ -291,10 +291,10 @@ func TestPrimaryWorkflowsHaveExecutableArtifacts(t *testing.T) {
 		"process_manager_example_test.go",
 		"eventtest/store_conformance_test.go",
 		"postgres/integration_test.go",
-		"adapters/gokafka/integration_test.go",
+		"adapters/kafka/integration_test.go",
 		"adapters/queue/durable_integration_test.go",
 		"adapters/outbox/stager_integration_test.go",
-		"adapters/gotelemetry/instrumentation_test.go",
+		"adapters/otel/instrumentation_test.go",
 	} {
 		if _, err := os.Stat(artifact); err != nil {
 			t.Fatalf("runnable workflow artifact %q: %v", artifact, err)
