@@ -133,6 +133,30 @@
       "coverage_required": true,
       "build_required": true,
       "build_tags": []
+    },
+    {
+      "module_directory": "adapters/kafka",
+      "directory": ".",
+      "name": "kafka",
+      "import_path": "github.com/faustbrian/go-event-sourcing/adapters/kafka",
+      "kind": "public",
+      "production": true,
+      "executable": true,
+      "coverage_required": true,
+      "build_required": true,
+      "build_tags": []
+    },
+    {
+      "module_directory": "adapters/otel",
+      "directory": ".",
+      "name": "otel",
+      "import_path": "github.com/faustbrian/go-event-sourcing/adapters/otel",
+      "kind": "public",
+      "production": true,
+      "executable": true,
+      "coverage_required": true,
+      "build_required": true,
+      "build_tags": []
     }
   ]
 }

@@ -94,12 +94,12 @@
       "owned_dependencies": [],
       "reverse_owned_dependencies": [
         "github.com/faustbrian/go-cloudevents/adapters/golib",
-        "github.com/faustbrian/go-event-sourcing/adapters/gokafka",
-        "github.com/faustbrian/go-event-sourcing/adapters/gotelemetry",
         "github.com/faustbrian/go-event-sourcing/adapters/outbox",
         "github.com/faustbrian/go-event-sourcing/adapters/queue",
         "github.com/faustbrian/go-event-sourcing/benchmarks/competitors",
-        "github.com/faustbrian/go-event-sourcing/postgres"
+        "github.com/faustbrian/go-event-sourcing/postgres",
+        "github.com/faustbrian/go-event-sourcing/adapters/kafka",
+        "github.com/faustbrian/go-event-sourcing/adapters/otel"
       ],
       "external_runtime_dependencies": [],
       "required_services": [],
@@ -178,7 +178,9 @@
           "github.com/faustbrian/go-event-sourcing/adapters/gotelemetry",
           "github.com/faustbrian/go-event-sourcing/adapters/outbox",
           "github.com/faustbrian/go-event-sourcing/adapters/queue",
-          "github.com/faustbrian/go-event-sourcing/postgres"
+          "github.com/faustbrian/go-event-sourcing/postgres",
+          "github.com/faustbrian/go-event-sourcing/adapters/kafka",
+          "github.com/faustbrian/go-event-sourcing/adapters/otel"
         ],
         "companions": [
           "github.com/faustbrian/go-cloudevents/adapters/golib"
@@ -233,8 +235,8 @@
           "build_tags": []
         }
       ],
-      "purpose": "`gokafka` is the dedicated Kafka boundary for event-sourcing messages. It uses the repository's franz-go-backed `kafka` module so acknowledgements, producer idempotence, retries, consumer groups, cooperative rebalancing, offset settlement, TLS, SASL, and broker operations remain observable Kafka semantics.",
-      "lifecycle": "stable",
+      "purpose": "`gokafka` preserves the released Kafka adapter import path during migration to `adapters/kafka`.",
+      "lifecycle": "deprecated",
       "kind": "adapter",
       "releasable": true,
       "family": "persistence-and-durability",
@@ -244,23 +246,14 @@
       "version": "1.0.0",
       "tag_prefix": "adapters/gokafka/v",
       "owned_dependencies": [
-        "github.com/faustbrian/go-event-sourcing",
+        "github.com/faustbrian/go-event-sourcing/adapters/kafka",
         "github.com/faustbrian/go-kafka"
       ],
       "reverse_owned_dependencies": [],
-      "external_runtime_dependencies": [
-        "github.com/containerd/errdefs",
-        "github.com/moby/moby/client",
-        "github.com/testcontainers/testcontainers-go",
-        "github.com/testcontainers/testcontainers-go/modules/kafka",
-        "github.com/twmb/franz-go",
-        "github.com/twmb/franz-go/pkg/kadm"
-      ],
+      "external_runtime_dependencies": [],
       "required_services": [],
       "build_tags": [],
-      "test_tags": [
-        "integration"
-      ],
+      "test_tags": [],
       "interoperability_tools": [],
       "specifications": [],
       "conformance_corpora": [],
@@ -270,11 +263,11 @@
       "goal_evidence": [],
       "gates": {
         "api_compatibility": true,
-        "benchmarks": true,
+        "benchmarks": false,
         "conformance": false,
         "coverage": true,
         "documentation": true,
-        "fuzz": true,
+        "fuzz": false,
         "lint": true,
         "mutation": true,
         "race": true,
@@ -297,9 +290,9 @@
           "github.com/faustbrian/go-event-sourcing/adapters/gokafka"
         ],
         "package_selection": {
-          "github.com/faustbrian/go-event-sourcing/adapters/gokafka": "Use at a Kafka boundary for bounded event record mapping, direct publication, consumer handling, and dead-letter policy."
+          "github.com/faustbrian/go-event-sourcing/adapters/gokafka": "Use only to preserve the released v1 import path while migrating to adapters/kafka."
         },
-        "lifecycle_status": "active",
+        "lifecycle_status": "deprecated",
         "maturity": "stable",
         "construction_styles": [
           "functional-options",
@@ -321,7 +314,7 @@
         "optional_owned_dependencies": [],
         "adapters": [],
         "companions": [
-          "github.com/faustbrian/go-event-sourcing/adapters/gotelemetry"
+          "github.com/faustbrian/go-event-sourcing/adapters/kafka"
         ],
         "supported_go": {
           "minimum": "1.26.6",
@@ -345,7 +338,7 @@
           "security": "adapters/gokafka/docs/reference.md",
           "compatibility": "adapters/gokafka/docs/reference.md",
           "performance": "adapters/gokafka/docs/reference.md",
-          "examples": "adapters/gokafka/example_test.go",
+          "examples": "adapters/gokafka/facade_test.go",
           "faq": "adapters/gokafka/docs/reference.md",
           "changelog": "adapters/gokafka/CHANGELOG.md",
           "pkg_go_dev": "https://pkg.go.dev/github.com/faustbrian/go-event-sourcing/adapters/gokafka",
@@ -353,8 +346,8 @@
         },
         "known_good_compatibility_sets": [],
         "delivery": {
-          "implementation": "not-started",
-          "hardening": "not-started",
+          "implementation": "in-progress",
+          "hardening": "in-progress",
           "release": "not-started"
         }
       }
@@ -377,8 +370,8 @@
           "build_tags": []
         }
       ],
-      "purpose": "`gotelemetry` is the independently versioned observability boundary for `event-sourcing`. The event-sourcing core does not import OpenTelemetry or the repository `telemetry` module.",
-      "lifecycle": "stable",
+      "purpose": "`gotelemetry` preserves the released OpenTelemetry adapter import path and instrumentation scope during migration to `adapters/otel`.",
+      "lifecycle": "deprecated",
       "kind": "adapter",
       "releasable": true,
       "family": "persistence-and-durability",
@@ -388,17 +381,10 @@
       "version": "1.0.0",
       "tag_prefix": "adapters/gotelemetry/v",
       "owned_dependencies": [
-        "github.com/faustbrian/go-event-sourcing",
-        "github.com/faustbrian/go-kafka"
+        "github.com/faustbrian/go-event-sourcing/adapters/otel"
       ],
       "reverse_owned_dependencies": [],
-      "external_runtime_dependencies": [
-        "go.opentelemetry.io/otel",
-        "go.opentelemetry.io/otel/metric",
-        "go.opentelemetry.io/otel/sdk",
-        "go.opentelemetry.io/otel/sdk/metric",
-        "go.opentelemetry.io/otel/trace"
-      ],
+      "external_runtime_dependencies": [],
       "required_services": [],
       "build_tags": [],
       "test_tags": [],
@@ -411,11 +397,11 @@
       "goal_evidence": [],
       "gates": {
         "api_compatibility": true,
-        "benchmarks": true,
+        "benchmarks": false,
         "conformance": false,
         "coverage": true,
         "documentation": true,
-        "fuzz": true,
+        "fuzz": false,
         "lint": true,
         "mutation": true,
         "race": true,
@@ -438,9 +424,9 @@
           "github.com/faustbrian/go-event-sourcing/adapters/gotelemetry"
         ],
         "package_selection": {
-          "github.com/faustbrian/go-event-sourcing/adapters/gotelemetry": "Use to wrap event-sourcing boundaries with explicit OpenTelemetry tracing, metrics, and bounded Kafka propagation."
+          "github.com/faustbrian/go-event-sourcing/adapters/gotelemetry": "Use only to preserve the released v1 import path and telemetry scope while migrating to adapters/otel."
         },
-        "lifecycle_status": "active",
+        "lifecycle_status": "deprecated",
         "maturity": "stable",
         "construction_styles": [
           "new-config",
@@ -462,7 +448,7 @@
         "optional_owned_dependencies": [],
         "adapters": [],
         "companions": [
-          "github.com/faustbrian/go-event-sourcing/adapters/gokafka"
+          "github.com/faustbrian/go-event-sourcing/adapters/otel"
         ],
         "supported_go": {
           "minimum": "1.26.6",
@@ -486,7 +472,7 @@
           "security": "adapters/gotelemetry/docs/reference.md",
           "compatibility": "adapters/gotelemetry/docs/reference.md",
           "performance": "adapters/gotelemetry/docs/reference.md",
-          "examples": "adapters/gotelemetry/README.md",
+          "examples": "adapters/gotelemetry/facade_test.go",
           "faq": "adapters/gotelemetry/docs/reference.md",
           "changelog": "adapters/gotelemetry/CHANGELOG.md",
           "pkg_go_dev": "https://pkg.go.dev/github.com/faustbrian/go-event-sourcing/adapters/gotelemetry",
@@ -494,8 +480,8 @@
         },
         "known_good_compatibility_sets": [],
         "delivery": {
-          "implementation": "not-started",
-          "hardening": "not-started",
+          "implementation": "in-progress",
+          "hardening": "in-progress",
           "release": "not-started"
         }
       }
@@ -951,6 +937,297 @@
         "delivery": {
           "implementation": "not-started",
           "hardening": "not-started",
+          "release": "not-started"
+        }
+      }
+    },
+    {
+      "directory": "adapters/kafka",
+      "module_path": "github.com/faustbrian/go-event-sourcing/adapters/kafka",
+      "go_version": "1.26.6",
+      "packages": [
+        {
+          "module_directory": "adapters/kafka",
+          "directory": ".",
+          "name": "kafka",
+          "import_path": "github.com/faustbrian/go-event-sourcing/adapters/kafka",
+          "kind": "public",
+          "production": true,
+          "executable": true,
+          "coverage_required": true,
+          "build_required": true,
+          "build_tags": []
+        }
+      ],
+      "purpose": "`adapters/kafka` is the preferred Kafka boundary for event-sourcing messages and preserves the released v1 wire and behavioral contract.",
+      "lifecycle": "stable",
+      "kind": "adapter",
+      "releasable": true,
+      "family": "persistence-and-durability",
+      "family_label": "Persistence And Durability",
+      "family_description": "Durable state, delivery, coordination, recovery, and operational lifecycle.",
+      "family_order": 4,
+      "version": "unreleased",
+      "tag_prefix": "adapters/kafka/v",
+      "owned_dependencies": [
+        "github.com/faustbrian/go-event-sourcing",
+        "github.com/faustbrian/go-kafka"
+      ],
+      "reverse_owned_dependencies": [
+        "github.com/faustbrian/go-event-sourcing/adapters/gokafka"
+      ],
+      "external_runtime_dependencies": [
+        "github.com/containerd/errdefs",
+        "github.com/moby/moby/client",
+        "github.com/testcontainers/testcontainers-go",
+        "github.com/testcontainers/testcontainers-go/modules/kafka",
+        "github.com/twmb/franz-go",
+        "github.com/twmb/franz-go/pkg/kadm"
+      ],
+      "required_services": [],
+      "build_tags": [],
+      "test_tags": [
+        "integration"
+      ],
+      "interoperability_tools": [],
+      "specifications": [],
+      "conformance_corpora": [],
+      "provenance": [],
+      "goal_files": [],
+      "goal_status": "not-applicable",
+      "goal_evidence": [],
+      "gates": {
+        "api_compatibility": true,
+        "benchmarks": true,
+        "conformance": false,
+        "coverage": true,
+        "documentation": true,
+        "fuzz": true,
+        "lint": true,
+        "mutation": true,
+        "race": true,
+        "security": true,
+        "tests": true
+      },
+      "cohesion": {
+        "family": "persistence-and-durability",
+        "secondary_capabilities": [
+          "data-encoding",
+          "eventing-and-messaging",
+          "transport-and-networking"
+        ],
+        "responsibility": "Adapt event-sourcing deliveries to Kafka records, synchronous dispatch, consumer handling, explicit poison and retry disposition, and dead-letter publication.",
+        "non_goals": [
+          "Own broker lifecycle, consumer-group execution, business idempotency, application transactions, or exactly-once delivery."
+        ],
+        "public_package_identifier": "kafka",
+        "primary_entry_packages": [
+          "github.com/faustbrian/go-event-sourcing/adapters/kafka"
+        ],
+        "package_selection": {
+          "github.com/faustbrian/go-event-sourcing/adapters/kafka": "Use at a Kafka boundary for bounded event record mapping, direct publication, consumer handling, and dead-letter policy."
+        },
+        "lifecycle_status": "active",
+        "maturity": "stable",
+        "construction_styles": [
+          "functional-options",
+          "new-config",
+          "plain-function"
+        ],
+        "lifecycle_styles": [
+          "stateless"
+        ],
+        "ownership": {
+          "configuration": "caller",
+          "mutable_inputs": [
+            "borrow",
+            "copy"
+          ],
+          "runtime_resources": "caller",
+          "background_work": "none"
+        },
+        "optional_owned_dependencies": [],
+        "adapters": [],
+        "companions": [
+          "github.com/faustbrian/go-event-sourcing/adapters/otel",
+          "github.com/faustbrian/go-event-sourcing/adapters/gokafka"
+        ],
+        "supported_go": {
+          "minimum": "1.26.6",
+          "tested": [
+            "1.26.6"
+          ]
+        },
+        "supported_platforms": [
+          "portable-go"
+        ],
+        "supported_backends": [
+          "kafka"
+        ],
+        "supported_protocols": [
+          "kafka"
+        ],
+        "documentation": {
+          "readme": "adapters/kafka/README.md",
+          "api": "adapters/kafka/docs/reference.md",
+          "adoption": "adapters/kafka/docs/reference.md",
+          "security": "adapters/kafka/docs/reference.md",
+          "compatibility": "adapters/kafka/docs/reference.md",
+          "performance": "adapters/kafka/docs/reference.md",
+          "examples": "adapters/kafka/example_test.go",
+          "faq": "adapters/kafka/docs/reference.md",
+          "changelog": "adapters/kafka/CHANGELOG.md",
+          "pkg_go_dev": "https://pkg.go.dev/github.com/faustbrian/go-event-sourcing/adapters/kafka",
+          "ecosystem_index": "https://github.com/faustbrian/go-library-tools/blob/v1.4.0/docs/ecosystem/README.md"
+        },
+        "known_good_compatibility_sets": [],
+        "delivery": {
+          "implementation": "in-progress",
+          "hardening": "in-progress",
+          "release": "not-started"
+        }
+      }
+    },
+    {
+      "directory": "adapters/otel",
+      "module_path": "github.com/faustbrian/go-event-sourcing/adapters/otel",
+      "go_version": "1.26.6",
+      "packages": [
+        {
+          "module_directory": "adapters/otel",
+          "directory": ".",
+          "name": "otel",
+          "import_path": "github.com/faustbrian/go-event-sourcing/adapters/otel",
+          "kind": "public",
+          "production": true,
+          "executable": true,
+          "coverage_required": true,
+          "build_required": true,
+          "build_tags": []
+        }
+      ],
+      "purpose": "`adapters/otel` is the preferred independently versioned OpenTelemetry boundary for event-sourcing.",
+      "lifecycle": "stable",
+      "kind": "adapter",
+      "releasable": true,
+      "family": "persistence-and-durability",
+      "family_label": "Persistence And Durability",
+      "family_description": "Durable state, delivery, coordination, recovery, and operational lifecycle.",
+      "family_order": 4,
+      "version": "unreleased",
+      "tag_prefix": "adapters/otel/v",
+      "owned_dependencies": [
+        "github.com/faustbrian/go-event-sourcing",
+        "github.com/faustbrian/go-kafka"
+      ],
+      "reverse_owned_dependencies": [
+        "github.com/faustbrian/go-event-sourcing/adapters/gotelemetry"
+      ],
+      "external_runtime_dependencies": [
+        "go.opentelemetry.io/otel",
+        "go.opentelemetry.io/otel/metric",
+        "go.opentelemetry.io/otel/sdk",
+        "go.opentelemetry.io/otel/sdk/metric",
+        "go.opentelemetry.io/otel/trace"
+      ],
+      "required_services": [],
+      "build_tags": [],
+      "test_tags": [],
+      "interoperability_tools": [],
+      "specifications": [],
+      "conformance_corpora": [],
+      "provenance": [],
+      "goal_files": [],
+      "goal_status": "not-applicable",
+      "goal_evidence": [],
+      "gates": {
+        "api_compatibility": true,
+        "benchmarks": true,
+        "conformance": false,
+        "coverage": true,
+        "documentation": true,
+        "fuzz": true,
+        "lint": true,
+        "mutation": true,
+        "race": true,
+        "security": true,
+        "tests": true
+      },
+      "cohesion": {
+        "family": "persistence-and-durability",
+        "secondary_capabilities": [
+          "eventing-and-messaging",
+          "observability",
+          "transport-and-networking"
+        ],
+        "responsibility": "Instrument event-sourcing dispatch, storage, serialization, snapshots, projections, process managers, and Kafka context propagation with caller-supplied OpenTelemetry components.",
+        "non_goals": [
+          "Own OpenTelemetry SDK, exporter, collector, Kafka client, application logging, or event-processing lifecycle."
+        ],
+        "public_package_identifier": "otel",
+        "primary_entry_packages": [
+          "github.com/faustbrian/go-event-sourcing/adapters/otel"
+        ],
+        "package_selection": {
+          "github.com/faustbrian/go-event-sourcing/adapters/otel": "Use to wrap event-sourcing boundaries with explicit OpenTelemetry tracing, metrics, and bounded Kafka propagation."
+        },
+        "lifecycle_status": "active",
+        "maturity": "stable",
+        "construction_styles": [
+          "new-config",
+          "plain-function"
+        ],
+        "lifecycle_styles": [
+          "close",
+          "stateless"
+        ],
+        "ownership": {
+          "configuration": "caller",
+          "mutable_inputs": [
+            "borrow",
+            "copy"
+          ],
+          "runtime_resources": "caller",
+          "background_work": "none"
+        },
+        "optional_owned_dependencies": [],
+        "adapters": [],
+        "companions": [
+          "github.com/faustbrian/go-event-sourcing/adapters/kafka",
+          "github.com/faustbrian/go-event-sourcing/adapters/gotelemetry"
+        ],
+        "supported_go": {
+          "minimum": "1.26.6",
+          "tested": [
+            "1.26.6"
+          ]
+        },
+        "supported_platforms": [
+          "portable-go"
+        ],
+        "supported_backends": [],
+        "supported_protocols": [
+          "kafka",
+          "opentelemetry",
+          "w3c-trace-context"
+        ],
+        "documentation": {
+          "readme": "adapters/otel/README.md",
+          "api": "adapters/otel/docs/reference.md",
+          "adoption": "adapters/otel/docs/reference.md",
+          "security": "adapters/otel/docs/reference.md",
+          "compatibility": "adapters/otel/docs/reference.md",
+          "performance": "adapters/otel/docs/reference.md",
+          "examples": "adapters/otel/example_test.go",
+          "faq": "adapters/otel/docs/reference.md",
+          "changelog": "adapters/otel/CHANGELOG.md",
+          "pkg_go_dev": "https://pkg.go.dev/github.com/faustbrian/go-event-sourcing/adapters/otel",
+          "ecosystem_index": "https://github.com/faustbrian/go-library-tools/blob/v1.4.0/docs/ecosystem/README.md"
+        },
+        "known_good_compatibility_sets": [],
+        "delivery": {
+          "implementation": "in-progress",
+          "hardening": "in-progress",
           "release": "not-started"
         }
       }

@@ -1,5 +1,11 @@
 # Event sourcing Kafka adapter technical guide
 
+> This released v1 path is a deprecated compatibility facade for
+> `github.com/faustbrian/go-event-sourcing/adapters/kafka`. Its API and runtime
+> contract remain supported for the longer of 180 days and two stable minor
+> releases after the successor is publicly consumable; removal requires an
+> authorized next major.
+
 This guide contains the complete behavioral and operational reference. Start
 with the [package overview](../README.md).
 
@@ -363,20 +369,17 @@ do not loosen the version-1 decoder or rewrite retained records in place.
 
 ## Runnable examples
 
-The package examples compile complete direct-dispatch and consumer-group
-handling workflows. They show stable event construction, bounded topic policy,
-acknowledgement-aware producer cleanup, durable-handler settlement, and group
-shutdown. Replace their placeholder endpoint, identities, and persistence seam
-before use. See [`example_test.go`](../example_test.go).
+The executable facade example compiles representative construction through the
+released path; see [`facade_test.go`](../facade_test.go). Complete
+direct-dispatch and consumer-group workflows live with the semantic owner in
+the successor [`example_test.go`](../../kafka/example_test.go).
 
 ## Development
 
-From the repository root, run
-`./scripts/run-modules.sh check --jobs 1 --modules adapters/gokafka`
-for the complete CI-equivalent contract. The module-local `make check` is a
-quick development loop and is not release evidence. With Docker available,
-`make integration` verifies synchronous Zstandard dispatch, complete envelope
-reconstruction, per-aggregate order, consumer handling, dead-letter publication
-and recovery, replay rejection without settlement, explicit replay opt-in and
-recovery, and committed offsets against the digest-pinned Confluent Local 7.5.0
-fixture using franz-go v1.21.5.
+From this module directory, run `make check` for the focused facade contract.
+From the repository root, run `make check` for the complete repository
+contract. The focused command is a development loop and is not release
+evidence. With Docker available, run `make -C adapters/kafka integration` from
+the repository root. The successor owns the real-broker suite for synchronous
+Zstandard dispatch, envelope reconstruction, per-aggregate order, consumer
+handling, dead-letter recovery, replay policy, and committed offsets.

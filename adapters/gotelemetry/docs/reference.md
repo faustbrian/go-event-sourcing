@@ -1,5 +1,11 @@
 # Event sourcing OpenTelemetry adapter technical guide
 
+> This released v1 path is a deprecated compatibility facade for
+> `github.com/faustbrian/go-event-sourcing/adapters/otel`. Its API, signals,
+> semantic convention, and instrumentation scope remain supported for the
+> longer of 180 days and two stable minor releases after the successor is
+> publicly consumable; removal requires an authorized next major.
+
 This guide contains the complete behavioral and operational reference. Start
 with the [package overview](../README.md).
 
@@ -394,11 +400,11 @@ diagnosis.
 
 ## Development
 
-From the repository root, run
-`make check MODULES=adapters/gotelemetry` for the canonical
-module contract. The goal evidence also requires the module-scoped race, fuzz,
-security, API, documentation, benchmark, exact statement-coverage, and exact
-viable-mutation gates declared in `modules.json`.
+From this module directory, run `make check` for the focused facade contract.
+From the repository root, run `make check` for the complete repository
+contract. Release evidence also requires the module-scoped race, security, API,
+documentation, exact statement-coverage, and exact viable-mutation gates
+declared in `modules.json`.
 
 ## Related packages
 

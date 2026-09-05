@@ -5,10 +5,12 @@ release-note source for that module:
 
 - [core event sourcing](../CHANGELOG.md);
 - [PostgreSQL](../postgres/CHANGELOG.md);
-- [Kafka](../adapters/gokafka/CHANGELOG.md);
+- [Kafka](../adapters/kafka/CHANGELOG.md);
 - [queue](../adapters/queue/CHANGELOG.md);
 - [outbox](../adapters/outbox/CHANGELOG.md); and
-- [OpenTelemetry](../adapters/gotelemetry/CHANGELOG.md).
+- [OpenTelemetry](../adapters/otel/CHANGELOG.md);
+- [deprecated Kafka v1 facade](../adapters/gokafka/CHANGELOG.md); and
+- [deprecated OpenTelemetry v1 facade](../adapters/gotelemetry/CHANGELOG.md).
 
 The published v1 surfaces follow semantic versioning. Unreleased changelog
 entries describe pending changes and do not alter the latest tagged contract.

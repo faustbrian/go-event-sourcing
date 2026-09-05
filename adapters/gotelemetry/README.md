@@ -1,8 +1,10 @@
 # Event sourcing OpenTelemetry adapter
 
-`gotelemetry` is the independently versioned observability boundary for
-`event-sourcing`. The event-sourcing core does not import OpenTelemetry or the
-repository `telemetry` module.
+`gotelemetry` is the deprecated compatibility path for the preferred
+[`adapters/otel`](https://pkg.go.dev/github.com/faustbrian/go-event-sourcing/adapters/otel)
+module. It preserves the complete released v1 API, signal names, semantic
+convention, and OpenTelemetry instrumentation scope while applications
+migrate.
 
 This adapter instruments synchronous dispatch and consumer handling and adds
 bounded Kafka context propagation plus event-store append, stream-read, and
@@ -11,7 +13,22 @@ load, refresh, and deletion without exposing derived state or aggregate
 identity. Projection-runner instrumentation observes bounded replay progress,
 poison skips, durable checkpoint position, and terminal probes.
 
+## Lifecycle and Go support
+
+This stable v1 module is deprecated but supported for the compatibility
+interval below. It requires Go 1.26.6 and is tested with Go 1.26.6.
+
 ## Install
+
+New code should install the successor after its first release:
+
+```sh
+go get github.com/faustbrian/go-event-sourcing/adapters/otel@v1
+```
+
+The released path remains supported for the longer of 180 days and two
+published stable minor releases after the successor is publicly consumable.
+Removal requires an authorized next-major release:
 
 ```sh
 go get github.com/faustbrian/go-event-sourcing/adapters/gotelemetry@v1
@@ -19,76 +36,9 @@ go get github.com/faustbrian/go-event-sourcing/adapters/gotelemetry@v1
 
 ## Quick start
 
-```go
-instrumentation, err := gotelemetry.New(runtime)
-if err != nil {
-	return err
-}
-
-dispatcher, err := instrumentation.WrapDispatcher(baseDispatcher)
-if err != nil {
-	return err
-}
-
-handler, err := instrumentation.WrapConsumer(projectEvent)
-if err != nil {
-	return err
-}
-consumer, err := eventsourcing.NewConsumer("account_projection", handler)
-if err != nil {
-	return err
-}
-
-kafkaPublisher, err := instrumentation.WrapKafkaPublisher(
-	producer,
-	gotelemetry.KafkaPropagationConfig{},
-)
-if err != nil {
-	return err
-}
-
-kafkaHandler, err := instrumentation.WrapKafkaHandler(
-	recordHandler,
-	gotelemetry.KafkaPropagationConfig{},
-)
-if err != nil {
-	return err
-}
-
-store, err := instrumentation.WrapEventStore(baseStore)
-if err != nil {
-	return err
-}
-
-globalReader, err := instrumentation.WrapGlobalReader(baseGlobalReader)
-if err != nil {
-	return err
-}
-
-snapshotStore, err := instrumentation.WrapSnapshotStore(baseSnapshotStore)
-if err != nil {
-	return err
-}
-
-projectionRunner, err := instrumentation.WrapProjectionRunner(
-	"account-summary",
-	baseProjectionRunner,
-)
-if err != nil {
-	return err
-}
-
-processManager, err := gotelemetry.WrapProcessManager(
-	instrumentation,
-	"welcome-email",
-	baseProcessManager,
-)
-if err != nil {
-	return err
-}
-```
-
-The compiling examples in this module contain complete imports and setup.
+The executable [`ExampleNew`](facade_test.go) compiles representative
+construction through the released path. The same file compares stable error
+categories and instrumentation scope with the successor.
 
 ## Guarantees and limitations
 
@@ -108,7 +58,12 @@ and follows its [persistence and durability family guidance](https://github.com/
 
 ## Compatibility and support
 
-This module follows Semantic Versioning. Report vulnerabilities through the
+This stable v1 compatibility module follows Semantic Versioning. When migrating
+to `adapters/otel`, rename the package qualifier to `otel` or alias the new
+import as `gotelemetry`. Signal names, attributes, instrumentation scope,
+propagation, errors, and provider ownership do not change. Facade aliases expose
+the successor package path through reflection and `%T`; applications must not
+use concrete package identity as a behavior or persistence key. Report vulnerabilities through the
 [parent security policy](../../SECURITY.md).
 
 ## License
