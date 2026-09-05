@@ -101,7 +101,7 @@ synchronously and record metrics before returning or re-panicking. They do not
 retry, recover, dispatch, persist, publish, or settle messages.
 
 `WrapKafkaPublisher` implements the synchronous publisher contract used by the
-Kafka producer and `gokafka.Dispatcher`. It deep-copies caller-owned record
+Kafka producer and `kafka.Dispatcher`. It deep-copies caller-owned record
 storage, removes old propagation fields, injects the current context, validates
 the complete result against explicit `kafka.MessageLimits`, and only then
 publishes. Invalid source records are rejected before copying. If propagation

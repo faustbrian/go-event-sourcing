@@ -967,7 +967,7 @@
       "family_label": "Persistence And Durability",
       "family_description": "Durable state, delivery, coordination, recovery, and operational lifecycle.",
       "family_order": 4,
-      "version": "unreleased",
+      "version": "1.0.0",
       "tag_prefix": "adapters/kafka/v",
       "owned_dependencies": [
         "github.com/faustbrian/go-event-sourcing",
@@ -1084,7 +1084,7 @@
         "delivery": {
           "implementation": "in-progress",
           "hardening": "in-progress",
-          "release": "not-started"
+          "release": "in-progress"
         }
       }
     },
@@ -1114,7 +1114,7 @@
       "family_label": "Persistence And Durability",
       "family_description": "Durable state, delivery, coordination, recovery, and operational lifecycle.",
       "family_order": 4,
-      "version": "unreleased",
+      "version": "1.0.0",
       "tag_prefix": "adapters/otel/v",
       "owned_dependencies": [
         "github.com/faustbrian/go-event-sourcing",
@@ -1228,7 +1228,7 @@
         "delivery": {
           "implementation": "in-progress",
           "hardening": "in-progress",
-          "release": "not-started"
+          "release": "in-progress"
         }
       }
     }
