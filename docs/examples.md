@@ -20,12 +20,12 @@ Docker-compatible container runtime.
 | Plan process-manager commands without executing them | [`Example_processManagerPlanning`](../process_manager_example_test.go) | `(cd . && go test -run '^Example_processManagerPlanning$' .)` |
 | Verify a custom store and dispatcher | [`eventtest` conformance examples](../eventtest) | `(cd . && go test ./eventtest -run '^(TestEventStoreConformanceAcceptsMemoryStore|TestSynchronousDispatcherConformanceAcceptsCoreDispatcher)$')` |
 | Persist and globally read PostgreSQL event streams | [`TestPostgreSQLEventStoreConformance`](../postgres/integration_test.go) and the global-reader and caller-owned-transaction scenarios in the same suite | `(cd postgres && make integration)` |
-| Publish and settle Kafka event deliveries | [`TestEventDeliveriesRoundTripThroughKafka`](../adapters/gokafka/integration_test.go) | `(cd adapters/gokafka && make integration)` |
+| Publish and settle Kafka event deliveries | [`TestEventDeliveriesRoundTripThroughKafka`](../adapters/kafka/integration_test.go) | `(cd adapters/kafka && make integration)` |
 | Publish and settle a compatible durable queue | [`TestValkeyStreamRetainsAndSettlesCompleteDelivery`](../adapters/queue/durable_integration_test.go) | `(cd adapters/queue && make integration)` |
 | Commit events and outbox envelopes atomically | [`TestStagerCommitsAndRollsBackEventsWithOutboxEnvelopes`](../adapters/outbox/stager_integration_test.go) | `(cd adapters/outbox && make integration)` |
 | Relay committed outbox envelopes with durable retry | [`TestCallerCommittedRowsRelayWithDurableRetryAndReplayIsolation`](../adapters/outbox/stager_integration_test.go) | `(cd adapters/outbox && make integration)` |
 | Map an outbox envelope to a Kafka record | [`TestPublisherMapsEnvelopeToKafkaMessage`](https://github.com/faustbrian/go-transactional-outbox/blob/main/adapters/gokafka/publisher_test.go) | `(cd adapters/gokafka && go test ./...)` in `go-transactional-outbox` |
-| Instrument dispatch and consumption without exposing data | [`TestInstrumentationTracesAndMeasuresDispatchAndConsumption`](../adapters/gotelemetry/instrumentation_test.go) | `(cd adapters/gotelemetry && go test ./...)` |
+| Instrument dispatch and consumption without exposing data | [`TestInstrumentationTracesAndMeasuresDispatchAndConsumption`](../adapters/otel/instrumentation_test.go) | `(cd adapters/otel && go test ./...)` |
 
 The real-service examples are correctness evidence, not deployment scripts.
 Applications still own pool and client configuration, credentials, timeouts,

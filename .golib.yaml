@@ -38,6 +38,12 @@ api:
   - module: adapters/gotelemetry
     mode: apidiff
     path: adapters/gotelemetry/api/baseline.txt
+  - module: adapters/kafka
+    mode: apidiff
+    path: adapters/kafka/api/baseline.txt
+  - module: adapters/otel
+    mode: apidiff
+    path: adapters/otel/api/baseline.txt
   - module: adapters/outbox
     mode: apidiff
     path: adapters/outbox/api/baseline.txt
@@ -56,6 +62,20 @@ operations:
     target: docs
     timeout: 20m
 - module: adapters/gotelemetry
+  gate: docs
+  steps:
+  - type: make
+    makefile: Makefile
+    target: docs
+    timeout: 20m
+- module: adapters/kafka
+  gate: docs
+  steps:
+  - type: make
+    makefile: Makefile
+    target: docs
+    timeout: 20m
+- module: adapters/otel
   gate: docs
   steps:
   - type: make
@@ -109,6 +129,19 @@ operations:
     fuzz: '^FuzzUpcasterChain$'
     budget: 10000x
     timeout: 2m
+- module: adapters/kafka
+  gate: fuzz
+  steps:
+  - type: go-test
+    packages: [.]
+    fuzz: '^FuzzRecordCodecDecode$'
+    budget: 10000x
+    timeout: 2m
+  - type: go-test
+    packages: [.]
+    fuzz: '^FuzzDeadLetterPolicy$'
+    budget: 10000x
+    timeout: 2m
 - module: adapters/gokafka
   gate: fuzz
   steps:
@@ -120,6 +153,34 @@ operations:
   - type: go-test
     packages: [.]
     fuzz: '^FuzzDeadLetterPolicy$'
+    budget: 10000x
+    timeout: 2m
+- module: adapters/otel
+  gate: fuzz
+  steps:
+  - type: go-test
+    packages: [.]
+    fuzz: '^FuzzHostileProviderIsolation$'
+    budget: 10000x
+    timeout: 2m
+  - type: go-test
+    packages: [.]
+    fuzz: '^FuzzKafkaRecordPassThrough$'
+    budget: 10000x
+    timeout: 2m
+  - type: go-test
+    packages: [.]
+    fuzz: '^FuzzProjectionNamesAndPositions$'
+    budget: 10000x
+    timeout: 2m
+  - type: go-test
+    packages: [.]
+    fuzz: '^FuzzSerializationMetadataPassThrough$'
+    budget: 10000x
+    timeout: 2m
+  - type: go-test
+    packages: [.]
+    fuzz: '^FuzzKafkaPropagationBoundaries$'
     budget: 10000x
     timeout: 2m
 - module: adapters/gotelemetry
@@ -227,7 +288,23 @@ operations:
     benchmark: .
     budget: 100ms
     timeout: 20m
+- module: adapters/kafka
+  gate: benchmark
+  steps:
+  - type: go-test
+    packages: [./...]
+    benchmark: .
+    budget: 100ms
+    timeout: 20m
 - module: adapters/gokafka
+  gate: benchmark
+  steps:
+  - type: go-test
+    packages: [./...]
+    benchmark: .
+    budget: 100ms
+    timeout: 20m
+- module: adapters/otel
   gate: benchmark
   steps:
   - type: go-test

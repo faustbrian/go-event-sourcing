@@ -1,5 +1,10 @@
 # Documentation
 
+> Deprecated compatibility path. New code should use
+> `github.com/faustbrian/go-event-sourcing/adapters/kafka` at v1. The legacy
+> v1 path remains supported for the longer of 180 days and two
+> stable minor releases and may be removed only in an authorized next major.
+
 ## Getting started
 
 - [Package overview](../README.md)

@@ -75,6 +75,11 @@ durable adapters.
 - [Compatible queue integration](docs/queue.md)
 - [OpenTelemetry integration](docs/telemetry.md)
 
+Preferred optional adapter imports use target-oriented paths:
+`adapters/kafka` and `adapters/otel`. The released `adapters/gokafka` and
+`adapters/gotelemetry` v1 paths remain deprecated compatibility modules during
+their [documented support interval](docs/adapter-migration.md).
+
 ## When to use event sourcing
 
 See the [adoption guide](docs/adoption.md) for the decision criteria, bounded

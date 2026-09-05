@@ -30,7 +30,7 @@ does not treat queue acceptance as durable processing.
 Durable backend evidence covers digest-pinned Valkey Streams 9.1.0 retention
 and post-handler acknowledgement through a consumer group. It does not
 generalize those guarantees to another queue backend. Kafka stays in the
-dedicated `gokafka` adapter because topics, partitions, keys, offsets, consumer
+dedicated `kafka` adapter because topics, partitions, keys, offsets, consumer
 groups, rebalances, acknowledgements, idempotence, and transactions must remain
 observable.
 

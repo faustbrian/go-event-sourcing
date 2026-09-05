@@ -99,7 +99,7 @@ remain application or adapter responsibilities. The compatibility matrix marks
 the EventSauce process-manager planning outcome implemented; that status does
 not claim a command bus, workflow engine, or exactly-once execution.
 
-The optional `gotelemetry.WrapProcessManager` adapter observes planning latency,
+The optional `otel.WrapProcessManager` adapter observes planning latency,
 outcome, delivery mode, and successful command count using a bounded static
 manager name. It never records event or command data and never executes the
 returned plan.

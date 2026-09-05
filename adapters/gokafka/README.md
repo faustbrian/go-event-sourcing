@@ -1,17 +1,31 @@
 # Event sourcing Kafka adapter
 
-`gokafka` is the dedicated Kafka boundary for event-sourcing messages. It uses
-the repository's franz-go-backed `kafka` module so acknowledgements, producer
-idempotence, retries, consumer groups, cooperative rebalancing, offset
-settlement, TLS, SASL, and broker operations remain observable Kafka
-semantics.
+`gokafka` is the deprecated compatibility path for the preferred
+[`adapters/kafka`](https://pkg.go.dev/github.com/faustbrian/go-event-sourcing/adapters/kafka)
+module. It preserves the complete released v1 API, wire format, error
+categories, and synchronous Kafka behavior while applications migrate.
 
 The stable record codec, synchronous direct dispatcher, consumer-group record
 handler, explicit poison/retry policy, and first-party synchronous dead-letter
 publisher are implemented. Real-broker compatibility covers the complete live
 and dead-letter delivery paths.
 
+## Lifecycle and Go support
+
+This stable v1 module is deprecated but supported for the compatibility
+interval below. It requires Go 1.26.6 and is tested with Go 1.26.6.
+
 ## Install
+
+New code should install the v1 successor:
+
+```sh
+go get github.com/faustbrian/go-event-sourcing/adapters/kafka@v1
+```
+
+The released path remains supported for the longer of 180 days and two
+published stable minor releases after the successor is publicly consumable.
+Removal requires an authorized next-major release:
 
 ```sh
 go get github.com/faustbrian/go-event-sourcing/adapters/gokafka@v1
@@ -19,23 +33,9 @@ go get github.com/faustbrian/go-event-sourcing/adapters/gokafka@v1
 
 ## Quick start
 
-```go
-codec, err := gokafka.NewRecordCodec(gokafka.RecordCodecConfig{
-	Resolver:      gokafka.FixedTopic("accounts.events.v1"),
-	AllowedTopics: []string{"accounts.events.v1"},
-})
-if err != nil {
-	return err
-}
-
-record, err := codec.Encode(delivery)
-if err != nil {
-	return err
-}
-err = producer.Publish(ctx, record)
-```
-
-The compiling examples in this module contain complete imports and setup.
+The executable dispatcher and record-handler examples in
+[`example_test.go`](example_test.go) compile representative construction through
+the released path.
 
 ## Guarantees and limitations
 
@@ -55,8 +55,13 @@ and follows its [persistence and durability family guidance](https://github.com/
 
 ## Compatibility and support
 
-This module follows Semantic Versioning. Report vulnerabilities through the
-[parent security policy](../../SECURITY.md).
+This stable v1 compatibility module follows Semantic Versioning. When migrating
+to `adapters/kafka`, rename the package qualifier to `kafka` or alias the new
+import as `gokafka`. Topics, records, acknowledgements, failure policies, error
+categories, and runtime ownership do not change. The deprecated module retains
+its released concrete type, error, reflection, and `%T` identities throughout
+the support interval.
+Report vulnerabilities through the [parent security policy](../../SECURITY.md).
 
 ## License
 

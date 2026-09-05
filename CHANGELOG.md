@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Prefer target-oriented `adapters/kafka` and `adapters/otel` module paths.
+  The released `adapters/gokafka` and `adapters/gotelemetry` v1 paths remain
+  deprecated compatibility implementations for the frozen support interval.
 - Replace copied repository tooling with the pinned `go-library-tools` v1.4.0
   contract while retaining package-owned policy and verification evidence.
 - Publish schema-v2 cohesion metadata for every releasable module and enforce

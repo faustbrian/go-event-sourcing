@@ -172,7 +172,7 @@ outbox-owned Kafka adapter. Delivery remains at-least-once.
 
 Kafka is not reduced to a generic queue. Topics, keys, partitions, offsets,
 groups, acknowledgements, rebalance, retry, poison, and dead-letter policies
-remain visible in `gokafka`.
+remain visible in `kafka`.
 
 ## Snapshots
 

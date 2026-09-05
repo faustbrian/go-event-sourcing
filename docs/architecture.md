@@ -90,7 +90,11 @@ panic, and partial-success semantics. Asynchronous delivery is not a hidden
 dispatcher mode:
 
 - `adapters/queue` preserves the compatible queue contract;
-- `adapters/gokafka` exposes Kafka-native producer and consumer semantics; and
+- `adapters/kafka` exposes Kafka-native producer and consumer semantics;
+- `adapters/otel` exposes caller-owned OpenTelemetry instrumentation;
+- the released `adapters/gokafka` and `adapters/gotelemetry` paths preserve
+  their v1 contracts and public type identities as deprecated compatibility
+  implementations; and
 - `adapters/outbox` stages event and outbox rows in one PostgreSQL
   transaction through public contracts.
 

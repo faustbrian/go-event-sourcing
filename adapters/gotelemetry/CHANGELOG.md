@@ -10,6 +10,10 @@ and this project adheres to
 
 ### Changed
 
+- Preserve the complete v1 API and concrete type identities together with its
+  signal names, semantic convention, and instrumentation scope in the
+  deprecated compatibility module. New code should migrate imports to
+  `github.com/faustbrian/go-event-sourcing/adapters/otel` at v1.
 - Publish schema-v2 cohesion metadata and enforce it through the repository's
   pinned `go-library-tools` v1.4.0 workflow.
 - Reconcile the public v1.0.0 event-sourcing and Kafka dependency checksums

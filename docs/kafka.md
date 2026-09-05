@@ -1,7 +1,7 @@
 # Kafka integration
 
 The independently versioned
-`github.com/faustbrian/go-event-sourcing/adapters/gokafka` module owns
+`github.com/faustbrian/go-event-sourcing/adapters/kafka` module owns
 event-message mapping and event-specific producer and consumer composition.
 The core module does not import Kafka or franz-go.
 
@@ -16,7 +16,10 @@ dispatch, stable envelope reconstruction, per-aggregate order, consumer
 handling, acknowledged dead-letter publication, dead-letter reconstruction,
 replay rejection without offset settlement, redelivery after explicit replay
 opt-in, and committed offsets. See the
-[adapter guide](../adapters/gokafka/README.md).
+[adapter guide](../adapters/kafka/README.md). The released
+`adapters/gokafka` v1 path remains a deprecated compatibility implementation
+that preserves its public type identities during the documented support
+interval.
 
 Direct event-store-to-Kafka dispatch is not atomic. The recommended durable
 path remains:
