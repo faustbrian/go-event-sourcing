@@ -1,6 +1,6 @@
 # Event sourcing OpenTelemetry adapter technical guide
 
-> This released v1 path is a deprecated compatibility facade for
+> This released v1 path is a deprecated compatibility module for
 > `github.com/faustbrian/go-event-sourcing/adapters/otel`. Its API, signals,
 > semantic convention, and instrumentation scope remain supported for the
 > longer of 180 days and two stable minor releases after the successor is
@@ -400,7 +400,7 @@ diagnosis.
 
 ## Development
 
-From this module directory, run `make check` for the focused facade contract.
+From this module directory, run `make check` for the focused compatibility contract.
 From the repository root, run `make check` for the complete repository
 contract. Release evidence also requires the module-scoped race, security, API,
 documentation, exact statement-coverage, and exact viable-mutation gates

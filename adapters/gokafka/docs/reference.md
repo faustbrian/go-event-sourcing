@@ -1,6 +1,6 @@
 # Event sourcing Kafka adapter technical guide
 
-> This released v1 path is a deprecated compatibility facade for
+> This released v1 path is a deprecated compatibility module for
 > `github.com/faustbrian/go-event-sourcing/adapters/kafka`. Its API and runtime
 > contract remain supported for the longer of 180 days and two stable minor
 > releases after the successor is publicly consumable; removal requires an
@@ -369,14 +369,14 @@ do not loosen the version-1 decoder or rewrite retained records in place.
 
 ## Runnable examples
 
-The executable facade example compiles representative construction through the
-released path; see [`facade_test.go`](../facade_test.go). Complete
+The executable examples compile representative construction through the
+released path; see [`example_test.go`](../example_test.go). Complete
 direct-dispatch and consumer-group workflows live with the semantic owner in
 the successor [`example_test.go`](../../kafka/example_test.go).
 
 ## Development
 
-From this module directory, run `make check` for the focused facade contract.
+From this module directory, run `make check` for the focused compatibility contract.
 From the repository root, run `make check` for the complete repository
 contract. The focused command is a development loop and is not release
 evidence. With Docker available, run `make -C adapters/kafka integration` from

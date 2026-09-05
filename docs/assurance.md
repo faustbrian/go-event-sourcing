@@ -63,11 +63,11 @@ modules:
 - `.`;
 - `postgres`;
 - `adapters/kafka`;
-- `adapters/gokafka` compatibility facade;
+- `adapters/gokafka` compatibility implementation;
 - `adapters/outbox`;
 - `adapters/queue`; and
 - `adapters/otel`;
-- `adapters/gotelemetry` compatibility facade.
+- `adapters/gotelemetry` compatibility implementation.
 
 For the exact release inputs, `make inventory`, every affected module check,
 every affected release dry-run, the repository check, and the stable GitHub

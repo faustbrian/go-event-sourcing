@@ -77,7 +77,7 @@ durable adapters.
 
 Preferred optional adapter imports use target-oriented paths:
 `adapters/kafka` and `adapters/otel`. The released `adapters/gokafka` and
-`adapters/gotelemetry` v1 paths remain deprecated compatibility facades during
+`adapters/gotelemetry` v1 paths remain deprecated compatibility modules during
 their [documented support interval](docs/adapter-migration.md).
 
 ## When to use event sourcing

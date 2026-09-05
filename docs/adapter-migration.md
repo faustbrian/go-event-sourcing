@@ -27,21 +27,25 @@ The successor modules compile external-package migration fixtures with these
 aliases. Applications may instead adopt the target-oriented `kafka` and `otel`
 qualifiers and update selectors mechanically.
 
-The deprecated modules implement their facades with Go type aliases. Source
-selectors, methods, errors, Kafka wire behavior, and telemetry signals remain
-compatible, but reflection and `%T` report the successor package path. Do not
-use concrete Go package identity as a behavior or persistence key.
+The deprecated modules retain their own released v1 implementations, concrete
+types, sentinel errors, reflection paths, and `%T` output for the frozen support
+interval. The successors preserve the API shape, Kafka wire behavior, telemetry
+signals, and runtime contracts, but migration changes package-qualified type,
+reflection, and sentinel error identities. Update type assertions and
+`errors.Is` comparisons to use the selected import path consistently.
 
 ## Release order
 
 1. Release `adapters/kafka/v1.0.0` and `adapters/otel/v1.0.0`.
 2. Verify both modules through clean public module resolution.
-3. Add those released versions to the legacy facade module requirements.
+3. Verify the deprecated modules against their immutable v1 API baselines and
+   the public successor behavior.
 4. Release new patch versions of `adapters/gokafka` and
    `adapters/gotelemetry`.
 
-This order prevents either released facade from naming an unavailable module.
-The successor implementations do not import either deprecated path.
+This order makes both migration targets publicly resolvable before their
+predecessors advertise them. The successor implementations do not import either
+deprecated path.
 
 ## Compatibility interval
 

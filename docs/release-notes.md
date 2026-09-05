@@ -9,8 +9,8 @@ release-note source for that module:
 - [queue](../adapters/queue/CHANGELOG.md);
 - [outbox](../adapters/outbox/CHANGELOG.md); and
 - [OpenTelemetry](../adapters/otel/CHANGELOG.md);
-- [deprecated Kafka v1 facade](../adapters/gokafka/CHANGELOG.md); and
-- [deprecated OpenTelemetry v1 facade](../adapters/gotelemetry/CHANGELOG.md).
+- [deprecated Kafka v1 compatibility module](../adapters/gokafka/CHANGELOG.md); and
+- [deprecated OpenTelemetry v1 compatibility module](../adapters/gotelemetry/CHANGELOG.md).
 
 The published v1 surfaces follow semantic versioning. Unreleased changelog
 entries describe pending changes and do not alter the latest tagged contract.

@@ -98,6 +98,8 @@
         "github.com/faustbrian/go-event-sourcing/adapters/queue",
         "github.com/faustbrian/go-event-sourcing/benchmarks/competitors",
         "github.com/faustbrian/go-event-sourcing/postgres",
+        "github.com/faustbrian/go-event-sourcing/adapters/gokafka",
+        "github.com/faustbrian/go-event-sourcing/adapters/gotelemetry",
         "github.com/faustbrian/go-event-sourcing/adapters/kafka",
         "github.com/faustbrian/go-event-sourcing/adapters/otel"
       ],
@@ -246,14 +248,23 @@
       "version": "1.0.0",
       "tag_prefix": "adapters/gokafka/v",
       "owned_dependencies": [
-        "github.com/faustbrian/go-event-sourcing/adapters/kafka",
+        "github.com/faustbrian/go-event-sourcing",
         "github.com/faustbrian/go-kafka"
       ],
       "reverse_owned_dependencies": [],
-      "external_runtime_dependencies": [],
+      "external_runtime_dependencies": [
+        "github.com/containerd/errdefs",
+        "github.com/moby/moby/client",
+        "github.com/testcontainers/testcontainers-go",
+        "github.com/testcontainers/testcontainers-go/modules/kafka",
+        "github.com/twmb/franz-go",
+        "github.com/twmb/franz-go/pkg/kadm"
+      ],
       "required_services": [],
       "build_tags": [],
-      "test_tags": [],
+      "test_tags": [
+        "integration"
+      ],
       "interoperability_tools": [],
       "specifications": [],
       "conformance_corpora": [],
@@ -263,11 +274,11 @@
       "goal_evidence": [],
       "gates": {
         "api_compatibility": true,
-        "benchmarks": false,
+        "benchmarks": true,
         "conformance": false,
         "coverage": true,
         "documentation": true,
-        "fuzz": false,
+        "fuzz": true,
         "lint": true,
         "mutation": true,
         "race": true,
@@ -313,7 +324,9 @@
         },
         "optional_owned_dependencies": [],
         "adapters": [],
-        "companions": [],
+        "companions": [
+          "github.com/faustbrian/go-event-sourcing/adapters/kafka"
+        ],
         "supported_go": {
           "minimum": "1.26.6",
           "tested": [
@@ -336,7 +349,7 @@
           "security": "adapters/gokafka/docs/reference.md",
           "compatibility": "adapters/gokafka/docs/reference.md",
           "performance": "adapters/gokafka/docs/reference.md",
-          "examples": "adapters/gokafka/facade_test.go",
+          "examples": "adapters/gokafka/example_test.go",
           "faq": "adapters/gokafka/docs/reference.md",
           "changelog": "adapters/gokafka/CHANGELOG.md",
           "pkg_go_dev": "https://pkg.go.dev/github.com/faustbrian/go-event-sourcing/adapters/gokafka",
@@ -379,10 +392,17 @@
       "version": "1.0.0",
       "tag_prefix": "adapters/gotelemetry/v",
       "owned_dependencies": [
-        "github.com/faustbrian/go-event-sourcing/adapters/otel"
+        "github.com/faustbrian/go-event-sourcing",
+        "github.com/faustbrian/go-kafka"
       ],
       "reverse_owned_dependencies": [],
-      "external_runtime_dependencies": [],
+      "external_runtime_dependencies": [
+        "go.opentelemetry.io/otel",
+        "go.opentelemetry.io/otel/metric",
+        "go.opentelemetry.io/otel/sdk",
+        "go.opentelemetry.io/otel/sdk/metric",
+        "go.opentelemetry.io/otel/trace"
+      ],
       "required_services": [],
       "build_tags": [],
       "test_tags": [],
@@ -395,11 +415,11 @@
       "goal_evidence": [],
       "gates": {
         "api_compatibility": true,
-        "benchmarks": false,
+        "benchmarks": true,
         "conformance": false,
         "coverage": true,
         "documentation": true,
-        "fuzz": false,
+        "fuzz": true,
         "lint": true,
         "mutation": true,
         "race": true,
@@ -445,7 +465,9 @@
         },
         "optional_owned_dependencies": [],
         "adapters": [],
-        "companions": [],
+        "companions": [
+          "github.com/faustbrian/go-event-sourcing/adapters/otel"
+        ],
         "supported_go": {
           "minimum": "1.26.6",
           "tested": [
@@ -468,7 +490,7 @@
           "security": "adapters/gotelemetry/docs/reference.md",
           "compatibility": "adapters/gotelemetry/docs/reference.md",
           "performance": "adapters/gotelemetry/docs/reference.md",
-          "examples": "adapters/gotelemetry/facade_test.go",
+          "examples": "adapters/gotelemetry/example_test.go",
           "faq": "adapters/gotelemetry/docs/reference.md",
           "changelog": "adapters/gotelemetry/CHANGELOG.md",
           "pkg_go_dev": "https://pkg.go.dev/github.com/faustbrian/go-event-sourcing/adapters/gotelemetry",
@@ -969,9 +991,7 @@
         "github.com/faustbrian/go-event-sourcing",
         "github.com/faustbrian/go-kafka"
       ],
-      "reverse_owned_dependencies": [
-        "github.com/faustbrian/go-event-sourcing/adapters/gokafka"
-      ],
+      "reverse_owned_dependencies": [],
       "external_runtime_dependencies": [
         "github.com/containerd/errdefs",
         "github.com/moby/moby/client",
@@ -1116,9 +1136,7 @@
         "github.com/faustbrian/go-event-sourcing",
         "github.com/faustbrian/go-kafka"
       ],
-      "reverse_owned_dependencies": [
-        "github.com/faustbrian/go-event-sourcing/adapters/gotelemetry"
-      ],
+      "reverse_owned_dependencies": [],
       "external_runtime_dependencies": [
         "go.opentelemetry.io/otel",
         "go.opentelemetry.io/otel/metric",

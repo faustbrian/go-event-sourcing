@@ -64,5 +64,6 @@ transformed output, or failure diagnostics.
 
 See the [adapter guide](../adapters/otel/README.md) for the quick start,
 API, signal names, privacy contract, ownership rules, FAQ, and development
-gate. The released `adapters/gotelemetry` v1 path remains a deprecated facade
-and preserves the exact instrumentation scope and signal contract.
+gate. The released `adapters/gotelemetry` v1 path remains a deprecated
+compatibility implementation and preserves the exact instrumentation scope,
+public type identities, and signal contract.

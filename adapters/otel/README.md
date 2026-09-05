@@ -32,12 +32,13 @@ setup, and cleanup.
 
 ## Migration from `adapters/gotelemetry`
 
-After this module's first release, change the import path and either rename the
-package qualifier from `gotelemetry` to `otel` or explicitly alias the new
-import as `gotelemetry`. The public API, signal names, attributes,
-instrumentation scope, semantic convention, propagation, privacy bounds, and
-provider ownership are unchanged. Release this successor before updating the
-deprecated facade to depend on it.
+Change the import path and either rename the package qualifier from
+`gotelemetry` to `otel` or explicitly alias the new import as `gotelemetry`.
+The API shape, signal names, attributes, instrumentation scope, semantic
+convention, propagation, privacy bounds, and provider ownership are unchanged.
+Package-qualified concrete type, reflection, and sentinel error identities
+change with the import path. The deprecated module remains an independent
+implementation during its support interval.
 
 ## Guarantees and limitations
 

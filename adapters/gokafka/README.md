@@ -17,7 +17,7 @@ interval below. It requires Go 1.26.6 and is tested with Go 1.26.6.
 
 ## Install
 
-New code should install the successor after its first release:
+New code should install the v1 successor:
 
 ```sh
 go get github.com/faustbrian/go-event-sourcing/adapters/kafka@v1
@@ -33,9 +33,9 @@ go get github.com/faustbrian/go-event-sourcing/adapters/gokafka@v1
 
 ## Quick start
 
-The executable [`ExampleNewRecordCodec`](facade_test.go) compiles representative
-construction through the released path. The same file compares stable error
-categories with the successor.
+The executable dispatcher and record-handler examples in
+[`example_test.go`](example_test.go) compile representative construction through
+the released path.
 
 ## Guarantees and limitations
 
@@ -58,9 +58,9 @@ and follows its [persistence and durability family guidance](https://github.com/
 This stable v1 compatibility module follows Semantic Versioning. When migrating
 to `adapters/kafka`, rename the package qualifier to `kafka` or alias the new
 import as `gokafka`. Topics, records, acknowledgements, failure policies, error
-categories, and runtime ownership do not change. Facade aliases expose the
-successor package path through reflection and `%T`; applications must not use
-concrete package identity as a behavior or persistence key.
+categories, and runtime ownership do not change. The deprecated module retains
+its released concrete type, error, reflection, and `%T` identities throughout
+the support interval.
 Report vulnerabilities through the [parent security policy](../../SECURITY.md).
 
 ## License

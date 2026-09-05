@@ -93,7 +93,8 @@ dispatcher mode:
 - `adapters/kafka` exposes Kafka-native producer and consumer semantics;
 - `adapters/otel` exposes caller-owned OpenTelemetry instrumentation;
 - the released `adapters/gokafka` and `adapters/gotelemetry` paths preserve
-  their v1 contracts as deprecated compatibility facades; and
+  their v1 contracts and public type identities as deprecated compatibility
+  implementations; and
 - `adapters/outbox` stages event and outbox rows in one PostgreSQL
   transaction through public contracts.
 

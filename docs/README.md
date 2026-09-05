@@ -36,8 +36,8 @@
 - [Kafka adapter](../adapters/kafka/docs/README.md)
 - [OpenTelemetry adapter](../adapters/otel/docs/README.md)
 - [Adapter path migration](adapter-migration.md)
-- [Deprecated Kafka v1 facade](../adapters/gokafka/docs/README.md)
-- [Deprecated OpenTelemetry v1 facade](../adapters/gotelemetry/docs/README.md)
+- [Deprecated Kafka v1 compatibility module](../adapters/gokafka/docs/README.md)
+- [Deprecated OpenTelemetry v1 compatibility module](../adapters/gotelemetry/docs/README.md)
 - [Outbox adapter](../adapters/outbox/docs/README.md)
 - [Queue adapter](../adapters/queue/docs/README.md)
 

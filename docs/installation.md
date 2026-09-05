@@ -39,11 +39,11 @@ permanent `replace` directives or local paths to a releasable application.
 | --- | --- |
 | `postgres` | Adds `pgx`; owns PostgreSQL schemas, migrations, event storage, global reads, snapshots, and checkpoints |
 | `adapters/kafka` | Preferred Kafka adapter; preserves topics, partitions, keys, offsets, acknowledgements, groups, replay, and failure policy |
-| `adapters/gokafka` | Deprecated v1 compatibility facade for `adapters/kafka` |
+| `adapters/gokafka` | Deprecated v1 compatibility implementation; migrate new code to `adapters/kafka` |
 | `adapters/outbox` | Depends on the public event-sourcing, outbox, and PostgreSQL contracts for caller-owned same-transaction staging |
 | `adapters/queue` | Depends on the compatible queue contract; backend-specific durability and settlement guarantees remain observable |
 | `adapters/otel` | Preferred OpenTelemetry instrumentation and propagation adapter |
-| `adapters/gotelemetry` | Deprecated v1 facade for `adapters/otel`, preserving instrumentation scope |
+| `adapters/gotelemetry` | Deprecated v1 compatibility implementation; migrate new code to `adapters/otel` while preserving the legacy instrumentation scope |
 
 Kafka is intentionally not routed through `eventqueue`. The event-sourcing core
 does not import any optional module. The outbox core and event-sourcing core do

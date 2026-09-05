@@ -44,11 +44,12 @@ The compiling examples in this module contain complete imports and setup.
 
 ## Migration from `adapters/gokafka`
 
-After this module's first release, change the import path and either rename the
-package qualifier from `gokafka` to `kafka` or explicitly alias the new import
-as `gokafka`. The public API, wire version, headers, ordering, bounds, error
-categories, and ownership contracts are unchanged. Release this successor
-before updating the deprecated facade to depend on it.
+Change the import path and either rename the package qualifier from `gokafka`
+to `kafka` or explicitly alias the new import as `gokafka`. The API shape, wire
+version, headers, ordering, bounds, error categories, and ownership contracts
+are unchanged. Package-qualified concrete type, reflection, and sentinel error
+identities change with the import path. The deprecated module remains an
+independent implementation during its support interval.
 
 ## Guarantees and limitations
 

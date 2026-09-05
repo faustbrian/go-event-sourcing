@@ -19,7 +19,7 @@ The table includes both implemented and remaining release boundaries.
 | `adapters/kafka` nested module | Kafka-native producer and consumer semantics | Core and `franz-go` |
 | `adapters/queue` nested module | Adapters for queue backends that preserve the required event semantics | Core and public queue contracts |
 | `adapters/otel` nested module | OpenTelemetry spans, metrics, and propagation | Core and public telemetry contracts |
-| `adapters/gokafka`, `adapters/gotelemetry` | Deprecated released v1 compatibility facades | Their target-oriented successors |
+| `adapters/gokafka`, `adapters/gotelemetry` | Deprecated released v1 compatibility implementations | Core and their legacy integration dependencies; new code should use the target-oriented successors |
 
 Subpackages will not be created merely to hold one interface. The root package
 owns coherent storage-independent contracts. Nested modules are required for

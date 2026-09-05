@@ -1,6 +1,8 @@
 GO ?= go
+FUZZ_TIME ?= 10000x
+BENCH_TIME ?= 100ms
 
-.PHONY: check coverage docs format format-check race test vet
+.PHONY: benchmark check coverage docs format format-check fuzz race test vet
 
 format:
 	gofmt -w .
@@ -22,6 +24,22 @@ coverage:
 	test "$$($(GO) tool cover -func="$${temporary}/coverage.out" | \
 		awk '/^total:/ { print $$3 }')" = "100.0%"
 
+fuzz:
+	$(GO) test . -run '^$$' -fuzz '^FuzzHostileProviderIsolation$$' \
+		-fuzztime="$(FUZZ_TIME)" -parallel=2
+	$(GO) test . -run '^$$' -fuzz '^FuzzKafkaRecordPassThrough$$' \
+		-fuzztime="$(FUZZ_TIME)" -parallel=2
+	$(GO) test . -run '^$$' -fuzz '^FuzzProjectionNamesAndPositions$$' \
+		-fuzztime="$(FUZZ_TIME)" -parallel=2
+	$(GO) test . -run '^$$' -fuzz '^FuzzSerializationMetadataPassThrough$$' \
+		-fuzztime="$(FUZZ_TIME)" -parallel=2
+	$(GO) test . -run '^$$' -fuzz '^FuzzKafkaPropagationBoundaries$$' \
+		-fuzztime="$(FUZZ_TIME)" -parallel=2
+
+benchmark:
+	$(GO) test ./... -run '^$$' -bench . -benchmem \
+		-benchtime="$(BENCH_TIME)"
+
 vet:
 	$(GO) vet ./...
 
@@ -31,4 +49,4 @@ docs:
 	test -s LICENSE
 	$(GO) doc .
 
-check: format-check vet test race coverage docs
+check: format-check vet test race coverage fuzz benchmark docs

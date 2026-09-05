@@ -20,7 +20,7 @@ interval below. It requires Go 1.26.6 and is tested with Go 1.26.6.
 
 ## Install
 
-New code should install the successor after its first release:
+New code should install the v1 successor:
 
 ```sh
 go get github.com/faustbrian/go-event-sourcing/adapters/otel@v1
@@ -36,9 +36,8 @@ go get github.com/faustbrian/go-event-sourcing/adapters/gotelemetry@v1
 
 ## Quick start
 
-The executable [`ExampleNew`](facade_test.go) compiles representative
-construction through the released path. The same file compares stable error
-categories and instrumentation scope with the successor.
+The compiling [`ExampleNew`](example_test.go) constructs instrumentation with
+caller-owned OpenTelemetry providers and shuts them down explicitly.
 
 ## Guarantees and limitations
 
@@ -61,9 +60,9 @@ and follows its [persistence and durability family guidance](https://github.com/
 This stable v1 compatibility module follows Semantic Versioning. When migrating
 to `adapters/otel`, rename the package qualifier to `otel` or alias the new
 import as `gotelemetry`. Signal names, attributes, instrumentation scope,
-propagation, errors, and provider ownership do not change. Facade aliases expose
-the successor package path through reflection and `%T`; applications must not
-use concrete package identity as a behavior or persistence key. Report vulnerabilities through the
+propagation, errors, and provider ownership do not change. The deprecated module
+retains its released concrete type, error, reflection, and `%T` identities
+throughout the support interval. Report vulnerabilities through the
 [parent security policy](../../SECURITY.md).
 
 ## License

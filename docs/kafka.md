@@ -17,8 +17,9 @@ handling, acknowledged dead-letter publication, dead-letter reconstruction,
 replay rejection without offset settlement, redelivery after explicit replay
 opt-in, and committed offsets. See the
 [adapter guide](../adapters/kafka/README.md). The released
-`adapters/gokafka` v1 path remains a deprecated compatibility facade during its
-documented support interval.
+`adapters/gokafka` v1 path remains a deprecated compatibility implementation
+that preserves its public type identities during the documented support
+interval.
 
 Direct event-store-to-Kafka dispatch is not atomic. The recommended durable
 path remains:
