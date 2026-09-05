@@ -2,7 +2,9 @@
 
 All notable changes to this module are documented here.
 
-## Unreleased
+## [Unreleased]
+
+## [1.0.0] - 2026-09-05
 
 ### Added
 
@@ -19,3 +21,6 @@ All notable changes to this module are documented here.
   `adapters/gokafka` users may move after this successor is released by changing
   the import path and renaming the qualifier to `kafka`, or by aliasing the new
   import as `gokafka` to preserve existing selectors.
+
+[Unreleased]: https://github.com/faustbrian/go-event-sourcing/compare/adapters%2Fkafka%2Fv1.0.0...HEAD
+[1.0.0]: https://github.com/faustbrian/go-event-sourcing/releases/tag/adapters%2Fkafka%2Fv1.0.0
