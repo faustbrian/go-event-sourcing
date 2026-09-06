@@ -4,6 +4,14 @@ All notable changes to this module are documented here.
 
 ## [Unreleased]
 
+## [1.0.2] - 2026-09-06
+
+### Changed
+
+- Supersede the immutable v1.0.1 release to correct the `SHA256SUMS` SSH
+  signature namespace from `file` to the canonical `golib-release` namespace.
+  The module API and runtime behavior are unchanged.
+
 ## [1.0.1] - 2026-09-06
 
 ### Changed
@@ -33,6 +41,7 @@ All notable changes to this module are documented here.
   changing the import path and renaming the qualifier to `otel`, or by aliasing
   the new import as `gotelemetry` to preserve existing selectors.
 
-[Unreleased]: https://github.com/faustbrian/go-event-sourcing/compare/adapters%2Fotel%2Fv1.0.1...HEAD
+[Unreleased]: https://github.com/faustbrian/go-event-sourcing/compare/adapters%2Fotel%2Fv1.0.2...HEAD
+[1.0.2]: https://github.com/faustbrian/go-event-sourcing/releases/tag/adapters%2Fotel%2Fv1.0.2
 [1.0.1]: https://github.com/faustbrian/go-event-sourcing/releases/tag/adapters%2Fotel%2Fv1.0.1
 [1.0.0]: https://github.com/faustbrian/go-event-sourcing/releases/tag/adapters%2Fotel%2Fv1.0.0
