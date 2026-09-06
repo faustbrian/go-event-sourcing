@@ -8,6 +8,16 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [1.0.2] - 2026-09-06
+
+### Changed
+
+- Supersede the immutable v1.0.1 release with a patch release that preserves
+  its API and runtime behavior while publishing the complete signed release
+  artifact set.
+
+## [1.0.1] - 2026-09-05
+
 ### Changed
 
 - Preserve the complete v1 API and concrete type identities together with its
@@ -94,5 +104,7 @@ and this project adheres to
   operation metrics that include iterator lifetime without recording stream,
   position, message, error, or database identity.
 
-[Unreleased]: https://github.com/faustbrian/go-event-sourcing/compare/adapters%2Fgotelemetry%2Fv1.0.0...HEAD
+[Unreleased]: https://github.com/faustbrian/go-event-sourcing/compare/adapters%2Fgotelemetry%2Fv1.0.2...HEAD
+[1.0.2]: https://github.com/faustbrian/go-event-sourcing/releases/tag/adapters%2Fgotelemetry%2Fv1.0.2
+[1.0.1]: https://github.com/faustbrian/go-event-sourcing/releases/tag/adapters%2Fgotelemetry%2Fv1.0.1
 [1.0.0]: https://github.com/faustbrian/go-event-sourcing/releases/tag/adapters%2Fgotelemetry%2Fv1.0.0
