@@ -4,6 +4,16 @@ All notable changes to this module are documented here.
 
 ## [Unreleased]
 
+## [1.0.1] - 2026-09-06
+
+### Changed
+
+- Clarify that migration from `adapters/gokafka` changes package-qualified
+  concrete type, reflection, and sentinel-error identities even though the
+  successor preserves the wire and runtime behavior.
+- Supersede the immutable v1.0.0 release with the complete signed release
+  artifact set without changing the module's API or runtime behavior.
+
 ## [1.0.0] - 2026-09-05
 
 ### Added
@@ -22,5 +32,6 @@ All notable changes to this module are documented here.
   the import path and renaming the qualifier to `kafka`, or by aliasing the new
   import as `gokafka` to preserve existing selectors.
 
-[Unreleased]: https://github.com/faustbrian/go-event-sourcing/compare/adapters%2Fkafka%2Fv1.0.0...HEAD
+[Unreleased]: https://github.com/faustbrian/go-event-sourcing/compare/adapters%2Fkafka%2Fv1.0.1...HEAD
+[1.0.1]: https://github.com/faustbrian/go-event-sourcing/releases/tag/adapters%2Fkafka%2Fv1.0.1
 [1.0.0]: https://github.com/faustbrian/go-event-sourcing/releases/tag/adapters%2Fkafka%2Fv1.0.0
