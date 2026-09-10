@@ -1,12 +1,12 @@
 {
   "schema_version": 2,
   "repository": "github.com/faustbrian/go-event-sourcing",
-  "go_version": "1.26.6",
+  "go_version": "1.27.0",
   "modules": [
     {
       "directory": ".",
       "module_path": "github.com/faustbrian/go-event-sourcing",
-      "go_version": "1.26.6",
+      "go_version": "1.27.0",
       "packages": [
         {
           "module_directory": ".",
@@ -188,7 +188,7 @@
           "github.com/faustbrian/go-cloudevents/adapters/golib"
         ],
         "supported_go": {
-          "minimum": "1.26.6",
+          "minimum": "1.27.0",
           "tested": [
             "1.27.0"
           ]
@@ -222,7 +222,7 @@
     {
       "directory": "adapters/gokafka",
       "module_path": "github.com/faustbrian/go-event-sourcing/adapters/gokafka",
-      "go_version": "1.26.6",
+      "go_version": "1.27.0",
       "packages": [
         {
           "module_directory": "adapters/gokafka",
@@ -328,7 +328,7 @@
           "github.com/faustbrian/go-event-sourcing/adapters/kafka"
         ],
         "supported_go": {
-          "minimum": "1.26.6",
+          "minimum": "1.27.0",
           "tested": [
             "1.27.0"
           ]
@@ -366,7 +366,7 @@
     {
       "directory": "adapters/gotelemetry",
       "module_path": "github.com/faustbrian/go-event-sourcing/adapters/gotelemetry",
-      "go_version": "1.26.6",
+      "go_version": "1.27.0",
       "packages": [
         {
           "module_directory": "adapters/gotelemetry",
@@ -469,7 +469,7 @@
           "github.com/faustbrian/go-event-sourcing/adapters/otel"
         ],
         "supported_go": {
-          "minimum": "1.26.6",
+          "minimum": "1.27.0",
           "tested": [
             "1.27.0"
           ]
@@ -507,7 +507,7 @@
     {
       "directory": "adapters/outbox",
       "module_path": "github.com/faustbrian/go-event-sourcing/adapters/outbox",
-      "go_version": "1.26.6",
+      "go_version": "1.27.0",
       "packages": [
         {
           "module_directory": "adapters/outbox",
@@ -609,7 +609,7 @@
         "adapters": [],
         "companions": [],
         "supported_go": {
-          "minimum": "1.26.6",
+          "minimum": "1.27.0",
           "tested": [
             "1.27.0"
           ]
@@ -645,7 +645,7 @@
     {
       "directory": "adapters/queue",
       "module_path": "github.com/faustbrian/go-event-sourcing/adapters/queue",
-      "go_version": "1.26.6",
+      "go_version": "1.27.0",
       "packages": [
         {
           "module_directory": "adapters/queue",
@@ -741,7 +741,7 @@
         "adapters": [],
         "companions": [],
         "supported_go": {
-          "minimum": "1.26.6",
+          "minimum": "1.27.0",
           "tested": [
             "1.27.0"
           ]
@@ -775,7 +775,7 @@
     {
       "directory": "benchmarks/competitors",
       "module_path": "github.com/faustbrian/go-event-sourcing/benchmarks/competitors",
-      "go_version": "1.26.6",
+      "go_version": "1.27.0",
       "packages": [],
       "purpose": "This non-releasable module isolates comparison dependencies from the event-sourcing core. It compares equivalent observable work and keeps correctness checks separate from timing.",
       "lifecycle": "internal",
@@ -824,7 +824,7 @@
     {
       "directory": "postgres",
       "module_path": "github.com/faustbrian/go-event-sourcing/postgres",
-      "go_version": "1.26.6",
+      "go_version": "1.27.0",
       "packages": [
         {
           "module_directory": "postgres",
@@ -926,7 +926,7 @@
         "adapters": [],
         "companions": [],
         "supported_go": {
-          "minimum": "1.26.6",
+          "minimum": "1.27.0",
           "tested": [
             "1.27.0"
           ]
@@ -962,7 +962,7 @@
     {
       "directory": "adapters/kafka",
       "module_path": "github.com/faustbrian/go-event-sourcing/adapters/kafka",
-      "go_version": "1.26.6",
+      "go_version": "1.27.0",
       "packages": [
         {
           "module_directory": "adapters/kafka",
@@ -1069,7 +1069,7 @@
           "github.com/faustbrian/go-event-sourcing/adapters/otel"
         ],
         "supported_go": {
-          "minimum": "1.26.6",
+          "minimum": "1.27.0",
           "tested": [
             "1.27.0"
           ]
@@ -1107,7 +1107,7 @@
     {
       "directory": "adapters/otel",
       "module_path": "github.com/faustbrian/go-event-sourcing/adapters/otel",
-      "go_version": "1.26.6",
+      "go_version": "1.27.0",
       "packages": [
         {
           "module_directory": "adapters/otel",
@@ -1211,7 +1211,7 @@
           "github.com/faustbrian/go-event-sourcing/adapters/kafka"
         ],
         "supported_go": {
-          "minimum": "1.26.6",
+          "minimum": "1.27.0",
           "tested": [
             "1.27.0"
           ]

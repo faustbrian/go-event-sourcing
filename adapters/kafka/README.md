@@ -13,8 +13,8 @@ and dead-letter delivery paths.
 
 ## Lifecycle and Go support
 
-This is the stable, supported Kafka adapter. It requires Go 1.26.6 and is
-tested with Go 1.26.6.
+This is the stable, supported Kafka adapter. It requires Go 1.27.0 and is
+tested with Go 1.27.0.
 
 ## Install
 
