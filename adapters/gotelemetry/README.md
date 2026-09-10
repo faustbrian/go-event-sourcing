@@ -16,7 +16,7 @@ poison skips, durable checkpoint position, and terminal probes.
 ## Lifecycle and Go support
 
 This stable v1 module is deprecated but supported for the compatibility
-interval below. It requires Go 1.26.6 and is tested with Go 1.26.6.
+interval below. It requires Go 1.27.0 and is tested with Go 1.27.0.
 
 ## Install
 

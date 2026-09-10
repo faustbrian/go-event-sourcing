@@ -1,6 +1,6 @@
 module github.com/faustbrian/go-event-sourcing/adapters/outbox
 
-go 1.26.6
+go 1.27.0
 
 require (
 	github.com/faustbrian/go-event-sourcing v1.0.0
