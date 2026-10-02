@@ -58,6 +58,15 @@ does not authorize other reads or administrative actions.
 
 ## Review and reporting
 
+The nested module graphs pin OpenTelemetry SDK v1.45.0 or later for
+[GHSA-8wmf-6v46-5gfg](https://github.com/open-telemetry/opentelemetry-go/security/advisories/GHSA-8wmf-6v46-5gfg).
+The affected older SDK versions can log exporter endpoint configuration when
+an application enables verbose internal diagnostics while constructing its
+provider. The default logger does not emit that event. This package accepts
+application-owned providers and does not configure exporter credentials or the
+global logger; applications must also upgrade their own provider/exporter
+graphs and review existing diagnostic logs where that configuration was used.
+
 Reassess the affected row when a public contract, parser, limit, schema, client,
 callback boundary or consumer changes. Preserve stable error categories and
 review deprecated variants when a shared implementation changes. Runtime,

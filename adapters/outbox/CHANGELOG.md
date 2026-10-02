@@ -6,6 +6,9 @@ All notable changes to this module are documented here.
 
 ### Changed
 
+- Upgrade the OpenTelemetry SDK dependency graph to v1.45.0 to address
+  GHSA-8wmf-6v46-5gfg in transitive dependencies.
+
 - Publish schema-v2 cohesion metadata and enforce it through the repository's
   pinned `go-library-tools` v1.4.0 workflow.
 - Reconcile the public v1.0.0 event-sourcing and transactional-outbox

@@ -8,6 +8,12 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Fixed
+
+- Upgrade the OpenTelemetry SDK dependency graph to v1.45.0 to address
+  GHSA-8wmf-6v46-5gfg, a conditional exporter-configuration disclosure through
+  verbose internal SDK logs.
+
 ## [1.0.3] - 2026-09-06
 
 ### Changed
