@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"log"
 
-	eventotel "github.com/faustbrian/go-event-sourcing/adapters/otel"
+	eventotel "github.com/faustbrian/go-event-sourcing/adapters/otel/v2"
 	"go.opentelemetry.io/otel/metric"
 	"go.opentelemetry.io/otel/propagation"
 	sdkmetric "go.opentelemetry.io/otel/sdk/metric"

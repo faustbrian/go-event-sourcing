@@ -19,7 +19,7 @@ tested with Go 1.27.0.
 ## Install
 
 ```sh
-go get github.com/faustbrian/go-event-sourcing/adapters/kafka@v1
+go get github.com/faustbrian/go-event-sourcing/adapters/kafka/v2@v2.0.0
 ```
 
 ## Quick start
@@ -44,6 +44,11 @@ The compiling examples in this module contain complete imports and setup.
 
 ## Migration from `adapters/gokafka`
 
+The upcoming v2 installation requires the independent Kafka-v2 release.
+Migrate core-v1 types to public core-v2 together with this adapter; see
+[v2 migration](docs/reference.md#v2-migration). For an unchanged core-v1
+application, retain the published Kafka-v1 or deprecated gokafka-v1 module.
+
 Change the import path and either rename the package qualifier from `gokafka`
 to `kafka` or explicitly alias the new import as `gokafka`. The API shape, wire
 version, headers, ordering, bounds, error categories, and ownership contracts
@@ -64,7 +69,7 @@ and follows its [persistence and durability family guidance](https://github.com/
 
 - [Documentation index](docs/README.md)
 - [Complete technical guide](docs/reference.md)
-- [Go API reference](https://pkg.go.dev/github.com/faustbrian/go-event-sourcing/adapters/kafka)
+- [Go API reference](https://pkg.go.dev/github.com/faustbrian/go-event-sourcing/adapters/kafka/v2)
 - [Parent package documentation](../../docs/README.md)
 
 ## Compatibility and support

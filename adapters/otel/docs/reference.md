@@ -14,6 +14,26 @@ load, refresh, and deletion without exposing derived state or aggregate
 identity. Projection-runner instrumentation observes bounded replay progress,
 poison skips, durable checkpoint position, and terminal probes.
 
+## V2 migration
+
+After `adapters/otel/v2.0.0` is published, require
+`github.com/faustbrian/go-event-sourcing/adapters/otel/v2@v2.0.0` and public
+`github.com/faustbrian/go-event-sourcing/v2@v2.0.0`. Move core package imports,
+including `memory`, `processmanager`, and `projection`, beneath the core's `/v2`.
+The adapter's own suffix follows its existing directory. Go 1.27.0 remains the
+minimum; source remains in `adapters/otel`.
+
+Dispatcher, consumer, store, snapshot, codec, upcaster, process-manager, and
+projection wrappers now expose core-v2 nominal interfaces. Migrate all caller
+types together; v1 and v2 are not interchangeable. OpenTelemetry dependencies,
+the unsuffixed instrumentation scope, signal names, propagation, and runtime
+ownership stay unchanged. Deprecated `adapters/gotelemetry` v1 remains an
+independent core-v1 implementation throughout its support interval. Existing
+otel-v1 callers can retain their public release.
+
+`api/v1.0.2.txt` preserves the released v1 API. `api/baseline.txt` tracks the
+current major; it does not assert cross-major nominal compatibility.
+
 ## Quick start
 
 ```go

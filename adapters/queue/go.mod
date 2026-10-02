@@ -1,9 +1,9 @@
-module github.com/faustbrian/go-event-sourcing/adapters/queue
+module github.com/faustbrian/go-event-sourcing/adapters/queue/v2
 
 go 1.27.0
 
 require (
-	github.com/faustbrian/go-event-sourcing v1.0.0
+	github.com/faustbrian/go-event-sourcing/v2 v2.0.0
 	github.com/faustbrian/go-queue v1.0.0
 	github.com/testcontainers/testcontainers-go v0.43.0
 )

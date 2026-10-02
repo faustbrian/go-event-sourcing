@@ -4,9 +4,9 @@ import (
 	"context"
 	"testing"
 
-	eventsourcing "github.com/faustbrian/go-event-sourcing"
-	"github.com/faustbrian/go-event-sourcing/processmanager"
-	"github.com/faustbrian/go-event-sourcing/projection"
+	eventsourcing "github.com/faustbrian/go-event-sourcing/v2"
+	"github.com/faustbrian/go-event-sourcing/v2/processmanager"
+	"github.com/faustbrian/go-event-sourcing/v2/projection"
 	"go.opentelemetry.io/otel/metric"
 	metricnoop "go.opentelemetry.io/otel/metric/noop"
 	"go.opentelemetry.io/otel/propagation"

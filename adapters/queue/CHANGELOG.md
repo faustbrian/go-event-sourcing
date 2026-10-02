@@ -10,6 +10,11 @@ and this project adheres to
 
 ### Changed
 
+- Prepare the independent `/adapters/queue/v2` identity for v2.0.0 and adopt
+  public core-v2 nominal types. Preserve Go-Queue v1, envelope bytes,
+  ordering, acceptance, and settlement behavior.
+- Retain the released v1.0.0 API beside the current-major projection.
+
 - Upgrade the OpenTelemetry SDK dependency graph to v1.45.0 to address
   GHSA-8wmf-6v46-5gfg in transitive dependencies.
 

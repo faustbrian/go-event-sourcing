@@ -9,8 +9,8 @@ import (
 	"syscall"
 	"time"
 
-	eventsourcing "github.com/faustbrian/go-event-sourcing"
-	eventkafka "github.com/faustbrian/go-event-sourcing/adapters/kafka"
+	eventkafka "github.com/faustbrian/go-event-sourcing/adapters/kafka/v2"
+	eventsourcing "github.com/faustbrian/go-event-sourcing/v2"
 	"github.com/faustbrian/go-kafka"
 )
 

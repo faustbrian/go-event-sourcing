@@ -14,6 +14,24 @@ handler, explicit poison/retry policy, and first-party synchronous dead-letter
 publisher are implemented. Real-broker compatibility covers the complete live
 and dead-letter delivery paths.
 
+## V2 migration
+
+After `adapters/kafka/v2.0.0` is published, require
+`github.com/faustbrian/go-event-sourcing/adapters/kafka/v2@v2.0.0` and public
+`github.com/faustbrian/go-event-sourcing/v2@v2.0.0`. The adapter's own suffix
+follows its existing directory, not the core's suffix. Go 1.27.0 remains
+the minimum; source remains in `adapters/kafka`.
+
+Topic resolvers, codec deliveries, dispatchers, consumers, and failure policies
+use core-v2 named types. Migrate these identities together; v1 and v2 are not
+interchangeable. The Go-Kafka v1 dependency, record wire version, headers,
+acknowledgement behavior, ordering, and ownership remain unchanged. Deprecated
+`adapters/gokafka` v1 remains an independent core-v1 implementation throughout
+its support interval. Existing Kafka-v1 callers can retain their public release.
+
+`api/v1.0.2.txt` preserves the released v1 API. `api/baseline.txt` tracks the
+current major; it does not assert cross-major nominal compatibility.
+
 ## Record mapping
 
 ```go
@@ -289,7 +307,7 @@ separately authorized replay operation opts in.
   headers. Callers must not add their own values in the reserved `es.*` or
   `esdlq.*` namespaces.
 
-Use `go doc github.com/faustbrian/go-event-sourcing/adapters/kafka`
+Use `go doc github.com/faustbrian/go-event-sourcing/adapters/kafka/v2`
 for the complete exported signatures and error categories.
 
 ## Adoption

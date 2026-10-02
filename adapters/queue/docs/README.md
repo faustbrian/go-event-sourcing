@@ -7,7 +7,7 @@
 
 ## API reference
 
-- [Go package documentation](https://pkg.go.dev/github.com/faustbrian/go-event-sourcing/adapters/queue)
+- [Go package documentation](https://pkg.go.dev/github.com/faustbrian/go-event-sourcing/adapters/queue/v2)
 - [Delivery Guarantees](delivery-guarantees.md)
 
 ## Security and compatibility

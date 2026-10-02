@@ -7,7 +7,7 @@
 
 ## API reference
 
-- [Go package documentation](https://pkg.go.dev/github.com/faustbrian/go-event-sourcing/adapters/kafka)
+- [Go package documentation](https://pkg.go.dev/github.com/faustbrian/go-event-sourcing/adapters/kafka/v2)
 
 ## Security and compatibility
 

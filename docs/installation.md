@@ -22,6 +22,19 @@ adapter composes these two public v2 producers with Transactional Outbox v1:
 go get github.com/faustbrian/go-event-sourcing/adapters/outbox/v2@v2.0.0
 ```
 
+The upcoming Kafka, queue, and OpenTelemetry v2 adapters each compose public
+core-v2 directly. After their independent releases are published, install only
+the adapters needed by the application:
+
+```sh
+go get github.com/faustbrian/go-event-sourcing/adapters/kafka/v2@v2.0.0
+go get github.com/faustbrian/go-event-sourcing/adapters/queue/v2@v2.0.0
+go get github.com/faustbrian/go-event-sourcing/adapters/otel/v2@v2.0.0
+```
+
+Deprecated gokafka-v1 and gotelemetry-v1 remain unchanged and compose core-v1.
+The private competitor module adopts core-v2 without a public release.
+
 Optional integrations are independently versioned modules; the following
 published v1 modules still compose with core v1, not core v2:
 

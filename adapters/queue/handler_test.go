@@ -5,7 +5,7 @@ import (
 	"errors"
 	"testing"
 
-	eventsourcing "github.com/faustbrian/go-event-sourcing"
+	eventsourcing "github.com/faustbrian/go-event-sourcing/v2"
 	"github.com/faustbrian/go-queue/core"
 	"github.com/faustbrian/go-queue/job"
 )

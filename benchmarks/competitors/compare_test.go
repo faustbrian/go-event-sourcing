@@ -8,7 +8,7 @@ import (
 	"testing"
 	"time"
 
-	golib "github.com/faustbrian/go-event-sourcing"
+	golib "github.com/faustbrian/go-event-sourcing/v2"
 	hallgren "github.com/hallgren/eventsourcing"
 	hallgrenaggregate "github.com/hallgren/eventsourcing/aggregate"
 	hallgrencore "github.com/hallgren/eventsourcing/core"

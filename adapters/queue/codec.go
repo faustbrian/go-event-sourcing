@@ -14,7 +14,7 @@ import (
 	"strconv"
 	"time"
 
-	eventsourcing "github.com/faustbrian/go-event-sourcing"
+	eventsourcing "github.com/faustbrian/go-event-sourcing/v2"
 	"github.com/faustbrian/go-queue/job"
 )
 

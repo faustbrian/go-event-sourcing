@@ -1,5 +1,20 @@
 # Adapter path migration
 
+## Core-v2 adoption
+
+The upcoming canonical Kafka-v2 and OpenTelemetry-v2 adapters adopt public
+core-v2. After their independent releases are published, require each
+`/adapters/<name>/v2` module and migrate caller core imports/types to
+`github.com/faustbrian/go-event-sourcing/v2` together. See the
+[Kafka](../adapters/kafka/docs/reference.md#v2-migration) and
+[OpenTelemetry](../adapters/otel/docs/reference.md#v2-migration) guides.
+
+The following selector-preserving migration describes the published v1
+successors for applications retaining core-v1. Deprecated gokafka-v1 and
+gotelemetry-v1 remain unchanged; core-v2 availability does not retire them.
+
+## Published v1 path migration
+
 Target-oriented adapter paths replace the two released names that redundantly
 include `go`:
 
