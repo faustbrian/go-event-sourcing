@@ -18,9 +18,9 @@ import (
 	dockercontainer "github.com/moby/moby/api/types/container"
 	dockernetwork "github.com/moby/moby/api/types/network"
 
+	eventpostgres "github.com/faustbrian/go-event-sourcing/postgres/v2"
 	eventsourcing "github.com/faustbrian/go-event-sourcing/v2"
 	"github.com/faustbrian/go-event-sourcing/v2/eventtest"
-	eventpostgres "github.com/faustbrian/go-event-sourcing/postgres/v2"
 	"github.com/faustbrian/go-event-sourcing/v2/projection"
 	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgconn"

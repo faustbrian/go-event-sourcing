@@ -19,8 +19,8 @@ import (
 	"testing"
 	"time"
 
-	eventsourcing "github.com/faustbrian/go-event-sourcing/v2"
 	eventpostgres "github.com/faustbrian/go-event-sourcing/postgres/v2"
+	eventsourcing "github.com/faustbrian/go-event-sourcing/v2"
 	"github.com/faustbrian/go-event-sourcing/v2/projection"
 	"github.com/jackc/pgx/v5/pgxpool"
 )
