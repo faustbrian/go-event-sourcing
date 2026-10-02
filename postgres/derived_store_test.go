@@ -6,9 +6,9 @@ import (
 	"strings"
 	"testing"
 
-	eventsourcing "github.com/faustbrian/go-event-sourcing"
-	"github.com/faustbrian/go-event-sourcing/postgres"
-	"github.com/faustbrian/go-event-sourcing/projection"
+	eventsourcing "github.com/faustbrian/go-event-sourcing/v2"
+	"github.com/faustbrian/go-event-sourcing/postgres/v2"
+	"github.com/faustbrian/go-event-sourcing/v2/projection"
 )
 
 func TestDerivedStoreConstructorsValidateDependenciesAndConfiguration(

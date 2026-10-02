@@ -37,14 +37,20 @@ explicit trusted cause inspection where documented, rather than parsing error
 text. Application-owned callback errors remain a separate caller-controlled
 boundary; this is not blanket callback redaction.
 
-Independent nested modules retain their existing source locations, module
-paths, releases, and core-v1 requirements in this root-only transition. They
-are not core-v2 adapters. When a maintained module adopts core-v2 types, its
+Independent nested modules retain their existing source locations and releases.
+PostgreSQL's pending major adopts public core-v2; the other nested modules
+retain their core-v1 requirements and are not core-v2 adapters. When a maintained module adopts core-v2 types, its
 own major suffix follows its directory: for example,
 `github.com/faustbrian/go-event-sourcing/postgres/v2`, not
 `github.com/faustbrian/go-event-sourcing/v2/postgres`. Publish core-v2 first,
 then PostgreSQL-v2 before an outbox-v2 adapter that depends on both. Queue,
 Kafka, and OpenTelemetry adoption may follow core independently.
+
+PostgreSQL-v2 changes public message, stream, version, snapshot, projection,
+and prepared-plan identities without changing SQL or stored data. Its existing
+`adapters/outbox` v1 consumer remains on PostgreSQL-v1; it needs a separate
+major migration, not an automatic dependency upgrade. See the
+[PostgreSQL migration guide](../postgres/docs/reference.md#v2-migration).
 
 The deprecated `adapters/gokafka` and `adapters/gotelemetry` v1 implementations
 remain unchanged during their existing support interval. Root-v2 availability

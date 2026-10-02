@@ -90,7 +90,7 @@
       "module_directory": "postgres",
       "directory": ".",
       "name": "postgres",
-      "import_path": "github.com/faustbrian/go-event-sourcing/postgres",
+      "import_path": "github.com/faustbrian/go-event-sourcing/postgres/v2",
       "kind": "public",
       "production": true,
       "executable": true,
