@@ -273,7 +273,7 @@ func TestPrimaryWorkflowsHaveExecutableArtifacts(t *testing.T) {
 		"TestStagerCommitsAndRollsBackEventsWithOutboxEnvelopes",
 		"TestCallerCommittedRowsRelayWithDurableRetryAndReplayIsolation",
 		"TestPublisherMapsEnvelopeToKafkaMessage",
-		"https://github.com/faustbrian/go-transactional-outbox/blob/main/adapters/gokafka/publisher_test.go",
+		"https://raw.githubusercontent.com/faustbrian/go-transactional-outbox/main/adapters/gokafka/publisher_test.go",
 		"TestInstrumentationTracesAndMeasuresDispatchAndConsumption",
 	} {
 		if !strings.Contains(examples, required) {
