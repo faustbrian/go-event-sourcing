@@ -18,6 +18,8 @@ require (
 	github.com/go-logr/stdr v1.2.2 // indirect
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/klauspost/compress v1.18.7 // indirect
+	github.com/moby/moby/api v1.56.0 // indirect
+	github.com/moby/moby/client v0.6.0 // indirect
 	github.com/pierrec/lz4/v4 v4.1.26 // indirect
 	github.com/twmb/franz-go v1.21.5 // indirect
 	github.com/twmb/franz-go/pkg/kadm v1.18.0 // indirect
