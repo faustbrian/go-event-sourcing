@@ -137,7 +137,7 @@ the public conformance suite for missing streams, ranges, order, cancellation,
 corrupt history, and concurrency conflicts.
 
 This is the migration outcome for the pinned
-[EventSauce 0.7 upgrade contract](https://github.com/EventSaucePHP/EventSauce/blob/33ea9b97ec3ac56991caad03b791fee418a43e41/docs/docs/upgrading/to-0.7.0.md).
+[EventSauce 0.7 upgrade contract](https://raw.githubusercontent.com/EventSaucePHP/EventSauce/33ea9b97ec3ac56991caad03b791fee418a43e41/docs/docs/upgrading/to-0.7.0.md).
 
 ## Messages and headers
 

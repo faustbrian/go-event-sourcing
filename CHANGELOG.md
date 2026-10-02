@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Keep event identities and content types out of built-in codec, registration,
+  upcaster, and dispatcher diagnostics while preserving sentinel error
+  classification. Application-owned callback errors remain caller-controlled.
+
 ### Changed
 
 - Prefer target-oriented `adapters/kafka` and `adapters/otel` module paths.

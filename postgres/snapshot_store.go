@@ -285,10 +285,7 @@ func scanSnapshot(row rowScanner) (eventsourcing.Snapshot, error) {
 	}
 	metadata := make(map[string]string)
 	if err := json.Unmarshal(metadataJSON, &metadata); err != nil {
-		return eventsourcing.Snapshot{}, errors.Join(
-			eventsourcing.ErrSnapshotCorrupt,
-			err,
-		)
+		return eventsourcing.Snapshot{}, &storedDataError{category: eventsourcing.ErrSnapshotCorrupt, cause: err}
 	}
 	stream, err := eventsourcing.NewStreamID(aggregateType, aggregateID)
 	if err != nil {

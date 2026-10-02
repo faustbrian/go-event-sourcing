@@ -45,6 +45,7 @@
 
 - [Performance](performance.md)
 - [Security](security.md)
+- [Threat model and owned residual risks](threat-model.md)
 - [Telemetry](telemetry.md)
 - [Testing](testing.md)
 - [Troubleshooting](troubleshooting.md)

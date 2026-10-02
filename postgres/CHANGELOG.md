@@ -4,7 +4,16 @@ All notable changes to this module are documented here.
 
 ## Unreleased
 
+### Fixed
+
+- Hide stored message and snapshot metadata parser diagnostics from ordinary
+  error strings while preserving corruption classification and parser causes
+  for explicit inspection with `errors.Is` and `errors.As`.
+
 ### Changed
+
+- Upgrade the OpenTelemetry SDK dependency graph to v1.45.0 to address
+  GHSA-8wmf-6v46-5gfg in transitive dependencies.
 
 - Publish schema-v2 cohesion metadata and enforce it through the repository's
   pinned `go-library-tools` v1.4.0 workflow.

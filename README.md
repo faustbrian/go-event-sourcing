@@ -27,7 +27,7 @@ The v1 API and documented adapter contracts follow the compatibility policy in
 [the release notes](docs/release-notes.md).
 
 For ecosystem-wide package selection, construction, ownership, and lifecycle
-guidance, see the versioned [Golib ecosystem index](https://github.com/faustbrian/go-library-tools/blob/v1.4.0/docs/ecosystem/README.md)
+guidance, see the versioned [Golib ecosystem index](https://github.com/faustbrian/go-library-tools/tree/v1.4.0/docs/ecosystem)
 and its [persistence and durability family guidance](https://github.com/faustbrian/go-library-tools/blob/v1.4.0/docs/ecosystem/design-language.md#package-families-and-selection).
 
 ## Quickstart
@@ -51,6 +51,7 @@ durable adapters.
 - [Learning event sourcing](docs/learning.md)
 - [Frequently asked questions](docs/faq.md)
 - [Security, privacy, and compliance](docs/security.md)
+- [Threat model and owned residual risks](docs/threat-model.md)
 - [Troubleshooting](docs/troubleshooting.md)
 - [Glossary](docs/glossary.md)
 - [Release notes and compatibility](docs/release-notes.md)

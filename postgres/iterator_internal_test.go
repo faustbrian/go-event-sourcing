@@ -2,6 +2,7 @@ package postgres
 
 import (
 	"context"
+	"encoding/json"
 	"errors"
 	"math"
 	"reflect"
@@ -11,6 +12,37 @@ import (
 
 	eventsourcing "github.com/faustbrian/go-event-sourcing"
 )
+
+func TestScanMessageRedactsStoredJSONDiagnostic(t *testing.T) {
+	_, err := scanMessage(fakeRow{scan: storedMessageScan(storedMessageValues{
+		metadata: []byte(`{"private.fixture.metadata":@}`),
+	})})
+	if !errors.Is(err, eventsourcing.ErrCorruptHistory) {
+		t.Fatalf("stored JSON category = %v", err)
+	}
+	if strings.Contains(err.Error(), "'@'") || strings.Contains(err.Error(), "private.fixture.metadata") {
+		t.Error("stored JSON diagnostic disclosed fixture input")
+	}
+	var syntaxError *json.SyntaxError
+	if !errors.As(err, &syntaxError) {
+		t.Error("stored JSON diagnostic lost its inspectable parser cause")
+	}
+}
+
+func TestScanSnapshotRedactsStoredJSONDiagnostic(t *testing.T) {
+	values := snapshotValues(derivedSnapshot(t, 7, 2, `{}`))
+	_, err := scanSnapshot(fakeRow{scan: scanValues(replaceValue(values, 5, []byte(`{"private.fixture.metadata":@}`))...)})
+	if !errors.Is(err, eventsourcing.ErrSnapshotCorrupt) {
+		t.Fatalf("stored JSON category = %v", err)
+	}
+	if strings.Contains(err.Error(), "'@'") || strings.Contains(err.Error(), "private.fixture.metadata") {
+		t.Error("stored JSON diagnostic disclosed fixture input")
+	}
+	var syntaxError *json.SyntaxError
+	if !errors.As(err, &syntaxError) {
+		t.Error("stored JSON diagnostic lost its inspectable parser cause")
+	}
+}
 
 func TestIteratorReadsMessagesAndOwnsClosure(t *testing.T) {
 	t.Parallel()

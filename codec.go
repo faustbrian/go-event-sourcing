@@ -185,10 +185,8 @@ func NewJSONCodec(options ...JSONCodecOption) (*JSONCodec, error) {
 		target := builder.codec.aliases[alias]
 		if _, exists := builder.codec.events[target]; !exists {
 			return nil, fmt.Errorf(
-				"%w: alias %s@%d targets an unregistered event",
+				"%w: alias targets an unregistered event",
 				ErrUnknownEvent,
-				alias.name,
-				alias.version,
 			)
 		}
 	}
@@ -210,7 +208,7 @@ func (codec *JSONCodec) Encode(event DecodedEvent) (EncodedEvent, error) {
 
 	payload, err := registration.encode(event.value)
 	if err != nil {
-		return EncodedEvent{}, fmt.Errorf("encode %s@%d: %w", key.name, key.version, err)
+		return EncodedEvent{}, fmt.Errorf("encode event: %w", err)
 	}
 
 	encoded, err := NewEncodedEvent(EncodedEventInput{
@@ -232,11 +230,7 @@ func (codec *JSONCodec) Decode(event EncodedEvent) (DecodedEvent, error) {
 		return DecodedEvent{}, invalid("event", "must be assigned")
 	}
 	if event.contentType != JSONContentType {
-		return DecodedEvent{}, fmt.Errorf(
-			"%w: %s",
-			ErrUnsupportedContentType,
-			event.contentType,
-		)
+		return DecodedEvent{}, ErrUnsupportedContentType
 	}
 
 	key := eventKey{name: event.name.value, version: event.version}
@@ -253,12 +247,7 @@ func (codec *JSONCodec) Decode(event EncodedEvent) (DecodedEvent, error) {
 
 	value, err := registration.decode(event.payload, codec.strict)
 	if err != nil {
-		return DecodedEvent{}, fmt.Errorf(
-			"decode %s@%d: %w",
-			event.name.value,
-			event.version,
-			err,
-		)
+		return DecodedEvent{}, fmt.Errorf("decode event: %w", err)
 	}
 
 	return DecodedEvent{
@@ -306,12 +295,7 @@ func (codec *JSONCodec) addEvent(
 		return err
 	}
 	if _, exists := claimed[registration.key]; exists {
-		return fmt.Errorf(
-			"%w: %s@%d",
-			ErrDuplicateRegistration,
-			registration.key.name,
-			registration.key.version,
-		)
+		return ErrDuplicateRegistration
 	}
 
 	claimed[registration.key] = struct{}{}
@@ -366,12 +350,7 @@ func (codec *JSONCodec) addAlias(
 		return invalid("alias", "must preserve the event schema version")
 	}
 	if _, exists := claimed[registration.key]; exists {
-		return fmt.Errorf(
-			"%w: %s@%d",
-			ErrDuplicateRegistration,
-			registration.key.name,
-			registration.key.version,
-		)
+		return ErrDuplicateRegistration
 	}
 
 	claimed[registration.key] = struct{}{}
@@ -387,7 +366,7 @@ func eventIdentityError(key eventKey, knownNames map[string]struct{}) error {
 		identityError = ErrIncompatibleVersion
 	}
 
-	return fmt.Errorf("%w: %s@%d", identityError, key.name, key.version)
+	return identityError
 }
 
 func validateEventKey(key eventKey) error {
