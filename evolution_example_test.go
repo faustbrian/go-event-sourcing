@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	eventsourcing "github.com/faustbrian/go-event-sourcing"
+	eventsourcing "github.com/faustbrian/go-event-sourcing/v2"
 )
 
 type ownerRenamed struct {

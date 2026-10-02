@@ -7,8 +7,8 @@ import (
 	"testing"
 	"time"
 
-	eventsourcing "github.com/faustbrian/go-event-sourcing"
-	"github.com/faustbrian/go-event-sourcing/processmanager"
+	eventsourcing "github.com/faustbrian/go-event-sourcing/v2"
+	"github.com/faustbrian/go-event-sourcing/v2/processmanager"
 )
 
 type managerCommand struct {
