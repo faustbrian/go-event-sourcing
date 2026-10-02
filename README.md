@@ -51,6 +51,7 @@ durable adapters.
 - [Learning event sourcing](docs/learning.md)
 - [Frequently asked questions](docs/faq.md)
 - [Security, privacy, and compliance](docs/security.md)
+- [Threat model and owned residual risks](docs/threat-model.md)
 - [Troubleshooting](docs/troubleshooting.md)
 - [Glossary](docs/glossary.md)
 - [Release notes and compatibility](docs/release-notes.md)

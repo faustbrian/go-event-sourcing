@@ -8,6 +8,9 @@ erasure, monitoring, and legal review.
 
 ## Data classification
 
+The versioned [threat model](threat-model.md) records package controls,
+application-owned residual risks, and review triggers across all modules.
+
 Treat payloads, metadata, aggregate identifiers, correlation identifiers,
 tenant values, partition values, snapshots, projection state, outbox rows,
 queue records, Kafka records, backups, traces, and test fixtures as separate

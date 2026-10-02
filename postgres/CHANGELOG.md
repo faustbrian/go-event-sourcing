@@ -4,6 +4,12 @@ All notable changes to this module are documented here.
 
 ## Unreleased
 
+### Fixed
+
+- Hide stored message and snapshot metadata parser diagnostics from ordinary
+  error strings while preserving corruption classification and parser causes
+  for explicit inspection with `errors.Is` and `errors.As`.
+
 ### Changed
 
 - Publish schema-v2 cohesion metadata and enforce it through the repository's
