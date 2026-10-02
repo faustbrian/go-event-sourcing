@@ -42,7 +42,7 @@
       "module_directory": "adapters/outbox",
       "directory": ".",
       "name": "eventoutbox",
-      "import_path": "github.com/faustbrian/go-event-sourcing/adapters/outbox",
+      "import_path": "github.com/faustbrian/go-event-sourcing/adapters/outbox/v2",
       "kind": "public",
       "production": true,
       "executable": true,

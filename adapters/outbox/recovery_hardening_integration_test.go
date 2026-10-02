@@ -11,9 +11,9 @@ import (
 	"testing"
 	"time"
 
-	eventsourcing "github.com/faustbrian/go-event-sourcing"
-	"github.com/faustbrian/go-event-sourcing/adapters/outbox"
-	eventpostgres "github.com/faustbrian/go-event-sourcing/postgres"
+	"github.com/faustbrian/go-event-sourcing/adapters/outbox/v2"
+	eventpostgres "github.com/faustbrian/go-event-sourcing/postgres/v2"
+	eventsourcing "github.com/faustbrian/go-event-sourcing/v2"
 	"github.com/faustbrian/go-transactional-outbox"
 	outboxpostgres "github.com/faustbrian/go-transactional-outbox/postgres"
 	outboxrelay "github.com/faustbrian/go-transactional-outbox/relay"

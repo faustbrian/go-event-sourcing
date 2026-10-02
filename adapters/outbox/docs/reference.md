@@ -10,6 +10,26 @@ caller-owned `pgx.Tx`. It releases that savepoint only after both batches stage
 and rolls it back after any error. The adapter never commits or publishes from
 the outer transaction and never claims exactly-once delivery.
 
+## V2 migration
+
+After the independent `adapters/outbox/v2.0.0` release is published, require
+`github.com/faustbrian/go-event-sourcing/adapters/outbox/v2@v2.0.0`.
+Change this adapter's imports to `/adapters/outbox/v2`, core imports to
+`/go-event-sourcing/v2`, and PostgreSQL imports to `/postgres/v2`. Public
+core-v2 and PostgreSQL-v2 must be available first. Source remains in the
+existing `adapters/outbox` directory and Go 1.27.0 remains the minimum.
+
+`TopicMessage`, `EnvelopeCodec`, `AppendPlan`, `Stager`, and `StageError`
+now use core-v2 and PostgreSQL-v2 named types. Do not mix their v1 and v2
+identities. Transactional Outbox remains at v1.0.0; this migration changes
+no envelope bytes, SQL, savepoint behavior, staging order, or transaction
+ownership. Existing v1 callers can retain the published outbox-v1 module
+with core-v1 and PostgreSQL-v1.
+
+`api/v1.0.0.txt` preserves the released v1 API; `api/baseline.txt` tracks
+the current adapter-major projection. The two nominal APIs are not
+interchangeable.
+
 ## Quick start
 
 Construct the outbox writer and envelope codec with the same limits:
