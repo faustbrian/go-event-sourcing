@@ -1,16 +1,20 @@
 # event-sourcing PostgreSQL
 
 `postgres` is the independently releasable PostgreSQL adapter for
-`github.com/faustbrian/go-event-sourcing`. Installing the core module
+`github.com/faustbrian/go-event-sourcing/v2`. Installing the core module
 does not add `pgx` or database dependencies.
 
 ## Install
 
 ```sh
-go get github.com/faustbrian/go-event-sourcing/postgres@v1
+go get github.com/faustbrian/go-event-sourcing/postgres/v2@v2.0.0
 ```
 
 ## Quick start
+
+The install command applies after `postgres/v2.0.0` is publicly released.
+Use core `/v2` types with PostgreSQL `/v2`; published PostgreSQL v1 remains
+available for core-v1 applications. See [migration guidance](docs/reference.md#v2-migration).
 
 ```go
 source, err := migrations.NewFSSource(eventpostgres.Migrations(), ".")
@@ -34,7 +38,7 @@ and follows its [persistence and durability family guidance](https://github.com/
 
 - [Documentation index](docs/README.md)
 - [Complete technical guide](docs/reference.md)
-- [Go API reference](https://pkg.go.dev/github.com/faustbrian/go-event-sourcing/postgres)
+- [Go API reference](https://pkg.go.dev/github.com/faustbrian/go-event-sourcing/postgres/v2)
 - [Parent package documentation](../docs/README.md)
 
 ## Compatibility and support

@@ -7,7 +7,7 @@
 
 ## API reference
 
-- [Go package documentation](https://pkg.go.dev/github.com/faustbrian/go-event-sourcing/postgres)
+- [Go package documentation](https://pkg.go.dev/github.com/faustbrian/go-event-sourcing/postgres/v2)
 
 ## Security and compatibility
 

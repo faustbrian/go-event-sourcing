@@ -12,6 +12,13 @@ All notable changes to this module are documented here.
 
 ### Changed
 
+- Adopt public core v2.0.0 through the independent
+  `github.com/faustbrian/go-event-sourcing/postgres/v2` module identity. Update
+  PostgreSQL and core imports and named types together; v1 modules remain
+  available and the current outbox-v1 adapter is not migrated. Source stays in
+  `postgres/` with Go 1.27.0, without SQL, encoding, ordering, or transaction
+  ownership changes.
+
 - Upgrade the OpenTelemetry SDK dependency graph to v1.45.0 to address
   GHSA-8wmf-6v46-5gfg in transitive dependencies.
 

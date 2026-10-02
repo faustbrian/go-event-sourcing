@@ -8,10 +8,15 @@ generator dependency:
 go get github.com/faustbrian/go-event-sourcing/v2@v2.0.0
 ```
 
-The core command applies after v2.0.0 is publicly available. Start with core
-and its `v2/memory` package. Optional integrations are independently versioned
-modules; the following published v1 modules still compose with core v1, not
-core v2:
+Start with public core v2.0.0 and its `v2/memory` package. After its independent
+`postgres/v2.0.0` publication, add the core-v2 PostgreSQL adapter:
+
+```sh
+go get github.com/faustbrian/go-event-sourcing/postgres/v2@v2.0.0
+```
+
+Optional integrations are independently versioned modules; the following
+published v1 modules still compose with core v1, not core v2:
 
 ```sh
 go get github.com/faustbrian/go-event-sourcing/postgres

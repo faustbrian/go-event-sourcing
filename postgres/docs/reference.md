@@ -4,14 +4,41 @@ This guide contains the complete behavioral and operational reference. Start
 with the [package overview](../README.md).
 
 `postgres` is the independently releasable PostgreSQL adapter for
-`github.com/faustbrian/go-event-sourcing`. Installing the core module
+`github.com/faustbrian/go-event-sourcing/v2`. Installing the core module
 does not add `pgx` or database dependencies.
 
 ## Install
 
 ```sh
-go get github.com/faustbrian/go-event-sourcing/postgres
+go get github.com/faustbrian/go-event-sourcing/postgres/v2@v2.0.0
 ```
+
+This command applies after `postgres/v2.0.0` is publicly released.
+
+## V2 migration
+
+Require public core `github.com/faustbrian/go-event-sourcing/v2@v2.0.0` and,
+after its independent publication, PostgreSQL
+`github.com/faustbrian/go-event-sourcing/postgres/v2@v2.0.0`. Move imports and
+type references together: `Store`, `TxWriter`, `AppendPlan`, `SnapshotStore`,
+`ProjectionStore`, and `TxCheckpointWriter` now use core-v2 messages, streams,
+versions, snapshots, and projection contracts. Core-v1 and core-v2 named types,
+interfaces, and sentinels are not interchangeable. The independently versioned
+module stays in `postgres/` on main; its tag is `postgres/v2.0.0`, not a core
+tag or a new source directory. Go 1.27.0 remains the minimum.
+
+This identity migration changes no SQL, embedded migration bytes, event or
+snapshot encoding, append ordering, reconciliation, or transaction ownership.
+It requires no database schema migration. Published v1 remains available for
+existing applications. The current `adapters/outbox` v1 module still uses
+core-v1 and PostgreSQL-v1; it cannot stage core-v2 plans or use PostgreSQL-v2
+writers without a separate coordinated major adoption after publication.
+
+`api/v1.0.0.txt` preserves the exact released PostgreSQL-v1 API from commit
+`9f7bffbb757620e0e0796d9fb564bf66e3cabf7a`; `api/baseline.txt` describes the
+current PostgreSQL major. Preservation does not claim cross-major compatibility.
+
+## Embedded migrations
 
 Apply the embedded migration through the repository's engine-neutral
 `migrations` package or another runner that understands the same directives:
