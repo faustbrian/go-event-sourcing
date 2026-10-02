@@ -63,9 +63,9 @@ A custom publisher implements `Publish(context.Context, outbox.Envelope) error`.
 Returning `nil` means the broker accepted the record under that adapter's
 documented acknowledgement policy. It never means end-to-end exactly once.
 
-The outbox module's [API reference](https://github.com/faustbrian/go-transactional-outbox/blob/main/docs/api.md),
-[architecture and crash matrix](https://github.com/faustbrian/go-transactional-outbox/blob/main/docs/architecture.md), and
-[delivery guarantees](https://github.com/faustbrian/go-transactional-outbox/blob/main/docs/guarantees.md) are authoritative for these
+The outbox module's [API reference](https://raw.githubusercontent.com/faustbrian/go-transactional-outbox/main/docs/api.md),
+[architecture and crash matrix](https://raw.githubusercontent.com/faustbrian/go-transactional-outbox/main/docs/architecture.md), and
+[delivery guarantees](https://raw.githubusercontent.com/faustbrian/go-transactional-outbox/main/docs/guarantees.md) are authoritative for these
 external contracts. Event-sourcing tests deliberately do not duplicate or
 weaken those guarantees.
 
