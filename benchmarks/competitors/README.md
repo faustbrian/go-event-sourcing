@@ -8,13 +8,16 @@ correctness checks separate from timing.
 
 | Implementation | Version | Tag commit | License | Release |
 | --- | --- | --- | --- | --- |
-| `event-sourcing` | workspace `v0.1.0` proxy | recorded by repository evidence | MIT | current workspace |
+| `event-sourcing/v2` | public `v2.0.0` | `4853d11063350471163b148ca25d7e823b60fe1a` | MIT | independently released core-v2 |
 | `looplab/eventhorizon` | `v0.17.0` | `d6fc4e05b8b85da191a68384866ee2cc9df74027` | Apache-2.0 | 2026-06-16 |
 | `hallgren/eventsourcing` | `v0.9.1` | `d0413861caa14cf722e0bcc33a3c11bb23882541` | MPL-2.0 | 2025-11-30 |
 | `thefabric-io/eventsourcing` | `v0.6.0` | `4ea44f21f8d041b8afd9476c17032824f788cdcf` | MIT | 2025-08-19 |
 
 `go.sum` pins module content checksums. The release dates and tag commits come
 from the projects' official GitHub releases and Go module origins.
+
+This private module adopts public core-v2 without changing comparison workloads
+or acquiring a public major release. Other comparison dependencies stay pinned.
 
 ## Workload contract
 

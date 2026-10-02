@@ -40,12 +40,23 @@ boundary; this is not blanket callback redaction.
 Independent nested modules retain their existing source locations and releases.
 Published PostgreSQL-v2 adopts public core-v2. The upcoming outbox-v2 major
 adopts both public producers together; the other nested modules retain
-their core-v1 requirements and are not core-v2 adapters. When a maintained module adopts core-v2 types, its
+their independent releases. Upcoming Kafka-v2, queue-v2, and OpenTelemetry-v2
+adopt public core-v2 directly; deprecated gokafka-v1 and gotelemetry-v1 retain
+core-v1. The private competitor module adopts core-v2 without a public tag.
+When a maintained module adopts core-v2 types, its
 own major suffix follows its directory: for example,
 `github.com/faustbrian/go-event-sourcing/postgres/v2`, not
 `github.com/faustbrian/go-event-sourcing/v2/postgres`. Publish core-v2 first,
 then PostgreSQL-v2 before an outbox-v2 adapter that depends on both. Queue,
 Kafka, and OpenTelemetry adoption may follow core independently.
+
+For those three upcoming adapters, require their own `/adapters/<name>/v2`
+identity only after its public release, and migrate caller core nominal types
+in the same application change. Their other dependencies, wire formats,
+algorithms, and telemetry instrumentation scope remain unchanged. See the
+[Kafka](../adapters/kafka/docs/reference.md#v2-migration),
+[queue](../adapters/queue/docs/reference.md#v2-migration), and
+[OpenTelemetry](../adapters/otel/docs/reference.md#v2-migration) guides.
 
 PostgreSQL-v2 changes public message, stream, version, snapshot, projection,
 and prepared-plan identities without changing SQL or stored data. Its existing

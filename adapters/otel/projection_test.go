@@ -7,9 +7,9 @@ import (
 	"strings"
 	"testing"
 
-	eventsourcing "github.com/faustbrian/go-event-sourcing"
-	"github.com/faustbrian/go-event-sourcing/memory"
-	"github.com/faustbrian/go-event-sourcing/projection"
+	eventsourcing "github.com/faustbrian/go-event-sourcing/v2"
+	"github.com/faustbrian/go-event-sourcing/v2/memory"
+	"github.com/faustbrian/go-event-sourcing/v2/projection"
 	"go.opentelemetry.io/otel/attribute"
 	"go.opentelemetry.io/otel/codes"
 	"go.opentelemetry.io/otel/propagation"

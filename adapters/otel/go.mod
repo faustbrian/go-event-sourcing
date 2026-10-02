@@ -1,9 +1,9 @@
-module github.com/faustbrian/go-event-sourcing/adapters/otel
+module github.com/faustbrian/go-event-sourcing/adapters/otel/v2
 
 go 1.27.0
 
 require (
-	github.com/faustbrian/go-event-sourcing v1.0.0
+	github.com/faustbrian/go-event-sourcing/v2 v2.0.0
 	github.com/faustbrian/go-kafka v1.0.0
 	go.opentelemetry.io/otel v1.45.0
 	go.opentelemetry.io/otel/metric v1.45.0

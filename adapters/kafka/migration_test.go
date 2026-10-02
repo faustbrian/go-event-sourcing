@@ -1,6 +1,6 @@
 package kafka_test
 
-import gokafka "github.com/faustbrian/go-event-sourcing/adapters/kafka"
+import gokafka "github.com/faustbrian/go-event-sourcing/adapters/kafka/v2"
 
 // Compile representative selectors with the compatibility alias documented
 // for consumers migrating from adapters/gokafka.

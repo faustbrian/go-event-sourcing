@@ -4,6 +4,13 @@ All notable changes to this module are documented here.
 
 ## [Unreleased]
 
+### Changed
+
+- Prepare the independent `/adapters/otel/v2` identity for v2.0.0 and adopt
+  public core-v2 nominal types. Preserve dependencies, signal names, the
+  unsuffixed instrumentation scope, and deprecated gotelemetry-v1 support.
+- Retain the released v1.0.2 API beside the current-major projection.
+
 ### Fixed
 
 - Upgrade the OpenTelemetry SDK dependency graph to v1.45.0 to address
