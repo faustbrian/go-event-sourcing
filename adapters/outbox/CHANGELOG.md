@@ -6,6 +6,12 @@ All notable changes to this module are documented here.
 
 ### Changed
 
+- Prepare the independent `/adapters/outbox/v2` module for v2.0.0, adopting
+  public core-v2 and PostgreSQL-v2 together. Public nominal types change;
+  callers must migrate all three identities together. Keep Transactional
+  Outbox v1 and all staging, codec, SQL, and transaction behavior unchanged.
+- Preserve the released v1 API snapshot alongside the current-major API.
+
 - Upgrade the OpenTelemetry SDK dependency graph to v1.45.0 to address
   GHSA-8wmf-6v46-5gfg in transitive dependencies.
 

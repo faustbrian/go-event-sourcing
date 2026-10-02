@@ -8,11 +8,18 @@ generator dependency:
 go get github.com/faustbrian/go-event-sourcing/v2@v2.0.0
 ```
 
-Start with public core v2.0.0 and its `v2/memory` package. After its independent
-`postgres/v2.0.0` publication, add the core-v2 PostgreSQL adapter:
+Start with public core v2.0.0 and its `v2/memory` package. Add the independently
+published core-v2 PostgreSQL adapter:
 
 ```sh
 go get github.com/faustbrian/go-event-sourcing/postgres/v2@v2.0.0
+```
+
+After its independent `adapters/outbox/v2.0.0` publication, the outbox-v2
+adapter composes these two public v2 producers with Transactional Outbox v1:
+
+```sh
+go get github.com/faustbrian/go-event-sourcing/adapters/outbox/v2@v2.0.0
 ```
 
 Optional integrations are independently versioned modules; the following
