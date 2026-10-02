@@ -5,10 +5,13 @@ module has no database, queue, outbox, Kafka, telemetry, framework, or
 generator dependency:
 
 ```sh
-go get github.com/faustbrian/go-event-sourcing
+go get github.com/faustbrian/go-event-sourcing/v2@v2.0.0
 ```
 
-Optional integrations are independently versioned modules:
+The core command applies after v2.0.0 is publicly available. Start with core
+and its `v2/memory` package. Optional integrations are independently versioned
+modules; the following published v1 modules still compose with core v1, not
+core v2:
 
 ```sh
 go get github.com/faustbrian/go-event-sourcing/postgres
@@ -18,9 +21,11 @@ go get github.com/faustbrian/go-event-sourcing/adapters/queue
 go get github.com/faustbrian/go-event-sourcing/adapters/otel
 ```
 
-Before the first tagged release, these commands describe the stable module
-boundaries but consumers must use a reviewed source revision. Do not add
-permanent `replace` directives or local paths to a releasable application.
+Do not insert the core's `/v2` before a nested module directory or assume that
+a nested v1 module implements core-v2 interfaces. See
+[core-v2 migration](release-notes.md#adopting-core-v2) for independent module
+adoption and publication order. Do not add permanent `replace` directives or
+local paths to a releasable application.
 
 ## Core packages
 

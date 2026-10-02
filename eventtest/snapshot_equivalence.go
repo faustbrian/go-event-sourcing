@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 
-	eventsourcing "github.com/faustbrian/go-event-sourcing"
+	eventsourcing "github.com/faustbrian/go-event-sourcing/v2"
 )
 
 // SnapshotEquivalenceConfig supplies independent full-history and

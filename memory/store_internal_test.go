@@ -7,7 +7,7 @@ import (
 	"testing"
 	"time"
 
-	eventsourcing "github.com/faustbrian/go-event-sourcing"
+	eventsourcing "github.com/faustbrian/go-event-sourcing/v2"
 )
 
 func TestStoreChecksCancellationAfterWaitingForWriteOwnership(t *testing.T) {

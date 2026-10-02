@@ -4,9 +4,9 @@ import (
 	"context"
 	"fmt"
 
-	eventsourcing "github.com/faustbrian/go-event-sourcing"
-	"github.com/faustbrian/go-event-sourcing/memory"
-	"github.com/faustbrian/go-event-sourcing/projection"
+	eventsourcing "github.com/faustbrian/go-event-sourcing/v2"
+	"github.com/faustbrian/go-event-sourcing/v2/memory"
+	"github.com/faustbrian/go-event-sourcing/v2/projection"
 )
 
 func Example_replayProjection() {

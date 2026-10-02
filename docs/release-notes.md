@@ -17,6 +17,45 @@ entries describe pending changes and do not alter the latest tagged contract.
 A release note must not imply that a local check, adapter test, or benchmark is
 deployed or production-verified.
 
+## Adopting core v2
+
+After v2.0.0 is publicly available, require
+`github.com/faustbrian/go-event-sourcing/v2@v2.0.0` and insert `/v2` immediately
+after `go-event-sourcing` in imports of the core, `eventtest`, `memory`,
+`processmanager`, `projection`, and `snapshot`. Go 1.27.0 remains the minimum.
+Source stays at the repository root, without a `v2` source directory.
+
+The new module identity changes Go named types, interface method signatures,
+sentinel identities, and reflection paths. Do not mix v1 and v2 messages,
+stores, codecs, dispatchers, or projection interfaces. Stored event names and
+schema versions remain explicit data; this import migration does not change
+stored envelopes, wire formats, PostgreSQL schemas, or application history.
+
+Built-in codec, registration, upcaster, and dispatcher errors no longer print
+event identities or content types. Use `errors.Is` for stable categories and
+explicit trusted cause inspection where documented, rather than parsing error
+text. Application-owned callback errors remain a separate caller-controlled
+boundary; this is not blanket callback redaction.
+
+Independent nested modules retain their existing source locations, module
+paths, releases, and core-v1 requirements in this root-only transition. They
+are not core-v2 adapters. When a maintained module adopts core-v2 types, its
+own major suffix follows its directory: for example,
+`github.com/faustbrian/go-event-sourcing/postgres/v2`, not
+`github.com/faustbrian/go-event-sourcing/v2/postgres`. Publish core-v2 first,
+then PostgreSQL-v2 before an outbox-v2 adapter that depends on both. Queue,
+Kafka, and OpenTelemetry adoption may follow core independently.
+
+The deprecated `adapters/gokafka` and `adapters/gotelemetry` v1 implementations
+remain unchanged during their existing support interval. Root-v2 availability
+does not retire them or change their published contracts. Existing v1
+applications can continue using their selected public releases.
+
+`api/v1.0.0.txt` preserves the exact released root API from commit
+`9f7bffbb757620e0e0796d9fb564bf66e3cabf7a`. `api/baseline.txt` is the current
+root-major API snapshot; cross-major compatibility is an adoption decision,
+not an assertion that the two module identities are interchangeable.
+
 ## Semantic-versioning surfaces
 
 Treat the following as compatibility-sensitive even when their Go declarations

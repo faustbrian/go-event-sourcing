@@ -5,7 +5,7 @@
 [![Coverage](https://img.shields.io/badge/coverage-100%25_required-blue)](CONTRIBUTING.md#verification)
 [![Mutation](https://img.shields.io/badge/mutation-100%25_required-blue)](CONTRIBUTING.md#verification)
 [![Documentation](https://img.shields.io/badge/docs-checked_in_CI-blue)](docs/)
-[![Go Reference](https://pkg.go.dev/badge/github.com/faustbrian/go-event-sourcing.svg)](https://pkg.go.dev/github.com/faustbrian/go-event-sourcing)
+[![Go Reference](https://pkg.go.dev/badge/github.com/faustbrian/go-event-sourcing/v2.svg)](https://pkg.go.dev/github.com/faustbrian/go-event-sourcing/v2)
 [![Release](https://img.shields.io/github/v/release/faustbrian/go-event-sourcing?sort=semver)](https://github.com/faustbrian/go-event-sourcing/releases)
 [![Go](https://img.shields.io/badge/go-1.27.0-00ADD8?logo=go)](https://go.dev/)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
@@ -23,7 +23,8 @@ small consumer-owned interfaces, and `context.Context` at I/O boundaries. It
 does not require CQRS, a command bus, a query bus, a queue, an outbox, a
 framework, reflection-based handler discovery, or code generation.
 
-The v1 API and documented adapter contracts follow the compatibility policy in
+The core v2 API and independently versioned adapter contracts follow the
+compatibility policy in
 [the release notes](docs/release-notes.md).
 
 For ecosystem-wide package selection, construction, ownership, and lifecycle
@@ -31,6 +32,11 @@ guidance, see the versioned [Golib ecosystem index](https://github.com/faustbria
 and its [persistence and durability family guidance](https://github.com/faustbrian/go-library-tools/blob/v1.4.0/docs/ecosystem/design-language.md#package-families-and-selection).
 
 ## Quickstart
+
+After v2.0.0 is published, install the core with
+`go get github.com/faustbrian/go-event-sourcing/v2@v2.0.0`.
+See [adopting core v2](docs/release-notes.md#adopting-core-v2) before changing
+existing imports or composing independently versioned adapters.
 
 See the complete [five-minute quickstart](docs/quickstart.md) for one aggregate
 using the conformant in-memory store and the same repository boundary used by
@@ -90,7 +96,8 @@ justify its modeling, evolution, replay, privacy, and operational costs.
 
 ## Status
 
-The stable v1 API follows semantic-versioning compatibility. The
+The core v2 API follows semantic-versioning compatibility. Published v1
+consumers and independent nested modules retain their own version identities. The
 compatibility matrix distinguishes implemented, excluded, and externally owned
 capabilities; release readiness still depends on the complete repository gates
 described in the release notes.

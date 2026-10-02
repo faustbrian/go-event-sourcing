@@ -15,6 +15,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Prepare the core v2.0.0 module at
+  `github.com/faustbrian/go-event-sourcing/v2`, retaining Go 1.27.0 and all six
+  root packages at their existing source locations. Insert `/v2` in core and
+  core-subpackage imports; Go type and sentinel identities differ across
+  majors. Independent PostgreSQL and adapter modules still consume published
+  core v1 and must not be used as core-v2 implementations until they adopt it
+  through their own compatible public releases. See the
+  [migration guidance](docs/release-notes.md#adopting-core-v2).
+
 - Prefer target-oriented `adapters/kafka` and `adapters/otel` module paths.
   The released `adapters/gokafka` and `adapters/gotelemetry` v1 paths remain
   deprecated compatibility implementations for the frozen support interval.

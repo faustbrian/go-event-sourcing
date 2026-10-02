@@ -6,7 +6,7 @@ import (
 	"context"
 	"sync"
 
-	eventsourcing "github.com/faustbrian/go-event-sourcing"
+	eventsourcing "github.com/faustbrian/go-event-sourcing/v2"
 )
 
 // Store is a concurrency-safe in-memory event store.

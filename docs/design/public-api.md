@@ -4,6 +4,10 @@ This document validates representative workflows before implementation. Names
 are stable at v1; the observable contracts and ownership decisions require
 explicit review before they change.
 
+The current root module uses `github.com/faustbrian/go-event-sourcing/v2`.
+The [core-v2 migration guidance](../release-notes.md#adopting-core-v2) separates
+the new Go identities from independent nested-module and stored-data contracts.
+
 ## Design principles
 
 - The aggregate repository, event store, and dispatcher remain separately

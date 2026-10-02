@@ -1,6 +1,6 @@
 package eventsourcing_test
 
-import eventsourcing "github.com/faustbrian/go-event-sourcing"
+import eventsourcing "github.com/faustbrian/go-event-sourcing/v2"
 
 type messageCodecContract struct{}
 
