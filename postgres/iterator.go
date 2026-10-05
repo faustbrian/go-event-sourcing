@@ -7,7 +7,7 @@ import (
 	"math"
 	"time"
 
-	eventsourcing "github.com/faustbrian/go-event-sourcing"
+	eventsourcing "github.com/faustbrian/go-event-sourcing/v2"
 	"github.com/jackc/pgx/v5"
 )
 
@@ -168,10 +168,7 @@ func scanMessage(row rowScanner) (eventsourcing.Message, error) {
 
 	metadata := make(map[string]string)
 	if err := json.Unmarshal(metadataJSON, &metadata); err != nil {
-		return eventsourcing.Message{}, errors.Join(
-			eventsourcing.ErrCorruptHistory,
-			err,
-		)
+		return eventsourcing.Message{}, &storedDataError{category: eventsourcing.ErrCorruptHistory, cause: err}
 	}
 	stream, err := eventsourcing.NewStreamID(aggregateType, aggregateID)
 	if err != nil {
@@ -221,4 +218,19 @@ func dereference(value *string) string {
 
 func corrupt(cause error) error {
 	return errors.Join(eventsourcing.ErrCorruptHistory, cause)
+}
+
+// storedDataError keeps parser diagnostics inspectable without printing stored
+// input through the ordinary error string.
+type storedDataError struct {
+	category error
+	cause    error
+}
+
+func (err *storedDataError) Error() string {
+	return err.category.Error()
+}
+
+func (err *storedDataError) Unwrap() []error {
+	return []error{err.category, err.cause}
 }

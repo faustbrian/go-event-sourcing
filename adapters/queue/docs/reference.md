@@ -12,6 +12,23 @@ The adapter provides a bounded canonical payload, synchronous publication in
 input order, explicit enqueue ambiguity, and queue-owned settlement. It does
 not claim exactly-once delivery or broker-neutral durability and ordering.
 
+## V2 migration
+
+After `adapters/queue/v2.0.0` is published, require
+`github.com/faustbrian/go-event-sourcing/adapters/queue/v2@v2.0.0` and public
+`github.com/faustbrian/go-event-sourcing/v2@v2.0.0`. The adapter's own suffix
+follows its existing directory. Go 1.27.0 remains the minimum; source remains
+in `adapters/queue`.
+
+Codec deliveries, dispatchers, and task-handler consumers now use core-v2 named
+types. Migrate caller identities together; v1 and v2 are not interchangeable.
+Go-Queue remains v1.0.0. Envelope bytes, queue acceptance, input ordering, and
+queue-owned settlement remain unchanged. Existing queue-v1 callers can retain
+their public release with core-v1.
+
+`api/v1.0.0.txt` preserves the released v1 API. `api/baseline.txt` tracks the
+current major; it does not assert cross-major nominal compatibility.
+
 ## Quick start
 
 ```go

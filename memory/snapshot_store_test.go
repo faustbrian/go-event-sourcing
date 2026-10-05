@@ -6,8 +6,8 @@ import (
 	"testing"
 	"time"
 
-	eventsourcing "github.com/faustbrian/go-event-sourcing"
-	"github.com/faustbrian/go-event-sourcing/memory"
+	eventsourcing "github.com/faustbrian/go-event-sourcing/v2"
+	"github.com/faustbrian/go-event-sourcing/v2/memory"
 )
 
 func TestSnapshotStoreSavesLoadsAndDeletesDerivedState(t *testing.T) {

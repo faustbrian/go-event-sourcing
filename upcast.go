@@ -209,12 +209,7 @@ func NewUpcasterChain(rules ...UpcastRule) (*UpcasterChain, error) {
 		}
 		identity := upcastIdentity{name: rule.name.value, version: rule.version}
 		if _, duplicate := registered[identity]; duplicate {
-			return nil, fmt.Errorf(
-				"%w: %s/%d",
-				ErrDuplicateRegistration,
-				rule.name.String(),
-				rule.version,
-			)
+			return nil, ErrDuplicateRegistration
 		}
 		registered[identity] = rule
 	}

@@ -188,7 +188,7 @@ func (consumer Consumer) configureSyncDispatcher(
 		return invalid("consumer", "must be constructed")
 	}
 	if _, duplicate := builder.identities[consumer.id]; duplicate {
-		return fmt.Errorf("%w: %s", ErrDuplicateConsumer, consumer.id)
+		return ErrDuplicateConsumer
 	}
 	builder.identities[consumer.id] = struct{}{}
 	consumer.filters = append([]DeliveryFilter(nil), consumer.filters...)

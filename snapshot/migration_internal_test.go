@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	eventsourcing "github.com/faustbrian/go-event-sourcing"
+	eventsourcing "github.com/faustbrian/go-event-sourcing/v2"
 )
 
 func TestStateMigrationConstructionRejectsInvalidDefinitions(t *testing.T) {

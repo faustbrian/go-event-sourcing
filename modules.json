@@ -5,14 +5,14 @@
   "modules": [
     {
       "directory": ".",
-      "module_path": "github.com/faustbrian/go-event-sourcing",
+      "module_path": "github.com/faustbrian/go-event-sourcing/v2",
       "go_version": "1.27.0",
       "packages": [
         {
           "module_directory": ".",
           "directory": ".",
           "name": "eventsourcing",
-          "import_path": "github.com/faustbrian/go-event-sourcing",
+          "import_path": "github.com/faustbrian/go-event-sourcing/v2",
           "kind": "public",
           "production": true,
           "executable": true,
@@ -24,7 +24,7 @@
           "module_directory": ".",
           "directory": "eventtest",
           "name": "eventtest",
-          "import_path": "github.com/faustbrian/go-event-sourcing/eventtest",
+          "import_path": "github.com/faustbrian/go-event-sourcing/v2/eventtest",
           "kind": "test support",
           "production": false,
           "executable": true,
@@ -36,7 +36,7 @@
           "module_directory": ".",
           "directory": "memory",
           "name": "memory",
-          "import_path": "github.com/faustbrian/go-event-sourcing/memory",
+          "import_path": "github.com/faustbrian/go-event-sourcing/v2/memory",
           "kind": "public",
           "production": true,
           "executable": true,
@@ -48,7 +48,7 @@
           "module_directory": ".",
           "directory": "processmanager",
           "name": "processmanager",
-          "import_path": "github.com/faustbrian/go-event-sourcing/processmanager",
+          "import_path": "github.com/faustbrian/go-event-sourcing/v2/processmanager",
           "kind": "public",
           "production": true,
           "executable": true,
@@ -60,7 +60,7 @@
           "module_directory": ".",
           "directory": "projection",
           "name": "projection",
-          "import_path": "github.com/faustbrian/go-event-sourcing/projection",
+          "import_path": "github.com/faustbrian/go-event-sourcing/v2/projection",
           "kind": "public",
           "production": true,
           "executable": true,
@@ -72,7 +72,7 @@
           "module_directory": ".",
           "directory": "snapshot",
           "name": "snapshot",
-          "import_path": "github.com/faustbrian/go-event-sourcing/snapshot",
+          "import_path": "github.com/faustbrian/go-event-sourcing/v2/snapshot",
           "kind": "public",
           "production": true,
           "executable": true,
@@ -89,19 +89,16 @@
       "family_label": "Persistence And Durability",
       "family_description": "Durable state, delivery, coordination, recovery, and operational lifecycle.",
       "family_order": 4,
-      "version": "1.0.0",
+      "version": "2.0.0",
       "tag_prefix": "v",
       "owned_dependencies": [],
       "reverse_owned_dependencies": [
-        "github.com/faustbrian/go-cloudevents/adapters/golib",
-        "github.com/faustbrian/go-event-sourcing/adapters/outbox",
-        "github.com/faustbrian/go-event-sourcing/adapters/queue",
-        "github.com/faustbrian/go-event-sourcing/benchmarks/competitors",
-        "github.com/faustbrian/go-event-sourcing/postgres",
-        "github.com/faustbrian/go-event-sourcing/adapters/gokafka",
-        "github.com/faustbrian/go-event-sourcing/adapters/gotelemetry",
-        "github.com/faustbrian/go-event-sourcing/adapters/kafka",
-        "github.com/faustbrian/go-event-sourcing/adapters/otel"
+        "github.com/faustbrian/go-event-sourcing/postgres/v2",
+        "github.com/faustbrian/go-event-sourcing/adapters/outbox/v2",
+        "github.com/faustbrian/go-event-sourcing/adapters/kafka/v2",
+        "github.com/faustbrian/go-event-sourcing/adapters/otel/v2",
+        "github.com/faustbrian/go-event-sourcing/adapters/queue/v2",
+        "github.com/faustbrian/go-event-sourcing/benchmarks/competitors"
       ],
       "external_runtime_dependencies": [],
       "required_services": [],
@@ -143,15 +140,15 @@
         ],
         "public_package_identifier": "eventsourcing",
         "primary_entry_packages": [
-          "github.com/faustbrian/go-event-sourcing"
+          "github.com/faustbrian/go-event-sourcing/v2"
         ],
         "package_selection": {
-          "github.com/faustbrian/go-event-sourcing": "Use for event messages, store and dispatcher contracts, aggregate repositories, codecs, and upcasting.",
-          "github.com/faustbrian/go-event-sourcing/eventtest": "Use in tests for deterministic event-store, dispatcher, projection, process-manager, and snapshot contract scenarios.",
-          "github.com/faustbrian/go-event-sourcing/memory": "Use for synchronized in-memory event, snapshot, and projection stores where process-local durability is sufficient.",
-          "github.com/faustbrian/go-event-sourcing/processmanager": "Use to coordinate explicit stateful reactions that consume events and emit commands.",
-          "github.com/faustbrian/go-event-sourcing/projection": "Use for bounded replay, filtering, checkpoints, poison handling, and projection lifecycle control.",
-          "github.com/faustbrian/go-event-sourcing/snapshot": "Use for snapshot policies, migration, and aggregate snapshot management."
+          "github.com/faustbrian/go-event-sourcing/v2": "Use for event messages, store and dispatcher contracts, aggregate repositories, codecs, and upcasting.",
+          "github.com/faustbrian/go-event-sourcing/v2/eventtest": "Use in tests for deterministic event-store, dispatcher, projection, process-manager, and snapshot contract scenarios.",
+          "github.com/faustbrian/go-event-sourcing/v2/memory": "Use for synchronized in-memory event, snapshot, and projection stores where process-local durability is sufficient.",
+          "github.com/faustbrian/go-event-sourcing/v2/processmanager": "Use to coordinate explicit stateful reactions that consume events and emit commands.",
+          "github.com/faustbrian/go-event-sourcing/v2/projection": "Use for bounded replay, filtering, checkpoints, poison handling, and projection lifecycle control.",
+          "github.com/faustbrian/go-event-sourcing/v2/snapshot": "Use for snapshot policies, migration, and aggregate snapshot management."
         },
         "lifecycle_status": "active",
         "maturity": "stable",
@@ -175,18 +172,8 @@
           "background_work": "none"
         },
         "optional_owned_dependencies": [],
-        "adapters": [
-          "github.com/faustbrian/go-event-sourcing/adapters/gokafka",
-          "github.com/faustbrian/go-event-sourcing/adapters/gotelemetry",
-          "github.com/faustbrian/go-event-sourcing/adapters/kafka",
-          "github.com/faustbrian/go-event-sourcing/adapters/otel",
-          "github.com/faustbrian/go-event-sourcing/adapters/outbox",
-          "github.com/faustbrian/go-event-sourcing/adapters/queue",
-          "github.com/faustbrian/go-event-sourcing/postgres"
-        ],
-        "companions": [
-          "github.com/faustbrian/go-cloudevents/adapters/golib"
-        ],
+        "adapters": [],
+        "companions": [],
         "supported_go": {
           "minimum": "1.27.0",
           "tested": [
@@ -208,7 +195,7 @@
           "examples": "docs/examples.md",
           "faq": "docs/faq.md",
           "changelog": "CHANGELOG.md",
-          "pkg_go_dev": "https://pkg.go.dev/github.com/faustbrian/go-event-sourcing",
+          "pkg_go_dev": "https://pkg.go.dev/github.com/faustbrian/go-event-sourcing/v2",
           "ecosystem_index": "https://github.com/faustbrian/go-library-tools/blob/v1.4.0/docs/ecosystem/README.md"
         },
         "known_good_compatibility_sets": [],
@@ -506,14 +493,14 @@
     },
     {
       "directory": "adapters/outbox",
-      "module_path": "github.com/faustbrian/go-event-sourcing/adapters/outbox",
+      "module_path": "github.com/faustbrian/go-event-sourcing/adapters/outbox/v2",
       "go_version": "1.27.0",
       "packages": [
         {
           "module_directory": "adapters/outbox",
           "directory": ".",
           "name": "eventoutbox",
-          "import_path": "github.com/faustbrian/go-event-sourcing/adapters/outbox",
+          "import_path": "github.com/faustbrian/go-event-sourcing/adapters/outbox/v2",
           "kind": "public",
           "production": true,
           "executable": true,
@@ -530,11 +517,11 @@
       "family_label": "Persistence And Durability",
       "family_description": "Durable state, delivery, coordination, recovery, and operational lifecycle.",
       "family_order": 4,
-      "version": "1.0.0",
+      "version": "2.0.0",
       "tag_prefix": "adapters/outbox/v",
       "owned_dependencies": [
-        "github.com/faustbrian/go-event-sourcing",
-        "github.com/faustbrian/go-event-sourcing/postgres",
+        "github.com/faustbrian/go-event-sourcing/v2",
+        "github.com/faustbrian/go-event-sourcing/postgres/v2",
         "github.com/faustbrian/go-transactional-outbox"
       ],
       "reverse_owned_dependencies": [],
@@ -582,10 +569,10 @@
         ],
         "public_package_identifier": "eventoutbox",
         "primary_entry_packages": [
-          "github.com/faustbrian/go-event-sourcing/adapters/outbox"
+          "github.com/faustbrian/go-event-sourcing/adapters/outbox/v2"
         ],
         "package_selection": {
-          "github.com/faustbrian/go-event-sourcing/adapters/outbox": "Use when event rows and transactional-outbox envelopes must be staged atomically inside a caller-owned pgx transaction."
+          "github.com/faustbrian/go-event-sourcing/adapters/outbox/v2": "Use when event rows and transactional-outbox envelopes must be staged atomically inside a caller-owned pgx transaction."
         },
         "lifecycle_status": "active",
         "maturity": "stable",
@@ -631,7 +618,7 @@
           "examples": "adapters/outbox/stager_test.go",
           "faq": "adapters/outbox/docs/reference.md",
           "changelog": "adapters/outbox/CHANGELOG.md",
-          "pkg_go_dev": "https://pkg.go.dev/github.com/faustbrian/go-event-sourcing/adapters/outbox",
+          "pkg_go_dev": "https://pkg.go.dev/github.com/faustbrian/go-event-sourcing/adapters/outbox/v2",
           "ecosystem_index": "https://github.com/faustbrian/go-library-tools/blob/v1.4.0/docs/ecosystem/README.md"
         },
         "known_good_compatibility_sets": [],
@@ -644,14 +631,14 @@
     },
     {
       "directory": "adapters/queue",
-      "module_path": "github.com/faustbrian/go-event-sourcing/adapters/queue",
+      "module_path": "github.com/faustbrian/go-event-sourcing/adapters/queue/v2",
       "go_version": "1.27.0",
       "packages": [
         {
           "module_directory": "adapters/queue",
           "directory": ".",
           "name": "eventqueue",
-          "import_path": "github.com/faustbrian/go-event-sourcing/adapters/queue",
+          "import_path": "github.com/faustbrian/go-event-sourcing/adapters/queue/v2",
           "kind": "public",
           "production": true,
           "executable": true,
@@ -668,10 +655,10 @@
       "family_label": "Persistence And Durability",
       "family_description": "Durable state, delivery, coordination, recovery, and operational lifecycle.",
       "family_order": 4,
-      "version": "1.0.0",
+      "version": "2.0.0",
       "tag_prefix": "adapters/queue/v",
       "owned_dependencies": [
-        "github.com/faustbrian/go-event-sourcing",
+        "github.com/faustbrian/go-event-sourcing/v2",
         "github.com/faustbrian/go-queue"
       ],
       "reverse_owned_dependencies": [],
@@ -715,10 +702,10 @@
         ],
         "public_package_identifier": "eventqueue",
         "primary_entry_packages": [
-          "github.com/faustbrian/go-event-sourcing/adapters/queue"
+          "github.com/faustbrian/go-event-sourcing/adapters/queue/v2"
         ],
         "package_selection": {
-          "github.com/faustbrian/go-event-sourcing/adapters/queue": "Use at a go-queue boundary for bounded event envelopes, explicit enqueue ambiguity, and live or replay handling."
+          "github.com/faustbrian/go-event-sourcing/adapters/queue/v2": "Use at a go-queue boundary for bounded event envelopes, explicit enqueue ambiguity, and live or replay handling."
         },
         "lifecycle_status": "active",
         "maturity": "stable",
@@ -761,7 +748,7 @@
           "examples": "adapters/queue/README.md",
           "faq": "adapters/queue/docs/reference.md",
           "changelog": "adapters/queue/CHANGELOG.md",
-          "pkg_go_dev": "https://pkg.go.dev/github.com/faustbrian/go-event-sourcing/adapters/queue",
+          "pkg_go_dev": "https://pkg.go.dev/github.com/faustbrian/go-event-sourcing/adapters/queue/v2",
           "ecosystem_index": "https://github.com/faustbrian/go-library-tools/blob/v1.4.0/docs/ecosystem/README.md"
         },
         "known_good_compatibility_sets": [],
@@ -788,7 +775,7 @@
       "version": "unreleased",
       "tag_prefix": "benchmarks/competitors/v",
       "owned_dependencies": [
-        "github.com/faustbrian/go-event-sourcing"
+        "github.com/faustbrian/go-event-sourcing/v2"
       ],
       "reverse_owned_dependencies": [],
       "external_runtime_dependencies": [
@@ -823,14 +810,14 @@
     },
     {
       "directory": "postgres",
-      "module_path": "github.com/faustbrian/go-event-sourcing/postgres",
+      "module_path": "github.com/faustbrian/go-event-sourcing/postgres/v2",
       "go_version": "1.27.0",
       "packages": [
         {
           "module_directory": "postgres",
           "directory": ".",
           "name": "postgres",
-          "import_path": "github.com/faustbrian/go-event-sourcing/postgres",
+          "import_path": "github.com/faustbrian/go-event-sourcing/postgres/v2",
           "kind": "public",
           "production": true,
           "executable": true,
@@ -839,7 +826,7 @@
           "build_tags": []
         }
       ],
-      "purpose": "`postgres` is the independently releasable PostgreSQL adapter for `github.com/faustbrian/go-event-sourcing`. Installing the core module does not add `pgx` or database dependencies.",
+      "purpose": "`postgres` is the independently releasable PostgreSQL adapter for `github.com/faustbrian/go-event-sourcing/v2`. Installing the core module does not add `pgx` or database dependencies.",
       "lifecycle": "stable",
       "kind": "public library",
       "releasable": true,
@@ -847,13 +834,13 @@
       "family_label": "Persistence And Durability",
       "family_description": "Durable state, delivery, coordination, recovery, and operational lifecycle.",
       "family_order": 4,
-      "version": "1.0.0",
+      "version": "2.0.0",
       "tag_prefix": "postgres/v",
       "owned_dependencies": [
-        "github.com/faustbrian/go-event-sourcing"
+        "github.com/faustbrian/go-event-sourcing/v2"
       ],
       "reverse_owned_dependencies": [
-        "github.com/faustbrian/go-event-sourcing/adapters/outbox"
+        "github.com/faustbrian/go-event-sourcing/adapters/outbox/v2"
       ],
       "external_runtime_dependencies": [
         "github.com/jackc/pgx/v5",
@@ -898,10 +885,10 @@
         ],
         "public_package_identifier": "postgres",
         "primary_entry_packages": [
-          "github.com/faustbrian/go-event-sourcing/postgres"
+          "github.com/faustbrian/go-event-sourcing/postgres/v2"
         ],
         "package_selection": {
-          "github.com/faustbrian/go-event-sourcing/postgres": "Use for pgx-backed event, snapshot, projection, checkpoint, transaction-writer, and embedded migration implementations."
+          "github.com/faustbrian/go-event-sourcing/postgres/v2": "Use for pgx-backed event, snapshot, projection, checkpoint, transaction-writer, and embedded migration implementations."
         },
         "lifecycle_status": "active",
         "maturity": "stable",
@@ -948,7 +935,7 @@
           "examples": "postgres/store_test.go",
           "faq": "postgres/docs/reference.md",
           "changelog": "postgres/CHANGELOG.md",
-          "pkg_go_dev": "https://pkg.go.dev/github.com/faustbrian/go-event-sourcing/postgres",
+          "pkg_go_dev": "https://pkg.go.dev/github.com/faustbrian/go-event-sourcing/postgres/v2",
           "ecosystem_index": "https://github.com/faustbrian/go-library-tools/blob/v1.4.0/docs/ecosystem/README.md"
         },
         "known_good_compatibility_sets": [],
@@ -961,14 +948,14 @@
     },
     {
       "directory": "adapters/kafka",
-      "module_path": "github.com/faustbrian/go-event-sourcing/adapters/kafka",
+      "module_path": "github.com/faustbrian/go-event-sourcing/adapters/kafka/v2",
       "go_version": "1.27.0",
       "packages": [
         {
           "module_directory": "adapters/kafka",
           "directory": ".",
           "name": "kafka",
-          "import_path": "github.com/faustbrian/go-event-sourcing/adapters/kafka",
+          "import_path": "github.com/faustbrian/go-event-sourcing/adapters/kafka/v2",
           "kind": "public",
           "production": true,
           "executable": true,
@@ -985,10 +972,10 @@
       "family_label": "Persistence And Durability",
       "family_description": "Durable state, delivery, coordination, recovery, and operational lifecycle.",
       "family_order": 4,
-      "version": "1.0.2",
+      "version": "2.0.0",
       "tag_prefix": "adapters/kafka/v",
       "owned_dependencies": [
-        "github.com/faustbrian/go-event-sourcing",
+        "github.com/faustbrian/go-event-sourcing/v2",
         "github.com/faustbrian/go-kafka"
       ],
       "reverse_owned_dependencies": [],
@@ -1038,10 +1025,10 @@
         ],
         "public_package_identifier": "kafka",
         "primary_entry_packages": [
-          "github.com/faustbrian/go-event-sourcing/adapters/kafka"
+          "github.com/faustbrian/go-event-sourcing/adapters/kafka/v2"
         ],
         "package_selection": {
-          "github.com/faustbrian/go-event-sourcing/adapters/kafka": "Use at a Kafka boundary for bounded event record mapping, direct publication, consumer handling, and dead-letter policy."
+          "github.com/faustbrian/go-event-sourcing/adapters/kafka/v2": "Use at a Kafka boundary for bounded event record mapping, direct publication, consumer handling, and dead-letter policy."
         },
         "lifecycle_status": "active",
         "maturity": "stable",
@@ -1093,7 +1080,7 @@
           "examples": "adapters/kafka/example_test.go",
           "faq": "adapters/kafka/docs/reference.md",
           "changelog": "adapters/kafka/CHANGELOG.md",
-          "pkg_go_dev": "https://pkg.go.dev/github.com/faustbrian/go-event-sourcing/adapters/kafka",
+          "pkg_go_dev": "https://pkg.go.dev/github.com/faustbrian/go-event-sourcing/adapters/kafka/v2",
           "ecosystem_index": "https://github.com/faustbrian/go-library-tools/blob/v1.4.0/docs/ecosystem/README.md"
         },
         "known_good_compatibility_sets": [],
@@ -1106,14 +1093,14 @@
     },
     {
       "directory": "adapters/otel",
-      "module_path": "github.com/faustbrian/go-event-sourcing/adapters/otel",
+      "module_path": "github.com/faustbrian/go-event-sourcing/adapters/otel/v2",
       "go_version": "1.27.0",
       "packages": [
         {
           "module_directory": "adapters/otel",
           "directory": ".",
           "name": "otel",
-          "import_path": "github.com/faustbrian/go-event-sourcing/adapters/otel",
+          "import_path": "github.com/faustbrian/go-event-sourcing/adapters/otel/v2",
           "kind": "public",
           "production": true,
           "executable": true,
@@ -1130,10 +1117,10 @@
       "family_label": "Persistence And Durability",
       "family_description": "Durable state, delivery, coordination, recovery, and operational lifecycle.",
       "family_order": 4,
-      "version": "1.0.2",
+      "version": "2.0.0",
       "tag_prefix": "adapters/otel/v",
       "owned_dependencies": [
-        "github.com/faustbrian/go-event-sourcing",
+        "github.com/faustbrian/go-event-sourcing/v2",
         "github.com/faustbrian/go-kafka"
       ],
       "reverse_owned_dependencies": [],
@@ -1180,10 +1167,10 @@
         ],
         "public_package_identifier": "otel",
         "primary_entry_packages": [
-          "github.com/faustbrian/go-event-sourcing/adapters/otel"
+          "github.com/faustbrian/go-event-sourcing/adapters/otel/v2"
         ],
         "package_selection": {
-          "github.com/faustbrian/go-event-sourcing/adapters/otel": "Use to wrap event-sourcing boundaries with explicit OpenTelemetry tracing, metrics, and bounded Kafka propagation."
+          "github.com/faustbrian/go-event-sourcing/adapters/otel/v2": "Use to wrap event-sourcing boundaries with explicit OpenTelemetry tracing, metrics, and bounded Kafka propagation."
         },
         "lifecycle_status": "active",
         "maturity": "stable",
@@ -1235,7 +1222,7 @@
           "examples": "adapters/otel/example_test.go",
           "faq": "adapters/otel/docs/reference.md",
           "changelog": "adapters/otel/CHANGELOG.md",
-          "pkg_go_dev": "https://pkg.go.dev/github.com/faustbrian/go-event-sourcing/adapters/otel",
+          "pkg_go_dev": "https://pkg.go.dev/github.com/faustbrian/go-event-sourcing/adapters/otel/v2",
           "ecosystem_index": "https://github.com/faustbrian/go-library-tools/blob/v1.4.0/docs/ecosystem/README.md"
         },
         "known_good_compatibility_sets": [],

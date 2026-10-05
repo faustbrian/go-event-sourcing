@@ -10,7 +10,7 @@ the outer transaction and never claims exactly-once delivery.
 ## Install
 
 ```sh
-go get github.com/faustbrian/go-event-sourcing/adapters/outbox@v1
+go get github.com/faustbrian/go-event-sourcing/adapters/outbox/v2@v2.0.0
 ```
 
 ## Quick start
@@ -50,13 +50,17 @@ and follows its [persistence and durability family guidance](https://github.com/
 
 - [Documentation index](docs/README.md)
 - [Complete technical guide](docs/reference.md)
-- [Go API reference](https://pkg.go.dev/github.com/faustbrian/go-event-sourcing/adapters/outbox)
+- [Go API reference](https://pkg.go.dev/github.com/faustbrian/go-event-sourcing/adapters/outbox/v2)
 - [Parent package documentation](../../docs/README.md)
 
 ## Compatibility and support
 
 This module follows Semantic Versioning. Report vulnerabilities through the
 [parent security policy](../../SECURITY.md).
+
+The upcoming v2 release adopts public core-v2 and PostgreSQL-v2 together;
+see [v2 migration](docs/reference.md#v2-migration). The installation command
+requires that independent adapter release to be published.
 
 ## License
 

@@ -186,9 +186,11 @@ remains authoritative.
 ## Security and diagnostics
 
 Codecs and upcasters process stored hostile input. They must bound allocation,
-depth, collection sizes, and outputs before construction. Errors may identify
-event name and schema version but must not include payload bytes, metadata
-values, tenant data, credentials, or recovered panic values.
+depth, collection sizes, and outputs before construction. Built-in diagnostics
+report stable error categories without event identities, content types, payload
+bytes, metadata values, tenant data, credentials, or recovered panic values.
+Application-owned codecs and callbacks remain separate diagnostic boundaries;
+see the [security policy](security.md).
 
 Schema evolution does not solve retention or erasure. Avoid placing secrets or
 unnecessary personal data in immutable events. Encryption, key rotation,

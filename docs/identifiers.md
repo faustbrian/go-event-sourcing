@@ -108,7 +108,7 @@ layout. UUID variants that reorder timestamp fields for storage require the
 matching source decoder before canonical encoding.
 
 Review the pinned source repository and the
-[EventSauce 3.9.1 UUID encoding documentation](https://github.com/EventSaucePHP/EventSauce/blob/33ea9b97ec3ac56991caad03b791fee418a43e41/docs/docs/message-storage/uuid-encoding.md)
+[EventSauce 3.9.1 UUID encoding documentation](https://raw.githubusercontent.com/EventSaucePHP/EventSauce/33ea9b97ec3ac56991caad03b791fee418a43e41/docs/docs/message-storage/uuid-encoding.md)
 used by the history. The executable migration fixture in `identifier_test.go`
 proves that raw 16-byte and canonical string source values converge on the same
 Go application identifier while malformed and zero binary values fail closed.

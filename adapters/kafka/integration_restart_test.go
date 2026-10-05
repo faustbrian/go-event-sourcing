@@ -10,8 +10,8 @@ import (
 	"testing"
 	"time"
 
-	eventsourcing "github.com/faustbrian/go-event-sourcing"
-	gokafka "github.com/faustbrian/go-event-sourcing/adapters/kafka"
+	gokafka "github.com/faustbrian/go-event-sourcing/adapters/kafka/v2"
+	eventsourcing "github.com/faustbrian/go-event-sourcing/v2"
 	"github.com/faustbrian/go-kafka"
 	"github.com/testcontainers/testcontainers-go"
 	"github.com/twmb/franz-go/pkg/kgo"
@@ -89,25 +89,32 @@ func TestKafkaBrokerRestartPreservesAmbiguousAtLeastOnceDelivery(t *testing.T) {
 	firstHandler, err := gokafka.NewRecordHandler(
 		codec,
 		gokafka.DeliveryConsumerFunc(func(
-			_ context.Context,
+			handlerCtx context.Context,
 			delivery eventsourcing.Delivery,
 		) error {
 			identity := delivery.Message().ID().String()
 			attempts = append(attempts, identity)
 			effects[identity] = struct{}{}
 
-			return broker.stop(ctx)
+			if err := broker.stop(handlerCtx); err != nil {
+				return fmt.Errorf("%w: stop broker: %w", errRestartBrokerSetup, err)
+			}
+			if err := broker.waitUnavailable(handlerCtx); err != nil {
+				return fmt.Errorf("%w: prove broker unavailable: %w", errRestartBrokerSetup, err)
+			}
+
+			return nil
 		}),
 	)
 	if err != nil {
 		t.Fatalf("construct pre-restart handler: %v", err)
 	}
 	result, err := consumer.RunOnce(ctx, firstHandler)
+	if errors.Is(err, errRestartBrokerSetup) {
+		t.Fatalf("broker shutdown setup failed before offset commit: %v", err)
+	}
 	if err == nil || result != (kafka.PollResult{Polled: 1, Processed: 1}) {
 		t.Fatalf("ambiguous offset result/error = %#v/%v", result, err)
-	}
-	if err := broker.waitUnavailable(ctx); err != nil {
-		t.Fatalf("prove Kafka broker stopped before commit: %v", err)
 	}
 	if err := broker.start(ctx); err != nil {
 		t.Fatalf("restart Kafka broker after offset ambiguity: %v", err)
@@ -141,6 +148,8 @@ func TestKafkaBrokerRestartPreservesAmbiguousAtLeastOnceDelivery(t *testing.T) {
 	}
 	assertGroupCommitted(t, ctx, brokers, topic, groupID, 3)
 }
+
+var errRestartBrokerSetup = errors.New("restart broker setup failed")
 
 type restartAfterAcknowledgementPublisher struct {
 	publisher gokafka.Publisher

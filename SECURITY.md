@@ -3,7 +3,8 @@
 ## Reporting
 
 Report suspected vulnerabilities privately through the GitHub security
-advisory for `faustbrian/go-event-sourcing`. Do not open a public issue containing exploit
+advisory [reporting form](https://github.com/faustbrian/go-event-sourcing/security/advisories/new).
+Do not open a public issue containing exploit
 details, credentials, private fixtures, or affected deployment information.
 
 Include the affected module and version, impact, reproduction, preconditions,
@@ -32,3 +33,6 @@ The repository [safety and concurrency policy](AGENTS.md#safety-and-concurrency)
 and [supply-chain policy](AGENTS.md#dependencies-and-supply-chain) define shared
 trust boundaries and release requirements. Package-specific security guidance
 refines those rules for its owned boundary.
+
+The versioned [threat model](docs/threat-model.md) identifies first-party
+controls, residual-risk owners, mitigations, and review triggers.

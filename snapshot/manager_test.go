@@ -6,10 +6,10 @@ import (
 	"testing"
 	"time"
 
-	eventsourcing "github.com/faustbrian/go-event-sourcing"
-	"github.com/faustbrian/go-event-sourcing/eventtest"
-	"github.com/faustbrian/go-event-sourcing/memory"
-	snapshotpkg "github.com/faustbrian/go-event-sourcing/snapshot"
+	eventsourcing "github.com/faustbrian/go-event-sourcing/v2"
+	"github.com/faustbrian/go-event-sourcing/v2/eventtest"
+	"github.com/faustbrian/go-event-sourcing/v2/memory"
+	snapshotpkg "github.com/faustbrian/go-event-sourcing/v2/snapshot"
 )
 
 type managerAccount struct {

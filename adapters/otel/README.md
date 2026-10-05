@@ -19,7 +19,7 @@ is tested with Go 1.27.0.
 ## Install
 
 ```sh
-go get github.com/faustbrian/go-event-sourcing/adapters/otel@v1
+go get github.com/faustbrian/go-event-sourcing/adapters/otel/v2@v2.0.0
 ```
 
 ## Quick start
@@ -31,6 +31,11 @@ down. The compiling [`ExampleNew`](example_test.go) contains complete imports,
 setup, and cleanup.
 
 ## Migration from `adapters/gotelemetry`
+
+The upcoming v2 installation requires the independent OpenTelemetry-v2 release.
+Migrate core-v1 types to public core-v2 together with this adapter; see
+[v2 migration](docs/reference.md#v2-migration). For an unchanged core-v1
+application, retain the published otel-v1 or deprecated gotelemetry-v1 module.
 
 Change the import path and either rename the package qualifier from
 `gotelemetry` to `otel` or explicitly alias the new import as `gotelemetry`.
@@ -53,7 +58,7 @@ and follows its [persistence and durability family guidance](https://github.com/
 
 - [Documentation index](docs/README.md)
 - [Complete technical guide](docs/reference.md)
-- [Go API reference](https://pkg.go.dev/github.com/faustbrian/go-event-sourcing/adapters/otel)
+- [Go API reference](https://pkg.go.dev/github.com/faustbrian/go-event-sourcing/adapters/otel/v2)
 - [Parent package documentation](../../docs/README.md)
 
 ## Compatibility and support

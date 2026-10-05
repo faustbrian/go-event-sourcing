@@ -5,10 +5,38 @@ module has no database, queue, outbox, Kafka, telemetry, framework, or
 generator dependency:
 
 ```sh
-go get github.com/faustbrian/go-event-sourcing
+go get github.com/faustbrian/go-event-sourcing/v2@v2.0.0
 ```
 
-Optional integrations are independently versioned modules:
+Start with public core v2.0.0 and its `v2/memory` package. Add the independently
+published core-v2 PostgreSQL adapter:
+
+```sh
+go get github.com/faustbrian/go-event-sourcing/postgres/v2@v2.0.0
+```
+
+After its independent `adapters/outbox/v2.0.0` publication, the outbox-v2
+adapter composes these two public v2 producers with Transactional Outbox v1:
+
+```sh
+go get github.com/faustbrian/go-event-sourcing/adapters/outbox/v2@v2.0.0
+```
+
+The upcoming Kafka, queue, and OpenTelemetry v2 adapters each compose public
+core-v2 directly. After their independent releases are published, install only
+the adapters needed by the application:
+
+```sh
+go get github.com/faustbrian/go-event-sourcing/adapters/kafka/v2@v2.0.0
+go get github.com/faustbrian/go-event-sourcing/adapters/queue/v2@v2.0.0
+go get github.com/faustbrian/go-event-sourcing/adapters/otel/v2@v2.0.0
+```
+
+Deprecated gokafka-v1 and gotelemetry-v1 remain unchanged and compose core-v1.
+The private competitor module adopts core-v2 without a public release.
+
+Optional integrations are independently versioned modules; the following
+published v1 modules still compose with core v1, not core v2:
 
 ```sh
 go get github.com/faustbrian/go-event-sourcing/postgres
@@ -18,9 +46,11 @@ go get github.com/faustbrian/go-event-sourcing/adapters/queue
 go get github.com/faustbrian/go-event-sourcing/adapters/otel
 ```
 
-Before the first tagged release, these commands describe the stable module
-boundaries but consumers must use a reviewed source revision. Do not add
-permanent `replace` directives or local paths to a releasable application.
+Do not insert the core's `/v2` before a nested module directory or assume that
+a nested v1 module implements core-v2 interfaces. See
+[core-v2 migration](release-notes.md#adopting-core-v2) for independent module
+adoption and publication order. Do not add permanent `replace` directives or
+local paths to a releasable application.
 
 ## Core packages
 

@@ -12,10 +12,14 @@ not claim exactly-once delivery or broker-neutral durability and ordering.
 ## Install
 
 ```sh
-go get github.com/faustbrian/go-event-sourcing/adapters/queue@v1
+go get github.com/faustbrian/go-event-sourcing/adapters/queue/v2@v2.0.0
 ```
 
 ## Quick start
+
+The upcoming v2 installation requires the independent queue-v2 release.
+It composes public core-v2 with the existing Go-Queue v1 contract; see
+[v2 migration](docs/reference.md#v2-migration).
 
 ```go
 codec, err := eventqueue.NewCodec(eventqueue.CodecConfig{})
@@ -68,7 +72,7 @@ and follows its [persistence and durability family guidance](https://github.com/
 
 - [Documentation index](docs/README.md)
 - [Complete technical guide](docs/reference.md)
-- [Go API reference](https://pkg.go.dev/github.com/faustbrian/go-event-sourcing/adapters/queue)
+- [Go API reference](https://pkg.go.dev/github.com/faustbrian/go-event-sourcing/adapters/queue/v2)
 - [Parent package documentation](../../docs/README.md)
 
 ## Compatibility and support

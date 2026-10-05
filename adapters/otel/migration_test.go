@@ -1,6 +1,6 @@
 package otel_test
 
-import gotelemetry "github.com/faustbrian/go-event-sourcing/adapters/otel"
+import gotelemetry "github.com/faustbrian/go-event-sourcing/adapters/otel/v2"
 
 // Compile representative selectors with the compatibility alias documented
 // for consumers migrating from adapters/gotelemetry.

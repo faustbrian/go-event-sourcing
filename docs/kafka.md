@@ -1,9 +1,14 @@
 # Kafka integration
 
 The independently versioned
-`github.com/faustbrian/go-event-sourcing/adapters/kafka` module owns
+`github.com/faustbrian/go-event-sourcing/adapters/kafka/v2` module owns
 event-message mapping and event-specific producer and consumer composition.
 The core module does not import Kafka or franz-go.
+
+This current-major guide targets the upcoming independent Kafka-v2 release
+with public core-v2. Published Kafka-v1 and deprecated gokafka-v1 remain
+available for core-v1 applications; see the
+[migration guide](../adapters/kafka/docs/reference.md#v2-migration).
 
 The stable record codec, topic allowlist, aggregate-root key, complete identity
 headers, canonical metadata, live/replay round trip, and ordered synchronous
