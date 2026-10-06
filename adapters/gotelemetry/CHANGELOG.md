@@ -10,6 +10,9 @@ and this project adheres to
 
 ### Changed
 
+- Select Moby client v0.6.1 and API v1.56.1 in the fixture dependency
+  graph; retain the owned adapter contracts.
+
 - Adopt Testcontainers core v0.44.0 and Moby client v0.5.0 in the
   dependency closure. The selected otelhttp v0.69.0 can require migration
   for applications directly using removed upstream HTTP helpers; see the
