@@ -12,6 +12,9 @@ All notable changes to this module are documented here.
 
 ### Changed
 
+- Update indirect compression support to v1.20.0 for integration-
+  service setup while preserving the owned event-store and transaction
+  contracts.
 - Adopt public core v2.0.0 through the independent
   `github.com/faustbrian/go-event-sourcing/postgres/v2` module identity. Update
   PostgreSQL and core imports and named types together; v1 modules remain

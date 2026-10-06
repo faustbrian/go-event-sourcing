@@ -6,6 +6,9 @@ All notable changes to this module are documented here.
 
 ### Changed
 
+- Update indirect compression support to v1.20.0 for integration-
+  service setup while preserving the owned atomic staging and outbox
+  contracts.
 - Prepare the independent `/adapters/outbox/v2` module for v2.0.0, adopting
   public core-v2 and PostgreSQL-v2 together. Public nominal types change;
   callers must migrate all three identities together. Keep Transactional

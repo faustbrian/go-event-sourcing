@@ -10,6 +10,9 @@ and this project adheres to
 
 ### Changed
 
+- Update indirect compression support to v1.20.0 for integration-
+  service setup while preserving the owned delivery and settlement
+  contracts.
 - Prepare the independent `/adapters/queue/v2` identity for v2.0.0 and adopt
   public core-v2 nominal types. Preserve Go-Queue v1, envelope bytes,
   ordering, acceptance, and settlement behavior.
