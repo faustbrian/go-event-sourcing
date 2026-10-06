@@ -8,7 +8,14 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-10-06
+
 ### Changed
+
+- Require Go 1.27.0, raised from the published v1.0.3 minimum of
+  Go 1.26.6. Upgrade the toolchain before adopting this release or
+  remain on v1.0.3; the legacy core-v1 adapter contract is unchanged.
+
 
 - Select Moby client v0.6.1 and API v1.56.1 in the fixture dependency
   graph; retain the owned adapter contracts.

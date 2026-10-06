@@ -16,7 +16,7 @@ poison skips, durable checkpoint position, and terminal probes.
 
 ## V2 migration
 
-After `adapters/otel/v2.0.0` is published, require
+For the published `adapters/otel/v2.0.0` release, require
 `github.com/faustbrian/go-event-sourcing/adapters/otel/v2@v2.0.0` and public
 `github.com/faustbrian/go-event-sourcing/v2@v2.0.0`. Move core package imports,
 including `memory`, `processmanager`, and `projection`, beneath the core's `/v2`.

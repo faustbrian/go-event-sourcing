@@ -22,8 +22,8 @@ adapter composes these two public v2 producers with Transactional Outbox v1:
 go get github.com/faustbrian/go-event-sourcing/adapters/outbox/v2@v2.0.0
 ```
 
-The upcoming Kafka, queue, and OpenTelemetry v2 adapters each compose public
-core-v2 directly. After their independent releases are published, install only
+The published Kafka, queue, and OpenTelemetry v2 adapters each compose public
+core-v2 directly. Install only
 the adapters needed by the application:
 
 ```sh

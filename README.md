@@ -33,7 +33,7 @@ and its [persistence and durability family guidance](https://github.com/faustbri
 
 ## Quickstart
 
-After v2.0.0 is published, install the core with
+Install the published core v2.0.0 with
 `go get github.com/faustbrian/go-event-sourcing/v2@v2.0.0`.
 See [adopting core v2](docs/release-notes.md#adopting-core-v2) before changing
 existing imports or composing independently versioned adapters.

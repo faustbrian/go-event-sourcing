@@ -4,7 +4,7 @@ The independently versioned
 `github.com/faustbrian/go-event-sourcing/adapters/otel/v2` module
 keeps OpenTelemetry dependencies outside the event-sourcing core.
 
-This current-major guide targets the upcoming independent OpenTelemetry-v2
+This current-major guide targets the published independent OpenTelemetry-v2
 release with public core-v2. Published otel-v1 and deprecated gotelemetry-v1
 remain available for core-v1 applications; see the
 [migration guide](../adapters/otel/docs/reference.md#v2-migration).

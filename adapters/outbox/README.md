@@ -58,9 +58,9 @@ and follows its [persistence and durability family guidance](https://github.com/
 This module follows Semantic Versioning. Report vulnerabilities through the
 [parent security policy](../../SECURITY.md).
 
-The upcoming v2 release adopts public core-v2 and PostgreSQL-v2 together;
+The published v2 release adopts public core-v2 and PostgreSQL-v2 together;
 see [v2 migration](docs/reference.md#v2-migration). The installation command
-requires that independent adapter release to be published.
+selects that independently released adapter.
 
 ## License
 

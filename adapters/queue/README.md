@@ -17,7 +17,7 @@ go get github.com/faustbrian/go-event-sourcing/adapters/queue/v2@v2.0.0
 
 ## Quick start
 
-The upcoming v2 installation requires the independent queue-v2 release.
+The v2 installation uses the published independent queue-v2 release.
 It composes public core-v2 with the existing Go-Queue v1 contract; see
 [v2 migration](docs/reference.md#v2-migration).
 

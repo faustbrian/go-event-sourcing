@@ -12,7 +12,7 @@ the outer transaction and never claims exactly-once delivery.
 
 ## V2 migration
 
-After the independent `adapters/outbox/v2.0.0` release is published, require
+For the published `adapters/outbox/v2.0.0` release, require
 `github.com/faustbrian/go-event-sourcing/adapters/outbox/v2@v2.0.0`.
 Change this adapter's imports to `/adapters/outbox/v2`, core imports to
 `/go-event-sourcing/v2`, and PostgreSQL imports to `/postgres/v2`. Public

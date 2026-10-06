@@ -5,7 +5,7 @@ The independently versioned
 event-message mapping and event-specific producer and consumer composition.
 The core module does not import Kafka or franz-go.
 
-This current-major guide targets the upcoming independent Kafka-v2 release
+This current-major guide targets the published independent Kafka-v2 release
 with public core-v2. Published Kafka-v1 and deprecated gokafka-v1 remain
 available for core-v1 applications; see the
 [migration guide](../adapters/kafka/docs/reference.md#v2-migration).

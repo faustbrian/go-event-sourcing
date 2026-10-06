@@ -16,7 +16,7 @@ and dead-letter delivery paths.
 
 ## V2 migration
 
-After `adapters/kafka/v2.0.0` is published, require
+For the published `adapters/kafka/v2.0.0` release, require
 `github.com/faustbrian/go-event-sourcing/adapters/kafka/v2@v2.0.0` and public
 `github.com/faustbrian/go-event-sourcing/v2@v2.0.0`. The adapter's own suffix
 follows its existing directory, not the core's suffix. Go 1.27.0 remains

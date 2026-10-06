@@ -4,11 +4,7 @@ All notable changes to this module are documented here.
 
 ## Unreleased
 
-### Fixed
-
-- Hide stored message and snapshot metadata parser diagnostics from ordinary
-  error strings while preserving corruption classification and parser causes
-  for explicit inspection with `errors.Is` and `errors.As`.
+## 2.0.1 - 2026-10-06
 
 ### Changed
 
@@ -20,9 +16,21 @@ All notable changes to this module are documented here.
   for applications directly using removed upstream HTTP helpers; see the
   [supplier adoption guide](https://github.com/faustbrian/go-event-sourcing/blob/main/docs/adapter-migration.md#fixture-supplier-adoption).
   PostgreSQL fixtures retain their v0.43.0 module over core v0.44.0.
+
 - Update indirect compression support to v1.20.0 for integration-
   service setup while preserving the owned event-store and transaction
   contracts.
+
+## 2.0.0 - 2026-10-02
+
+### Fixed
+
+- Hide stored message and snapshot metadata parser diagnostics from ordinary
+  error strings while preserving corruption classification and parser causes
+  for explicit inspection with `errors.Is` and `errors.As`.
+
+### Changed
+
 - Adopt public core v2.0.0 through the independent
   `github.com/faustbrian/go-event-sourcing/postgres/v2` module identity. Update
   PostgreSQL and core imports and named types together; v1 modules remain

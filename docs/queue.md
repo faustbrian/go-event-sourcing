@@ -4,7 +4,7 @@ The independently versioned
 `github.com/faustbrian/go-event-sourcing/adapters/queue/v2` module keeps
 the repository queue dependency outside the event-sourcing core.
 
-This current-major guide targets the upcoming independent queue-v2 release
+This current-major guide targets the published independent queue-v2 release
 with public core-v2. Published queue-v1 remains available for core-v1
 applications; see the
 [migration guide](../adapters/queue/docs/reference.md#v2-migration).

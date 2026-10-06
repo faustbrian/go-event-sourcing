@@ -8,6 +8,8 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [2.0.1] - 2026-10-06
+
 ### Changed
 
 - Select Moby client v0.6.1 and API v1.56.1 in the fixture dependency
@@ -18,9 +20,15 @@ and this project adheres to
   for applications directly using removed upstream HTTP helpers; see the
   [supplier adoption guide](https://github.com/faustbrian/go-event-sourcing/blob/main/docs/adapter-migration.md#fixture-supplier-adoption).
   The owned queue and settlement contracts remain unchanged.
+
 - Update indirect compression support to v1.20.0 for integration-
   service setup while preserving the owned delivery and settlement
   contracts.
+
+## [2.0.0] - 2026-10-02
+
+### Changed
+
 - Prepare the independent `/adapters/queue/v2` identity for v2.0.0 and adopt
   public core-v2 nominal types. Preserve Go-Queue v1, envelope bytes,
   ordering, acceptance, and settlement behavior.
