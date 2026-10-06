@@ -396,4 +396,4 @@ focused command is a development loop and is not release evidence. With Docker a
 reconstruction, per-aggregate order, consumer handling, dead-letter publication
 and recovery, replay rejection without settlement, explicit replay opt-in and
 recovery, and committed offsets against the digest-pinned Confluent Local 7.5.0
-fixture using franz-go v1.21.5.
+fixture using franz-go v1.22.1.

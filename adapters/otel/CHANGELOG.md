@@ -6,6 +6,12 @@ All notable changes to this module are documented here.
 
 ### Changed
 
+- Adopt franz-go v1.22.1, kmsg v1.14.0, compression v1.20.0 and LZ4
+  v4.1.30 in the selected Kafka dependency graph. Keep the owned wire,
+  settlement and telemetry contracts and explicit client bounds.
+  Upstream clients now reject deleted-and-recreated topics and require
+  explicit BalanceRacks to opt into rack-aware group assignment;
+  review these deployment cases before upgrading.
 - Prepare the independent `/adapters/otel/v2` identity for v2.0.0 and adopt
   public core-v2 nominal types. Preserve dependencies, signal names, the
   unsuffixed instrumentation scope, and deprecated gotelemetry-v1 support.

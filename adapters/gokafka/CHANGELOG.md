@@ -8,6 +8,15 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Changed
+
+- Adopt franz-go v1.22.1, kmsg v1.14.0, compression v1.20.0 and LZ4
+  v4.1.30 in the selected Kafka dependency graph. Keep the owned wire,
+  settlement and telemetry contracts and explicit client bounds.
+  Upstream clients now reject deleted-and-recreated topics and require
+  explicit BalanceRacks to opt into rack-aware group assignment;
+  review these deployment cases before upgrading.
+
 ### Fixed
 
 - Upgrade the OpenTelemetry SDK dependency graph to v1.45.0 to address
