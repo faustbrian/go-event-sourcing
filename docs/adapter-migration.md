@@ -79,7 +79,7 @@ fixtures, not by the owned production adapter implementations. Owned APIs,
 wire formats, transaction boundaries, and telemetry-provider ownership are
 unchanged.
 
-Go minimum-version selection also selects otelhttp v0.69.0 in each module.
+Go minimum-version selection also selects `otelhttp` v0.69.0 in each module.
 Applications importing that upstream package directly must account for its
 removed APIs even when they do not run these fixtures:
 
