@@ -10,6 +10,11 @@ and this project adheres to
 
 ### Changed
 
+- Adopt Testcontainers core v0.44.0 and Moby client v0.5.0 in the
+  dependency closure. The selected otelhttp v0.69.0 can require migration
+  for applications directly using removed upstream HTTP helpers; see the
+  [supplier adoption guide](https://github.com/faustbrian/go-event-sourcing/blob/main/docs/adapter-migration.md#fixture-supplier-adoption).
+  The owned queue and settlement contracts remain unchanged.
 - Update indirect compression support to v1.20.0 for integration-
   service setup while preserving the owned delivery and settlement
   contracts.

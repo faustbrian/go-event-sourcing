@@ -68,3 +68,31 @@ Each released v1 path remains supported for the longer of 180 days and two
 published stable minor releases after its successor is publicly consumable.
 Removal requires an authorized next-major release and a fresh consumer audit.
 The interval does not permit silent behavior, wire, or telemetry-scope drift.
+
+## Fixture supplier adoption
+
+The Testcontainers core v0.44.0 and Moby client v0.5.0 updates affect the
+dependency closure of gokafka, gotelemetry, kafka, otel, outbox, queue, and
+postgres. Kafka fixture modules use v0.44.0; PostgreSQL fixture modules
+remain at v0.43.0 over the newer core. These container clients are used by
+fixtures, not by the owned production adapter implementations. Owned APIs,
+wire formats, transaction boundaries, and telemetry-provider ownership are
+unchanged.
+
+Go minimum-version selection also selects `otelhttp` v0.69.0 in each module.
+Applications importing that upstream package directly must account for its
+removed APIs even when they do not run these fixtures:
+
+- Read the `otelhttp.Version` constant instead of calling `Version()`.
+- Replace `DefaultClient`, `Get`, `Head`, `Post`, and `PostForm` with an
+  application-owned `http.Client` using `otelhttp.NewTransport`.
+- Replace `WithPublicEndpoint` with `WithPublicEndpointFn`, preserving the
+  application's public-endpoint policy.
+- Remove `WithRouteTag`; routes are added to spans automatically. For
+  application-owned metric attributes, use the current `Labeler` API rather
+  than adding a dependency on the now-deprecated `WithMetricAttributesFn`.
+
+See the [upstream changelog](https://github.com/open-telemetry/opentelemetry-go-contrib/blob/v1.44.0/CHANGELOG.md)
+for the supplier's migration and HTTP semantic-convention changes. The
+selected OpenTelemetry API and SDK remain v1.45.0; this adoption does not
+upgrade them to v1.47.0 or change the event-sourcing module paths.
