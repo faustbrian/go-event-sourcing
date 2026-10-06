@@ -71,13 +71,18 @@ The interval does not permit silent behavior, wire, or telemetry-scope drift.
 
 ## Fixture supplier adoption
 
-The Testcontainers core v0.44.0 and Moby client v0.5.0 updates affect the
+The Testcontainers core v0.44.0 and Moby client v0.6.1 updates affect the
 dependency closure of gokafka, gotelemetry, kafka, otel, outbox, queue, and
 postgres. Kafka fixture modules use v0.44.0; PostgreSQL fixture modules
 remain at v0.43.0 over the newer core. These container clients are used by
 fixtures, not by the owned production adapter implementations. Owned APIs,
 wire formats, transaction boundaries, and telemetry-provider ownership are
 unchanged.
+
+The selected Moby API module is v1.56.1. Client v0.6.1 automatically
+negotiates Docker API versions 1.40 through 1.56; fixed API options or
+environment overrides disable negotiation. The API module patch version
+is not a Docker wire-version identifier.
 
 Go minimum-version selection also selects `otelhttp` v0.69.0 in each module.
 Applications importing that upstream package directly must account for its
