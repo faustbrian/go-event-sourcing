@@ -12,6 +12,11 @@ All notable changes to this module are documented here.
 
 ### Changed
 
+- Adopt Testcontainers core v0.44.0 and Moby client v0.5.0 in the
+  dependency closure. The selected otelhttp v0.69.0 can require migration
+  for applications directly using removed upstream HTTP helpers; see the
+  [supplier adoption guide](https://github.com/faustbrian/go-event-sourcing/blob/main/docs/adapter-migration.md#fixture-supplier-adoption).
+  PostgreSQL fixtures retain their v0.43.0 module over core v0.44.0.
 - Update indirect compression support to v1.20.0 for integration-
   service setup while preserving the owned event-store and transaction
   contracts.

@@ -6,6 +6,11 @@ All notable changes to this module are documented here.
 
 ### Changed
 
+- Adopt Testcontainers core v0.44.0 and Moby client v0.5.0 in the
+  dependency closure. The selected otelhttp v0.69.0 can require migration
+  for applications directly using removed upstream HTTP helpers; see the
+  [supplier adoption guide](https://github.com/faustbrian/go-event-sourcing/blob/main/docs/adapter-migration.md#fixture-supplier-adoption).
+  Kafka fixtures use v0.44.0; owned adapter contracts remain unchanged.
 - Adopt franz-go v1.22.1, kmsg v1.14.0, compression v1.20.0 and LZ4
   v4.1.30 in the selected Kafka dependency graph. Keep the owned wire,
   settlement and telemetry contracts and explicit client bounds.
