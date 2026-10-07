@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Apply the logical-event segment limit to custom upcasters before allocating
+  or decoding their output, including context-aware implementations.
+
 - Keep event identities and content types out of built-in codec, registration,
   upcaster, and dispatcher diagnostics while preserving sentinel error
   classification. Application-owned callback errors remain caller-controlled.

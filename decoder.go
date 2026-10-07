@@ -93,6 +93,11 @@ func (decoder *EventDecoder) DecodeContext(
 	if err != nil {
 		return nil, err
 	}
+	// Custom upcasters need the same admission bound as UpcasterChain before
+	// allocating logical events, decoding payloads, or narrowing coordinates.
+	if len(upcasted) > MaxUpcastSegments {
+		return nil, newUpcastError(input, ErrUpcastLimit)
+	}
 	logical := make([]LogicalEvent, len(upcasted))
 	for index, encoded := range upcasted {
 		decoded, err := decodePayload(ctx, decoder.codec, encoded.Event())
