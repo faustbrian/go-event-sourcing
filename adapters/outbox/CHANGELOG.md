@@ -4,6 +4,8 @@ All notable changes to this module are documented here.
 
 ## Unreleased
 
+## 2.0.1 - 2026-10-06
+
 ### Changed
 
 - Select Moby client v0.6.1 and API v1.56.1 in the fixture dependency
@@ -14,9 +16,15 @@ All notable changes to this module are documented here.
   for applications directly using removed upstream HTTP helpers; see the
   [supplier adoption guide](https://github.com/faustbrian/go-event-sourcing/blob/main/docs/adapter-migration.md#fixture-supplier-adoption).
   PostgreSQL fixtures retain their v0.43.0 module over core v0.44.0.
+
 - Update indirect compression support to v1.20.0 for integration-
   service setup while preserving the owned atomic staging and outbox
   contracts.
+
+## 2.0.0 - 2026-10-02
+
+### Changed
+
 - Prepare the independent `/adapters/outbox/v2` module for v2.0.0, adopting
   public core-v2 and PostgreSQL-v2 together. Public nominal types change;
   callers must migrate all three identities together. Keep Transactional

@@ -4,6 +4,8 @@ All notable changes to this module are documented here.
 
 ## [Unreleased]
 
+## [2.0.1] - 2026-10-06
+
 ### Changed
 
 - Select Moby client v0.6.1 and API v1.56.1 in the fixture dependency
@@ -14,12 +16,18 @@ All notable changes to this module are documented here.
   for applications directly using removed upstream HTTP helpers; see the
   [supplier adoption guide](https://github.com/faustbrian/go-event-sourcing/blob/main/docs/adapter-migration.md#fixture-supplier-adoption).
   Kafka fixtures use v0.44.0; owned adapter contracts remain unchanged.
+
 - Adopt franz-go v1.22.1, kmsg v1.14.0, compression v1.20.0 and LZ4
   v4.1.30 in the selected Kafka dependency graph. Keep the owned wire,
   settlement and telemetry contracts and explicit client bounds.
   Upstream clients now reject deleted-and-recreated topics and require
   explicit BalanceRacks to opt into rack-aware group assignment;
   review these deployment cases before upgrading.
+
+## [2.0.0] - 2026-10-02
+
+### Changed
+
 - Prepare the independent `/adapters/kafka/v2` identity for v2.0.0 and adopt
   public core-v2 nominal types. Preserve Kafka dependencies, record bytes,
   runtime behavior, and the deprecated gokafka-v1 support contract.

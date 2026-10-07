@@ -232,7 +232,7 @@
       "family_label": "Persistence And Durability",
       "family_description": "Durable state, delivery, coordination, recovery, and operational lifecycle.",
       "family_order": 4,
-      "version": "1.0.3",
+      "version": "1.1.0",
       "tag_prefix": "adapters/gokafka/v",
       "owned_dependencies": [
         "github.com/faustbrian/go-event-sourcing",
@@ -376,7 +376,7 @@
       "family_label": "Persistence And Durability",
       "family_description": "Durable state, delivery, coordination, recovery, and operational lifecycle.",
       "family_order": 4,
-      "version": "1.0.3",
+      "version": "1.1.0",
       "tag_prefix": "adapters/gotelemetry/v",
       "owned_dependencies": [
         "github.com/faustbrian/go-event-sourcing",
@@ -517,7 +517,7 @@
       "family_label": "Persistence And Durability",
       "family_description": "Durable state, delivery, coordination, recovery, and operational lifecycle.",
       "family_order": 4,
-      "version": "2.0.0",
+      "version": "2.0.1",
       "tag_prefix": "adapters/outbox/v",
       "owned_dependencies": [
         "github.com/faustbrian/go-event-sourcing/v2",
@@ -655,7 +655,7 @@
       "family_label": "Persistence And Durability",
       "family_description": "Durable state, delivery, coordination, recovery, and operational lifecycle.",
       "family_order": 4,
-      "version": "2.0.0",
+      "version": "2.0.1",
       "tag_prefix": "adapters/queue/v",
       "owned_dependencies": [
         "github.com/faustbrian/go-event-sourcing/v2",
@@ -834,7 +834,7 @@
       "family_label": "Persistence And Durability",
       "family_description": "Durable state, delivery, coordination, recovery, and operational lifecycle.",
       "family_order": 4,
-      "version": "2.0.0",
+      "version": "2.0.1",
       "tag_prefix": "postgres/v",
       "owned_dependencies": [
         "github.com/faustbrian/go-event-sourcing/v2"
@@ -972,7 +972,7 @@
       "family_label": "Persistence And Durability",
       "family_description": "Durable state, delivery, coordination, recovery, and operational lifecycle.",
       "family_order": 4,
-      "version": "2.0.0",
+      "version": "2.0.1",
       "tag_prefix": "adapters/kafka/v",
       "owned_dependencies": [
         "github.com/faustbrian/go-event-sourcing/v2",
@@ -1117,7 +1117,7 @@
       "family_label": "Persistence And Durability",
       "family_description": "Durable state, delivery, coordination, recovery, and operational lifecycle.",
       "family_order": 4,
-      "version": "2.0.0",
+      "version": "2.0.1",
       "tag_prefix": "adapters/otel/v",
       "owned_dependencies": [
         "github.com/faustbrian/go-event-sourcing/v2",

@@ -19,7 +19,7 @@ deployed or production-verified.
 
 ## Adopting core v2
 
-After v2.0.0 is publicly available, require
+For published v2.0.0, require
 `github.com/faustbrian/go-event-sourcing/v2@v2.0.0` and insert `/v2` immediately
 after `go-event-sourcing` in imports of the core, `eventtest`, `memory`,
 `processmanager`, `projection`, and `snapshot`. Go 1.27.0 remains the minimum.
@@ -38,9 +38,9 @@ text. Application-owned callback errors remain a separate caller-controlled
 boundary; this is not blanket callback redaction.
 
 Independent nested modules retain their existing source locations and releases.
-Published PostgreSQL-v2 adopts public core-v2. The upcoming outbox-v2 major
+Published PostgreSQL-v2 adopts public core-v2. The published outbox-v2 major
 adopts both public producers together; the other nested modules retain
-their independent releases. Upcoming Kafka-v2, queue-v2, and OpenTelemetry-v2
+their independent releases. Published Kafka-v2, queue-v2, and OpenTelemetry-v2
 adopt public core-v2 directly; deprecated gokafka-v1 and gotelemetry-v1 retain
 core-v1. The private competitor module adopts core-v2 without a public tag.
 When a maintained module adopts core-v2 types, its
@@ -50,8 +50,8 @@ own major suffix follows its directory: for example,
 then PostgreSQL-v2 before an outbox-v2 adapter that depends on both. Queue,
 Kafka, and OpenTelemetry adoption may follow core independently.
 
-For those three upcoming adapters, require their own `/adapters/<name>/v2`
-identity only after its public release, and migrate caller core nominal types
+For those three published adapters, require their own `/adapters/<name>/v2`
+identity and migrate caller core nominal types
 in the same application change. Their other dependencies, wire formats,
 algorithms, and telemetry instrumentation scope remain unchanged. See the
 [Kafka](../adapters/kafka/docs/reference.md#v2-migration),
@@ -61,7 +61,7 @@ algorithms, and telemetry instrumentation scope remain unchanged. See the
 PostgreSQL-v2 changes public message, stream, version, snapshot, projection,
 and prepared-plan identities without changing SQL or stored data. Its existing
 `adapters/outbox` v1 consumer remains on PostgreSQL-v1; it needs a separate
-major migration, not an automatic dependency upgrade. The upcoming
+major migration, not an automatic dependency upgrade. The published
 `adapters/outbox/v2` changes the adapter's nominal API while preserving
 Transactional Outbox v1 and all staging behavior. See its
 [migration guide](../adapters/outbox/docs/reference.md#v2-migration) and the

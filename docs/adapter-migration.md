@@ -2,8 +2,8 @@
 
 ## Core-v2 adoption
 
-The upcoming canonical Kafka-v2 and OpenTelemetry-v2 adapters adopt public
-core-v2. After their independent releases are published, require each
+The published canonical Kafka-v2 and OpenTelemetry-v2 adapters adopt public
+core-v2. Require each independently released
 `/adapters/<name>/v2` module and migrate caller core imports/types to
 `github.com/faustbrian/go-event-sourcing/v2` together. See the
 [Kafka](../adapters/kafka/docs/reference.md#v2-migration) and

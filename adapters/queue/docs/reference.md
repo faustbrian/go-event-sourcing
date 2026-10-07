@@ -14,7 +14,7 @@ not claim exactly-once delivery or broker-neutral durability and ordering.
 
 ## V2 migration
 
-After `adapters/queue/v2.0.0` is published, require
+For the published `adapters/queue/v2.0.0` release, require
 `github.com/faustbrian/go-event-sourcing/adapters/queue/v2@v2.0.0` and public
 `github.com/faustbrian/go-event-sourcing/v2@v2.0.0`. The adapter's own suffix
 follows its existing directory. Go 1.27.0 remains the minimum; source remains

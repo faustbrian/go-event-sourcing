@@ -32,7 +32,7 @@ setup, and cleanup.
 
 ## Migration from `adapters/gotelemetry`
 
-The upcoming v2 installation requires the independent OpenTelemetry-v2 release.
+The v2 installation uses the published OpenTelemetry-v2 release.
 Migrate core-v1 types to public core-v2 together with this adapter; see
 [v2 migration](docs/reference.md#v2-migration). For an unchanged core-v1
 application, retain the published otel-v1 or deprecated gotelemetry-v1 module.
