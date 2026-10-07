@@ -340,13 +340,15 @@ func stageCheckpoint(
 	if exists != (expected != 0) || actual != expected {
 		return checkpointConflict(expected, actual, exists)
 	}
+	// #nosec G115 -- Save and Stage validate next <= math.MaxInt64 before staging.
+	nextCheckpoint := int64(next)
 	tag, err := db.Exec(
 		ctx,
 		"UPDATE "+table+
 			" SET checkpoint = $2, updated_at = clock_timestamp()"+
 			" WHERE name = $1",
 		name,
-		int64(next),
+		nextCheckpoint,
 	)
 	if err != nil {
 		return databaseFailure(err)
@@ -426,12 +428,16 @@ func newProjectionStatus(
 	default:
 		return projection.Status{}, projection.ErrCheckpointCorrupt
 	}
-	if checkpoint.Valid && checkpoint.Int64 <= 0 {
-		return projection.Status{}, projection.ErrCheckpointCorrupt
+	var position eventsourcing.GlobalPosition
+	if checkpoint.Valid {
+		if checkpoint.Int64 <= 0 {
+			return projection.Status{}, projection.ErrCheckpointCorrupt
+		}
+		position = eventsourcing.GlobalPosition(checkpoint.Int64)
 	}
 	status, _ := projection.NewStatus(projection.StatusInput{
 		State:         runState,
-		Checkpoint:    eventsourcing.GlobalPosition(checkpoint.Int64),
+		Checkpoint:    position,
 		HasCheckpoint: checkpoint.Valid,
 	})
 

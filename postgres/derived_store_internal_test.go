@@ -3,6 +3,7 @@ package postgres
 import (
 	"context"
 	"errors"
+	"fmt"
 	"math"
 	"testing"
 	"time"
@@ -1040,6 +1041,37 @@ func TestProjectionStoreResetsExpectedPausedCheckpoint(t *testing.T) {
 	}
 }
 
+func TestProjectionStoreStatusIgnoresAbsentCheckpointValue(t *testing.T) {
+	t.Parallel()
+
+	for _, state := range []int16{projectionStateRunning, projectionStatePaused} {
+		for _, inactiveValue := range []int64{-1, 0, 7, math.MaxInt64} {
+			t.Run(fmt.Sprintf("state_%d_value_%d", state, inactiveValue), func(t *testing.T) {
+				t.Parallel()
+
+				store := &ProjectionStore{
+					database: &fakeDatabase{rowScans: []scanFunc{
+						scanValues(state, pgtype.Int8{Int64: inactiveValue}),
+					}},
+					schema: defaultSchema,
+				}
+				status, err := store.Status(context.Background(), "summary")
+				if err != nil || !status.Valid() {
+					t.Fatalf("Status() = %#v, %v", status, err)
+				}
+				wantState := projection.StateRunning
+				if state == projectionStatePaused {
+					wantState = projection.StatePaused
+				}
+				position, exists := status.Checkpoint()
+				if status.State() != wantState || position != 0 || exists {
+					t.Fatalf("Status() state/checkpoint = %v, %d, %v", status.State(), position, exists)
+				}
+			})
+		}
+	}
+}
+
 func TestProjectionStatusValidationAndCheckpointInput(t *testing.T) {
 	t.Parallel()
 
@@ -1058,6 +1090,13 @@ func TestProjectionStatusValidationAndCheckpointInput(t *testing.T) {
 			state: projectionStateRunning,
 			checkpoint: pgtype.Int8{
 				Int64: 7,
+				Valid: true,
+			},
+		},
+		"maximum checkpoint": {
+			state: projectionStateRunning,
+			checkpoint: pgtype.Int8{
+				Int64: math.MaxInt64,
 				Valid: true,
 			},
 		},
@@ -1085,12 +1124,22 @@ func TestProjectionStatusValidationAndCheckpointInput(t *testing.T) {
 		t.Run(name, func(t *testing.T) {
 			t.Parallel()
 
-			_, err := newProjectionStatus(
+			status, err := newProjectionStatus(
 				testCase.state,
 				testCase.checkpoint,
 			)
 			if !errors.Is(err, testCase.want) {
 				t.Fatalf("newProjectionStatus() error = %v", err)
+			}
+			if testCase.want == nil {
+				position, exists := status.Checkpoint()
+				wantPosition := eventsourcing.GlobalPosition(0)
+				if testCase.checkpoint.Valid {
+					wantPosition = eventsourcing.GlobalPosition(testCase.checkpoint.Int64)
+				}
+				if !status.Valid() || exists != testCase.checkpoint.Valid || position != wantPosition {
+					t.Fatalf("newProjectionStatus() = %#v", status)
+				}
 			}
 		})
 	}

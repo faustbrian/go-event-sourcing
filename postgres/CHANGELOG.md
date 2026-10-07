@@ -4,6 +4,11 @@ All notable changes to this module are documented here.
 
 ## Unreleased
 
+### Fixed
+
+- Preserve valid projection status when an absent nullable checkpoint carries
+  an inactive integer value; only present positive checkpoints are converted.
+
 ## 2.0.1 - 2026-10-06
 
 ### Changed
