@@ -22,7 +22,7 @@ func (size decoderSizedUpcaster) Upcast(event eventsourcing.UpcastEvent) ([]even
 type decoderContextSizedUpcaster struct{ decoderSizedUpcaster }
 
 func (upcaster decoderContextSizedUpcaster) UpcastContext(_ context.Context, event eventsourcing.UpcastEvent) ([]eventsourcing.UpcastEvent, error) {
-	return upcaster.decoderSizedUpcaster.Upcast(event)
+	return upcaster.Upcast(event)
 }
 
 func TestEventDecoderBoundsCustomUpcasterSegments(t *testing.T) {
