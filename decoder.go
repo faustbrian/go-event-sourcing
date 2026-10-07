@@ -115,6 +115,7 @@ func (decoder *EventDecoder) DecodeContext(
 			event:        decoded,
 			metadata:     encoded.Metadata(),
 			segmentIndex: uint32(index),
+			// #nosec G115 -- admission above bounds len(upcasted) to MaxUpcastSegments (1024).
 			segmentCount: uint32(len(upcasted)),
 		}
 	}
