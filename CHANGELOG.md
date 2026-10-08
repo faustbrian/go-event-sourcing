@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Documentation
+
+- Clarify security support for each module's latest stable major release line
+  and link the shared vulnerability-management and coordinated-release policy.
+
 ## [2.0.1] - 2026-10-08
 
 ### Fixed
