@@ -1,11 +1,11 @@
-module github.com/faustbrian/go-event-sourcing/adapters/outbox/v2
+module github.com/faustbrian/go-event-sourcing/adapters/outbox/v3
 
 go 1.27.0
 
 require (
-	github.com/faustbrian/go-event-sourcing/postgres/v2 v2.0.0
-	github.com/faustbrian/go-event-sourcing/v2 v2.0.0
-	github.com/faustbrian/go-transactional-outbox v1.0.0
+	github.com/faustbrian/go-event-sourcing/postgres/v2 v2.0.2
+	github.com/faustbrian/go-event-sourcing/v2 v2.0.1
+	github.com/faustbrian/go-transactional-outbox/v2 v2.0.0
 	github.com/jackc/pgx/v5 v5.10.0
 	github.com/moby/moby/api v1.56.1
 	github.com/testcontainers/testcontainers-go v0.44.0

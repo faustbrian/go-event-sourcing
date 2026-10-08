@@ -15,12 +15,15 @@ published core-v2 PostgreSQL adapter:
 go get github.com/faustbrian/go-event-sourcing/postgres/v2@v2.0.0
 ```
 
-After its independent `adapters/outbox/v2.0.0` publication, the outbox-v2
-adapter composes these two public v2 producers with Transactional Outbox v1:
+Adapter v3 is prepared in source and pending publication. After release,
+it composes Event Sourcing core/PostgreSQL v2 with Transactional Outbox v2:
 
 ```sh
-go get github.com/faustbrian/go-event-sourcing/adapters/outbox/v2@v2.0.0
+go get github.com/faustbrian/go-event-sourcing/adapters/outbox/v3@v3.0.0
 ```
+
+The existing published adapter v2 retains Transactional Outbox v1 types.
+See the [v3 migration](../adapters/outbox/docs/reference.md#v3-migration).
 
 The published Kafka, queue, and OpenTelemetry v2 adapters each compose public
 core-v2 directly. Install only

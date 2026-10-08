@@ -46,7 +46,7 @@ api:
     path: adapters/otel/api/baseline.txt
   - module: adapters/outbox
     mode: apidiff
-    path: adapters/outbox/api/baseline.txt
+    path: adapters/outbox/api/v3-baseline.txt
   - module: adapters/queue
     mode: apidiff
     path: adapters/queue/api/baseline.txt

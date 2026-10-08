@@ -3,7 +3,7 @@ package eventoutbox
 import (
 	"testing"
 
-	"github.com/faustbrian/go-transactional-outbox"
+	"github.com/faustbrian/go-transactional-outbox/v2"
 )
 
 func FuzzEnvelopeCodecDecode(f *testing.F) {

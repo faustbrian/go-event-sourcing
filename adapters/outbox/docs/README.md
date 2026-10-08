@@ -7,7 +7,7 @@
 
 ## API reference
 
-- [Go package documentation](https://pkg.go.dev/github.com/faustbrian/go-event-sourcing/adapters/outbox/v2)
+- [Go package documentation](https://pkg.go.dev/github.com/faustbrian/go-event-sourcing/adapters/outbox/v3)
 
 ## Security and compatibility
 

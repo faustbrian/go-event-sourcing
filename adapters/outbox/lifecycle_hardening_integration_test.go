@@ -14,7 +14,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/faustbrian/go-event-sourcing/adapters/outbox/v2"
+	"github.com/faustbrian/go-event-sourcing/adapters/outbox/v3"
 	eventsourcing "github.com/faustbrian/go-event-sourcing/v2"
 	"github.com/jackc/pgx/v5/pgxpool"
 )

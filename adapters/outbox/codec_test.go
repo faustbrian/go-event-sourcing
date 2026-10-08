@@ -5,9 +5,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/faustbrian/go-event-sourcing/adapters/outbox/v2"
+	"github.com/faustbrian/go-event-sourcing/adapters/outbox/v3"
 	eventsourcing "github.com/faustbrian/go-event-sourcing/v2"
-	"github.com/faustbrian/go-transactional-outbox"
+	"github.com/faustbrian/go-transactional-outbox/v2"
 )
 
 func TestEnvelopeCodecRoundTripsEveryMessageField(t *testing.T) {

@@ -9,9 +9,15 @@ the outer transaction and never claims exactly-once delivery.
 
 ## Install
 
+Adapter v3 is prepared in this source and pending publication. After release:
+
 ```sh
-go get github.com/faustbrian/go-event-sourcing/adapters/outbox/v2@v2.0.0
+go get github.com/faustbrian/go-event-sourcing/adapters/outbox/v3@v3.0.0
 ```
+
+Use Transactional Outbox `/v2` envelopes, limits and PostgreSQL writers with
+this adapter. Event Sourcing core `/v2` and PostgreSQL `/v2` stay unchanged;
+the selected minimums include their v2.0.1 and v2.0.2 fixes respectively.
 
 ## Quick start
 
@@ -50,7 +56,7 @@ and follows its [persistence and durability family guidance](https://github.com/
 
 - [Documentation index](docs/README.md)
 - [Complete technical guide](docs/reference.md)
-- [Go API reference](https://pkg.go.dev/github.com/faustbrian/go-event-sourcing/adapters/outbox/v2)
+- [Go API reference](https://pkg.go.dev/github.com/faustbrian/go-event-sourcing/adapters/outbox/v3)
 - [Parent package documentation](../../docs/README.md)
 
 ## Compatibility and support
@@ -58,9 +64,9 @@ and follows its [persistence and durability family guidance](https://github.com/
 This module follows Semantic Versioning. Report vulnerabilities through the
 [parent security policy](../../SECURITY.md).
 
-The published v2 release adopts public core-v2 and PostgreSQL-v2 together;
-see [v2 migration](docs/reference.md#v2-migration). The installation command
-selects that independently released adapter.
+See [v3 migration](docs/reference.md#v3-migration) before changing imports.
+Existing adapter-v2 callers retain the published outbox-v1 type cohort;
+selecting producer v2 alone does not migrate their nominal contracts.
 
 ## License
 

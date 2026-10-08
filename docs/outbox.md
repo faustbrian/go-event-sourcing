@@ -2,8 +2,12 @@
 
 The core event store and outbox remain independently usable and releasable.
 Neither imports the other. The optional
-`github.com/faustbrian/go-event-sourcing/adapters/outbox` nested module
+`github.com/faustbrian/go-event-sourcing/adapters/outbox/v3` nested module
 is the only component that depends on both public contracts.
+
+The v3 adapter is prepared here and pending publication. It adopts public
+Transactional Outbox v2 while retaining Event Sourcing core/PostgreSQL v2.
+See its [migration guide](../adapters/outbox/docs/reference.md#v3-migration).
 
 Use its `Stager` with an already caller-owned `pgx.Tx` when event rows and
 publishable outbox envelopes must commit together. The application prepares the

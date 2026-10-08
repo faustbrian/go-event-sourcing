@@ -4,10 +4,10 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/faustbrian/go-event-sourcing/adapters/outbox/v2"
+	"github.com/faustbrian/go-event-sourcing/adapters/outbox/v3"
 	eventpostgres "github.com/faustbrian/go-event-sourcing/postgres/v2"
 	eventsourcing "github.com/faustbrian/go-event-sourcing/v2"
-	outboxpostgres "github.com/faustbrian/go-transactional-outbox/postgres"
+	outboxpostgres "github.com/faustbrian/go-transactional-outbox/v2/postgres"
 )
 
 func TestNewStagerRejectsMissingDependencies(t *testing.T) {

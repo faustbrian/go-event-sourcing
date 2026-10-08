@@ -11,7 +11,7 @@ import (
 	"time"
 
 	eventsourcing "github.com/faustbrian/go-event-sourcing/v2"
-	"github.com/faustbrian/go-transactional-outbox"
+	"github.com/faustbrian/go-transactional-outbox/v2"
 )
 
 func TestEnvelopeCodecCanonicalRoundTripOwnsEveryField(t *testing.T) {

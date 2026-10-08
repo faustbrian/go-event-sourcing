@@ -7,8 +7,8 @@ import (
 
 	eventpostgres "github.com/faustbrian/go-event-sourcing/postgres/v2"
 	eventsourcing "github.com/faustbrian/go-event-sourcing/v2"
-	"github.com/faustbrian/go-transactional-outbox"
-	outboxpostgres "github.com/faustbrian/go-transactional-outbox/postgres"
+	"github.com/faustbrian/go-transactional-outbox/v2"
+	outboxpostgres "github.com/faustbrian/go-transactional-outbox/v2/postgres"
 	"github.com/jackc/pgx/v5"
 )
 

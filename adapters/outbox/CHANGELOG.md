@@ -4,6 +4,12 @@ All notable changes to this module are documented here.
 
 ## Unreleased
 
+- Prepare adapter `/v3` for public Transactional Outbox `/v2` v2.0.0
+  envelope, limits, PostgreSQL writer and relay types. Upgrade adapter and
+  outbox imports together; Event Sourcing core and PostgreSQL stay on v2.
+  Select their published v2.0.1 and v2.0.2 fixes respectively. Preserve
+  envelope bytes, bounded conversion, savepoints and caller-owned commit.
+
 ## 2.0.1 - 2026-10-06
 
 ### Changed

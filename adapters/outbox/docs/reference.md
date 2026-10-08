@@ -10,6 +10,24 @@ caller-owned `pgx.Tx`. It releases that savepoint only after both batches stage
 and rolls it back after any error. The adapter never commits or publishes from
 the outer transaction and never claims exactly-once delivery.
 
+## V3 migration
+
+Adapter v3 is prepared here and pending publication. After release, require
+`github.com/faustbrian/go-event-sourcing/adapters/outbox/v3@v3.0.0`
+with `github.com/faustbrian/go-transactional-outbox/v2@v2.0.0`.
+Use the outbox `/v2`, `/v2/postgres` and `/v2/relay` imports throughout
+the application boundary. Their envelopes, limits and writer types are
+not interchangeable with outbox v1. Event Sourcing core and PostgreSQL
+retain their v2 identities; this adapter selects core v2.0.1 and
+PostgreSQL v2.0.2 to include the published admission/checkpoint fixes.
+
+No envelope encoding, SQL, staging order, savepoint or outer-transaction
+ownership changes. The caller still owns commit, dispatch and ambiguity
+reconciliation. Source stays in `adapters/outbox`; Go 1.27 is required.
+`api/v3-baseline.txt` is the current projection; the released v1 and v2
+API files remain historical evidence. Existing adapter-v2 consumers can
+keep their independently published outbox-v1 composition.
+
 ## V2 migration
 
 For the published `adapters/outbox/v2.0.0` release, require
@@ -26,8 +44,8 @@ no envelope bytes, SQL, savepoint behavior, staging order, or transaction
 ownership. Existing v1 callers can retain the published outbox-v1 module
 with core-v1 and PostgreSQL-v1.
 
-`api/v1.0.0.txt` preserves the released v1 API; `api/baseline.txt` tracks
-the current adapter-major projection. The two nominal APIs are not
+`api/v1.0.0.txt` preserves the released v1 API; `api/baseline.txt` preserves
+the adapter-v2 projection. The two nominal APIs are not
 interchangeable.
 
 ## Quick start

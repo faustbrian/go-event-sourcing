@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/faustbrian/go-event-sourcing/adapters/outbox/v2"
+	"github.com/faustbrian/go-event-sourcing/adapters/outbox/v3"
 	eventpostgres "github.com/faustbrian/go-event-sourcing/postgres/v2"
 	eventsourcing "github.com/faustbrian/go-event-sourcing/v2"
-	outboxpostgres "github.com/faustbrian/go-transactional-outbox/postgres"
+	outboxpostgres "github.com/faustbrian/go-transactional-outbox/v2/postgres"
 	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgconn"
 	"github.com/jackc/pgx/v5/pgxpool"
