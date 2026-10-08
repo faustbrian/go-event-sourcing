@@ -77,6 +77,22 @@ applications can continue using their selected public releases.
 root-major API snapshot; cross-major compatibility is an adoption decision,
 not an assertion that the two module identities are interchangeable.
 
+## Patch upgrade requirements
+
+For custom-upcaster segment admission, select core
+`github.com/faustbrian/go-event-sourcing/v2@v2.0.1` or newer explicitly.
+This also applies when a maintained v2 adapter supplies an upcaster, including
+the OpenTelemetry wrapper; an adapter's existing core-v2.0.0 minimum does not
+itself supply the fix. Both legacy and context-aware upcasters keep the same
+inclusive segment limit and empty-output behavior.
+
+For absent nullable projection checkpoints, select
+`github.com/faustbrian/go-event-sourcing/postgres/v2@v2.0.2` or newer.
+The fix preserves valid status when an absent checkpoint carries an inactive
+integer; it does not change SQL, stored data, or transaction ownership.
+These patch targets retain the existing v2 type identities and Go 1.27 minimum;
+deprecated core-v1 adapters remain separate.
+
 ## Semantic-versioning surfaces
 
 Treat the following as compatibility-sensitive even when their Go declarations

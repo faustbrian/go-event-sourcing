@@ -4,6 +4,8 @@ All notable changes to this module are documented here.
 
 ## Unreleased
 
+## 2.0.2 - 2026-10-08
+
 ### Fixed
 
 - Preserve valid projection status when an absent nullable checkpoint carries
