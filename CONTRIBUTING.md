@@ -50,9 +50,9 @@ boundary changes, using a disposable cache for each bounded session:
 
 The deterministic command executes fuzz seeds/corpus, not active fuzzing.
 It excludes intentional nested modules and the `integration` tag; it is not
-durable-store or broker qualification. Install the public v2.1.1 binary archive
+durable-store or broker qualification. Install the public v2.1.3 binary archive
 for your platform from
-[go-library-tools releases](https://github.com/faustbrian/go-library-tools/releases/tag/v2.1.1),
+[go-library-tools releases](https://github.com/faustbrian/go-library-tools/releases/tag/v2.1.3),
 checking `checksums.txt` against `.golib.yaml` and the archive against that
 checksum set. Put the extracted `golib` binary on `PATH`, or select it through
 `GOLIB`; do not build Tools from source. CI verifies this same public release

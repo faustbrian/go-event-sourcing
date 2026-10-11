@@ -104,7 +104,7 @@ described in the release notes.
 
 ## Development
 
-Use Go 1.27.2 and the verified public Tools v2.1.1 binary; module minima remain
+Use Go 1.27.2 and the verified public Tools v2.1.3 binary; module minima remain
 Go 1.27.0. `make check` and `make ci` select bounded checks, including existing
 memory concurrency/cancellation assertions. `make check-full` explicitly
 selects the original full campaign. All-module integration tags retain their
