@@ -377,7 +377,7 @@ the successor [`example_test.go`](../../kafka/example_test.go).
 ## Development
 
 From this module directory, run `make check` for the focused compatibility contract.
-From the repository root, run `make check` for the complete repository
+From the repository root, run `make check-full` for the complete repository
 contract. The focused command is a development loop and is not release
 evidence. With Docker available, run `make -C adapters/kafka integration` from
 the repository root. The successor owns the real-broker suite for synchronous

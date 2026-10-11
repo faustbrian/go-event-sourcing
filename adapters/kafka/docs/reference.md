@@ -390,7 +390,7 @@ before use. See [`example_test.go`](../example_test.go).
 ## Development
 
 From this module directory, run `make check` for the focused contract. From the
-repository root, run `make check` for the complete repository contract. The
+repository root, run `make check-full` for the complete repository contract. The
 focused command is a development loop and is not release evidence. With Docker available,
 `make integration` verifies synchronous Zstandard dispatch, complete envelope
 reconstruction, per-aggregate order, consumer handling, dead-letter publication

@@ -102,6 +102,16 @@ compatibility matrix distinguishes implemented, excluded, and externally owned
 capabilities; release readiness still depends on the complete repository gates
 described in the release notes.
 
+## Development
+
+Use Go 1.27.2 and the verified public Tools v2.1.1 binary; module minima remain
+Go 1.27.0. `make check` and `make ci` select bounded checks, including existing
+memory concurrency/cancellation assertions. `make check-full` explicitly
+selects the original full campaign. All-module integration tags retain their
+owned database/broker fixtures; memory assertions alone do not qualify them.
+See [contributing](CONTRIBUTING.md#verification) for standalone tests, active
+fuzz smoke, optional focused mutation, tooling installation and release checks.
+
 ## Documentation
 
 Start with the [documentation index](docs/README.md) for modeling, storage,

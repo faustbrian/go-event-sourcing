@@ -415,7 +415,7 @@ diagnosis.
 ## Development
 
 From this module directory, run `make check` for the focused module contract.
-From the repository root, run `make check` for the complete repository
+From the repository root, run `make check-full` for the complete repository
 contract. Release evidence also requires the module-scoped race, fuzz,
 security, API, documentation, benchmark, exact statement-coverage, and exact
 viable-mutation gates declared in `modules.json`.

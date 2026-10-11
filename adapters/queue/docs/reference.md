@@ -277,7 +277,9 @@ effects.
 
 ## Development
 
-Run `make check` for the complete module contract. Run `make integration` with
+From the repository root, run `golib check --local --module adapters/queue`
+for bounded checks or `golib check --module adapters/queue` for the complete
+module contract. From this module directory, run `make integration` with
 a Docker-compatible runtime for digest-pinned durable Valkey Streams evidence.
 See [delivery guarantees](../docs/delivery-guarantees.md) for duplicate windows, fault and
 fuzz coverage, backend claim boundaries, and benchmark methodology.

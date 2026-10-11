@@ -401,7 +401,7 @@ diagnosis.
 ## Development
 
 From this module directory, run `make check` for the focused compatibility contract.
-From the repository root, run `make check` for the complete repository
+From the repository root, run `make check-full` for the complete repository
 contract. Release evidence also requires the module-scoped race, security, API,
 documentation, exact statement-coverage, and exact viable-mutation gates
 declared in `modules.json`.
