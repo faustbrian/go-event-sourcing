@@ -1,5 +1,9 @@
 package eventsourcing_test
 
+// This workload measures validated envelope construction and copy allocation
+// for its declared payload/metadata fixture; it is not store append or
+// transport publication.
+
 import (
 	"testing"
 	"time"

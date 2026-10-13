@@ -4,6 +4,11 @@ All notable changes to this module are documented here.
 
 ## [Unreleased]
 
+### Documentation
+
+- Clarify provider/exporter ownership, explicit iterator closing, caller
+  context authority and borrowed inbound Kafka payloads.
+
 ## [2.0.1] - 2026-10-06
 
 ### Changed

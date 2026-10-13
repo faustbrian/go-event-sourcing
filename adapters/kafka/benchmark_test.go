@@ -1,5 +1,9 @@
 package kafka
 
+// These benchmarks use prebuilt codec/record fixtures and discard
+// publisher/consumer callbacks. Setup precedes ResetTimer; round-trip and
+// adapter costs do not include broker IO or offset settlement.
+
 import (
 	"context"
 	"testing"

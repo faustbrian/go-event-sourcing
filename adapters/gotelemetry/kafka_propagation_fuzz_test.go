@@ -9,6 +9,9 @@ import (
 	"go.opentelemetry.io/otel/propagation"
 )
 
+// FuzzKafkaPropagationBoundaries checks bounded copied propagation headers;
+// ambiguous or unsupported trace fields must not replace caller context
+// authority.
 func FuzzKafkaPropagationBoundaries(f *testing.F) {
 	f.Add(
 		"traceparent",

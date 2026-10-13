@@ -10,9 +10,15 @@ const (
 
 // DecodedEventInput supplies an explicitly identified application event.
 type DecodedEventInput struct {
-	Name    string
+	// Name is the canonical persisted event identity, validated by
+	// NewDecodedEvent.
+	Name string
+	// Version is a positive schema identity, not an aggregate stream position.
 	Version SchemaVersion
-	Value   any
+	// Value is retained by interface assignment, not deep-copied; the application
+	// must keep it immutable. A nil interface fails, but typed-nil values are
+	// not rejected by NewDecodedEvent.
+	Value any
 }
 
 // DecodedEvent is an immutable-by-contract application event with a stable
@@ -67,10 +73,18 @@ func (event DecodedEvent) IsZero() bool {
 // HistoricalEventInput identifies one logical event produced from one stored
 // stream version. Segment coordinates make split upcasts explicit.
 type HistoricalEventInput struct {
+	// SourceVersion is the positive stored stream version shared by all split
+	// segments.
 	SourceVersion uint64
-	SegmentIndex  uint32
-	SegmentCount  uint32
-	Event         DecodedEvent
+	// SegmentIndex is zero-based within this stored event and must be less than
+	// SegmentCount.
+	SegmentIndex uint32
+	// SegmentCount is positive and at most MaxUpcastSegments; the complete group
+	// must be replayed in order.
+	SegmentCount uint32
+	// Event is the assigned application event for this segment; its Value remains
+	// application-owned.
+	Event DecodedEvent
 }
 
 // HistoricalEvent is one decoded logical event in an ordered stored history.
@@ -158,7 +172,9 @@ func (changes ChangeSet) Events() []DecodedEvent {
 // Lifecycle tracks committed and pending aggregate versions.
 //
 // The zero value is ready for a new aggregate. A Lifecycle must not be copied
-// after first use and is not safe for concurrent mutation.
+// after first use and is not safe for concurrent mutation. Apply may partially
+// mutate application state before error/panic; poisoning prevents reuse but
+// does not undo application mutations or deep-copy DecodedEvent.Value.
 type Lifecycle struct {
 	committed  uint64
 	pending    []DecodedEvent
@@ -389,6 +405,8 @@ func (lifecycle *Lifecycle) apply(
 	return apply(event)
 }
 
+// validateHistory validates each complete split group before any Apply call.
+// Source positions advance once per stored event, never once per logical segment.
 func validateHistory(baseVersion uint64, history []HistoricalEvent) error {
 	expectedVersion := baseVersion
 	for index := 0; index < len(history); {

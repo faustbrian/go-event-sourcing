@@ -98,7 +98,11 @@ var _ FailurePolicy = (*DeadLetterPolicy)(nil)
 // DeadLetterPolicyConfig defines one fixed destination and its outbound record
 // bounds. Zero Limits use DefaultRecordLimits.
 type DeadLetterPolicyConfig struct {
-	Topic  string
+	// Topic is the fixed valid dead-letter destination; routing back to it is
+	// rejected.
+	Topic string
+	// Limits bounds outbound/inbound fields; zero selects the documented package
+	// defaults.
 	Limits kafka.MessageLimits
 }
 
@@ -132,7 +136,9 @@ func NewDeadLetterPolicy(
 }
 
 // HandleFailure republishes owned source bytes and returns FailureHandled only
-// after the publisher acknowledges the dead-letter record.
+// after the publisher acknowledges the dead-letter record and caller context
+// remains active. Publication can succeed before cancellation prevents
+// settlement; repeated attempts may duplicate dead-letter records.
 func (policy *DeadLetterPolicy) HandleFailure(
 	ctx context.Context,
 	record kafka.ConsumedMessage,

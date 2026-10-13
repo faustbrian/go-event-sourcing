@@ -10,6 +10,8 @@ import (
 // Implementations must be safe for every calling pattern in which they are
 // shared. Message construction normalizes returned values independently.
 type Clock interface {
+	// Now supplies recording time; message constructors normalize it to UTC
+	// microseconds.
 	Now() time.Time
 }
 
@@ -52,7 +54,8 @@ func (clock FixedClock) Now() time.Time {
 
 // ManualClock is a concurrency-safe deterministic clock.
 //
-// Its zero value is invalid. Construct it with NewManualClock before use.
+// Its zero value is invalid. Construct it with NewManualClock before use and
+// do not copy it after the mutex has been used.
 type ManualClock struct {
 	mutex sync.RWMutex
 	now   time.Time

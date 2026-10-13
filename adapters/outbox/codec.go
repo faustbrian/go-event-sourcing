@@ -1,5 +1,11 @@
 // Package eventoutbox atomically stages event-sourcing messages and transactional
 // outbox envelopes through one caller-owned PostgreSQL transaction.
+//
+// NewStager composes public PostgreSQL writers inside caller-owned savepoints.
+// Stage results are not committed receipts: outer commit/rollback and unknown
+// commit reconciliation remain caller-owned. Topic resolution happens before
+// stream locking. The adapter owns no broker, delivery loop or exactly-once
+// consumer effects; Stager/transaction use must be serialized.
 package eventoutbox
 
 import (
@@ -98,14 +104,29 @@ func (err *EnvelopeError) Unwrap() []error {
 // resolved before PostgreSQL stream locks are acquired. PendingMessage and
 // Message both implement this contract.
 type TopicMessage interface {
+	// ID returns the stable prepared message identity used for later
+	// reconciliation.
 	ID() eventsourcing.MessageID
+	// Stream returns the assigned immutable aggregate identity.
 	Stream() eventsourcing.StreamID
+	// Event returns immutable encoded event data; implementations must not expose
+	// mutable internal bytes.
 	Event() eventsourcing.EncodedEvent
+	// Metadata returns a defensive map copy; the resolver must not mutate
+	// message-owned metadata.
 	Metadata() map[string]string
+	// RecordedAt returns canonical UTC microsecond recording time.
 	RecordedAt() time.Time
+	// CorrelationID returns the optional immutable correlation identity and
+	// presence flag.
 	CorrelationID() (eventsourcing.MessageID, bool)
+	// CausationID returns the optional immutable predecessor identity and presence
+	// flag.
 	CausationID() (eventsourcing.MessageID, bool)
+	// Tenant returns optional caller-verified routing metadata, not authorization.
 	Tenant() (string, bool)
+	// Partition returns optional application routing metadata, not a
+	// store-assigned position.
 	Partition() (string, bool)
 }
 
@@ -114,6 +135,8 @@ type TopicMessage interface {
 // Implementations must be deterministic for the same TopicMessage, bounded,
 // side-effect-free, concurrency-safe, and must not perform blocking IO.
 type TopicResolver interface {
+	// ResolveTopic deterministically selects a bounded allowed topic without
+	// blocking I/O; message identity/routing trust remains caller-owned.
 	ResolveTopic(TopicMessage) (string, error)
 }
 

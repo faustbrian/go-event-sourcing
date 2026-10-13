@@ -78,6 +78,12 @@ prepared message IDs are durable. A caller-owned transaction uses the explicit
 commit result is ambiguous, `MarkCommitUnknown` preserves the planned and
 staged messages for reconciliation and poisons that aggregate lifecycle.
 
+Preparing a save does not append or dispatch, but application callbacks and
+identifier/codec implementations may still block or perform I/O. Preparation is
+not a global no-I/O guarantee. Save results are value snapshots: an attempt flag
+in the returned copy does not stop an older copied result from being dispatched
+again. Applications own durable dispatch deduplication and reconciliation.
+
 ## Dispatch boundary
 
 The aggregate repository dispatches only `DeliveryLive` messages returned by a

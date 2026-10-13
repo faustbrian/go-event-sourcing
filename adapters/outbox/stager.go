@@ -83,8 +83,12 @@ type Stager struct {
 // AppendPlan exposes the immutable data required to stage a prepared aggregate
 // save. eventsourcing.SavePlan implements this consumer-owned contract.
 type AppendPlan interface {
+	// Stream returns the assigned single stream to stage.
 	Stream() eventsourcing.StreamID
+	// ExpectedVersion returns the prepared optimistic append condition.
 	ExpectedVersion() eventsourcing.ExpectedVersion
+	// PreparedMessages returns the exact ordered immutable envelopes to stage and
+	// later reconcile.
 	PreparedMessages() []eventsourcing.PendingMessage
 }
 

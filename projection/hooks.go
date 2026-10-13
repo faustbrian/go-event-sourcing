@@ -40,7 +40,10 @@ type ReplayHook func(context.Context) error
 // ReplayHookError preserves a lifecycle-hook failure without exposing
 // application diagnostics.
 type ReplayHookError struct {
+	// Phase identifies the before/after replay hook that failed.
 	Phase ReplayHookPhase
+	// Cause retains the underlying failure for Unwrap; Error omits its diagnostic
+	// text.
 	Cause error
 }
 

@@ -120,6 +120,9 @@ func (chain *MigrationChain) Migrate(
 	return current, nil
 }
 
+// deterministicMigration repeats the callback on fresh copies to check equal
+// sampled output. It does not prove purity: callbacks must avoid external effects
+// and remain bounded for both invocations.
 func deterministicMigration(
 	migration StateMigration,
 	stored eventsourcing.Snapshot,
@@ -184,8 +187,12 @@ func callMigration(
 // MigrationError identifies the schema boundary without disclosing snapshot
 // state, metadata, aggregate identity, or callback diagnostics.
 type MigrationError struct {
-	From  eventsourcing.SchemaVersion
-	To    eventsourcing.SchemaVersion
+	// From is the positive source snapshot-state schema that failed to migrate.
+	From eventsourcing.SchemaVersion
+	// To is the strictly greater target snapshot-state schema.
+	To eventsourcing.SchemaVersion
+	// Cause retains the underlying failure for Unwrap; Error omits its diagnostic
+	// text.
 	Cause error
 }
 

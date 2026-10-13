@@ -48,7 +48,11 @@ type ReadModelReset func(context.Context) error
 // reset did not complete. The projection remains caller-controlled and is
 // never resumed by the library.
 type RebuildError struct {
+	// Phase identifies whether read-model reset or the later checkpoint step
+	// failed.
 	Phase RebuildPhase
+	// Cause retains the underlying failure for Unwrap; Error omits its diagnostic
+	// text.
 	Cause error
 }
 

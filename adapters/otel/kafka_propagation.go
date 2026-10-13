@@ -34,6 +34,8 @@ var (
 // KafkaPublisher is the synchronous publication contract implemented by the
 // Kafka producer and the event-sourcing Kafka dispatcher publisher.
 type KafkaPublisher interface {
+	// Publish synchronously returns the configured acknowledgement result; errors
+	// may follow acceptance, so callers own deduplication and retry.
 	Publish(context.Context, kafka.Message) error
 }
 
@@ -41,6 +43,8 @@ type KafkaPublisher interface {
 // their caller-controlled fields. A zero Limits value selects the Kafka
 // package defaults.
 type KafkaPropagationConfig struct {
+	// Limits bounds record copying and propagation; zero selects
+	// kafka.DefaultMessageLimits.
 	Limits kafka.MessageLimits
 }
 
@@ -87,6 +91,9 @@ func (instrumentation *Instrumentation) WrapKafkaPublisher(
 // WrapKafkaHandler extracts a remote parent from bounded, unambiguous headers
 // before invoking next. Oversized, duplicated, or malformed propagation is
 // ignored, while the record remains available to the downstream handler.
+// Only copied headers are owned; payload/key bytes remain borrowed. Extracted
+// trace context is not authentication, and arbitrary propagator context values
+// do not replace caller context authority.
 func (instrumentation *Instrumentation) WrapKafkaHandler(
 	next kafka.Handler,
 	config KafkaPropagationConfig,

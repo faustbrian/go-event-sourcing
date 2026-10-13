@@ -14,12 +14,21 @@ const (
 
 // SnapshotInput supplies one immutable derived aggregate snapshot.
 type SnapshotInput struct {
-	Stream           StreamID
+	// Stream identifies the aggregate whose derived state is represented.
+	Stream StreamID
+	// AggregateVersion is the positive last authoritative stream version
+	// represented by State.
 	AggregateVersion uint64
-	SchemaVersion    SchemaVersion
-	State            []byte
-	Metadata         map[string]string
-	CreatedAt        time.Time
+	// SchemaVersion is the positive snapshot-state schema identity, independent of
+	// event schema.
+	SchemaVersion SchemaVersion
+	// State is nonempty and at most MaxSnapshotStateBytes; NewSnapshot copies it.
+	State []byte
+	// Metadata is validated/copy-owned application snapshot metadata, subject to
+	// core metadata bounds.
+	Metadata map[string]string
+	// CreatedAt is required and normalized to UTC microseconds.
+	CreatedAt time.Time
 }
 
 // Snapshot is immutable-by-contract derived aggregate state.
@@ -123,8 +132,13 @@ func (snapshot Snapshot) Equal(other Snapshot) bool {
 // an exact idempotent retry, and reject different state at the same versions.
 // Delete is idempotent.
 type SnapshotStore interface {
+	// Load returns independently owned derived state or ErrSnapshotNotFound;
+	// history remains authoritative.
 	Load(context.Context, StreamID) (Snapshot, error)
+	// Save atomically rejects version regressions and conflicting equal-version
+	// state, while accepting an exact idempotent retry.
 	Save(context.Context, Snapshot) error
+	// Delete removes derived state idempotently, without modifying event history.
 	Delete(context.Context, StreamID) error
 }
 
@@ -132,11 +146,19 @@ type SnapshotStore interface {
 //
 // Error redacts Stream because aggregate identifiers may be sensitive.
 type SnapshotVersionError struct {
-	Stream                   StreamID
-	StoredAggregateVersion   uint64
+	// Stream identifies the aggregate whose derived state is represented.
+	Stream StreamID
+	// StoredAggregateVersion is the retained stream version used for the
+	// regression check.
+	StoredAggregateVersion uint64
+	// IncomingAggregateVersion is the proposed stream version that could not
+	// replace retained state.
 	IncomingAggregateVersion uint64
-	StoredSchemaVersion      SchemaVersion
-	IncomingSchemaVersion    SchemaVersion
+	// StoredSchemaVersion is the retained snapshot schema version.
+	StoredSchemaVersion SchemaVersion
+	// IncomingSchemaVersion is the proposed schema version accompanying the
+	// rejected save; either aggregate or schema version may have regressed.
+	IncomingSchemaVersion SchemaVersion
 }
 
 // Error implements error without disclosing stream identity.
@@ -154,9 +176,14 @@ func (*SnapshotVersionError) Unwrap() error {
 //
 // Error redacts Stream because aggregate identifiers may be sensitive.
 type SnapshotConflictError struct {
-	Stream           StreamID
+	// Stream identifies the aggregate whose derived state is represented.
+	Stream StreamID
+	// AggregateVersion is the shared positive stream version of the conflicting
+	// snapshots.
 	AggregateVersion uint64
-	SchemaVersion    SchemaVersion
+	// SchemaVersion is the positive snapshot-state schema identity, independent of
+	// event schema.
+	SchemaVersion SchemaVersion
 }
 
 // Error implements error without disclosing stream identity.
@@ -172,6 +199,8 @@ func (*SnapshotConflictError) Unwrap() error {
 // SnapshotRestorationError redacts an application snapshot decoder diagnostic
 // while preserving its cause for inspection.
 type SnapshotRestorationError struct {
+	// Cause retains the underlying failure for Unwrap; Error omits its diagnostic
+	// text.
 	Cause error
 }
 

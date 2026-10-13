@@ -1,5 +1,10 @@
 package eventsourcing_test
 
+// These benchmarks isolate selected in-process history, payload, registry,
+// snapshot, upcast and dispatch workloads. Fixtures use declared lengths/sizes
+// and setup before ResetTimer; outcome checks after StopTimer are not
+// measured. Results do not qualify database or broker latency.
+
 import (
 	"context"
 	"encoding/json"

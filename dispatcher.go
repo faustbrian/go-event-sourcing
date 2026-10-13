@@ -130,6 +130,8 @@ func (option filterConsumerOption) configureConsumer(consumer *Consumer) error {
 
 // Dispatcher synchronously delivers persisted messages to consumers.
 type Dispatcher interface {
+	// Dispatch delivers the borrowed ordered batch synchronously; errors may
+	// follow successful earlier calls, so callers own retry/idempotency.
 	Dispatch(context.Context, []Delivery) error
 }
 
@@ -137,6 +139,9 @@ type Dispatcher interface {
 //
 // It is immutable after construction, safe for concurrent use, and permits
 // reentrant dispatch without holding locks across application callbacks.
+// Retained handlers/filters must themselves support shared use. Calls are
+// synchronous; cancellation is checked between callbacks, not an interrupt
+// for a callback that blocks. Contained failures do not roll back earlier effects.
 type SyncDispatcher struct {
 	consumers       []Consumer
 	continueOnError bool
@@ -210,7 +215,9 @@ func (continueOnConsumerError) configureSyncDispatcher(
 
 // Dispatch invokes consumers in message-major, registration order.
 //
-// It stops at the first filter or consumer error. Empty delivery succeeds.
+// Default policy stops at the first filter or consumer error;
+// ContinueOnConsumerError joins failures and continues until cancellation.
+// Empty delivery succeeds. The input slice is borrowed for the call.
 func (dispatcher *SyncDispatcher) Dispatch(
 	ctx context.Context,
 	deliveries []Delivery,
@@ -307,9 +314,15 @@ func callConsumer(
 // ConsumerError identifies a failed consumer without printing message data or
 // the wrapped application diagnostic.
 type ConsumerError struct {
+	// ConsumerID identifies the registered callback; the error string omits this
+	// identity.
 	ConsumerID string
-	MessageID  MessageID
-	Cause      error
+	// MessageID identifies the persisted delivery that failed; it is not printed
+	// by Error.
+	MessageID MessageID
+	// Cause retains the underlying failure for Unwrap; Error omits its diagnostic
+	// text.
+	Cause error
 }
 
 // Error implements error with redacted diagnostics.

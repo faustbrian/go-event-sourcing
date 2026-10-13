@@ -289,6 +289,9 @@ func TestEnvelopeCodecHonorsEveryExactSizeBoundary(t *testing.T) {
 	}
 }
 
+// FuzzEnvelopeCodecCanonicalRoundTrip checks every observable field through
+// the package-defined envelope round trip; it is not a cryptographic
+// canonicalization proof.
 func FuzzEnvelopeCodecCanonicalRoundTrip(f *testing.F) {
 	f.Add(
 		[]byte("identity-seed"),
@@ -410,6 +413,9 @@ func FuzzEnvelopeCodecCanonicalRoundTrip(f *testing.F) {
 	})
 }
 
+// FuzzEnvelopeCodecEnvelopeFieldInvariants checks hostile envelope field
+// combinations against the codec contract without trusting claimed routing
+// identity.
 func FuzzEnvelopeCodecEnvelopeFieldInvariants(f *testing.F) {
 	codec := mustCodec(f, FixedTopic("events"), DefaultLimits())
 	fixture, err := codec.Encode(internalMessage(f, true))

@@ -1,3 +1,7 @@
+// Package competitors_test compares selected in-process lifecycle workloads
+// against pinned third-party implementations. Fixtures normalize observable
+// state/version outcomes; results do not imply equivalent persistence, feature
+// coverage, concurrency or production workload performance.
 package competitors_test
 
 import (
@@ -37,6 +41,9 @@ type incremented struct {
 	Amount int `json:"amount"`
 }
 
+// BenchmarkEquivalentRecordAndApply measures fresh aggregate creation plus
+// one record/apply operation. Fixture outcome checks run after the timed loop;
+// dependency setup and each library's API costs are not universal throughput.
 func BenchmarkEquivalentRecordAndApply(benchmark *testing.B) {
 	benchmarks := []struct {
 		name string
@@ -120,6 +127,9 @@ type reconstitutionCandidate struct {
 	run  func() (int, int, error)
 }
 
+// BenchmarkEquivalentReconstitution compares the selected history lengths
+// with prebuilt fixtures and matching state/version checks; it is not IO/restart
+// or live-backend performance qualification.
 func BenchmarkEquivalentReconstitution(benchmark *testing.B) {
 	for _, length := range []int{1, 10, 100, 1000} {
 		candidates := reconstitutionCandidates(benchmark, length)

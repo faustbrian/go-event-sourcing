@@ -4,6 +4,11 @@ All notable changes to this module are documented here.
 
 ## [Unreleased]
 
+### Documentation
+
+- Clarify synchronous acknowledgement, caller-owned broker ordering and
+  possible repeated dead-letter publication after cancellation.
+
 ## [2.0.1] - 2026-10-06
 
 ### Changed

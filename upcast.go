@@ -62,6 +62,8 @@ type UpcasterFunc func(UpcastEvent) ([]UpcastEvent, error)
 // return independently owned events, and report stored input failures without
 // panicking. UpcasterChain is the reference implementation.
 type Upcaster interface {
+	// Upcast returns at most MaxUpcastSegments ordered independently owned
+	// results; an empty result is an explicit drop, not stored-history deletion.
 	Upcast(UpcastEvent) ([]UpcastEvent, error)
 }
 
@@ -71,6 +73,8 @@ type Upcaster interface {
 // must not retain the context or use it to make evolution nondeterministic.
 type ContextUpcaster interface {
 	Upcaster
+	// UpcastContext observes caller cancellation without retaining ctx or making
+	// evolution context-dependent.
 	UpcastContext(context.Context, UpcastEvent) ([]UpcastEvent, error)
 }
 
@@ -313,6 +317,8 @@ func (chain *UpcasterChain) upcastOne(
 			return nil, newUpcastError(event, ErrUpcastCycle)
 		}
 
+		// Cycle detection is path-local: sibling split branches may legitimately
+		// reach the same identity without being a cycle.
 		nextPath := maps.Clone(path)
 		nextPath[nextIdentity] = struct{}{}
 		expanded, err := chain.upcastOne(next, nextPath, steps+1, work)
@@ -328,6 +334,9 @@ func (chain *UpcasterChain) upcastOne(
 	return result, nil
 }
 
+// deterministicUpcast deliberately evaluates the same copied input twice.
+// Equal output detects sampled nondeterminism, not purity or all future behavior;
+// callbacks must remain side-effect-free and bounded despite repeated evaluation.
 func deterministicUpcast(
 	rule UpcastRule,
 	event UpcastEvent,
@@ -419,9 +428,15 @@ func newUpcastError(event UpcastEvent, cause error) *UpcastError {
 // UpcastError identifies the stored event identity that failed without
 // printing payload, metadata, panic values, or wrapped diagnostics.
 type UpcastError struct {
-	EventName     EventName
+	// EventName identifies the stored input whose transformation failed; Error
+	// omits it.
+	EventName EventName
+	// SchemaVersion identifies the stored input schema, not the failed callback
+	// output.
 	SchemaVersion SchemaVersion
-	Cause         error
+	// Cause retains the underlying failure for Unwrap; Error omits its diagnostic
+	// text.
+	Cause error
 }
 
 // Error implements error with redacted diagnostics.

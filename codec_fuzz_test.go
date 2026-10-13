@@ -7,6 +7,9 @@ import (
 	eventsourcing "github.com/faustbrian/go-event-sourcing/v2"
 )
 
+// FuzzJSONCodecDecode checks bounded hostile JSON payloads against registered
+// decoding; accepted values must preserve the expected public event identity
+// without panic.
 func FuzzJSONCodecDecode(f *testing.F) {
 	f.Add([]byte(`{"id":9007199254740993,"registered_at":"2026-07-25T06:17:42Z","labels":{}}`))
 	f.Add([]byte(`null`))

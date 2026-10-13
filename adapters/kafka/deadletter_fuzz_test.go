@@ -10,6 +10,8 @@ import (
 	"github.com/faustbrian/go-kafka"
 )
 
+// FuzzDeadLetterPolicy exercises hostile source positions/headers and outbound
+// bounds; only acknowledged valid quarantine permits settlement.
 func FuzzDeadLetterPolicy(f *testing.F) {
 	f.Add(
 		"accounts.events",

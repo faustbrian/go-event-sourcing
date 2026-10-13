@@ -1,5 +1,10 @@
 // Package eventqueue maps event-sourcing deliveries to compatible queue
 // backends without coupling queue behavior into the event-sourcing core.
+// NewCodec checks a package-defined canonical envelope; NewDispatcher enqueues
+// live deliveries synchronously and NewTaskHandler leaves acknowledgement to
+// the queue owner. The producer contract has no context parameter, so an active
+// Queue call cannot be interrupted by dispatch cancellation. Acceptance failure
+// can be unknown, and repeated handling/publication requires caller idempotency.
 package eventqueue
 
 import (
@@ -39,6 +44,8 @@ var (
 // CodecConfig defines one immutable queue envelope bound. A zero value selects
 // queue/job.DefaultMaxMessageBytes.
 type CodecConfig struct {
+	// MaxEnvelopeBytes bounds encoded input/output; zero selects
+	// job.DefaultMaxMessageBytes and larger values are rejected.
 	MaxEnvelopeBytes int
 }
 

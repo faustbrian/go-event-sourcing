@@ -1,5 +1,9 @@
 package memory_test
 
+// These workloads exercise process-local concurrent append with declared
+// key/conflict shapes. Fixture setup is outside the reset timed loop; results
+// are not distributed-store contention or persistence durability.
+
 import (
 	"context"
 	"fmt"

@@ -20,9 +20,14 @@ var (
 // ExpectedEvent identifies one decoded event and optionally validates its
 // application value. Matcher error text is treated as sensitive and redacted.
 type ExpectedEvent struct {
-	Name    string
+	// Name is the expected canonical event identity, compared without formatting
+	// application values.
+	Name string
+	// Version is the expected positive event schema identity.
 	Version eventsourcing.SchemaVersion
-	Value   func(any) error
+	// Value is an optional borrowed application predicate; nil checks identity
+	// only and its failure text is redacted.
+	Value func(any) error
 }
 
 // MatchEvent compares stable identity and an optional application value
@@ -99,10 +104,17 @@ func CheckPayloadRoundTrip(
 // ExpectedUpcastEvent identifies one logical upcast output. Payload predicate
 // errors are redacted.
 type ExpectedUpcastEvent struct {
-	Name     string
-	Version  eventsourcing.SchemaVersion
+	// Name is the expected canonical event identity, compared without formatting
+	// application values.
+	Name string
+	// Version is the expected positive event schema identity.
+	Version eventsourcing.SchemaVersion
+	// Metadata is the complete expected map, not a subset; input must remain
+	// stable during the check.
 	Metadata map[string]string
-	Payload  func([]byte) error
+	// Payload is an optional predicate over copied encoded bytes; failure text is
+	// redacted.
+	Payload func([]byte) error
 }
 
 // CheckUpcast verifies an ordered deterministic upcast result.

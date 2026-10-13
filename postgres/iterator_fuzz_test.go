@@ -8,6 +8,8 @@ import (
 	eventsourcing "github.com/faustbrian/go-event-sourcing/v2"
 )
 
+// FuzzScanMessage checks hostile driver-returned message fields after scanning
+// and rejects invalid history without panic.
 func FuzzScanMessage(f *testing.F) {
 	f.Add(
 		int64(1),

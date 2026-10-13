@@ -2,7 +2,12 @@
 // aggregate snapshots.
 //
 // The package starts no goroutines and owns no transactions. Snapshot refresh
-// is always explicit.
+// is always explicit. NewManager requires a declared fallback policy, a
+// borrowed state codec/store and authoritative repository. Snapshot schemas
+// are distinct from event schemas; restoration verifies the base in history.
+// Application aggregate state must not be mutated concurrently with refresh.
+// Callback panic containment does not impose a blocking deadline or make
+// event writes and snapshot refresh atomic together.
 package snapshot
 
 import (
@@ -24,7 +29,11 @@ var (
 // AggregateRepository loads aggregate history and restores decoded snapshot
 // state before applying later events.
 type AggregateRepository[ID, Aggregate any] interface {
+	// Load restores full authoritative history and must return fresh aggregate
+	// state.
 	Load(context.Context, ID) (Aggregate, error)
+	// Restore verifies the snapshot base in authoritative history before taking
+	// owned decoded state and replaying later events.
 	Restore(
 		context.Context,
 		ID,
@@ -38,8 +47,14 @@ type AggregateRepository[ID, Aggregate any] interface {
 // Encode must return newly owned bytes. Decode must not retain or mutate the
 // supplied state or metadata.
 type StateCodec[Aggregate any] interface {
+	// SchemaVersion supplies a positive immutable state-schema identity;
+	// construction snapshots it.
 	SchemaVersion() eventsourcing.SchemaVersion
+	// Encode returns newly owned state bytes; callers may not mutate aggregate
+	// state concurrently.
 	Encode(Aggregate) ([]byte, error)
+	// Decode returns fresh aggregate state without retaining or mutating supplied
+	// state/metadata.
 	Decode([]byte, map[string]string) (Aggregate, error)
 }
 
@@ -151,17 +166,35 @@ func (info LoadInfo) FallbackReason() error {
 
 // ManagerConfig supplies every replaceable snapshot composition boundary.
 type ManagerConfig[ID, Aggregate any] struct {
+	// AggregateType is the canonical stream type used to match restored/refreshed
+	// state.
 	AggregateType string
-	EncodeID      eventsourcing.IdentifierEncoder[ID]
-	Identify      eventsourcing.AggregateIdentifier[ID, Aggregate]
-	Lifecycle     eventsourcing.LifecycleAccessor[Aggregate]
-	Repository    AggregateRepository[ID, Aggregate]
-	Store         eventsourcing.SnapshotStore
-	Codec         StateCodec[Aggregate]
-	Clock         eventsourcing.Clock
-	Metadata      func(Aggregate) (map[string]string, error)
-	Fallback      FallbackPolicy
-	Migrations    *MigrationChain
+	// EncodeID is a required synchronous borrowed stable identifier encoder.
+	EncodeID eventsourcing.IdentifierEncoder[ID]
+	// Identify is required and confirms the aggregate belongs to the requested
+	// stream.
+	Identify eventsourcing.AggregateIdentifier[ID, Aggregate]
+	// Lifecycle is required and supplies aggregate-owned committed/pending state.
+	Lifecycle eventsourcing.LifecycleAccessor[Aggregate]
+	// Repository is the required borrowed authoritative history/restore boundary.
+	Repository AggregateRepository[ID, Aggregate]
+	// Store is required borrowed derived-state storage; manager operations do not
+	// close it.
+	Store eventsourcing.SnapshotStore
+	// Codec is required; Encode/Decode panics become ErrStateCodecPanic, while
+	// the constructor's SchemaVersion call is not panic-isolated.
+	Codec StateCodec[Aggregate]
+	// Clock is the required borrowed snapshot creation-time source.
+	Clock eventsourcing.Clock
+	// Metadata is optional; returned maps are validated/copied during snapshot
+	// construction and callback panics are contained.
+	Metadata func(Aggregate) (map[string]string, error)
+	// Fallback must be explicit; FailClosed permits no classified snapshot
+	// fallback.
+	Fallback FallbackPolicy
+	// Migrations is optional; a supplied chain must be constructed and never
+	// rewrites stored snapshot/history.
+	Migrations *MigrationChain
 }
 
 // Manager explicitly loads and refreshes replaceable aggregate snapshots.
@@ -440,6 +473,8 @@ func (manager *Manager[ID, Aggregate]) RefreshIfDue(
 // CreationError redacts application snapshot encoder and metadata-provider
 // diagnostics while preserving their cause for errors.Is and errors.As.
 type CreationError struct {
+	// Cause retains the underlying failure for Unwrap; Error omits its diagnostic
+	// text.
 	Cause error
 }
 

@@ -8,6 +8,8 @@ import (
 	eventsourcing "github.com/faustbrian/go-event-sourcing/v2"
 )
 
+// FuzzReplayFilter exercises inclusive filter bounds and valid/invalid
+// persisted identities; matching must remain deterministic.
 func FuzzReplayFilter(fuzz *testing.F) {
 	fuzz.Add(
 		"account",

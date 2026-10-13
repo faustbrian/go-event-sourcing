@@ -30,7 +30,9 @@ var (
 )
 
 // WrapEventStore instruments append and complete bounded stream-read
-// operations without recording stream or message identity.
+// operations without recording stream or message identity. Returned iterators
+// retain their operation context/span until Close or terminal failure; normal
+// exhaustion alone still requires caller Close. Iterators are not concurrency-safe.
 func (instrumentation *Instrumentation) WrapEventStore(
 	next eventsourcing.EventStore,
 ) (eventsourcing.EventStore, error) {

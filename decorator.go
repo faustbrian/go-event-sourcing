@@ -115,7 +115,10 @@ func validPendingMessage(message PendingMessage) bool {
 // DecoratorError identifies the ordered decorator that failed without printing
 // application metadata, payload, panic values, or wrapped diagnostics.
 type DecoratorError struct {
+	// Index is the zero-based decorator registration that failed.
 	Index int
+	// Cause retains the underlying failure for Unwrap; Error omits its diagnostic
+	// text.
 	Cause error
 }
 

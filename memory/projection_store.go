@@ -11,7 +11,7 @@ import (
 // ProjectionStore is a concurrency-safe in-memory checkpoint and projection
 // control store.
 //
-// It provides process-local durability only. Its zero value is invalid;
+// Its state is process-local and not crash-durable. Its zero value is invalid;
 // construct it with NewProjectionStore.
 type ProjectionStore struct {
 	mutex       sync.RWMutex
@@ -98,7 +98,8 @@ func (store *ProjectionStore) Save(
 	return nil
 }
 
-// Pause idempotently prevents new batches and checkpoint advancement.
+// Pause idempotently blocks new batches/checkpoint advancement. It does not
+// wait for an in-flight application handler; callers own draining before rebuild.
 func (store *ProjectionStore) Pause(
 	ctx context.Context,
 	name string,

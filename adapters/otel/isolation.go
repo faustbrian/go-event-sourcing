@@ -31,6 +31,9 @@ type isolatedTracer struct {
 	trace.Tracer
 }
 
+// Start discards provider-added context values while installing only the
+// isolated span on the original caller context, preserving cancellation/value
+// authority across a hostile or failing tracer. Provider blocking is not bounded.
 func (tracer isolatedTracer) Start(
 	ctx context.Context,
 	name string,

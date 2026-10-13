@@ -15,6 +15,8 @@ import (
 	"github.com/faustbrian/go-queue/job"
 )
 
+// FuzzCodecDecode checks hostile canonical queue envelopes and independently
+// owned decoded delivery data.
 func FuzzCodecDecode(f *testing.F) {
 	codec, err := NewCodec(CodecConfig{})
 	if err != nil {
@@ -53,6 +55,8 @@ func FuzzCodecDecode(f *testing.F) {
 	})
 }
 
+// FuzzDispatcherRetryMetadata checks delivery-derived job metadata and copied
+// retry options passed through synchronous admission.
 func FuzzDispatcherRetryMetadata(f *testing.F) {
 	f.Add(
 		int64(0),
@@ -208,6 +212,8 @@ func FuzzDispatcherRetryMetadata(f *testing.F) {
 	})
 }
 
+// FuzzDispatcherRejectsInvalidRetryMetadata exercises invalid job retry
+// metadata without implying acceptance or running a durable worker.
 func FuzzDispatcherRejectsInvalidRetryMetadata(f *testing.F) {
 	f.Add(uint8(0), uint64(1))
 	f.Add(uint8(1), uint64(2))
@@ -276,6 +282,8 @@ func FuzzDispatcherRejectsInvalidRetryMetadata(f *testing.F) {
 	})
 }
 
+// FuzzCodecPayloadLimits checks configured payload/envelope bounds on encoding
+// and decoding, not backend queue capacity.
 func FuzzCodecPayloadLimits(f *testing.F) {
 	f.Add(uint32(0), uint8(0))
 	f.Add(uint32(1), uint8(1))

@@ -4,6 +4,11 @@ All notable changes to this module are documented here.
 
 ## Unreleased
 
+### Documentation
+
+- Document borrowed pool/transaction ownership, commit-order allocation,
+  bounded rollback attempts, post-scan validation and forward-only migrations.
+
 ## 2.0.2 - 2026-10-08
 
 ### Fixed

@@ -22,7 +22,11 @@ const (
 //
 // Implementations must be deterministic and safe for concurrent use.
 type PayloadCodec interface {
+	// Encode returns independently owned encoded event data with the declared
+	// identity; the application retains responsibility for immutable input values.
 	Encode(DecodedEvent) (EncodedEvent, error)
+	// Decode treats stored input as untrusted and returns an identified
+	// application event or an error without retaining borrowed payload bytes.
 	Decode(EncodedEvent) (DecodedEvent, error)
 }
 
@@ -32,7 +36,11 @@ type PayloadCodec interface {
 // not retain the context or use it to make serialization nondeterministic.
 type ContextPayloadCodec interface {
 	PayloadCodec
+	// EncodeContext observes caller cancellation without retaining ctx or making
+	// serialized output context-dependent.
 	EncodeContext(context.Context, DecodedEvent) (EncodedEvent, error)
+	// DecodeContext propagates caller cancellation while preserving deterministic
+	// event decoding.
 	DecodeContext(context.Context, EncodedEvent) (DecodedEvent, error)
 }
 
@@ -44,7 +52,10 @@ type ContextPayloadCodec interface {
 // independently owned Message. Stored or external input must return an error,
 // never panic.
 type MessageCodec interface {
+	// Encode returns deterministic caller-owned bytes for the complete envelope.
 	Encode(Message) ([]byte, error)
+	// Decode returns independently owned validated message data, retaining no
+	// input bytes and rejecting malformed envelopes without panic.
 	Decode([]byte) (Message, error)
 }
 
@@ -143,7 +154,9 @@ func WithJSONStrictDecoding() JSONCodecOption {
 	return strictJSONDecoding{}
 }
 
-// JSONCodec is an immutable explicit JSON event registry.
+// JSONCodec is an immutable explicit JSON event registry. Custom marshaler and
+// unmarshal methods belong to the registered application type; their blocking,
+// mutation, concurrency and panic behavior is not isolated by this registry.
 type JSONCodec struct {
 	events      map[eventKey]jsonEventRegistration
 	aliases     map[eventKey]eventKey
@@ -194,7 +207,9 @@ func NewJSONCodec(options ...JSONCodecOption) (*JSONCodec, error) {
 	return builder.codec, nil
 }
 
-// Encode produces deterministic canonical JSON for a registered event.
+// Encode uses encoding/json for a registered Go type, not a cryptographic JSON
+// canonicalization standard. Values and custom marshalers are caller-trusted;
+// marshaling allocates before the resulting payload-size bound is checked.
 func (codec *JSONCodec) Encode(event DecodedEvent) (EncodedEvent, error) {
 	if event.IsZero() {
 		return EncodedEvent{}, invalid("event", "must be assigned")
@@ -380,6 +395,9 @@ func validateEventKey(key eventKey) error {
 	return nil
 }
 
+// validateJSONPayload rejects duplicates, trailing values, invalid UTF-8 and
+// excessive depth/container sizes before registered type decoding. This is
+// separate from trusted application marshaling on Encode.
 func validateJSONPayload(payload []byte) error {
 	if !utf8.Valid(payload) {
 		return fmt.Errorf("%w: invalid UTF-8", ErrMalformedEvent)

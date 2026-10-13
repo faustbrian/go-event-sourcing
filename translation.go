@@ -15,6 +15,8 @@ const MaxTranslatedDeliveries = 1_000
 // input, retain no borrowed values without copying, and remain side-effect
 // free when used for replay.
 type DeliveryTranslator interface {
+	// Translate returns bounded ordered deliveries, preserving delivery mode;
+	// nil/empty output intentionally drops this input.
 	Translate(context.Context, Delivery) ([]Delivery, error)
 }
 
@@ -38,7 +40,11 @@ func (translator DeliveryTranslatorFunc) Translate(
 // TranslatorChainConfig declares an ordered immutable anti-corruption chain.
 // A zero MaxDeliveries selects MaxTranslatedDeliveries.
 type TranslatorChainConfig struct {
-	Translators   []DeliveryTranslator
+	// Translators is a nonempty ordered slice copied by construction; callback
+	// implementations remain borrowed.
+	Translators []DeliveryTranslator
+	// MaxDeliveries bounds each stage output; zero selects
+	// MaxTranslatedDeliveries.
 	MaxDeliveries int
 }
 

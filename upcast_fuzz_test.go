@@ -8,6 +8,8 @@ import (
 	eventsourcing "github.com/faustbrian/go-event-sourcing/v2"
 )
 
+// FuzzUpcasterChain exercises bounded rule paths and split/drop evolution;
+// accepted output must preserve deterministic identity/order.
 func FuzzUpcasterChain(fuzz *testing.F) {
 	fuzz.Add("legacy.event", uint32(1), []byte(`{"value":1}`), "source", "legacy")
 	fuzz.Add("current.event", uint32(2), []byte{}, "", "")

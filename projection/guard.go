@@ -62,6 +62,8 @@ func PermitReplay(context.Context, ReplayAttempt) error {
 // ReplayGuardError preserves a guard failure without exposing application
 // diagnostics.
 type ReplayGuardError struct {
+	// Cause retains the underlying failure for Unwrap; Error omits its diagnostic
+	// text.
 	Cause error
 }
 

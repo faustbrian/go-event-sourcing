@@ -8,6 +8,11 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Documentation
+
+- Document the retained core-v1 binding, canonical v2 migration target,
+  synchronous acknowledgement and possible repeated dead-letter publication.
+
 ## [1.1.0] - 2026-10-06
 
 ### Changed

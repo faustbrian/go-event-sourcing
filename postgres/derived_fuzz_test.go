@@ -8,6 +8,8 @@ import (
 	"github.com/jackc/pgx/v5/pgtype"
 )
 
+// FuzzScanSnapshot checks hostile driver-returned derived state and numeric
+// bounds after scanning, not a pre-transfer driver allocation bound.
 func FuzzScanSnapshot(f *testing.F) {
 	f.Add(
 		"account",
@@ -78,6 +80,8 @@ func FuzzScanSnapshot(f *testing.F) {
 	})
 }
 
+// FuzzProjectionStatus checks stored projection status shape and positive
+// checkpoint presence before exposing it.
 func FuzzProjectionStatus(f *testing.F) {
 	f.Add(int16(1), int64(1), true)
 	f.Add(int16(0), int64(0), false)

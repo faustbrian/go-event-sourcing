@@ -24,6 +24,8 @@ var (
 // Implementations must be deterministic for the same message and must not
 // retain the context or message.
 type MessageVerifier interface {
+	// VerifyMessage rejects an untrusted message before read exposure; nil means
+	// verification passed, not that the store signed it.
 	VerifyMessage(context.Context, Message) error
 }
 

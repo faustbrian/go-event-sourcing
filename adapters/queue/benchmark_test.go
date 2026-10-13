@@ -1,5 +1,9 @@
 package eventqueue
 
+// These benchmarks use prebuilt codec/delivery fixtures and an in-process
+// queue/consumer to measure mapping and adapter overhead. They do not qualify
+// durable admission, worker retries or backend latency.
+
 import (
 	"context"
 	"testing"

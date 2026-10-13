@@ -8,6 +8,11 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Documentation
+
+- Document copied job inputs, non-interruptible synchronous producer calls,
+  unknown acceptance and queue-owned settlement.
+
 ## [2.0.1] - 2026-10-06
 
 ### Changed

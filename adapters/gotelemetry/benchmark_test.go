@@ -1,5 +1,10 @@
 package gotelemetry
 
+// These benchmarks compare direct, no-op, sampled-out and recording
+// instrumentation with prebuilt fixtures/providers and excluded setup at
+// ResetTimer. SDK/exporter configuration is part of the comparison; results do
+// not establish that arbitrary provider IO is bounded.
+
 import (
 	"context"
 	"testing"

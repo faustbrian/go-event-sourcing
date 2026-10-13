@@ -8,6 +8,11 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Documentation
+
+- Document the retained core-v1 binding and v2 migration target while
+  clarifying provider shutdown and instrumented iterator/context lifetime.
+
 ## [1.1.0] - 2026-10-06
 
 ### Changed

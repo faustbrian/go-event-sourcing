@@ -1,5 +1,8 @@
 package postgres
 
+// BenchmarkEncodeMetadata measures sorting and encoding a fixed three-entry
+// map; no connection, transaction or database operation is timed.
+
 import "testing"
 
 func BenchmarkEncodeMetadata(b *testing.B) {

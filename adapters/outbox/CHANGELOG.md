@@ -10,6 +10,11 @@ All notable changes to this module are documented here.
   Select their published v2.0.1 and v2.0.2 fixes respectively. Preserve
   envelope bytes, bounded conversion, savepoints and caller-owned commit.
 
+### Documentation
+
+- Clarify prepared-plan ownership and staged versus committed results,
+  pre-lock topic routing and caller-owned outer rollback/reconciliation.
+
 ## 2.0.1 - 2026-10-06
 
 ### Changed

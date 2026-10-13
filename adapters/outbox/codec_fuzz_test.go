@@ -6,6 +6,8 @@ import (
 	"github.com/faustbrian/go-transactional-outbox/v2"
 )
 
+// FuzzEnvelopeCodecDecode mutates untrusted outbox envelopes and checks
+// mapping/routing validation without panic.
 func FuzzEnvelopeCodecDecode(f *testing.F) {
 	codec := mustCodec(f, FixedTopic("events"), outbox.DefaultLimits())
 	envelope, err := codec.Encode(internalMessage(f, true))
@@ -55,6 +57,8 @@ func FuzzEnvelopeCodecDecode(f *testing.F) {
 	})
 }
 
+// FuzzEnvelopeCodecEncodeTopic exercises hostile resolver topic output against
+// envelope bounds before external publication.
 func FuzzEnvelopeCodecEncodeTopic(f *testing.F) {
 	message := internalMessage(f, false)
 	f.Add("events")

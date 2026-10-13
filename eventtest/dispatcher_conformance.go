@@ -15,8 +15,14 @@ import (
 // synchronous dispatcher. A factory adapts it to the implementation's own
 // registration mechanism.
 type DispatcherRegistration struct {
-	ID      string
+	// ID is the stable consumer fixture identity; duplicate registrations must
+	// fail.
+	ID string
+	// Handler is the synchronous borrowed fixture callback used to observe ordered
+	// delivery.
 	Handler eventsourcing.ConsumerFunc
+	// Filters is the ordered borrowed predicate fixture; factories must preserve
+	// registration order.
 	Filters []eventsourcing.DeliveryFilter
 }
 

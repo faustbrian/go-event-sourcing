@@ -27,6 +27,8 @@ var (
 // ProcessManager is the consumer-owned planning surface implemented by
 // *processmanager.Manager.
 type ProcessManager[Command any] interface {
+	// Plan preserves application command/result ownership; wrappers observe but do
+	// not execute commands.
 	Plan(
 		context.Context,
 		eventsourcing.Delivery,

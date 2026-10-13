@@ -11,7 +11,11 @@ const defaultRepositoryReadBatchSize = 256
 // Repository loads and saves one aggregate type behind a small replaceable
 // contract.
 type Repository[ID, Aggregate any] interface {
+	// Load returns a newly reconstructed aggregate or an error; partial
+	// reconstruction must not be reused.
 	Load(context.Context, ID) (Aggregate, error)
+	// Save returns durability separately from dispatch failure; unknown outcomes
+	// require reconciliation before retry.
 	Save(context.Context, Aggregate) (SaveResult, error)
 }
 
@@ -39,11 +43,19 @@ type AggregateRestorer[Aggregate any] func() (Aggregate, error)
 // MessageContext contains application-supplied envelope context for one
 // pending aggregate event.
 type MessageContext struct {
-	Metadata      map[string]string
+	// Metadata is per-event application context; message construction validates
+	// and copies it.
+	Metadata map[string]string
+	// CorrelationID optionally links this pending event to an application-selected
+	// correlation.
 	CorrelationID string
-	CausationID   string
-	Tenant        string
-	Partition     string
+	// CausationID optionally names the message that caused this pending event.
+	CausationID string
+	// Tenant carries caller-verified tenant metadata; repository composition does
+	// not authorize it.
+	Tenant string
+	// Partition carries optional application routing metadata.
+	Partition string
 }
 
 // MessageContextProvider supplies application envelope context in pending
@@ -56,27 +68,58 @@ type MessageContextProvider[Aggregate any] func(
 
 // RepositoryConfig supplies every replaceable aggregate repository boundary.
 type RepositoryConfig[ID, Aggregate any] struct {
-	AggregateType  string
-	EncodeID       IdentifierEncoder[ID]
-	Identify       AggregateIdentifier[ID, Aggregate]
-	NewAggregate   AggregateFactory[ID, Aggregate]
-	Lifecycle      LifecycleAccessor[Aggregate]
-	Apply          AggregateApply[Aggregate]
-	Store          EventStore
-	Codec          PayloadCodec
-	Upcasters      Upcaster
-	Clock          Clock
-	MessageIDs     MessageIDGenerator
-	Decorators     *MessageDecoratorChain
-	Dispatcher     Dispatcher
+	// AggregateType is the bounded canonical stream type shared by this
+	// repository.
+	AggregateType string
+	// EncodeID maps application IDs to stable bounded stream text; required,
+	// borrowed and synchronous.
+	EncodeID IdentifierEncoder[ID]
+	// Identify returns the aggregate ID used for save/restore identity checks;
+	// required and borrowed.
+	Identify AggregateIdentifier[ID, Aggregate]
+	// NewAggregate creates fresh state for Load; required and called before
+	// replay.
+	NewAggregate AggregateFactory[ID, Aggregate]
+	// Lifecycle returns the aggregate-owned lifecycle; nil results are rejected.
+	Lifecycle LifecycleAccessor[Aggregate]
+	// Apply mutates reconstructed state for one logical event; lifecycle contains
+	// its panics and poisons failed state.
+	Apply AggregateApply[Aggregate]
+	// Store is the required borrowed authoritative event store; the repository
+	// does not close it.
+	Store EventStore
+	// Codec is the required borrowed payload boundary; contextual extensions are
+	// preferred when present.
+	Codec PayloadCodec
+	// Upcasters is required; an explicitly empty chain preserves unchanged stored
+	// identities.
+	Upcasters Upcaster
+	// Clock is the required borrowed recording-time source; invoked once per
+	// prepared event.
+	Clock Clock
+	// MessageIDs is the required borrowed generator; prepared IDs are retained for
+	// unknown-outcome reconciliation.
+	MessageIDs MessageIDGenerator
+	// Decorators is required; an empty constructed chain opts into no metadata
+	// decoration.
+	Decorators *MessageDecoratorChain
+	// Dispatcher is required and runs only after confirmed
+	// persistence/acknowledgement.
+	Dispatcher Dispatcher
+	// MessageContext is optional and called in pending-event order; nil supplies
+	// empty context.
 	MessageContext MessageContextProvider[Aggregate]
-	ReadBatchSize  uint32
+	// ReadBatchSize bounds each read page; zero selects 256 and values above
+	// MaxReadMessages fail.
+	ReadBatchSize uint32
 }
 
 // AggregateRepository is the reference storage-independent repository.
 //
 // It starts no goroutines and owns no transaction. One aggregate instance must
-// not be saved concurrently.
+// not be saved concurrently. Dependencies/callbacks are borrowed and must
+// support the calling pattern when repositories are shared. Collaborator
+// panics are not universally contained; lifecycle Apply failures poison state.
 type AggregateRepository[ID, Aggregate any] struct {
 	saveOwner      *repositorySaveOwner
 	aggregateType  string
@@ -336,6 +379,8 @@ func (repository *AggregateRepository[ID, Aggregate]) verifySnapshotVersion(
 	return errors.Join(verifyErr, iterator.Err(), iterator.Close())
 }
 
+// loadPage counts stored source versions, not logical upcast output: a split
+// or dropped event must not change the next authoritative stream position.
 func (repository *AggregateRepository[ID, Aggregate]) loadPage(
 	ctx context.Context,
 	stream StreamID,
@@ -477,8 +522,10 @@ func (repository *AggregateRepository[ID, Aggregate]) Save(
 }
 
 // PrepareSave validates and encodes the aggregate's current pending changes
-// without performing I/O. The returned plan may be staged by a caller-owned
-// transaction and then passed to ConfirmCommitted or MarkCommitUnknown.
+// without store append or dispatch. Borrowed codecs, ID generators, clocks and
+// application callbacks can still perform I/O or block. The returned plan may
+// be staged by a caller-owned transaction and then passed to ConfirmCommitted
+// or MarkCommitUnknown.
 func (repository *AggregateRepository[ID, Aggregate]) PrepareSave(
 	ctx context.Context,
 	aggregate Aggregate,
@@ -618,7 +665,9 @@ func validatePlannedMessages(plan SavePlan, messages []Message) error {
 }
 
 // DispatchCommitted performs live dispatch for a previously confirmed result.
-// Persistence remains committed when dispatch fails.
+// Persistence remains committed when dispatch fails. The returned value records
+// its attempt; an older copied SaveResult can still be dispatched again. This
+// flag is not shared/durable deduplication or a side-effect fence.
 func (repository *AggregateRepository[ID, Aggregate]) DispatchCommitted(
 	ctx context.Context,
 	result SaveResult,

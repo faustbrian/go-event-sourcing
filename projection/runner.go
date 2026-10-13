@@ -1,5 +1,12 @@
 // Package projection provides explicit bounded replay composition for read
-// models without requiring CQRS.
+// models without requiring CQRS. NewRunner runs one caller-scheduled batch with
+// explicit authorization, handler, checkpoint and poison policy. Handler effects
+// precede compare-and-save checkpointing; a failure/crash may repeat effects.
+// Pausing blocks future progress but does not join application work.
+//
+// The package owns no transaction, lease or worker goroutine. Applications own
+// durable idempotency and fencing/transactions for exactly-once effects. Replay
+// hooks may repeat on failed or terminal batches and must be idempotent.
 package projection
 
 import (
@@ -35,7 +42,11 @@ var (
 // ErrCheckpointConflict and checkpoint advancement while paused with
 // ErrProjectionPaused.
 type CheckpointStore interface {
+	// Status returns an atomic run-state/checkpoint snapshot; it must not combine
+	// independently read versions.
 	Status(context.Context, string) (Status, error)
+	// Save atomically advances expected to next only while running; stale
+	// expectations return ErrCheckpointConflict.
 	Save(
 		context.Context,
 		string,
@@ -51,16 +62,33 @@ type Handler func(context.Context, eventsourcing.Delivery) error
 
 // RunnerConfig supplies every projection runner boundary.
 type RunnerConfig struct {
-	Name         string
-	Reader       eventsourcing.GlobalReader
-	Checkpoints  CheckpointStore
-	Handler      Handler
-	Filter       *ReplayFilter
+	// Name is the stable bounded projection identity, not a customer/tenant label.
+	Name string
+	// Reader is the borrowed authoritative globally ordered history source.
+	Reader eventsourcing.GlobalReader
+	// Checkpoints is the required borrowed monotonic progress/control store.
+	Checkpoints CheckpointStore
+	// Handler is required and must be idempotent because success can precede
+	// checkpoint failure.
+	Handler Handler
+	// Filter is optional and copied as immutable criteria; filtered messages still
+	// advance the checkpoint.
+	Filter *ReplayFilter
+	// PoisonPolicy is optional; nil stops on handler failure, and skipping
+	// requires explicit durable checkpoint success.
 	PoisonPolicy PoisonPolicy
-	Guard        ReplayGuard
+	// Guard is required and runs before each batch, including terminal probes;
+	// PermitReplay is explicit external authorization.
+	Guard ReplayGuard
+	// BeforeReplay is optional and runs when no checkpoint exists; repeated
+	// failure may invoke it again.
 	BeforeReplay ReplayHook
-	AfterReplay  ReplayHook
-	BatchSize    uint32
+	// AfterReplay is optional and may repeat on terminal probes; it must be
+	// idempotent.
+	AfterReplay ReplayHook
+	// BatchSize is positive and at most MaxReadMessages; the runner does not
+	// schedule another batch.
+	BatchSize uint32
 }
 
 // Runner processes one bounded replay batch at a time.
@@ -331,6 +359,8 @@ func (runner *Runner) RunBatch(
 				result.handled++
 			}
 		}
+		// Checkpoint CAS fences progress, not the already executed handler.
+		// A losing writer must tolerate that its application effect already ran.
 		if saveErr := runner.checkpoints.Save(
 			ctx,
 			runner.name,
@@ -430,6 +460,8 @@ func (runner *Runner) verifyCheckpoint(
 // HandlerError redacts application projection diagnostics while preserving
 // their cause.
 type HandlerError struct {
+	// Cause retains the underlying failure for Unwrap; Error omits its diagnostic
+	// text.
 	Cause error
 }
 

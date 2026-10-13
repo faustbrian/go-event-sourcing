@@ -1,4 +1,9 @@
 // Package kafka maps event-sourcing deliveries to bounded Kafka records.
+// NewRecordCodec selects a package-defined wire-v1 mapping and exact topic
+// allowlist; this is not broker configuration or end-to-end exactly-once
+// delivery. NewDispatcher publishes synchronously, while NewRecordHandler
+// leaves offset settlement to the owning consumer. Publisher/resolver/consumer
+// lifetimes, blocking budgets and concurrent-use safety remain caller-owned.
 package kafka
 
 import (
@@ -117,6 +122,8 @@ func (err *RecordError) Unwrap() []error {
 
 // TopicResolver selects one Kafka topic for a persisted event message.
 type TopicResolver interface {
+	// ResolveTopic selects a topic synchronously without a context parameter.
+	// The codec checks its bounds/allowlist; callers own blocking and routing trust.
 	ResolveTopic(eventsourcing.Message) (string, error)
 }
 
@@ -143,9 +150,15 @@ func FixedTopic(topic string) TopicResolver {
 
 // RecordCodecConfig defines immutable topic routing and Kafka record bounds.
 type RecordCodecConfig struct {
-	Resolver      TopicResolver
+	// Resolver is required and borrowed; it must support concurrent calls, with
+	// resolver panics contained by encoding.
+	Resolver TopicResolver
+	// AllowedTopics is a copied nonempty exact allowlist of at most 64 unique
+	// valid topics.
 	AllowedTopics []string
-	Limits        kafka.MessageLimits
+	// Limits bounds outbound/inbound fields; zero selects the documented package
+	// defaults.
+	Limits kafka.MessageLimits
 }
 
 // RecordCodec maps complete deliveries to Kafka records and back without
@@ -206,7 +219,9 @@ func NewRecordCodec(config RecordCodecConfig) (*RecordCodec, error) {
 }
 
 // Encode creates one owned Kafka record. The aggregate ID is the default key,
-// preserving per-aggregate order for records routed to one topic.
+// selecting one partitioning key for records routed to one topic. Broker,
+// producer and routing configuration determine actual ordering; equal IDs from
+// different aggregate types can share that key without sharing stream identity.
 func (codec *RecordCodec) Encode(
 	delivery eventsourcing.Delivery,
 ) (kafka.Message, error) {

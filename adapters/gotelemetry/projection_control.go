@@ -24,9 +24,17 @@ var (
 // ProjectionController is the consumer-owned operational control surface
 // implemented by *projection.Controller.
 type ProjectionController interface {
+	// Status returns an atomic run-state/checkpoint snapshot without changing
+	// projection state.
 	Status(context.Context) (projection.Status, error)
+	// Pause idempotently prevents future checkpoint advancement; caller-owned
+	// in-flight work is not joined.
 	Pause(context.Context) (projection.Status, error)
+	// Resume idempotently permits future projection work without resetting
+	// application state.
 	Resume(context.Context) (projection.Status, error)
+	// ResetCheckpoint removes the expected checkpoint only while paused; the
+	// caller owns draining and read-model reset.
 	ResetCheckpoint(
 		context.Context,
 		eventsourcing.GlobalPosition,

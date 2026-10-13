@@ -11,6 +11,9 @@ import (
 	"github.com/jackc/pgx/v5"
 )
 
+// iterator owns pgx.Rows and must be used serially. Next closes rows on normal
+// exhaustion/errors, but early termination still requires Close. Row validation
+// occurs after driver scanning; it is not a pre-transfer allocation bound.
 type iterator struct {
 	rows                   pgx.Rows
 	current                eventsourcing.Message

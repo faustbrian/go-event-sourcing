@@ -5,7 +5,9 @@ import (
 	"io/fs"
 )
 
-// migrationFiles contains the reversible event-sourcing schema.
+// migrationFiles contains hand-maintained forward-only schema migrations.
+// The SQL files intentionally have no Down directives; destructive reversal is
+// not supplied by this package and embedded bytes are the owned producer input.
 //
 //go:embed migrations/*.sql
 var migrationFiles embed.FS

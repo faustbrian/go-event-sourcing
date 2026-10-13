@@ -103,7 +103,11 @@ var (
 
 // ValidationError identifies an invalid field without exposing its value.
 type ValidationError struct {
-	Field  string
+	// Field identifies the invalid input boundary; use a non-sensitive diagnostic
+	// label.
+	Field string
+	// Reason explains the validation rule; avoid application data because Error
+	// prints it.
 	Reason string
 }
 

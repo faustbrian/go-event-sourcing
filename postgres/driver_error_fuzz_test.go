@@ -6,6 +6,8 @@ import (
 	"testing"
 )
 
+// FuzzDatabaseFailure checks bounded ordinary diagnostics while preserving the
+// original inspectable error cause.
 func FuzzDatabaseFailure(f *testing.F) {
 	f.Add("driver detail with private data")
 	f.Add("")

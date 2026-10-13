@@ -8,6 +8,8 @@ import (
 	eventsourcing "github.com/faustbrian/go-event-sourcing/v2"
 )
 
+// FuzzSnapshotValidation exercises derived-state field validation and
+// defensive ownership, not authoritative-history correctness.
 func FuzzSnapshotValidation(fuzz *testing.F) {
 	fuzz.Add(
 		"account",

@@ -36,6 +36,8 @@ var (
 // ProjectionRunner is the consumer-owned surface required to instrument one
 // bounded projection replay batch.
 type ProjectionRunner interface {
+	// RunBatch exposes partial replay progress separately from durability;
+	// wrappers must preserve downstream errors/results.
 	RunBatch(context.Context) (projection.BatchResult, error)
 }
 

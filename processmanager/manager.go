@@ -1,5 +1,8 @@
 // Package processmanager plans explicit application commands from event
-// deliveries without executing side effects.
+// deliveries without executing side effects. New validates an explicit event
+// allowlist and command cap. Application callbacks own command immutability,
+// blocking and shared-use safety; planner panics are classified, but no timeout,
+// durable saga state, command execution or retry orchestration is introduced.
 package processmanager
 
 import (
@@ -45,11 +48,21 @@ type Planner[Command any] func(
 
 // Config supplies one process manager's explicit planning policy.
 type Config[Command any] struct {
-	Name        string
-	Replay      ReplayPolicy
-	EventNames  []eventsourcing.EventName
+	// Name is validated as an application process identity; it is not persisted
+	// process state.
+	Name string
+	// Replay defaults to RejectReplay; AllowReplay opts into historical planning,
+	// not command execution.
+	Replay ReplayPolicy
+	// EventNames is a copied nonempty unique allowlist of at most
+	// MaxAcceptedEventNames.
+	EventNames []eventsourcing.EventName
+	// MaxCommands is required and at most MaxPlannedCommands; oversized plans fail
+	// without executing commands.
 	MaxCommands uint32
-	Planner     Planner[Command]
+	// Planner is the required synchronous borrowed callback; returned commands
+	// remain application-owned immutable values.
+	Planner Planner[Command]
 }
 
 // Manager plans bounded commands and never executes them.
@@ -191,6 +204,8 @@ func (manager *Manager[Command]) Plan(
 // PlannerError redacts application planner diagnostics while preserving their
 // cause for inspection.
 type PlannerError struct {
+	// Cause retains the underlying failure for Unwrap; Error omits its diagnostic
+	// text.
 	Cause error
 }
 

@@ -9,6 +9,9 @@ import (
 	"github.com/faustbrian/go-event-sourcing/v2/memory"
 )
 
+// FuzzAggregateRepositoryLiveAndReplayAreEquivalent compares bounded generated
+// live histories with fresh replay state/version, not durable-store crash
+// recovery.
 func FuzzAggregateRepositoryLiveAndReplayAreEquivalent(f *testing.F) {
 	f.Add([]byte{})
 	f.Add([]byte{0, 1, 2, 3, 255})

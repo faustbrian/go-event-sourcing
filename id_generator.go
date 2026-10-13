@@ -12,6 +12,8 @@ const randomMessageIDBytes = 16
 // MessageIDGenerator supplies stable message identifiers without global
 // replacement.
 type MessageIDGenerator interface {
+	// NewMessageID returns a nonzero stable identity or an error; callers own
+	// retry and entropy policy.
 	NewMessageID(context.Context) (MessageID, error)
 }
 
@@ -89,6 +91,8 @@ func (generator *RandomMessageIDGenerator) NewMessageID(
 // MessageIDGenerationError redacts an entropy source or application
 // generator diagnostic while preserving its cause for inspection.
 type MessageIDGenerationError struct {
+	// Cause retains the underlying failure for Unwrap; Error omits its diagnostic
+	// text.
 	Cause error
 }
 

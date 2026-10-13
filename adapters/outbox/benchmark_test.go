@@ -1,5 +1,9 @@
 package eventoutbox
 
+// This benchmark measures encode/decode round trips for a prebuilt complete
+// message and fixed topic. Codec/fixture setup precedes ResetTimer; SQL, outer
+// commit and broker publication are not measured.
+
 import (
 	"testing"
 

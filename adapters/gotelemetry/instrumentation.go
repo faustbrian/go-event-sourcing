@@ -1,5 +1,3 @@
-// Package gotelemetry instruments event-sourcing boundaries with standard
-// OpenTelemetry providers without recording event data or application errors.
 package gotelemetry
 
 import (
@@ -50,8 +48,14 @@ var (
 // Provider and propagator methods invoked by this adapter must return promptly;
 // use bounded asynchronous SDK processors and exporters for blocking IO.
 type Runtime interface {
+	// TracerProvider supplies a borrowed provider whose methods must return
+	// promptly; adapter construction creates instruments, not exporters.
 	TracerProvider() trace.TracerProvider
+	// MeterProvider supplies a borrowed provider; its recording methods must
+	// support concurrent bounded calls.
 	MeterProvider() metric.MeterProvider
+	// Propagator supplies borrowed propagation behavior; Kafka wrappers support
+	// traceparent/tracestate only and do not authenticate headers.
 	Propagator() propagation.TextMapPropagator
 }
 
@@ -72,7 +76,8 @@ func (err *InstrumentError) Unwrap() []error {
 }
 
 // Instrumentation owns immutable event-sourcing tracing and metric
-// instruments. It starts no goroutines.
+// instruments. It starts no goroutines and does not own provider shutdown.
+// Immutable wrappers may be shared only when borrowed collaborators support it.
 type Instrumentation struct {
 	propagator         propagation.TextMapPropagator
 	tracer             trace.Tracer

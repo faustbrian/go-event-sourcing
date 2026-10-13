@@ -41,8 +41,12 @@ func (state RunState) String() string {
 
 // StatusInput supplies one immutable projection status.
 type StatusInput struct {
-	State         RunState
-	Checkpoint    eventsourcing.GlobalPosition
+	// State is StateRunning or StatePaused; zero is invalid.
+	State RunState
+	// Checkpoint is the optional last durable global position and must agree with
+	// HasCheckpoint.
+	Checkpoint eventsourcing.GlobalPosition
+	// HasCheckpoint must be exactly equivalent to Checkpoint being nonzero.
 	HasCheckpoint bool
 }
 
@@ -101,8 +105,13 @@ func (status Status) Valid() bool {
 // never modifies application read-model state.
 type ControlStore interface {
 	CheckpointStore
+	// Pause idempotently blocks new batches/checkpoint advancement; it does not
+	// drain already running application work.
 	Pause(context.Context, string) (Status, error)
+	// Resume idempotently permits future batches/checkpoint advancement.
 	Resume(context.Context, string) (Status, error)
+	// ResetCheckpoint requires paused state and atomically removes only the
+	// expected checkpoint; callers own read-model reset and draining.
 	ResetCheckpoint(
 		context.Context,
 		string,
@@ -180,8 +189,13 @@ func (controller *Controller) ResetCheckpoint(
 // CheckpointConflictError reports the actual progress that rejected a stale
 // expected checkpoint.
 type CheckpointConflictError struct {
-	Expected     eventsourcing.GlobalPosition
-	Actual       eventsourcing.GlobalPosition
+	// Expected is the checkpoint supplied by the losing compare-and-save/reset
+	// operation.
+	Expected eventsourcing.GlobalPosition
+	// Actual is the current checkpoint; zero means absent when ActualExists is
+	// false.
+	Actual eventsourcing.GlobalPosition
+	// ActualExists distinguishes an absent checkpoint from a stored value.
 	ActualExists bool
 }
 

@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Documentation
 
+- Clarify append certainty, copied dispatch results, callback I/O, split
+  replay positions and application-owned mutable event values.
+
 - Clarify security support for each module's latest stable major release line
   and link the shared vulnerability-management and coordinated-release policy.
 

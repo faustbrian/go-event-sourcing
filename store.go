@@ -40,8 +40,11 @@ type ExpectedVersion struct {
 //
 // Error omits stream identity because aggregate identifiers may be sensitive.
 type ConcurrencyError struct {
-	Stream        StreamID
-	Expected      ExpectedVersion
+	// Stream identifies the rejected append and is intentionally omitted by Error.
+	Stream StreamID
+	// Expected is the optimistic concurrency condition that failed.
+	Expected ExpectedVersion
+	// ActualVersion is the observed current stream length; zero means absent.
 	ActualVersion uint64
 }
 
@@ -170,12 +173,17 @@ func AppendCommitOutcome(err error) CommitOutcome {
 
 // EventStore atomically appends and reads immutable aggregate event messages.
 type EventStore interface {
+	// Append atomically persists a bounded nonempty single-stream batch in order
+	// and reports commit certainty on failure; duplicate IDs do not establish
+	// retry success.
 	Append(
 		context.Context,
 		StreamID,
 		ExpectedVersion,
 		[]PendingMessage,
 	) ([]Message, error)
+	// ReadStream honors the inclusive range/limit and returns a caller-closed
+	// iterator, or ErrStreamNotFound for absent history.
 	ReadStream(
 		context.Context,
 		StreamID,
@@ -186,6 +194,8 @@ type EventStore interface {
 // GlobalReader provides optional store-wide ordered reads for replay and
 // projections. Every returned message must have a global position.
 type GlobalReader interface {
+	// ReadGlobal returns a bounded ordered global range through a caller-closed
+	// iterator; every message needs an assigned global position.
 	ReadGlobal(
 		context.Context,
 		ReadGlobalOptions,
@@ -205,9 +215,13 @@ type ReadStreamOptions struct {
 //
 // A zero ToVersion reads through the current end of the stream.
 type ReadStreamOptionsInput struct {
+	// FromVersion is the positive inclusive first stream position.
 	FromVersion uint64
-	ToVersion   uint64
-	Limit       uint32
+	// ToVersion is the inclusive last stream position; zero reads through the
+	// current end.
+	ToVersion uint64
+	// Limit is required and at most MaxReadMessages, not a total-history bound.
+	Limit uint32
 }
 
 // NewReadStreamOptions validates one bounded inclusive forward range.
@@ -265,9 +279,13 @@ type ReadGlobalOptions struct {
 //
 // A zero ToPosition reads through the current end of the store.
 type ReadGlobalOptionsInput struct {
+	// FromPosition is the positive inclusive first global position.
 	FromPosition GlobalPosition
-	ToPosition   GlobalPosition
-	Limit        uint32
+	// ToPosition is the inclusive last global position; zero reads through the
+	// current end.
+	ToPosition GlobalPosition
+	// Limit is required and at most MaxReadMessages, not a total-history bound.
+	Limit uint32
 }
 
 // NewReadGlobalOptions validates one bounded inclusive global range.
@@ -327,8 +345,16 @@ func (options ReadGlobalOptions) Valid() bool {
 
 // MessageIterator is a caller-closed, cancellation-aware forward iterator.
 type MessageIterator interface {
+	// Next advances with caller cancellation; false requires checking Err and
+	// still closing the iterator.
 	Next(context.Context) bool
+	// Message returns the current immutable message after successful Next;
+	// retaining its value is safe, but iterator calls must be serialized.
 	Message() Message
+	// Err reports traversal failure, including errors discovered at close; it is
+	// not a completion signal by itself.
 	Err() error
+	// Close releases owned read resources and is idempotent; callers must invoke
+	// it on early exit.
 	Close() error
 }

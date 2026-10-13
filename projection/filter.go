@@ -16,12 +16,24 @@ const (
 //
 // Empty criteria match every assigned persisted message.
 type ReplayFilterInput struct {
-	Streams         []eventsourcing.StreamID
-	AggregateTypes  []string
-	EventNames      []string
-	FromPosition    eventsourcing.GlobalPosition
+	// Streams is an optional exact-match allowlist copied during construction;
+	// duplicates/zero streams fail.
+	Streams []eventsourcing.StreamID
+	// AggregateTypes is an optional canonical-type allowlist; duplicates fail and
+	// combined lists are bounded.
+	AggregateTypes []string
+	// EventNames is an optional canonical-name allowlist copied during
+	// construction; not decoded/upcast names.
+	EventNames []string
+	// FromPosition is inclusive; zero removes the lower global-position bound.
+	FromPosition eventsourcing.GlobalPosition
+	// ThroughPosition is inclusive; zero removes the upper bound.
 	ThroughPosition eventsourcing.GlobalPosition
-	RecordedFrom    time.Time
+	// RecordedFrom is inclusive and normalized to UTC microseconds; zero removes
+	// the lower bound.
+	RecordedFrom time.Time
+	// RecordedThrough is inclusive and normalized to UTC microseconds; zero
+	// removes the upper bound.
 	RecordedThrough time.Time
 }
 

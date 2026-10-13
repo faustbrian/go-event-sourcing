@@ -11,6 +11,8 @@ import (
 
 // ProcessManager plans commands for one persisted event delivery.
 type ProcessManager[Command any] interface {
+	// Plan derives a bounded command plan without executing application side
+	// effects.
 	Plan(
 		context.Context,
 		eventsourcing.Delivery,
@@ -20,11 +22,22 @@ type ProcessManager[Command any] interface {
 // ProcessManagerScenario describes one expected planning outcome. Commands are
 // compared in order. WantError selects an errors.Is failure expectation.
 type ProcessManagerScenario[Command any] struct {
-	Manager   ProcessManager[Command]
-	Delivery  eventsourcing.Delivery
-	Commands  []Command
-	Equal     func(Command, Command) bool
-	Ignored   bool
+	// Manager is the borrowed planning boundary invoked exactly once for this
+	// scenario.
+	Manager ProcessManager[Command]
+	// Delivery is the assigned immutable live/replay input to the planning check.
+	Delivery eventsourcing.Delivery
+	// Commands is the ordered expected plan; values remain application-owned and
+	// must stay immutable.
+	Commands []Command
+	// Equal is required for nonempty expected Commands and compares them in order;
+	// nil is allowed only without commands.
+	Equal func(Command, Command) bool
+	// Ignored expects an unaccepted event with no commands and cannot combine with
+	// WantError.
+	Ignored bool
+	// WantError selects errors.Is comparison; nil expects success, not a string
+	// comparison.
 	WantError error
 }
 

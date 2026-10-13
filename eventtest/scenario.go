@@ -1,5 +1,9 @@
 // Package eventtest provides ordinary testing values for aggregate scenarios
-// and reusable infrastructure conformance checks.
+// and reusable infrastructure conformance checks. NewScenario composes borrowed
+// callbacks with fresh aggregate state per run. Helper assertions characterize
+// selected scenarios, not every crash/isolation/platform behavior. Callers own
+// external-fixture setup/cleanup, bounded contexts and sensitive diagnostics
+// exposed by their own callbacks; no service or benchmark campaign is started.
 package eventtest
 
 import (
@@ -11,9 +15,15 @@ import (
 // AggregateConfig supplies the explicit aggregate boundaries used by a
 // scenario.
 type AggregateConfig[Aggregate any] struct {
-	New       func() (Aggregate, error)
+	// New creates a fresh aggregate for every scenario run; the callback remains
+	// borrowed.
+	New func() (Aggregate, error)
+	// Lifecycle returns aggregate-owned state used for reconstitution and
+	// pending-event assertions.
 	Lifecycle func(Aggregate) *eventsourcing.Lifecycle
-	Apply     func(Aggregate, eventsourcing.DecodedEvent) error
+	// Apply mutates fresh aggregate state during history application; lifecycle
+	// owns panic/failure handling.
+	Apply func(Aggregate, eventsourcing.DecodedEvent) error
 }
 
 // Scenario is an immutable aggregate-history setup that may be reused across

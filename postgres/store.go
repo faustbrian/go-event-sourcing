@@ -1,5 +1,13 @@
 // Package postgres provides PostgreSQL persistence for event-sourcing
-// messages without adding pgx to the core module.
+// messages without adding pgx to the core module. New borrows a pool; NewTx
+// stages against a caller-owned transaction. Apply the hand-maintained embedded
+// Migrations before use; constructors do not install or verify the schema.
+//
+// Per-stream locking enforces expected versions, while the global-position row
+// serializes committed ordering across streams. Commit errors require
+// ReconcileAppend on a locking-capable primary, not replica absence or blind
+// retry. The package owns bounded rollback attempts but not pool shutdown,
+// deployment durability, application idempotency or read-model transactions.
 package postgres
 
 import (
@@ -93,6 +101,8 @@ func databaseFailure(cause error) error {
 // CommitError redacts a PostgreSQL commit failure while preserving its cause
 // and classifying the durable outcome as unknown.
 type CommitError struct {
+	// Cause retains the underlying failure for Unwrap; Error omits its diagnostic
+	// text.
 	Cause error
 }
 
@@ -112,6 +122,7 @@ func (err *CommitError) Unwrap() []error {
 // The first release supports only the default event_sourcing schema shipped by
 // Migrations. Its zero value selects that schema.
 type Config struct {
+	// Schema may be empty or event_sourcing only; arbitrary schemas are rejected.
 	Schema string
 }
 
@@ -188,8 +199,14 @@ type TxWriter struct {
 // AppendPlan exposes the immutable data required to stage a prepared aggregate
 // save. eventsourcing.SavePlan implements this consumer-owned contract.
 type AppendPlan interface {
+	// Stream returns the assigned stream to stage, not evidence of a committed
+	// append.
 	Stream() eventsourcing.StreamID
+	// ExpectedVersion returns the exact append precondition selected during
+	// preparation.
 	ExpectedVersion() eventsourcing.ExpectedVersion
+	// PreparedMessages returns the exact ordered prepared envelopes, with stable
+	// IDs for reconciliation.
 	PreparedMessages() []eventsourcing.PendingMessage
 }
 
@@ -284,6 +301,8 @@ func (store *Store) ReconcileAppend(
 		}
 	}()
 
+	// This shared row is a commit-order barrier, not a sequence: rolling back
+	// an append restores its allocation so later global reads have no hole.
 	positions := pgx.Identifier{store.schema, "positions"}.Sanitize()
 	var lastPosition int64
 	if err := tx.QueryRow(
@@ -505,6 +524,8 @@ func (store *Store) append(
 		return nil, eventsourcing.ErrVersionOverflow
 	}
 
+	// This shared row is a commit-order barrier, not a sequence: rolling back
+	// an append restores its allocation so later global reads have no hole.
 	positions := pgx.Identifier{store.schema, "positions"}.Sanitize()
 	var firstPosition int64
 	if err := db.QueryRow(
@@ -935,6 +956,9 @@ func unknownCommit(cause error) error {
 	return &CommitError{Cause: cause}
 }
 
+// rollbackContext intentionally uses a fresh five-second background budget;
+// it detaches both cancellation and values. Most deferred rollback errors are
+// ignored, so the return value is not proof that remote cleanup succeeded.
 func rollbackContext(_ context.Context) (context.Context, context.CancelFunc) {
 	return context.WithTimeout(
 		context.Background(),

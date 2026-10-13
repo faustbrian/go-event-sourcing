@@ -16,6 +16,9 @@ import (
 	tracenoop "go.opentelemetry.io/otel/trace/noop"
 )
 
+// FuzzKafkaRecordPassThrough checks wrapper pass-through of caller-owned
+// records/results under hostile field values without recording payload
+// diagnostics.
 func FuzzKafkaRecordPassThrough(f *testing.F) {
 	f.Add(byte(0), int32(0), int64(0), "traceparent", "value")
 	f.Add(byte(1), int32(7), int64(1_786_448_394), "traceſtate", "application")
@@ -57,6 +60,8 @@ func FuzzKafkaRecordPassThrough(f *testing.F) {
 	})
 }
 
+// FuzzProjectionNamesAndPositions exercises name/position bounds without
+// allowing telemetry to alter downstream progress or failure.
 func FuzzProjectionNamesAndPositions(f *testing.F) {
 	f.Add("projection", uint64(0), uint64(1))
 	f.Add("tenant-derived-name", ^uint64(0), uint64(0))
@@ -79,6 +84,8 @@ func FuzzProjectionNamesAndPositions(f *testing.F) {
 	})
 }
 
+// FuzzSerializationMetadataPassThrough checks codec/upcaster wrapper ownership
+// and pass-through for hostile serialization metadata.
 func FuzzSerializationMetadataPassThrough(f *testing.F) {
 	f.Add("key", "value")
 	f.Add("authorization", "credential")
@@ -121,6 +128,8 @@ func FuzzSerializationMetadataPassThrough(f *testing.F) {
 	})
 }
 
+// FuzzHostileProviderIsolation exercises telemetry provider panic/error
+// isolation while preserving downstream results and context authority.
 func FuzzHostileProviderIsolation(f *testing.F) {
 	f.Add(byte(0), "provider")
 	f.Add(byte(31), "panic")

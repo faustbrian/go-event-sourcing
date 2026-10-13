@@ -1,5 +1,10 @@
 package projection
 
+// These workloads measure bounded in-memory replay/checkpoint and live
+// catch-up shapes. Prebuilt history/read-model fixtures are distinct from
+// timed replay; results do not qualify live database isolation or exactly-once
+// side effects.
+
 import (
 	"context"
 	"fmt"

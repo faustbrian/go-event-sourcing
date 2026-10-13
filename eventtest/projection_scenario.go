@@ -11,27 +11,46 @@ import (
 
 // ProjectionRunner executes one bounded projection batch.
 type ProjectionRunner interface {
+	// RunBatch returns handled and checkpointed progress separately, including
+	// partial progress on error.
 	RunBatch(context.Context) (projection.BatchResult, error)
 }
 
 // ExpectedProjectionBatch describes the observable progress from one runner
 // batch.
 type ExpectedProjectionBatch struct {
-	Scanned      uint32
-	Handled      uint32
-	Filtered     uint32
-	Skipped      uint32
+	// Scanned is the expected number of persisted messages examined.
+	Scanned uint32
+	// Handled is the expected successful handler count, even if checkpointing
+	// later failed.
+	Handled uint32
+	// Filtered is the expected deliberately omitted handler count.
+	Filtered uint32
+	// Skipped is the expected explicitly durably skipped poison-message count.
+	Skipped uint32
+	// Checkpointed is the expected number followed by successful checkpoint saves,
+	// including filtered records.
 	Checkpointed uint32
-	Checkpoint   eventsourcing.GlobalPosition
+	// Checkpoint is the expected last durable global position, not just the last
+	// handled position.
+	Checkpoint eventsourcing.GlobalPosition
 }
 
 // ProjectionScenario describes one bounded runner call and optional
 // application-owned read-model predicate. WantError uses errors.Is semantics.
 type ProjectionScenario struct {
-	Runner    ProjectionRunner
-	Expected  ExpectedProjectionBatch
+	// Runner is the required borrowed boundary called once using the supplied
+	// context.
+	Runner ProjectionRunner
+	// Expected contains all counters and the durable checkpoint compared even when
+	// an error is expected.
+	Expected ExpectedProjectionBatch
+	// WantError selects errors.Is comparison; nil expects success, not a string
+	// comparison.
 	WantError error
-	State     func() bool
+	// State is an optional read-model predicate invoked after progress/error
+	// comparisons; nil omits that assertion.
+	State func() bool
 }
 
 // CheckProjectionScenario executes one bounded projection batch and compares

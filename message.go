@@ -100,7 +100,8 @@ func (id StreamID) IsZero() bool {
 	return id.aggregateType == "" && id.aggregateID == ""
 }
 
-// String returns a diagnostic stream identity without event data or metadata.
+// String includes the raw application aggregate ID while omitting payload and
+// metadata. A canonical identifier is not necessarily safe to log.
 func (id StreamID) String() string {
 	return id.aggregateType + "/" + id.aggregateID
 }
@@ -142,10 +143,15 @@ type GlobalPosition uint64
 
 // EncodedEventInput supplies immutable encoded event data.
 type EncodedEventInput struct {
-	Name        string
-	Version     SchemaVersion
+	// Name is the canonical persisted event identity, not a Go type name.
+	Name string
+	// Version is the positive encoded event schema version.
+	Version SchemaVersion
+	// ContentType is a bounded canonical media type; the constructor rejects
+	// noncanonical formatting.
 	ContentType string
-	Payload     []byte
+	// Payload is nonempty and at most MaxPayloadBytes; NewEncodedEvent copies it.
+	Payload []byte
 }
 
 // EncodedEvent is immutable-by-contract event data ready for storage.
@@ -207,15 +213,30 @@ func (event EncodedEvent) IsZero() bool {
 
 // PendingMessageInput supplies message data before store-assigned positions.
 type PendingMessageInput struct {
-	ID            string
-	Stream        StreamID
-	Event         EncodedEvent
-	Metadata      map[string]string
-	RecordedAt    time.Time
+	// ID is the required bounded message identity; stores enforce uniqueness, not
+	// implicit retry success.
+	ID string
+	// Stream is the assigned aggregate identity that owns this message.
+	Stream StreamID
+	// Event is the assigned encoded event; constructors defensively own its
+	// payload.
+	Event EncodedEvent
+	// Metadata is copied and validated against entry/byte bounds and the reserved
+	// es. prefix.
+	Metadata map[string]string
+	// RecordedAt must be nonzero and is normalized to UTC microseconds.
+	RecordedAt time.Time
+	// CorrelationID is optional; empty means absent rather than a generated
+	// identity.
 	CorrelationID string
-	CausationID   string
-	Tenant        string
-	Partition     string
+	// CausationID is an optional predecessor identity; empty means absent.
+	CausationID string
+	// Tenant is optional caller-verified routing metadata, not authorization
+	// enforced by the store.
+	Tenant string
+	// Partition is optional caller-selected routing metadata, not a store-assigned
+	// ordering position.
+	Partition string
 }
 
 // PendingMessage is an immutable-by-contract message awaiting persistence.
@@ -363,8 +384,12 @@ func (message PendingMessage) String() string {
 
 // MessageInput supplies store-assigned positions for a pending message.
 type MessageInput struct {
-	Pending        PendingMessage
-	StreamVersion  uint64
+	// Pending is a fully assigned envelope that NewMessage defensively owns.
+	Pending PendingMessage
+	// StreamVersion is the positive store-assigned position within this aggregate.
+	StreamVersion uint64
+	// GlobalPosition is an optional store-wide position; zero declares no global
+	// ordering capability.
 	GlobalPosition GlobalPosition
 }
 
@@ -515,6 +540,8 @@ func copyMetadata(input map[string]string) (map[string]string, error) {
 	return output, nil
 }
 
+// validMetadataKey reserves es. case-insensitively so application metadata
+// cannot impersonate transport-owned envelope fields with a casing variant.
 func validMetadataKey(value string) bool {
 	return (len(value) < len(reservedMetadataPrefix) ||
 		!strings.EqualFold(value[:len(reservedMetadataPrefix)], reservedMetadataPrefix)) &&

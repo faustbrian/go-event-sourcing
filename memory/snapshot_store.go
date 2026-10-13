@@ -7,7 +7,10 @@ import (
 	eventsourcing "github.com/faustbrian/go-event-sourcing/v2"
 )
 
-// SnapshotStore is a concurrency-safe in-memory derived snapshot store.
+// SnapshotStore is a concurrency-safe derived-state store created by
+// NewSnapshotStore; its zero value is invalid and it must not be copied after use.
+// It owns no background work or retention policy. Cancellation is checked before
+// acquiring the lock, not after waiting, so a canceled waiter may still mutate.
 type SnapshotStore struct {
 	mutex     sync.RWMutex
 	snapshots map[eventsourcing.StreamID]eventsourcing.Snapshot

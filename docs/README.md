@@ -1,5 +1,7 @@
 # Documentation
 
+[Source contract audit and limitations](source-documentation-audit.md).
+
 ## Getting started
 
 - [Installation](installation.md)

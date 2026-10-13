@@ -47,15 +47,22 @@ var (
 // Queue accepts one encoded event envelope. Queue acceptance is synchronous
 // but does not imply durable processing.
 type Queue interface {
+	// Queue synchronously accepts one encoded envelope; it has no context
+	// parameter and must be bounded by the implementation.
 	Queue(core.QueuedMessage, ...job.AllowOption) error
 }
 
 // DispatcherConfig defines immutable queue dispatch dependencies and job
 // execution policy. Pointer-backed job fields are defensively copied.
 type DispatcherConfig struct {
+	// Queue synchronously accepts one encoded envelope; it has no context
+	// parameter and must be bounded by the implementation.
 	Queue Queue
+	// Codec is required and borrowed; it validates/copies the delivery envelope.
 	Codec *Codec
-	Job   job.AllowOption
+	// Job selects execution/retry policy; pointer-backed fields and maps are
+	// copied during construction and per delivery.
+	Job job.AllowOption
 }
 
 // Dispatcher synchronously encodes and enqueues deliveries in input order. It

@@ -42,6 +42,8 @@ var (
 // Publisher synchronously publishes one Kafka record and returns only after
 // the configured acknowledgement policy succeeds or fails.
 type Publisher interface {
+	// Publish synchronously returns the configured acknowledgement result; errors
+	// may follow acceptance, so callers own deduplication and retry.
 	Publish(context.Context, kafka.Message) error
 }
 

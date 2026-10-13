@@ -7,6 +7,8 @@ import (
 	eventsourcing "github.com/faustbrian/go-event-sourcing/v2"
 )
 
+// FuzzMessageConstruction exercises hostile envelope components and
+// ownership/validation invariants without assuming successful construction.
 func FuzzMessageConstruction(f *testing.F) {
 	f.Add(
 		"bank.account",

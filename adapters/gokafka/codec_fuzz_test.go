@@ -10,6 +10,8 @@ import (
 	"github.com/faustbrian/go-kafka"
 )
 
+// FuzzRecordCodecDecode mutates transport-owned Kafka fields/headers;
+// malformed reserved identity and routing must fail closed without panic.
 func FuzzRecordCodecDecode(f *testing.F) {
 	codec := testRecordCodec(f)
 	seed := testEncodedRecord(f, codec)

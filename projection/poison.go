@@ -78,8 +78,11 @@ type PoisonPolicy func(
 // PoisonPolicyError preserves both the handler and policy failures while
 // redacting their diagnostics.
 type PoisonPolicyError struct {
+	// Handler retains the original projection failure even when policy or
+	// checkpoint work also failed.
 	Handler error
-	Policy  error
+	// Policy retains the failed/invalid poison-policy decision.
+	Policy error
 }
 
 // Error implements error without exposing application data.
@@ -95,7 +98,11 @@ func (err *PoisonPolicyError) Unwrap() []error {
 // PoisonSkipCheckpointError preserves a handler failure and the checkpoint
 // failure that prevented its explicit skip from becoming durable.
 type PoisonSkipCheckpointError struct {
-	Handler    error
+	// Handler retains the original projection failure even when policy or
+	// checkpoint work also failed.
+	Handler error
+	// Checkpoint retains the save failure that prevented an explicit skip becoming
+	// durable.
 	Checkpoint error
 }
 

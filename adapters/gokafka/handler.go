@@ -51,6 +51,8 @@ var (
 // DeliveryConsumer handles one decoded event delivery before its Kafka offset
 // may be settled.
 type DeliveryConsumer interface {
+	// Consume synchronously handles a decoded delivery before settlement; repeated
+	// broker delivery requires application idempotency.
 	Consume(context.Context, eventsourcing.Delivery) error
 }
 
@@ -85,6 +87,8 @@ const (
 //
 // Record bytes are borrowed for the call and must be copied before retention.
 type FailurePolicy interface {
+	// HandleFailure borrows the failed record; FailureHandled is permitted only
+	// after durable handling, while failure leaves settlement to the broker owner.
 	HandleFailure(
 		context.Context,
 		kafka.ConsumedMessage,

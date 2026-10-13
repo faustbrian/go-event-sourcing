@@ -1,5 +1,11 @@
-// Package memory provides conformant in-memory stores for tests and local
-// development.
+// Package memory provides process-local event, projection and snapshot stores
+// for tests/local development. NewStore, NewProjectionStore and NewSnapshotStore
+// create independent state; no background work, close or disk persistence is
+// owned. Maps/history have no total cardinality or retention limit.
+//
+// Stores synchronize their own state and return snapshot iterators that must
+// be used serially and closed. Append/projection writes recheck cancellation
+// after lock ownership; snapshot operations retain pre-lock-only checks.
 package memory
 
 import (
@@ -11,7 +17,7 @@ import (
 
 // Store is a concurrency-safe in-memory event store.
 //
-// It provides process-local durability only but otherwise enforces the core
+// State survives only for this object/process lifetime; it enforces the core
 // append, ordering, ownership, and optimistic-concurrency contract.
 // Its zero value is invalid; construct it with NewStore.
 type Store struct {
@@ -107,6 +113,8 @@ func (store *Store) Append(
 		stored[index] = persisted
 	}
 
+	// Publish only after the entire batch is built: cancellation while
+	// preparing rows must not expose a prefix or consume global positions.
 	store.streams[stream] = append(current, stored...)
 	store.globalMessages = append(store.globalMessages, stored...)
 	for id := range batchIDs {
