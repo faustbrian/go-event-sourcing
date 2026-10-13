@@ -1,5 +1,7 @@
 # Event messages and metadata
 
+[Documentation index](README.md)
+
 An event message separates the domain event payload from the stable envelope
 needed to store, evolve, correlate, route, and diagnose it. Event identity is
 explicit data and never depends on Go package paths, concrete type names,
@@ -132,3 +134,5 @@ Applications must review their logging and telemetry policy and may need to
 hash or omit them at external diagnostic boundaries. The optional telemetry
 adapter deliberately uses finite-cardinality operation attributes rather than
 event or aggregate identities.
+
+Continue with [Event-sourcing adoption guide](adoption.md).

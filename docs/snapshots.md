@@ -1,5 +1,7 @@
 # Snapshot storage
 
+[Documentation index](README.md)
+
 Snapshots are optional derived acceleration data. Event history remains the
 authority: applications must be able to delete snapshots and rebuild them from
 the event store.
@@ -202,3 +204,5 @@ category. Explicit bounded snapshot schema migrations are implemented. Durable
 PostgreSQL storage is implemented in the independently versioned `postgres`
 module; its database transaction and operational guarantees are adapter
 guarantees rather than core guarantees.
+
+Continue with [Event-sourcing adoption guide](adoption.md).

@@ -1,5 +1,7 @@
 # Aggregate scenario testing
 
+[Documentation index](README.md)
+
 The `eventtest` package exercises aggregate behavior without a custom runner,
 global state, or a third-party assertion framework. A scenario is immutable:
 `GivenNone`, `Given`, and `GivenHistory` return independent setups, and every
@@ -238,3 +240,5 @@ synchronous-dispatcher and optional global-reader conformance are implemented.
 Snapshot equivalence is implemented and exercised through the real snapshot
 manager with later history. Process-manager planning scenarios are implemented.
 Projection batch and application-state scenarios are implemented.
+
+Continue with [Event-sourcing adoption guide](adoption.md).

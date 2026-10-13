@@ -1,5 +1,7 @@
 # Dispatcher and consumer semantics
 
+[Documentation index](README.md)
+
 `Dispatcher` is the replaceable delivery boundary:
 
 The [runnable synchronous-dispatch example](../dispatch_example_test.go)
@@ -57,3 +59,5 @@ behavior, panic policy, partial-progress semantics, and live/replay intent.
 Queue and Kafka integrations remain independently versioned adapters because
 their delivery guarantees are materially different from synchronous
 in-process dispatch.
+
+Continue with [Event-sourcing adoption guide](adoption.md).

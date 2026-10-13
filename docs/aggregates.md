@@ -1,5 +1,7 @@
 # Aggregate modeling
 
+[Documentation index](README.md)
+
 An aggregate owns business invariants and the deterministic application of its
 events. The library owns only lifecycle bookkeeping, persistence composition,
 and message delivery. There is no aggregate base class, reflective handler

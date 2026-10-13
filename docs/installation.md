@@ -1,5 +1,7 @@
 # Installation and package map
 
+[Documentation index](README.md)
+
 Install only the modules needed by one aggregate or bounded context. The core
 module has no database, queue, outbox, Kafka, telemetry, framework, or
 generator dependency:
@@ -15,8 +17,8 @@ published core-v2 PostgreSQL adapter:
 go get github.com/faustbrian/go-event-sourcing/postgres/v2@v2.0.0
 ```
 
-Adapter v3 is prepared in source and pending publication. After release,
-it composes Event Sourcing core/PostgreSQL v2 with Transactional Outbox v2:
+The independently published v3 adapter composes Event Sourcing core/PostgreSQL
+v2 with Transactional Outbox v2:
 
 ```sh
 go get github.com/faustbrian/go-event-sourcing/adapters/outbox/v3@v3.0.0

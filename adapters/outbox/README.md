@@ -9,7 +9,7 @@ the outer transaction and never claims exactly-once delivery.
 
 ## Install
 
-Adapter v3 is prepared in this source and pending publication. After release:
+Install the independently published v3 adapter:
 
 ```sh
 go get github.com/faustbrian/go-event-sourcing/adapters/outbox/v3@v3.0.0
@@ -51,8 +51,8 @@ additional guarantees beyond the documented module boundary.
 
 ## Documentation
 
-This module is listed in the versioned [Golib ecosystem index](https://github.com/faustbrian/go-library-tools/blob/v1.4.0/docs/ecosystem/README.md)
-and follows its [persistence and durability family guidance](https://github.com/faustbrian/go-library-tools/blob/v1.4.0/docs/ecosystem/design-language.md#package-families-and-selection).
+This module is listed in the versioned [Golib ecosystem index](https://github.com/faustbrian/go-library-tools/blob/v1.8.4/docs/ecosystem/README.md)
+and follows its [persistence and durability family guidance](https://github.com/faustbrian/go-library-tools/blob/v1.8.4/docs/ecosystem/design-language.md#package-families-and-selection).
 
 - [Documentation index](docs/README.md)
 - [Complete technical guide](docs/reference.md)

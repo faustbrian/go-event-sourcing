@@ -1,5 +1,7 @@
 # Frequently asked questions
 
+[Documentation index](README.md)
+
 ## Does this library require CQRS?
 
 No. Event sourcing is the persistence model. Projections and read models are
@@ -72,3 +74,5 @@ must enforce authorization, isolation, routing, retention, and key management.
 Errors and telemetry expose stable bounded categories and operational counts.
 Payloads, metadata values, event identities, hostile input, panic values,
 credentials, and secrets must not be copied into diagnostics.
+
+Continue with [Event-sourcing adoption guide](adoption.md).

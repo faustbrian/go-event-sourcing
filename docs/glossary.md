@@ -1,5 +1,7 @@
 # Glossary
 
+[Documentation index](README.md)
+
 **Aggregate**<br>
 A consistency boundary that owns domain invariants and changes state by
 recording events.
@@ -103,3 +105,5 @@ The one-based position of a message within its aggregate stream.
 **Upcaster**<br>
 A deterministic read-boundary transformation from stored event identity,
 payload, and metadata to newer logical events without rewriting history.
+
+Continue with [Event-sourcing adoption guide](adoption.md).

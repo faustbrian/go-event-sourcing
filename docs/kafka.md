@@ -1,5 +1,7 @@
 # Kafka integration
 
+[Documentation index](README.md)
+
 The independently versioned
 `github.com/faustbrian/go-event-sourcing/adapters/kafka/v2` module owns
 event-message mapping and event-specific producer and consumer composition.

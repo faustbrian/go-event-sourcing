@@ -1,5 +1,7 @@
 # Event sourcing Kafka adapter technical guide
 
+[Documentation index](README.md)
+
 > This released v1 path is a deprecated compatibility module for
 > `github.com/faustbrian/go-event-sourcing/adapters/kafka`. Its API and runtime
 > contract remain supported for the longer of 180 days and two stable minor

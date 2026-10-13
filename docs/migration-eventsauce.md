@@ -1,5 +1,7 @@
 # Migrating from EventSauce to Go
 
+[Documentation index](README.md)
+
 This guide maps EventSauce 3.9.1 concepts to the idiomatic Go API. It does not
 promise PHP source compatibility or automatic wire and database compatibility.
 Pin the source application, EventSauce packages, schemas, codecs, and event

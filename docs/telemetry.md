@@ -1,5 +1,7 @@
 # OpenTelemetry integration
 
+[Documentation index](README.md)
+
 The independently versioned
 `github.com/faustbrian/go-event-sourcing/adapters/otel/v2` module
 keeps OpenTelemetry dependencies outside the event-sourcing core.

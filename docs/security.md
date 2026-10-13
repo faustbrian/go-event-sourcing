@@ -1,5 +1,7 @@
 # Security, privacy, and compliance
 
+[Documentation index](README.md)
+
 Event history is durable application data, not an audit log, authorization
 system, secrets vault, or compliance product. This library validates bounded
 envelopes and redacts its own diagnostics; applications and deployments remain

@@ -1,5 +1,7 @@
 # Aggregate identifiers and UUID encoding
 
+[Documentation index](README.md)
+
 Aggregate identifiers are application values. The core repository is generic
 over the identifier type and requires an explicit `IdentifierEncoder[ID]` to
 produce the stable stream identifier stored in every message.

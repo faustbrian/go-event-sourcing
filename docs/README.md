@@ -1,5 +1,7 @@
 # Documentation
 
+[Package README](../README.md)
+
 [Source contract audit and limitations](source-documentation-audit.md).
 
 ## Getting started
@@ -64,3 +66,12 @@
 - [Release notes](release-notes.md)
 - [Contribution guide](../CONTRIBUTING.md)
 - [Release history](../CHANGELOG.md)
+
+## Ecosystem navigation
+
+See the [versioned Golib ecosystem index](https://github.com/faustbrian/go-library-tools/blob/v1.8.4/docs/ecosystem/README.md) for package
+selection, explicit ownership, and compatibility guidance.
+
+## Additional guides and reference
+
+- [Event-sourcing adoption guide](adoption.md)

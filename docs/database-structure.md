@@ -1,5 +1,7 @@
 # Database structure and capacity
 
+[Documentation index](README.md)
+
 Event history is authoritative infrastructure. Choose its physical layout from
 measured stream shape, replay requirements, operational ownership, and failure
 recovery rather than from aggregate type aesthetics.
@@ -121,3 +123,5 @@ payload corpus, stream-length distribution, concurrency, durability settings,
 sample counts, latency distributions, throughput, and allocations. Compare
 equivalent durability and serialization work. An in-memory result or an
 unordered insert is not a baseline for the committed ordered adapter.
+
+Continue with [Event-sourcing adoption guide](adoption.md).

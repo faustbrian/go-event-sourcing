@@ -1,5 +1,7 @@
 # Aggregate lifecycle
 
+[Documentation index](README.md)
+
 The package preserves EventSauce's recognizable lifecycle while keeping
 application invariants and event application in ordinary Go:
 

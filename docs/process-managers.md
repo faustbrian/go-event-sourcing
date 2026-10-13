@@ -1,5 +1,7 @@
 # Process managers
 
+[Documentation index](README.md)
+
 Process managers coordinate reactions across aggregate boundaries. The package
 keeps planning separate from execution: it does not include a command bus,
 workflow engine, scheduler, queue, or hidden process-state store.
@@ -103,3 +105,5 @@ The optional `otel.WrapProcessManager` adapter observes planning latency,
 outcome, delivery mode, and successful command count using a bounded static
 manager name. It never records event or command data and never executes the
 returned plan.
+
+Continue with [Event-sourcing adoption guide](adoption.md).

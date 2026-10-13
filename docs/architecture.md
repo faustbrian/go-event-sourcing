@@ -1,5 +1,7 @@
 # Architecture
 
+[Documentation index](README.md)
+
 The library preserves EventSauce's pragmatic separation of three replaceable
 responsibilities while making their ownership explicit in Go:
 

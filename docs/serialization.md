@@ -1,5 +1,7 @@
 # Serialization and schema evolution
 
+[Documentation index](README.md)
+
 Payload serialization and message serialization are separate boundaries.
 `PayloadCodec` converts between an application event value and an
 `EncodedEvent`. Stores persist the complete message envelope. Transport

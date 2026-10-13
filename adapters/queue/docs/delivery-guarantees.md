@@ -1,5 +1,7 @@
 # Delivery guarantees
 
+[Documentation index](README.md)
+
 This module owns the mapping between event-sourcing deliveries and the
 first-party queue seam. It does not own backend transactions, worker lifecycle,
 dead-letter storage, or application effects. Evidence therefore distinguishes
@@ -155,3 +157,5 @@ The durable variance is intentionally published rather than hidden. These
 samples ran on a developer workstation with concurrent load, so they establish
 separate workloads and allocation visibility, not a release threshold or a
 statistically significant performance difference.
+
+Continue with [Event sourcing queue adapter technical guide](reference.md).

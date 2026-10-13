@@ -1,5 +1,7 @@
 # Projection and replay foundations
 
+[Documentation index](README.md)
+
 Projections and replay are optional consumers of persisted event history. The
 core event store remains usable without CQRS, a read model, or a global event
 index.
@@ -268,3 +270,5 @@ Durable PostgreSQL checkpoints and same-transaction PostgreSQL read-model
 updates are implemented. The compatibility matrix marks the projection and
 bounded message-replay capabilities implemented without implying release or
 deployment readiness.
+
+Continue with [Event-sourcing adoption guide](adoption.md).

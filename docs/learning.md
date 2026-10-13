@@ -1,5 +1,7 @@
 # Learning event sourcing
 
+[Documentation index](README.md)
+
 This library implements event-sourcing infrastructure; it does not make event
 sourcing simple or appropriate for every domain. Read the tradeoffs before
 adopting it:
@@ -38,3 +40,5 @@ transaction model, this library keeps those choices optional and explicit.
 
 If those obligations do not buy material domain value, conventional state
 persistence is usually the better design.
+
+Continue with [Event-sourcing adoption guide](adoption.md).

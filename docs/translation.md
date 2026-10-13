@@ -1,5 +1,7 @@
 # Anti-corruption translation
 
+[Documentation index](README.md)
+
 `TranslatorChain` adapts deliveries at an explicit integration boundary. It is
 not part of aggregate reconstitution and never rewrites stored history.
 
@@ -53,3 +55,5 @@ Use the narrower evolution mechanisms for persisted history:
 Translator implementations own their determinism, thread safety, and any
 application-specific identity mapping. Replay translation must remain
 side-effect free.
+
+Continue with [Event-sourcing adoption guide](adoption.md).

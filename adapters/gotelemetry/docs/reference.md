@@ -1,5 +1,7 @@
 # Event sourcing OpenTelemetry adapter technical guide
 
+[Documentation index](README.md)
+
 > This released v1 path is a deprecated compatibility module for
 > `github.com/faustbrian/go-event-sourcing/adapters/otel`. Its API, signals,
 > semantic convention, and instrumentation scope remain supported for the

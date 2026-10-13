@@ -1,5 +1,7 @@
 # Assurance and residual risks
 
+[Documentation index](README.md)
+
 This document records source-level findings from the EventSauce 3.9.1
 compatibility review. The baseline is EventSauce
 `3.9.1` at tag commit `33ea9b97ec3ac56991caad03b791fee418a43e41`.

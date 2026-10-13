@@ -1,5 +1,7 @@
 # Event-sourcing adoption guide
 
+[Documentation index](README.md)
+
 Event sourcing is a persistence model for domains where the ordered business
 transitions are the authoritative record. It is not a default replacement for
 storing current state, and this package does not make its operational or
@@ -130,3 +132,5 @@ Do not put the first aggregate into production until:
 If the exercise does not demonstrate enough value, retain conventional state
 persistence. The package is designed so trying event sourcing in one bounded
 context does not require an application-wide rewrite.
+
+Continue with [Five-minute quickstart](quickstart.md).

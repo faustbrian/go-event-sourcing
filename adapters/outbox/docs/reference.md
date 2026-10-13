@@ -1,5 +1,7 @@
 # Event sourcing outbox adapter technical guide
 
+[Documentation index](README.md)
+
 This guide contains the complete behavioral and operational reference. Start
 with the [package overview](../README.md).
 
@@ -12,7 +14,7 @@ the outer transaction and never claims exactly-once delivery.
 
 ## V3 migration
 
-Adapter v3 is prepared here and pending publication. After release, require
+The independently published v3 adapter requires
 `github.com/faustbrian/go-event-sourcing/adapters/outbox/v3@v3.0.0`
 with `github.com/faustbrian/go-transactional-outbox/v2@v2.0.0`.
 Use the outbox `/v2`, `/v2/postgres` and `/v2/relay` imports throughout

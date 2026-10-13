@@ -1,5 +1,7 @@
 # Package and adapter boundaries
 
+[Documentation index](../README.md)
+
 ## Decision
 
 The first release uses a small core module and independently versioned nested

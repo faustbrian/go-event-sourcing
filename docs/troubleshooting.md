@@ -1,5 +1,7 @@
 # Troubleshooting
 
+[Documentation index](README.md)
+
 Start from the stable error category and durability outcome, not from an error
 string. Preserve `errors.Is` and `errors.As` causes internally while keeping
 payloads, metadata, identifiers, credentials, panic values, and raw hostile
@@ -92,3 +94,5 @@ sequence, cancellation and timeout state, and the smallest reproducible test.
 State which checks were local, real-database, broker-backed, CI-verified, or not
 run. Never attach production event bodies, metadata values, credentials,
 connection strings, or unreviewed database dumps.
+
+Continue with [Event-sourcing adoption guide](adoption.md).

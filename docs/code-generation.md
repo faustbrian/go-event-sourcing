@@ -1,5 +1,7 @@
 # Code generation decision
 
+[Documentation index](README.md)
+
 Code generation is not shipped in the first release. This is an intentional Go
 design, not an unexplained compatibility gap.
 
@@ -36,3 +38,5 @@ materially improves safety or maintenance over handwritten Go. It would need:
 
 Until those criteria are met, no generator command, YAML format, generated
 wire compatibility, or stale-generation guarantee is part of the public API.
+
+Continue with [Event-sourcing adoption guide](adoption.md).

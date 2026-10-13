@@ -1,5 +1,7 @@
 # Compatible queue integration
 
+[Documentation index](README.md)
+
 The independently versioned
 `github.com/faustbrian/go-event-sourcing/adapters/queue/v2` module keeps
 the repository queue dependency outside the event-sourcing core.

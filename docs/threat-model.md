@@ -1,5 +1,7 @@
 # Event-sourcing threat model
 
+[Documentation index](README.md)
+
 Model version: 1. Reviewed: 2026-10-02. Repository maintainers own this model
 and the first-party implementation controls. This is a boundary model, not a
 deployment certification or evidence that every security gate has passed.

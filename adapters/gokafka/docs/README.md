@@ -1,5 +1,7 @@
 # Documentation
 
+[Package README](../README.md) · [Parent documentation](../../../docs/README.md)
+
 > Deprecated compatibility path. New code should use
 > `github.com/faustbrian/go-event-sourcing/adapters/kafka` at v1. The legacy
 > v1 path remains supported for the longer of 180 days and two
@@ -23,3 +25,8 @@
 
 - [Changelog](../CHANGELOG.md)
 - [Parent package documentation](../../../docs/README.md)
+
+## Ecosystem navigation
+
+See the [versioned Golib ecosystem index](https://github.com/faustbrian/go-library-tools/blob/v1.8.4/docs/ecosystem/README.md) for package
+selection, explicit ownership, and compatibility guidance.

@@ -1,5 +1,7 @@
 # Source documentation audit
 
+[Documentation index](README.md)
+
 ## Owner, acceptance and selected checks
 
 This Tier A pass owns source comments and directly contradicted current prose at
@@ -144,3 +146,5 @@ routes. Ordinary shared CI selects strict source-documentation checking and
 requires its result. Native prerequisites, operation budgets, security and
 release controls are retained. Hosted exact-head evidence is recorded by the
 coordination ledger; configuration alone does not establish green delivery.
+
+Continue with [Event-sourcing adoption guide](adoption.md).

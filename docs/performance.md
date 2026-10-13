@@ -1,5 +1,7 @@
 # Performance and capacity planning
 
+[Documentation index](README.md)
+
 Performance evidence is valid only when implementations perform equivalent
 observable work. Removing validation, serialization, optimistic conflict
 checks, transaction durability, dispatch, or acknowledgement from one side
@@ -121,3 +123,5 @@ production-shaped corpus and recovery drill.
 No benchmark result is a service-level objective. Deployments own latency and
 throughput budgets, workload forecasts, headroom, alerting, and regression
 policy on stable infrastructure.
+
+Continue with [Event-sourcing adoption guide](adoption.md).

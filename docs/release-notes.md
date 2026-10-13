@@ -1,5 +1,7 @@
 # Release notes and compatibility
 
+[Documentation index](README.md)
+
 The changelog in each independently releasable module is the authoritative
 release-note source for that module:
 

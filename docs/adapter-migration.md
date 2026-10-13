@@ -1,5 +1,7 @@
 # Adapter path migration
 
+[Documentation index](README.md)
+
 ## Core-v2 adoption
 
 The published canonical Kafka-v2 and OpenTelemetry-v2 adapters adopt public

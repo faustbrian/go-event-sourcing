@@ -1,5 +1,7 @@
 # Five-minute quickstart
 
+[Documentation index](README.md)
+
 This example event-sources one aggregate with the conformant in-memory store.
 The same aggregate and repository composition can use the PostgreSQL adapter
 without changing domain behavior.
@@ -154,3 +156,5 @@ The in-memory store is process-local and not durable. Replace only `store` with
 the PostgreSQL adapter for durable persistence. Add consumers, metadata
 decorators, upcasters, snapshots, projections, or asynchronous adapters only
 when their explicit policies are needed.
+
+Continue with [Event-sourcing adoption guide](adoption.md).

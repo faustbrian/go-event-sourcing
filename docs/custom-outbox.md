@@ -1,5 +1,7 @@
 # Custom outbox boundary
 
+[Documentation index](README.md)
+
 Building a general transactional outbox is not an event-sourcing core
 responsibility. The independently releasable
 `github.com/faustbrian/go-transactional-outbox/v2` module owns envelope construction,

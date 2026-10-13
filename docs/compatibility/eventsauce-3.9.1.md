@@ -1,5 +1,7 @@
 # EventSauce 3.9.1 compatibility matrix
 
+[Documentation index](../README.md)
+
 ## Pin and scope
 
 This matrix uses EventSauce `3.9.1`, Git tag commit

@@ -1,5 +1,7 @@
 # Runnable workflow examples
 
+[Documentation index](README.md)
+
 Every primary adoption and deployment workflow has a source-controlled
 executable artifact. Go examples run as part of ordinary module tests.
 Integration examples are ordinary `testing` tests behind the `integration`
@@ -33,3 +35,5 @@ shutdown, consumer idempotency, schema rollout, and operational recovery.
 The direct Kafka example is intentionally separate from the PostgreSQL-outbox
 workflow: neither Kafka idempotence nor Kafka transactions make the database
 append and broker publication atomic.
+
+Continue with [Event-sourcing adoption guide](adoption.md).
