@@ -5,6 +5,20 @@ All notable changes to this module will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2.0.2 - 2026-10-22
+
+### Changed
+
+- Publish the current source and documentation with a fresh immutable tag.
+- Publish independently versioned modules from the same source snapshot:
+  - `adapters/gokafka/v1.2.0`.
+  - `adapters/gotelemetry/v1.2.0`.
+  - `adapters/outbox/v3.1.0`.
+  - `adapters/queue/v2.1.0`.
+  - `postgres/v2.1.0`.
+  - `adapters/kafka/v2.1.0`.
+  - `adapters/otel/v2.1.0`.
+
 ## [Unreleased]
 
 ### Documentation
