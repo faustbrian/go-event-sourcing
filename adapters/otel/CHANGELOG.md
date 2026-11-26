@@ -9,6 +9,13 @@ All notable changes to this module are documented here.
 - Require klauspost/compress v1.20.2 and OpenTelemetry v1.47.0 to address GO-2026-6865,
   GO-2026-6974 and GO-2026-6975.
 
+- Require `golang.org/x/crypto` v0.59.0 (from v0.55.0; GO-2026-5932,
+  GO-2026-6354 and GO-2026-6355) and `golang.org/x/net` v0.62.0 (from v0.57.0;
+  GO-2026-6603, GO-2026-6610, GO-2026-6611, GO-2026-6612, GO-2026-6617,
+  GO-2026-6860 and GO-2026-6866). The vulnerable `golang.org/x/net` versions
+  were reachable only from tests. Production packages import
+  `golang.org/x/crypto`, but govulncheck found no imported vulnerable package.
+
 ### Documentation
 
 - Clarify provider/exporter ownership, explicit iterator closing, caller

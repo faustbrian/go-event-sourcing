@@ -15,6 +15,15 @@ All notable changes to this module are documented here.
 - Clarify prepared-plan ownership and staged versus committed results,
   pre-lock topic routing and caller-owned outer rollback/reconciliation.
 
+### Security
+
+- Require `github.com/klauspost/compress` v1.20.2 (from v1.20.0; GO-2026-6865),
+  `golang.org/x/crypto` v0.59.0 (from v0.55.0; GO-2026-5932, GO-2026-6354 and
+  GO-2026-6355), `golang.org/x/net` v0.62.0 (from v0.57.0; GO-2026-6603,
+  GO-2026-6610, GO-2026-6611, GO-2026-6612, GO-2026-6617, GO-2026-6860 and
+  GO-2026-6866) and OpenTelemetry v1.47.0 (from v1.45.0; GO-2026-6974 and
+  GO-2026-6975). The vulnerable versions were reachable only from tests.
+
 ## 2.0.1 - 2026-10-06
 
 ### Changed
