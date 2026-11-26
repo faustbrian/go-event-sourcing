@@ -100,6 +100,7 @@ removed APIs even when they do not run these fixtures:
   than adding a dependency on the now-deprecated `WithMetricAttributesFn`.
 
 See the [upstream changelog](https://github.com/open-telemetry/opentelemetry-go-contrib/blob/v1.44.0/CHANGELOG.md)
-for the supplier's migration and HTTP semantic-convention changes. The
-selected OpenTelemetry API and SDK remain v1.45.0; this adoption does not
-upgrade them to v1.47.0 or change the event-sourcing module paths.
+for the supplier's migration and HTTP semantic-convention changes. This
+adoption did not change the event-sourcing module paths. The `otel` and
+`gotelemetry` adapters now select OpenTelemetry v1.47.0 to address
+GO-2026-6974 and GO-2026-6975; the other modules keep v1.45.0.

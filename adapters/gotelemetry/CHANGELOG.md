@@ -8,6 +8,11 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Security
+
+- Require klauspost/compress v1.20.2 and OpenTelemetry v1.47.0 to address GO-2026-6865,
+  GO-2026-6974 and GO-2026-6975.
+
 ### Documentation
 
 - Document the retained core-v1 binding and v2 migration target while

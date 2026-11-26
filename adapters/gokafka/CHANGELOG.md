@@ -8,6 +8,10 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Security
+
+- Require klauspost/compress v1.20.2 to address GO-2026-6865.
+
 ### Documentation
 
 - Document the retained core-v1 binding, canonical v2 migration target,
