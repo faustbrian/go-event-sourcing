@@ -8,10 +8,7 @@ and this project adheres to
 
 ## [Unreleased]
 
-### Documentation
-
-- Document copied job inputs, non-interruptible synchronous producer calls,
-  unknown acceptance and queue-owned settlement.
+## [2.1.1] - 2026-11-26
 
 ### Security
 
@@ -21,6 +18,13 @@ and this project adheres to
   GO-2026-6610, GO-2026-6611, GO-2026-6612, GO-2026-6617, GO-2026-6860 and
   GO-2026-6866) and OpenTelemetry v1.47.0 (from v1.45.0; GO-2026-6974 and
   GO-2026-6975). The vulnerable versions were reachable only from tests.
+
+## [2.1.0] - 2026-10-22
+
+### Documentation
+
+- Document copied job inputs, non-interruptible synchronous producer calls,
+  unknown acceptance and queue-owned settlement.
 
 ## [2.0.1] - 2026-10-06
 
@@ -107,5 +111,7 @@ and this project adheres to
 - Redact wrapped input, consumer, panic, backend, and credential diagnostics
   from every common Go error format, including Go-syntax formatting.
 
-[Unreleased]: https://github.com/faustbrian/go-event-sourcing/compare/adapters%2Fqueue%2Fv1.0.0...HEAD
+[Unreleased]: https://github.com/faustbrian/go-event-sourcing/compare/adapters%2Fqueue%2Fv2.1.1...HEAD
+[2.1.1]: https://github.com/faustbrian/go-event-sourcing/releases/tag/adapters%2Fqueue%2Fv2.1.1
+[2.1.0]: https://github.com/faustbrian/go-event-sourcing/releases/tag/adapters%2Fqueue%2Fv2.1.0
 [1.0.0]: https://github.com/faustbrian/go-event-sourcing/releases/tag/adapters%2Fqueue%2Fv1.0.0

@@ -4,10 +4,7 @@ All notable changes to this module are documented here.
 
 ## Unreleased
 
-### Documentation
-
-- Document borrowed pool/transaction ownership, commit-order allocation,
-  bounded rollback attempts, post-scan validation and forward-only migrations.
+## 2.1.1 - 2026-11-26
 
 ### Security
 
@@ -17,6 +14,13 @@ All notable changes to this module are documented here.
   GO-2026-6610, GO-2026-6611, GO-2026-6612, GO-2026-6617, GO-2026-6860 and
   GO-2026-6866) and OpenTelemetry v1.47.0 (from v1.45.0; GO-2026-6974 and
   GO-2026-6975). The vulnerable versions were reachable only from tests.
+
+## 2.1.0 - 2026-10-22
+
+### Documentation
+
+- Document borrowed pool/transaction ownership, commit-order allocation,
+  bounded rollback attempts, post-scan validation and forward-only migrations.
 
 ## 2.0.2 - 2026-10-08
 

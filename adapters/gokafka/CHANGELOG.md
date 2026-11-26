@@ -8,6 +8,8 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [1.2.1] - 2026-11-26
+
 ### Security
 
 - Require klauspost/compress v1.20.2 to address GO-2026-6865.
@@ -20,6 +22,8 @@ and this project adheres to
   OpenTelemetry versions were reachable only from tests. Production packages
   import `golang.org/x/crypto`, but govulncheck found no imported vulnerable
   package.
+
+## [1.2.0] - 2026-10-22
 
 ### Documentation
 
@@ -151,7 +155,9 @@ and this project adheres to
   dead-letter loops, redacts failures, and permits settlement only after an
   acknowledged publication.
 
-[Unreleased]: https://github.com/faustbrian/go-event-sourcing/compare/adapters%2Fgokafka%2Fv1.0.3...HEAD
+[Unreleased]: https://github.com/faustbrian/go-event-sourcing/compare/adapters%2Fgokafka%2Fv1.2.1...HEAD
+[1.2.1]: https://github.com/faustbrian/go-event-sourcing/releases/tag/adapters%2Fgokafka%2Fv1.2.1
+[1.2.0]: https://github.com/faustbrian/go-event-sourcing/releases/tag/adapters%2Fgokafka%2Fv1.2.0
 [1.0.3]: https://github.com/faustbrian/go-event-sourcing/releases/tag/adapters%2Fgokafka%2Fv1.0.3
 [1.0.2]: https://github.com/faustbrian/go-event-sourcing/releases/tag/adapters%2Fgokafka%2Fv1.0.2
 [1.0.1]: https://github.com/faustbrian/go-event-sourcing/releases/tag/adapters%2Fgokafka%2Fv1.0.1
