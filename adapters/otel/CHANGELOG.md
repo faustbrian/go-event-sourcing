@@ -4,6 +4,8 @@ All notable changes to this module are documented here.
 
 ## [Unreleased]
 
+## [2.1.1] - 2026-11-26
+
 ### Security
 
 - Require klauspost/compress v1.20.2 and OpenTelemetry v1.47.0 to address GO-2026-6865,
@@ -15,6 +17,8 @@ All notable changes to this module are documented here.
   GO-2026-6860 and GO-2026-6866). The vulnerable `golang.org/x/net` versions
   were reachable only from tests. Production packages import
   `golang.org/x/crypto`, but govulncheck found no imported vulnerable package.
+
+## [2.1.0] - 2026-10-22
 
 ### Documentation
 
@@ -93,7 +97,9 @@ All notable changes to this module are documented here.
   changing the import path and renaming the qualifier to `otel`, or by aliasing
   the new import as `gotelemetry` to preserve existing selectors.
 
-[Unreleased]: https://github.com/faustbrian/go-event-sourcing/compare/adapters%2Fotel%2Fv1.0.2...HEAD
+[Unreleased]: https://github.com/faustbrian/go-event-sourcing/compare/adapters%2Fotel%2Fv2.1.1...HEAD
+[2.1.1]: https://github.com/faustbrian/go-event-sourcing/releases/tag/adapters%2Fotel%2Fv2.1.1
+[2.1.0]: https://github.com/faustbrian/go-event-sourcing/releases/tag/adapters%2Fotel%2Fv2.1.0
 [1.0.2]: https://github.com/faustbrian/go-event-sourcing/releases/tag/adapters%2Fotel%2Fv1.0.2
 [1.0.1]: https://github.com/faustbrian/go-event-sourcing/releases/tag/adapters%2Fotel%2Fv1.0.1
 [1.0.0]: https://github.com/faustbrian/go-event-sourcing/releases/tag/adapters%2Fotel%2Fv1.0.0
