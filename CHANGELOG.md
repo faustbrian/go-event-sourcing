@@ -23,6 +23,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Security
+
+- Require klauspost/compress v1.20.2 in the `gokafka`, `gotelemetry`, `kafka`
+  and `otel` adapters and OpenTelemetry v1.47.0 in the `gotelemetry` and
+  `otel` adapters to address GO-2026-6865 and GO-2026-6974.
+
 ### Documentation
 
 - Clarify append certainty, copied dispatch results, callback I/O, split
